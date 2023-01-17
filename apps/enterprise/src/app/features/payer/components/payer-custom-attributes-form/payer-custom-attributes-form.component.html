@@ -1,0 +1,83 @@
+<form
+    [formGroup]="form"
+    fxLayout="column"
+    fxLayoutGap="10px"
+    (ngSubmit)="onSubmit()"
+>
+    <div formGroupName="attributes" fxLayoutGap="5px" fxLayout="column">
+        <ng-container *ngFor="let attribute of entities; let i = index">
+            <ng-container [ngSwitch]="attribute.type">
+                <mat-radio-group
+                    *ngSwitchCase="TYPES.RADIO"
+                    fxLayout="column"
+                    fxLayoutGap="5px"
+                    [value]="attribute.value"
+                    (change)="onSelected(i, $event)"
+                >
+                    <label class="mat-body-strong">
+                        {{ attribute.name }}
+                    </label>
+                    <mat-radio-button
+                        *ngFor="let option of attribute.options"
+                        [value]="option.id"
+                    >
+                        {{ option.value }}
+                    </mat-radio-button>
+                </mat-radio-group>
+
+                <div
+                    *ngSwitchCase="TYPES.CHECKBOX"
+                    fxLayout="column"
+                    fxLayoutGap="5px"
+                >
+                    <label class="mat-body-strong">
+                        {{ attribute.name }}
+                    </label>
+                    <mat-checkbox
+                        *ngFor="let option of attribute.options"
+                        [checked]="option.isChecked"
+                        (change)="onChecked(i, option.id)"
+                    >
+                        {{ option.value }}
+                    </mat-checkbox>
+                </div>
+
+                <mat-form-field *ngSwitchCase="TYPES.DATE">
+                    <mat-label>
+                        {{ attribute.name }} {{ attribute.value }}
+                    </mat-label>
+                    <input
+                        matInput
+                        [matDatepicker]="picker"
+                        [value]="attribute.value"
+                        (dateChange)="onDateChange(i, $event)"
+                    />
+                    <mat-datepicker-toggle
+                        matSuffix
+                        [for]="picker"
+                    ></mat-datepicker-toggle>
+                    <mat-datepicker #picker></mat-datepicker>
+                </mat-form-field>
+
+                <mat-form-field *ngSwitchDefault>
+                    <mat-label>
+                        {{ attribute.name }}
+                    </mat-label>
+                    <span matPrefix *ngIf="attribute.type == TYPES.CURRENCY">
+                        {{ 'COP' | currencySymbol }}
+                    </span>
+                    <input
+                        matInput
+                        [type]="
+                            attribute.type == TYPES.TEXT ? 'text' : 'number'
+                        "
+                        [value]="attribute.value"
+                        [step]="attribute.type == TYPES.INTEGER ? 1 : 0.1"
+                        (change)="onWrite(i, $event.target.value)"
+                    />
+                </mat-form-field>
+            </ng-container>
+        </ng-container>
+    </div>
+    <button #submitButton hidden type="submit"></button>
+</form>

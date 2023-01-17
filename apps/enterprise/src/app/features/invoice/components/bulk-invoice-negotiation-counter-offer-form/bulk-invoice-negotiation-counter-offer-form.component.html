@@ -1,0 +1,155 @@
+<form (ngSubmit)="onSubmit()" [formGroup]="form">
+    <p class="mat-caption text-warn" *ngIf="form.hasError('quota')">
+        {{
+            'BULK_INVOICE_NEGOTIATION_COUNTER_OFFER_FORM.ERROR.QUOTA'
+                | translate
+                    : {
+                          value:
+                              form.errors.quota.value
+                              | currency: 'COP':'symbol-narrow':'1.2-2':'en',
+                          quota:
+                              form.errors.quota.available
+                              | currency: 'COP':'symbol-narrow':'1.2-2':'en'
+                      }
+        }}
+    </p>
+    <div
+        fxLayout.gt-xs="row"
+        fxLayout.xs="column"
+        fxLayoutAlign.xs="start"
+        fxLayoutAlign.gt-xs="stretch"
+        fxLayoutGap.gt-xs="12px"
+    >
+        <mat-form-field fxFlex.gt-xs>
+            <mat-label>
+                {{ 'BULK_INVOICE_NEGOTIATION_FORM.DISCOUNT_TYPE' | translate }}
+            </mat-label>
+            <mat-select formControlName="discountType">
+                <mat-option
+                    [value]="item.value"
+                    *ngFor="let item of (DISCOUNT_TYPE | keyvalue)"
+                >
+                    {{
+                        'COMMON.NEGOTIATION_DISCOUNT_TYPE.' + item.value
+                            | translate
+                    }}
+                </mat-option>
+            </mat-select>
+            <mat-error>
+                <span>
+                    {{ 'COMMON.VALIDATIONS.REQUIRED' | translate }}
+                </span>
+            </mat-error>
+        </mat-form-field>
+        <mat-form-field fxFlex.gt-xs>
+            <mat-label>
+                {{
+                    'BULK_INVOICE_NEGOTIATION_FORM.DISCOUNT_DUE_DATE'
+                        | translate
+                }}
+            </mat-label>
+            <input
+                matInput
+                name="discount-due-date"
+                formControlName="discountDueDate"
+                [matDatepicker]="dueDatePicker"
+                [min]="tomorrow"
+            />
+            <mat-datepicker-toggle
+                matSuffix
+                [for]="dueDatePicker"
+            ></mat-datepicker-toggle>
+            <mat-datepicker #dueDatePicker></mat-datepicker>
+            <mat-error>
+                <span *ngIf="form.hasError('required', 'discountDueDate')">
+                    {{ 'COMMON.VALIDATIONS.REQUIRED' | translate }}
+                </span>
+                <span
+                    *ngIf="form.hasError('matDatepickerMin', 'discountDueDate')"
+                >
+                    {{ 'COMMON.VALIDATIONS.BEFORE_TODAY' | translate }}
+                </span>
+            </mat-error>
+        </mat-form-field>
+    </div>
+    <div
+        fxLayout.gt-xs="row"
+        fxLayout.xs="column"
+        fxLayoutAlign.xs="start"
+        fxLayoutAlign.gt-xs="stretch"
+        fxLayoutGap.gt-xs="12px"
+    >
+        <mat-form-field fxFlex.gt-xs>
+            <mat-label>
+                {{ 'BULK_INVOICE_NEGOTIATION_FORM.PERCENTAGE' | translate }}
+            </mat-label>
+            <input
+                style="text-align: right;"
+                type="number"
+                name="percentage"
+                matInput
+                formControlName="percentage"
+            />
+            <span matSuffix>%</span>
+            <mat-error>
+                <span *ngIf="form.hasError('required', 'percentage')">
+                    {{ 'COMMON.VALIDATIONS.REQUIRED' | translate }}
+                </span>
+                <span *ngIf="form.hasError('min', 'percentage')">
+                    {{
+                        'BULK_INVOICE_NEGOTIATION_FORM.ERRORS.PERCENTAGE_MIN'
+                            | translate
+                                : {
+                                      value: form.get('percentage').errors.min
+                                          .min
+                                  }
+                    }}
+                </span>
+                <span *ngIf="form.hasError('max', 'percentage')">
+                    {{
+                        'BULK_INVOICE_NEGOTIATION_FORM.ERRORS.PERCENTAGE_MAX'
+                            | translate
+                                : {
+                                      value: form.get('percentage').errors.max
+                                          .max
+                                  }
+                    }}
+                </span>
+            </mat-error>
+        </mat-form-field>
+        <mat-form-field fxFlex.gt-xs>
+            <mat-label>
+                {{
+                    'BULK_INVOICE_NEGOTIATION_FORM.EXPECTED_PAYMENT_DATE'
+                        | translate
+                }}
+            </mat-label>
+            <input
+                matInput
+                name="expected-payment-date"
+                formControlName="expectedPaymentDate"
+                [matDatepicker]="picker"
+                [min]="tomorrow"
+            />
+            <mat-datepicker-toggle
+                matSuffix
+                [for]="picker"
+            ></mat-datepicker-toggle>
+            <mat-datepicker #picker></mat-datepicker>
+            <mat-error>
+                <span *ngIf="form.hasError('required', 'expectedPaymentDate')">
+                    {{ 'COMMON.VALIDATIONS.REQUIRED' | translate }}
+                </span>
+                <span
+                    *ngIf="
+                        form.hasError('matDatepickerMin', 'expectedPaymentDate')
+                    "
+                >
+                    {{ 'COMMON.VALIDATIONS.BEFORE_TODAY' | translate }}
+                </span>
+            </mat-error>
+        </mat-form-field>
+    </div>
+
+    <button #submitButton hidden type="submit"></button>
+</form>

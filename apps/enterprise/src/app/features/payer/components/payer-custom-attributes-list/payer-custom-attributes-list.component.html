@@ -1,0 +1,47 @@
+<div fxLayout="column" fxLayoutGap="10px">
+    <div *ngFor="let entity of entities" fxLayout="row">
+        <div fxFlex="40%" fxLayout="column" class="mat-body">
+            <p class="mat-subheading-1 no-margin text-muted">
+                {{ entity.name | uppercase }}
+            </p>
+            <p [ngSwitch]="entity.type">
+                <ng-container *ngSwitchCase="TYPES.RADIO">
+                    {{ (entity.options | extract: entity.value:'id').value }}
+                </ng-container>
+                <ng-container *ngSwitchCase="TYPES.CHECKBOX">
+                    <span>
+                        {{
+                            entity.options
+                                | filter: true:'isChecked'
+                                | map: 'value'
+                                | join: ', '
+                        }}
+                    </span>
+                </ng-container>
+                <ng-container *ngSwitchCase="TYPES.DATE">
+                    {{ entity.value | date: 'dd/MM/yy' }}
+                </ng-container>
+                <ng-container *ngSwitchCase="TYPES.CURRENCY">
+                    $ {{ entity.value }}
+                </ng-container>
+                <ng-container *ngSwitchDefault>
+                    {{ entity.value }}
+                </ng-container>
+            </p>
+        </div>
+        <div fxFlex>
+            <button mat-icon-button (click)="onDelete(entity.id)">
+                <mat-icon>close</mat-icon>
+            </button>
+        </div>
+    </div>
+</div>
+
+<button
+    *ngIf="hasUnansweredAttributes"
+    mat-button
+    color="accent"
+    (click)="onCapture()"
+>
+    + {{ 'PAYER_CUSTOM_ATTRIBUTES_LIST.ACTION' | translate }}
+</button>

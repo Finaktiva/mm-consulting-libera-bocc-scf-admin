@@ -1,0 +1,26 @@
+:host {
+    border-radius: 50%;
+    padding: 8px;
+    width: auto;
+    height: 20%;
+    text-align: center;
+    margin: 5px 0px;
+    &.success {
+        background-color: #08a16d;
+    }
+    &.warning {
+        background-color: #f19a24;
+    }
+    &.error {
+        background-color: #e24e4d;
+    }
+    &.alternate {
+        background-color: #4172b3;
+    }
+    &.placeholder {
+        background-color: #e0e0e0;
+    }
+    &.pending {
+        background-color: #F4D03F;
+    }
+}

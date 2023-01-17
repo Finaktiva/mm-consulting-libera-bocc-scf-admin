@@ -1,0 +1,66 @@
+<form
+    (ngSubmit)="onSubmit()"
+    [formGroup]="form"
+    fxLayout="row"
+    fxLayoutGap="10px"
+    fxLayoutAlign="start center"
+>
+    <button
+        type="button"
+        mat-button
+        *ngIf="!shouldRender()"
+        (click)="onClear()"
+    >
+        {{ 'USER_LIST_FILTER_FORM.ACTION_CLEAN' | translate }}
+    </button>
+    <mat-form-field appearance="standard">
+        <mat-label>{{ 'COMMON.LABELS.FILTER_BY' | translate }}</mat-label>
+        <mat-select formControlName="filter_by" name="filter-by">
+            <mat-option [value]="ENTERPRISE_USER_FILTER_FIELDS.STATUS">
+                {{ 'COMMON.FILTERS.STATUS' | translate }}
+            </mat-option>
+            <mat-option [value]="ENTERPRISE_USER_FILTER_FIELDS.MODULE">
+                {{ 'COMMON.FILTERS.MODULE' | translate }}
+            </mat-option>
+        </mat-select>
+    </mat-form-field>
+    <ng-container [ngSwitch]="form.value.filter_by">
+        <mat-form-field
+            appearance="standard"
+            *ngSwitchCase="ENTERPRISE_USER_FILTER_FIELDS.MODULE"
+        >
+            <mat-label>{{
+                'USER_LIST_FILTER_FORM.CHOOSE.MODULE' | translate
+            }}</mat-label>
+            <mat-select formControlName="q" name="query">
+                <mat-option [value]="ENTERPRISE_MODULES.PAYER">
+                    {{ 'COMMON.MODULES.PAYER' | translate }}
+                </mat-option>
+                <mat-option [value]="ENTERPRISE_MODULES.PROVIDER">
+                    {{ 'COMMON.MODULES.PROVIDER' | translate }}
+                </mat-option>
+                <mat-option [value]="ENTERPRISE_MODULES.FUNDING">
+                    {{ 'COMMON.MODULES.FUNDING' | translate }}
+                </mat-option>
+            </mat-select>
+        </mat-form-field>
+
+        <mat-form-field
+            appearance="standard"
+            *ngSwitchCase="ENTERPRISE_USER_FILTER_FIELDS.STATUS"
+        >
+            <mat-label>{{
+                'USER_LIST_FILTER_FORM.CHOOSE.STATUS' | translate
+            }}</mat-label>
+            <mat-select formControlName="q" name="query">
+                <mat-option [value]="ENTERPRISE_STATUS.ENABLED">
+                    {{ 'USER_LIST_FILTER_FORM.STATUS.ENABLED' | translate }}
+                </mat-option>
+                <mat-option [value]="ENTERPRISE_STATUS.DISABLED">
+                    {{ 'USER_LIST_FILTER_FORM.STATUS.DISABLED' | translate }}
+                </mat-option>
+            </mat-select>
+        </mat-form-field>
+    </ng-container>
+    <button #submitButton hidden type="submit"></button>
+</form>

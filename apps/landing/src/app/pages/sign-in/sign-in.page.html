@@ -1,0 +1,6 @@
+<h2 class="mat-title">Iniciar sesión</h2>
+<sign-in-form
+    [isSubmitting]="isSubmitting$ | async"
+    (onSubmit)="onSubmit($event)"
+    (onFederatedSignIn)="onFederatedSignIn()"
+></sign-in-form>

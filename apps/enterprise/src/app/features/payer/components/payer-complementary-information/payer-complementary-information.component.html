@@ -1,0 +1,68 @@
+<div fxLayout="column" class="card-outline">
+    <div fxLayoutAlign="space-between">
+        <h2 class="mat-title" fxFlex>
+            {{ 'PAYER_COMPLEMENTARY_INFORMATION.TITLE' | translate }}
+        </h2>
+        <button
+            mat-icon-button
+            [fxShow]="shouldRenderEditButton$ | async"
+            (click)="onEdit()"
+        >
+            <mat-icon>edit</mat-icon>
+        </button>
+    </div>
+
+    <div
+        [fxHide]="shouldRenderMessage$ | async"
+        fxFlex="1 0 auto"
+        fxLayout="column"
+        fxLayoutAlign="center center"
+    >
+        <span class="mat-headline text-muted">
+            {{ 'PAYER_COMPLEMENTARY_INFORMATION.ERROR' | translate }}
+        </span>
+        <button mat-button color="accent" (click)="onCapture()">
+            + {{ 'PAYER_COMPLEMENTARY_INFORMATION.ACTION' | translate }}
+        </button>
+    </div>
+
+    <mat-card *ngIf="(shouldRenderForm$ | async)" class="mat-elevation-z0">
+        <mat-card-content
+            style="overflow-y: auto; height: 300px; padding: 0 10px;"
+        >
+            <payer-custom-attributes-form
+                #form
+                [entities]="incommingEntities$ | async"
+                (onSubmit)="onSubmit($event)"
+                [isSubmitting]="isSubmitting"
+            ></payer-custom-attributes-form>
+        </mat-card-content>
+        <mat-card-actions fxLayoutAlign="end" fxLayoutGap="10px">
+            <button mat-button (click)="onCloseForm()" type="button">
+                {{ 'COMMON.ACTIONS.CANCEL' | translate }}
+            </button>
+            <button
+                mat-flat-button
+                color="primary"
+                [disabled]="form.shouldDisable()"
+                (click)="form.submit()"
+            >
+                {{ 'COMMON.ACTIONS.SAVE' | translate }}
+            </button>
+        </mat-card-actions>
+    </mat-card>
+
+    <mat-card *ngIf="(shouldRenderList$ | async)" class="mat-elevation-z0">
+        <mat-card-content
+            style="overflow-y: auto; height: 300px; padding: 0 10px;"
+        >
+            <payer-custom-attributes-list
+                [hasUnansweredAttributes]="hasUnansweredAttributes$ | async"
+                [entities]="answeredEntities$ | async"
+                [isDeleting]="isDeletingAttribute"
+                (delete)="onDelete($event)"
+                (capture)="onCapture()"
+            ></payer-custom-attributes-list>
+        </mat-card-content>
+    </mat-card>
+</div>

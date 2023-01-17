@@ -1,0 +1,28 @@
+<mat-progress-spinner
+    *ngIf="(isLoading$ | async)"
+    mode="indeterminate"
+></mat-progress-spinner>
+<p *ngIf="(error$ | async)" class="mat-body">
+    {{ 'COMMON.ERRORS.INFO_LOAD' | translate }}
+    <button (click)="fetchProfile()" mat-flat-button color="warn">
+        {{ 'COMMON.ACTIONS.RETRY' | translate | uppercase }}
+    </button>
+</p>
+
+<div *ngIf="(hasLoaded$ | async)" fxLayout="column" fxLayoutGap="12px">
+    <profile-form
+        [isSubmitting]="isSubmitting$ | async"
+        (onSubmit)="onSubmit($event)"
+        [profile]="profile$ | async"
+    ></profile-form>
+    <h2 class="mat-title">
+        {{ 'ACCOUNT_PAGE.ASSIGNED_MODULES' | translate }}
+    </h2>
+    <div fxLayout="row" fxLayoutGap="12px">
+        <circle-chip *ngFor="let module of (profile$ | async)?.modules">
+            <span [matTooltip]="'COMMON.MODULES.' + module | translate">
+                {{ 'COMMON.MODULES.' + module | translate | slice: 0:2 }}
+            </span>
+        </circle-chip>
+    </div>
+</div>

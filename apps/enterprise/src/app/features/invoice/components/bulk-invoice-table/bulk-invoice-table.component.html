@@ -1,0 +1,76 @@
+<div style="overflow: auto">
+    <table style="table-layout:fixed" mat-table [dataSource]="entities">
+        <ng-container matColumnDef="folio">
+            <th mat-header-cell *matHeaderCellDef>
+                {{ 'BULK_INVOICE_TABLE.FOLIO' | translate }}
+            </th>
+            <td mat-cell *matCellDef="let entity">{{ entity.state.folio }}</td>
+        </ng-container>
+        <ng-container matColumnDef="fileName">
+            <th mat-header-cell *matHeaderCellDef>
+                {{ 'BULK_INVOICE_TABLE.ARCHIVE' | translate }}
+            </th>
+            <td mat-cell *matCellDef="let entity">
+                {{ entity.state.filename }}
+            </td>
+        </ng-container>
+        <ng-container matColumnDef="creationDate">
+            <th mat-header-cell *matHeaderCellDef>
+                {{ 'BULK_INVOICE_TABLE.UPLOAD_DATE' | translate }}
+            </th>
+            <td mat-cell *matCellDef="let entity">
+                {{ entity.state.creationDate | date }}
+            </td>
+        </ng-container>
+        <ng-container matColumnDef="count">
+            <th mat-header-cell *matHeaderCellDef>
+                {{ 'COMMON.LABELS.INVOICES' | translate }}
+            </th>
+            <td mat-cell *matCellDef="let entity">
+                {{ entity.state.successCount }} / {{ entity.state.totalCount }}
+            </td>
+        </ng-container>
+        <ng-container matColumnDef="status">
+            <th mat-header-cell *matHeaderCellDef>
+                {{ 'BULK_INVOICE_TABLE.STATUS' | translate }}
+            </th>
+            <td mat-cell *matCellDef="let entity">
+                <status-chip [status]="entity.state.status">
+                    {{
+                        'BULK_INVOICE_TABLE.INVOICE_STATUS.' +
+                            entity.state.status | translate
+                    }}
+                </status-chip>
+            </td>
+        </ng-container>
+        <ng-container matColumnDef="actions">
+            <th mat-header-cell *matHeaderCellDef>
+                {{ 'BULK_INVOICE_TABLE.ACTIONS' | translate }}
+            </th>
+            <td mat-cell *matCellDef="let entity">
+                <div
+                    fxLayout="row"
+                    fxLayoutAlign="start center"
+                    fxLayoutGap="4px"
+                >
+                    <button
+                        [disabled]="entity.ui.loading"
+                        (click)="onRefresh(entity.state.id)"
+                        [matTooltip]="'COMMON.ACTIONS.RELOAD' | translate"
+                        mat-icon-button
+                    >
+                        <mat-icon>
+                            refresh
+                        </mat-icon>
+                    </button>
+                    <span *ngIf="entity.ui.loading">
+                        {{ 'COMMON.LOADING' | translate }}...
+                    </span>
+                </div>
+            </td>
+        </ng-container>
+
+        <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+        <tr mat-row *matRowDef="let row; columns: displayedColumns"></tr>
+    </table>
+</div>

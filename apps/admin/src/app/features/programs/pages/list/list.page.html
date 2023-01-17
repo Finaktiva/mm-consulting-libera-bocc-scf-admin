@@ -1,0 +1,59 @@
+<div fxLayout="column">
+    <div
+        fxLayout="row"
+        fxLayoutAlign="start center"
+        fxLayoutGap="15px"
+        class="page-toolbar"
+    >
+        <span class="mat-headline no-margin">
+            {{ 'LIST_PAGE.TITLE' | translate }}
+        </span>
+        <span fxFlex="1 1 auto"></span>
+        <filter-form
+            *ngIf="canReadEnterpriseList$ | async"
+            [filters]="filters$ | async"
+            [bankRegions]="bankRegions$ | async"
+            (status)="onUpdateFilterStatus($event)"
+            (onSubmit)="onUpdateFilters($event)"
+        ></filter-form>
+            <button *ngIf="canCreateEnterprise$ | async" mat-flat-button color="primary" (click)="onAddProgram()">
+                {{ 'LIST_PAGE.ADD_PROGRAM' | translate }}
+                <mat-icon>add</mat-icon>
+            </button>
+    </div>
+
+    <div
+        fxLayoutAlign="space-between center"
+        *ngIf="(error$ | async)"
+        class="page-toolbar mat-body"
+    >
+        <span>
+            {{ 'LIST_PAGE.LOAD_ERROR' | translate }}
+        </span>
+        <button mat-button color="primary" (click)="onRetry()">
+            {{ 'COMMON.RETRY' | translate }}
+        </button>
+    </div>
+
+    <alert *ngIf="!(canReadEnterpriseList$ | async) && !(canCreateEnterprise$ | async)" color="primary">{{ 'COMMON.VALIDATIONS.PERMISSIONS_REQUIRED' | translate }}</alert>
+    <div *ngIf="canReadEnterpriseList$ | async" class="page-content progress-bar-container mat-elevation-z1 table-container">
+        <mat-progress-bar
+            *ngIf="(isLoading$ | async)"
+            mode="indeterminate"
+        ></mat-progress-bar>
+
+        <program-table
+            [entities]="entities$ | async"
+            (invite)="onResendInvitation($event)"
+        ></program-table>
+
+        <mat-paginator
+            [showFirstLastButtons]="true"
+            [pageSize]="paginationSize$ | async"
+            [length]="total$ | async"
+            [pageIndex]="paginationIndex$ | async"
+            [pageSizeOptions]="PAGE_SIZE_OPTIONS"
+            (page)="onChangePage($event)"
+        ></mat-paginator>
+    </div>
+</div>

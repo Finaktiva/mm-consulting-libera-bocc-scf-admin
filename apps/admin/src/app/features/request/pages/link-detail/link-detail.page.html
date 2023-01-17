@@ -1,0 +1,98 @@
+<div fxLayout="column">
+    <div class="page-toolbar" fxLayoutAlign="space-between center">
+        <div fxLayout="start center">
+            <a mat-icon-button routerLink="/requests/links">
+                <mat-icon>arrow_back</mat-icon>
+            </a>
+            <span class="mat-headline no-margin">
+                {{ 'COMMON.LABELS.BACK_TO_LIST' | translate }}
+            </span>
+        </div>
+        <status-chip *ngIf="(hasLoaded$ | async) && (shouldRenderRequest$ | async)" [status]="status$ | async">
+            <span>
+                {{
+                    'COMMON.ENTERPRISE_REQUEST_STATUS.' + (status$ | async)
+                        | translate
+                }}
+            </span>
+        </status-chip>
+    </div>
+    <alert *ngIf="!(shouldRenderRequest$ | async) && !(isLoadingPermission$ | async)" color="primary">{{ 'COMMON.VALIDATIONS.PERMISSIONS_REQUIRED' | translate }}</alert>
+    <div style="margin: 16px;" fxLayout="column" fxLayoutGap="15px" *ngIf="shouldRenderRequest$ | async">
+        <mat-spinner
+            *ngIf="(isLoading$ | async)"
+            fxFlexAlign="center"
+        ></mat-spinner>
+        <alert *ngIf="(error$ | async)" color="warn">
+            <span>
+                {{ 'COMMON.ERRORS.REQUEST_LOAD' | translate }}
+            </span>
+            <button (click)="fetchRequest()" mat-flat-button color="warn">
+                {{ 'COMMON.ACTIONS.RETRY' | translate | uppercase }}
+            </button>
+        </alert>
+        <ng-container *ngIf="(hasLoaded$ | async)">
+            <div
+                class="mat-elevation-z1 card"
+                fxLayout="column"
+                fxLayoutGap="12px"
+            >
+                <h1 class="mat-title">
+                    {{ 'LINK_DETAIL_PAGE.PETITIONER_GENERAL_INFO' | translate }}
+                </h1>
+                <request-link-petitioner-info
+                    [entity]="entity$ | async"
+                ></request-link-petitioner-info>
+            </div>
+            <div
+                class="mat-elevation-z1 card"
+                fxLayout="column"
+                fxLayoutGap="12px"
+            >
+                <div fxLayout="row" fxLayoutAlign="space-between center">
+                    <h1 class="mat-title no-margin">
+                        {{
+                            'LINK_DETAIL_PAGE.PROVIDER_GENERAL_INFO' | translate
+                        }}
+                    </h1>
+                    <mat-icon
+                        [matTooltip]="
+                            'LINK_DETAIL_PAGE.STATUS_HELP_TOOLTIP' | translate
+                        "
+                    >
+                        help_outline
+                    </mat-icon>
+                </div>
+                <request-link-provider-form
+                    #formComponent
+                    [isSubmitting]="isSubmitting$ | async"
+                    (onSubmit)="onSubmit($event)"
+                    [enterprise]="enterprise$ | async"
+                    [shouldPreventSubmit]="!(canInviteEnterprise$ | async)"
+                ></request-link-provider-form>
+                <div fxLayout="row" fxLayoutAlign="end" fxLayoutGap="10px">
+                    <button
+                        *ngIf="(shouldRenderRejectButton$ | async)"
+                        (click)="onRejectRequest()"
+                        mat-button
+                    >
+                        {{
+                            'COMMON.ACTIONS.REJECT_REQUEST'
+                                | translate
+                                | uppercase
+                        }}
+                    </button>
+                    <button
+                        *ngIf="(canInviteEnterprise$ | async)"
+                        [disabled]="formComponent.shouldDisable()"
+                        (click)="formComponent.submit()"
+                        mat-flat-button
+                        color="primary"
+                    >
+                        {{ 'COMMON.ACTIONS.INVITE' | translate | uppercase }}
+                    </button>
+                </div>
+            </div>
+        </ng-container>
+    </div>
+</div>

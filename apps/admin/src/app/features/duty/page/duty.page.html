@@ -1,0 +1,19 @@
+<div fxLayout="column">
+    <div
+        fxLayout="row"
+        fxLayoutAlign="space-between center"
+        class="page-toolbar"
+    >
+        <span class="mat-headline no-margin">
+            {{ 'DUTY_PAGE.TITLE' | translate }}
+        </span>
+    </div>
+    <alert *ngIf="!(shouldRenderPage$ | async) && !(isLoadingPermission$ | async)" color="primary">{{ 'COMMON.VALIDATIONS.PERMISSIONS_REQUIRED' | translate }}</alert>
+    <div *ngIf="shouldRenderPage$ | async" class="page-content progress-bar-container mat-elevation-z1 table-container">
+
+        <duty-search (duty)="insertDuty($event)"></duty-search>
+
+        <duty-detail *ngIf="duty" [duty]="duty"></duty-detail>
+
+    </div>
+</div>

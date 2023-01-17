@@ -1,0 +1,15 @@
+.card {
+    padding: 12px;
+    background-color: white;
+    &.tab {
+        border-width: 1px;
+        border-color: #e0e0e0;
+        border-style: solid;
+    }
+}
+
+.history {
+    position: relative;
+    max-height: 456px;
+    overflow-y: scroll;
+}

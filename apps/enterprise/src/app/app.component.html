@@ -1,0 +1,23 @@
+<ng-container *ngIf="(isLoading$ | async); else error">
+    <div fxLayout="column" fxFlexFill fxLayoutAlign="center center">
+        <mat-spinner></mat-spinner>
+    </div>
+</ng-container>
+<ng-template #error>
+    <div
+        *ngIf="(error$ | async); else app"
+        fxLayout="column"
+        fxFlexFill
+        fxLayoutAlign="center center"
+    >
+        <p class="mat-body">
+            {{ 'COMMON.ERRORS.LOAD_ENTERPRISE' | translate }}
+        </p>
+        <button (click)="onRetry()" mat-flat-button color="warn">
+            {{ 'COMMON.ACTIONS.RETRY' | translate | uppercase }}
+        </button>
+    </div>
+</ng-template>
+<ng-template #app>
+    <router-outlet></router-outlet>
+</ng-template>

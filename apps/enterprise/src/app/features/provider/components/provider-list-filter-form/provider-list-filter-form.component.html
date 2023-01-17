@@ -1,0 +1,48 @@
+<form
+    (ngSubmit)="onSubmit()"
+    fxLayout="row"
+    fxLayoutAlign="center center"
+    fxLayoutGap="12px"
+    [formGroup]="form"
+>
+    <button
+        type="button"
+        mat-button
+        *ngIf="!shouldRenderResetButton()"
+        (click)="onReset()"
+    >
+        {{ 'COMMON.LABELS.CLEAN_FILTERS' | translate }}
+    </button>
+    <mat-form-field appearance="standard">
+        <mat-label>{{ 'COMMON.LABELS.FILTER_BY' | translate }}</mat-label>
+        <mat-select name="filter_by" formControlName="filter_by">
+            <mat-option value="ENTERPRISE_NAME">
+                {{ 'COMMON.FILTERS.SOCIAL_REASON' | translate }}
+            </mat-option>
+            <mat-option value="NIT">
+                {{ 'COMMON.FILTERS.NIT' | translate }}
+            </mat-option>
+            <mat-option value="STATUS">
+                {{ 'COMMON.FILTERS.STATUS' | translate }}
+            </mat-option>
+        </mat-select>
+    </mat-form-field>
+    <mat-form-field *ngIf="shouldRenderStatusSelector()" appearance="standard">
+        <mat-label> {{ 'COMMON.LABELS.STATUS' | translate }}</mat-label>
+        <mat-select #select name="status" formControlName="status">
+            <mat-option value="ENABLED">
+                {{ 'COMMON.USER_STATUS.ACTIVE' | translate }}
+            </mat-option>
+            <mat-option value="DISABLED">
+                {{ 'COMMON.USER_STATUS.DISABLED' | translate }}
+            </mat-option>
+            <mat-option value="PENDING">
+                {{ 'COMMON.USER_STATUS.PENDING' | translate }}
+            </mat-option>
+        </mat-select>
+    </mat-form-field>
+    <mat-form-field *ngIf="shouldRenderQueryInput()" appearance="standard">
+        <input matInput type="text" formControlName="q" name="q" />
+    </mat-form-field>
+    <button #submitButton hidden></button>
+</form>

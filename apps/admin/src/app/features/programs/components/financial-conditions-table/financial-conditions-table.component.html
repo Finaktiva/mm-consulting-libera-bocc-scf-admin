@@ -1,0 +1,80 @@
+<div style="overflow: auto">
+    <table
+        mat-table
+        class="wide"
+        [dataSource]="entities"
+    >
+        <ng-container matColumnDef="modality">
+            <th mat-header-cell *matHeaderCellDef>
+                {{ 'FINANCIAL_CONDITIONS_TABLE.MODALITY' | translate }}
+            </th>
+            <td mat-cell *matCellDef="let entity">
+                <a
+                class="mat-body"
+                (click)="showDetail(entity.state.id, entity.state.status)"
+                style="cursor: hand; cursor: pointer; color: blue; text-decoration: underline;"
+            >
+                {{ 'CREATE_FINANCIAL_CONDITIONS_FORM.PLAN_TYPE.OPTIONS.' + entity.state.type | translate }}
+            </a>
+            </td>
+        </ng-container>
+
+        <ng-container matColumnDef="summary">
+            <th mat-header-cell *matHeaderCellDef>
+                {{ 'FINANCIAL_CONDITIONS_TABLE.SUMMARY' | translate }}
+            </th>
+            <td mat-cell *matCellDef="let entity" style="max-width:150px !important; word-wrap: break-word;">
+                {{ entity.state.type === 'COMMISSION' ? (entity.state.summary.termDays +' días - '+ entity.state.summary.negotiatedRate.baseType.code + ' + ' + entity.state.summary.negotiatedRate.specialRate + '% ' + entity.state.summary.negotiatedRate.periodicityType.code) : 'a'}}
+            </td>
+        </ng-container>
+
+        <ng-container matColumnDef="observation">
+            <th mat-header-cell *matHeaderCellDef>
+                {{ 'FINANCIAL_CONDITIONS_TABLE.OBSERVATION' | translate }}
+            </th>
+            <td mat-cell *matCellDef="let entity">
+                <div *ngIf="entity.state.observations.length > 0">
+                <span *ngFor="let observation of entity.state.observations; let i = index">
+                    {{ 'FINANCIAL_CONDITIONS_TABLE.' + observation | translate }} {{ (i + 1) === entity.state.observations.length ? '' : ' - '}}
+                </span>
+                </div>
+            </td>
+        </ng-container>
+
+        <ng-container matColumnDef="validity">
+            <th mat-header-cell *matHeaderCellDef>
+                {{ 'FINANCIAL_CONDITIONS_TABLE.VALIDITY' | translate }}
+            </th>
+            <td mat-cell *matCellDef="let entity">
+                {{ entity.state.effectivenessDate | date: 'dd/MM/yyyy' }}
+            </td>
+        </ng-container>
+
+        <ng-container matColumnDef="status">
+            <th mat-header-cell *matHeaderCellDef>
+                {{ 'FINANCIAL_CONDITIONS_TABLE.STATUS' | translate }}
+            </th>
+            <td mat-cell *matCellDef="let entity">
+                <div style="align-items: center;" fxLayout="row wrap"fxLayoutGap="8px">
+                    <circle-chip [status]="entity.state.status"></circle-chip>
+                    <span>{{ 'FINANCIAL_CONDITIONS_TABLE.STATUS_OPTIONS.' + entity.state.status | translate}}</span>
+                </div>
+            </td>
+        </ng-container>
+
+        <ng-container matColumnDef="comments">
+            <th mat-header-cell *matHeaderCellDef>
+                {{ 'FINANCIAL_CONDITIONS_TABLE.COMMENTS' | translate }}
+                <button mat-icon-button matSuffix>
+                    <mat-icon [matTooltip]="'FINANCIAL_CONDITIONS_TABLE.COMMENTS_INFO' | translate" >info</mat-icon>
+                </button>
+            </th>
+            <td mat-cell *matCellDef="let entity" style="max-width:20px !important; word-wrap: break-word;">
+                {{ entity.state.comments }}
+            </td>
+        </ng-container>
+
+        <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+        <tr mat-row *matRowDef="let row; columns: displayedColumns"></tr>
+    </table>
+</div>

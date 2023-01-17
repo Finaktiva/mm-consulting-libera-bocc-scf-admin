@@ -1,0 +1,37 @@
+<div fxLayout="column">
+    <div
+        fxLayout="row"
+        fxLayoutAlign="space-between center"
+        class="page-toolbar"
+    >
+        <span class="mat-headline no-margin">
+            {{ 'ROLE_TABLE.TITLE' | translate }}
+        </span>
+        <div fxLayout="row" fxLayoutAlign="center center" fxLayoutGap="12px">
+            <role-list-filter-form *ngIf="shouldRenderPage$ | async" [filters]="filters$ | async" (onSubmit)="onChangeFilters($event)"></role-list-filter-form>
+            <button
+                *ngIf="canCreateRole$ | async"
+                mat-flat-button
+                color="primary"
+                (click)="createRole()"
+            >
+            {{ 'ROLE_TABLE.CREATE_ROLE' | translate }}
+            </button>
+        </div>
+    </div>
+    <alert *ngIf="!(shouldRenderPage$ | async) && !(isLoadingPermission$ | async)" color="primary">{{ 'COMMON.VALIDATIONS.PERMISSIONS_REQUIRED' | translate }}</alert>
+    <div *ngIf="shouldRenderPage$ | async" class="page-content progress-bar-container mat-elevation-z1 table-container">
+
+        <role-table [isLoading$]="isLoading$" [roles]="roles$"></role-table>
+
+        <mat-paginator
+            [showFirstLastButtons]="true"
+            [pageSize]="pageSize$ | async"
+            [length]="total$ | async"
+            [pageIndex]="pageIndex$ | async"
+            [pageSizeOptions]="PAGE_SIZE_OPTIONS"
+            (page)="onChangePage($event)"
+        ></mat-paginator>
+
+    </div>
+</div>

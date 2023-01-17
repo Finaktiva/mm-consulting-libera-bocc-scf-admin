@@ -1,0 +1,147 @@
+<form
+    (ngSubmit)="onSubmit()"
+    [formGroup]="form"
+    fxLayout="column"
+    fxLayoutAlign="start stretch"
+>
+    <mat-form-field appearance="outline">
+        <mat-label> {{ 'COMMON.MODULES.FUNDING' | translate }}*</mat-label>
+        <input
+            type="text"
+            matInput
+            formControlName="lender"
+            [matAutocomplete]="auto"
+        />
+        <mat-autocomplete #auto="matAutocomplete" [displayWith]="displayFn">
+            <mat-option *ngFor="let data of (filter$ | async)" [value]="data">
+                {{ data.enterpriseName }}
+            </mat-option>
+        </mat-autocomplete>
+        <mat-error>
+            <span *ngIf="form.hasError('required', 'lender')">
+                {{ 'COMMON.VALIDATIONS.REQUIRED' | translate }}
+            </span>
+            <span *ngIf="form.hasError('plainObject', 'lender')">
+                {{ 'FUNDING_REQUEST_FORM.FUNDING_VALIDATION' | translate }}
+            </span>
+        </mat-error>
+        <mat-spinner
+            *ngIf="(isLoading$ | async)"
+            mode="indeterminate"
+            diameter="20"
+            matSuffix
+        ></mat-spinner>
+        <span
+            *ngIf="(hasSelectedLender$ | async)"
+            class="alternate-theme"
+            matSuffix
+        >
+            <mat-icon color="primary">check_circle</mat-icon>
+        </span>
+        <mat-icon
+            *ngIf="(error$ | async)"
+            matTooltip="Hubo un error al buscar fondeador. Intentelo de nuevo."
+            matSuffix
+            color="warn"
+        >
+            error
+        </mat-icon>
+    </mat-form-field>
+    <mat-form-field appearance="outline" gdGrap="10px">
+        <mat-label>
+            {{ 'COMMON.LABELS.PAYMENT_INDICATIONS' | translate }}*</mat-label
+        >
+        <textarea
+            matInput
+            style="text-align:justify; height: 75px;"
+            #indication
+            type="text"
+            formControlName="paymentInstructions"
+            maxlength="150"
+        >
+        </textarea>
+        <mat-hint align="end">{{ indication.value.length }} / 150</mat-hint>
+        <mat-error>
+            {{ 'COMMON.VALIDATIONS.REQUIRED' | translate }}
+        </mat-error>
+    </mat-form-field>
+    <div
+        fxLayout="column"
+        fxLayoutAlign="center center"
+        fxLayoutGap="8px"
+        ngx-file-dropzone
+        #dropzone="ngxFileDropzone"
+        formControlName="file"
+        accept=".pdf,.png,.jpg,.zip,.rar"
+        style="
+            margin-top: 15px;
+            padding: 16px;
+            border: 1px dashed #c7d0da;
+        "
+    >
+        <ng-container *ngIf="!form.get('file').value">
+            <h2 class="mat-subheading-2 no-margin" style="color: #8798AD">
+                {{ 'FILE_DROPZONE.MESSAGE_TWO' | translate }}
+            </h2>
+            <span class="mat-body">{{ 'FILE_DROPZONE.OR' | translate }}</span>
+            <button
+                type="button"
+                (click)="dropzone.browse()"
+                mat-button
+                color="accent"
+            >
+                {{ 'FILE_DROPZONE.SEARCH_FILE' | translate | uppercase }}
+            </button>
+        </ng-container>
+        <ng-container *ngIf="form.get('file').value">
+            <div fxLayout="row" fxLayoutAlign="start center" fxLayoutGap="12px">
+                <div
+                    fxFlex
+                    fxLayout="row"
+                    fxLayoutAlign="start center"
+                    fxLayoutGap="12px"
+                >
+                    <mat-icon>insert_drive_file</mat-icon>
+                    <div fxLayout="column">
+                        <span class="mat-body-2">
+                            {{ form.value.file.name }}
+                        </span>
+                        <span class="mat-body">
+                            {{
+                                form.value.file.size
+                                    | ngezBytes: null:'kibibyte'
+                                    | number: '1.1-1'
+                            }}
+                            KB
+                        </span>
+                    </div>
+                </div>
+                <mat-icon *ngIf="form.get('file').valid" color="primary"
+                    >check_circle</mat-icon
+                >
+                <mat-icon
+                    *ngIf="form.hasError('fileType', 'file')"
+                    [matTooltip]="
+                        'COMMON.VALIDATIONS.SEVERAL_FILES' | translate
+                    "
+                    matTooltipPosition="after"
+                    color="warn"
+                >
+                    error
+                </mat-icon>
+            </div>
+            <button
+                type="button"
+                (click)="dropzone.browse()"
+                mat-button
+                color="accent"
+            >
+                {{ 'FILE_DROPZONE.REPLACE_FILE' | translate | uppercase }}
+            </button>
+        </ng-container>
+    </div>
+
+    <button hidden="hidden" type="submit" #submitButton>
+        {{ 'COMMON.ACTIONS.SEND' | translate | uppercase }}
+    </button>
+</form>

@@ -1,0 +1,148 @@
+@import 'variables.scss';
+
+@include angular-material-theme($app-theme);
+
+$config: mat-typography-config();
+
+.alternate-theme {
+    @include angular-material-theme($alternate-theme);
+}
+
+@mixin text-theme($theme) {
+    $warning: map-get($theme, warn);
+    // Define any styles affected by the theme.
+    .text-warn {
+        color: mat-color($warning);
+    }
+}
+
+@include text-theme($app-theme);
+
+@mixin circle-chip-theme($theme) {
+    // Extract the palettes you need from the theme definition.
+    $primary: map-get($theme, primary);
+    $accent: map-get($theme, accent);
+    $warning: map-get($theme, warn);
+    // Define any styles affected by the theme.
+    circle-chip {
+        background-color: #e0e0e0;
+        color: rgba(0, 0, 0, 0.87);
+        font-weight: 500;
+
+        &.primary {
+            background-color: mat-color($primary);
+            color: mat-color($primary, default-contrast);
+        }
+
+        &.warn {
+            background-color: mat-color($warning);
+            border-color: mat-color($warning, default-contrast);
+        }
+
+        &.accent {
+            background-color: mat-color($accent);
+            border-color: mat-color($accent, default-contrast);
+        }
+    }
+}
+
+@mixin circle-chip-typography($config) {
+    circle-chip {
+        font: {
+            family: mat-font-family($config, body-1);
+            size: mat-font-size($config, body-1);
+        }
+    }
+}
+
+@include circle-chip-theme($app-theme);
+@include circle-chip-typography($config);
+
+@mixin alert-theme($theme) {
+    // Extract the palettes you need from the theme definition.
+    $primary: map-get($theme, primary);
+    $accent: map-get($theme, accent);
+    $warning: map-get($theme, warn);
+    // Define any styles affected by the theme.
+    alert {
+        & > *:first-child {
+            flex: 1;
+        }
+
+        &.primary {
+            background-color: mat-color($primary, A400);
+            border-color: mat-color($primary);
+        }
+
+        &.warn {
+            background-color: mat-color($warning, A400);
+            border-color: mat-color($warning);
+        }
+
+        &.accent {
+            background-color: mat-color($accent, A400);
+            border-color: mat-color($accent);
+        }
+    }
+}
+
+@mixin alert-typography($config) {
+    alert {
+        font: {
+            family: mat-font-family($config, body-1);
+            size: mat-font-size($config, body-1);
+            weight: mat-font-weight($config, body-1);
+        }
+    }
+}
+
+@include alert-theme($app-theme);
+@include alert-typography($config);
+
+@mixin mat-snackbar-theme($theme) {
+    $primary: map-get($theme, primary);
+
+    .mat-simple-snackbar {
+        .mat-simple-snackbar-action {
+            color: mat-color($primary);
+        }
+    }
+}
+
+@include mat-snackbar-theme($app-theme);
+
+.mat-flat-button.mat-primary[disabled] {
+    color:#022047;
+}
+
+.mat-flat-button.mat-primary:not([disabled]){
+    &:active{
+        background-color: #022047;
+    }
+    &:hover{
+        box-shadow: 0px -1px 15px 3px rgba(105,176,255,0.35);
+        -webkit-box-shadow: 0px -1px 15px 3px rgba(105,176,255,0.35);
+        -moz-box-shadow: 0px -1px 15px 3px rgba(105,176,255,0.35);
+    }
+}
+
+.mat-toolbar.mat-primary{
+    background-color:#f3f3f7;
+}
+.mat-toolbar .mat-icon-button, .mat-toolbar .mat-button, .mat-toolbar .mat-stroked-button  {
+    color:black;
+}
+
+.menu-logo{
+    margin-left: 15px;
+}
+table .mat-header-cell{
+    font-size: 16px;
+    color:#b4b4b4;
+}
+
+.mat-table thead{
+    background: #edf8f9;
+}
+
+

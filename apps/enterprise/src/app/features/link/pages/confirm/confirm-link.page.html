@@ -1,0 +1,61 @@
+<div fxLayout="column" fxLayoutAlign="center center" class="vertical-aligned">
+    <mat-spinner *ngIf="(isLoading$ | async)"></mat-spinner>
+    <mat-card class="mat-elevation-z2" *ngIf="(hasLoaded$ | async)">
+        <alert *ngIf="(error$ | async)" color="warn">
+            <span>{{
+                'CONFIRM_LINK_PAGE.ERROR_VALIDATE_INFO' | translate
+            }}</span>
+            <button (click)="fetch()" mat-flat-button color="warn">
+                {{ 'COMMON.ACTIONS.RETRY' | translate | uppercase }}
+            </button>
+        </alert>
+        <alert *ngIf="(isExpired$ | async)" color="primary">
+            <span>
+                {{ 'CONFIRM_LINK_PAGE.EXPIRED_INVITATION' | translate }}
+            </span>
+        </alert>
+        <alert *ngIf="(isApplied$ | async)" color="primary">
+            <span>
+                {{
+                    'CONFIRM_LINK_PAGE.ACCEPTED_OR_REJECTED_INVITATION'
+                        | translate
+                }}
+            </span>
+        </alert>
+        <p class="mat-body">
+            {{ 'CONFIRM_LINK_PAGE.LINK_BENEFITS' | translate }}
+            <span class="mat-body-2"> ({{ enterpriseName$ | async }}) </span>:
+        </p>
+        <ol class="mat-body">
+            <li>
+                {{ 'CONFIRM_LINK_PAGE.LIST.INVOICE_NEGOTIATIONS' | translate }}
+            </li>
+            <li>
+                {{ 'CONFIRM_LINK_PAGE.LIST.OBTAINING_LIQUIDITY' | translate }}
+            </li>
+            <li>{{ 'CONFIRM_LINK_PAGE.LIST.EVALUATE_PAYMENT' | translate }}</li>
+        </ol>
+
+        <div
+            *ngIf="(isValid$ | async)"
+            fxLayout="row"
+            fxLayoutAlign="center"
+            fxLayoutGap="4px"
+        >
+            <button
+                [disabled]="isSubmitting$ | async"
+                (click)="onReject()"
+                mat-stroked-button
+            >
+                {{ 'COMMON.ACTIONS.REJECT' | translate | uppercase }}
+            </button>
+            <button
+                [disabled]="isSubmitting$ | async"
+                (click)="onAccept()"
+                mat-stroked-button
+            >
+                {{ 'COMMON.ACTIONS.ACCEPT' | translate | uppercase }}
+            </button>
+        </div>
+    </mat-card>
+</div>

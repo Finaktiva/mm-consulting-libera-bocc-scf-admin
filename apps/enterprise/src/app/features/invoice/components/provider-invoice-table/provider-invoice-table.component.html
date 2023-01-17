@@ -1,0 +1,108 @@
+<div style="overflow: auto;">
+    <table mat-table [dataSource]="entities">
+        <ng-container matColumnDef="invoiceNumber">
+            <th mat-header-cell *matHeaderCellDef>
+                {{ 'COMMON.INVOICE_FIELDS.INVOICE_NUMBER' | translate }}
+            </th>
+            <td mat-cell *matCellDef="let entity">
+                <a
+                    class="mat-body"
+                    [routerLink]="['/core/provider-invoices', entity.state.id]"
+                >
+                    {{ entity.state.invoiceNumber }}
+                </a>
+            </td>
+        </ng-container>
+        <ng-container matColumnDef="invoiceValue">
+            <th mat-header-cell *matHeaderCellDef>
+                {{ 'COMMON.INVOICE_FIELDS.INVOICE_VALUE' | translate }}
+            </th>
+            <td mat-cell *matCellDef="let entity">
+                {{
+                    entity.state.payment?.amount
+                        | currency: entity.state.currencyCode:'code'
+                }}
+            </td>
+        </ng-container>
+        <ng-container matColumnDef="payer">
+            <th mat-header-cell *matHeaderCellDef>
+                {{ 'COMMON.LABELS.PAYER' | translate }}
+            </th>
+            <td mat-cell *matCellDef="let entity">
+                {{ entity.state.payer.enterpriseName }}
+            </td>
+        </ng-container>
+        <ng-container matColumnDef="nit">
+            <th mat-header-cell *matHeaderCellDef>
+                {{ 'COMMON.INVOICE_FIELDS.NIT' | translate }}
+            </th>
+            <td mat-cell *matCellDef="let entity">
+                {{ entity.state.payer.nit }}
+            </td>
+        </ng-container>
+        <ng-container matColumnDef="startingDate">
+            <th mat-header-cell *matHeaderCellDef>
+                {{ 'PROVIDER_INVOICE_TABLE.START_NEGOTIATION' | translate }}
+            </th>
+            <td mat-cell *matCellDef="let entity">
+                {{ entity.state.creationDate | date }}
+            </td>
+        </ng-container>
+        <ng-container matColumnDef="discountDueDate">
+            <th mat-header-cell *matHeaderCellDef>
+                {{ 'COMMON.LABELS.DISCOUNT_EXPIRATION' | translate }}
+            </th>
+            <td mat-cell *matCellDef="let entity">
+                {{ entity.state.negotiation?.discountDueDate | date }}
+            </td>
+        </ng-container>
+        <ng-container matColumnDef="effectivePaymentDate">
+            <th mat-header-cell *matHeaderCellDef>
+                {{ 'COMMON.LABELS.PAYMENT_DATE' | translate }}
+            </th>
+            <td mat-cell *matCellDef="let entity">
+                {{ entity.state?.negotiation?.expectedPaymentDate | date }}
+            </td>
+        </ng-container>
+        <ng-container matColumnDef="discountPercentage">
+            <th mat-header-cell *matHeaderCellDef>
+                {{ 'COMMON.LABELS.DISCOUNT_RATE' | translate }}
+            </th>
+            <td mat-cell *matCellDef="let entity">
+                <span *ngIf="entity.state?.negotiation">
+                    {{
+                        entity.state?.negotiation?.percentage
+                            | divide: 100
+                            | percent
+                    }}
+                </span>
+            </td>
+        </ng-container>
+        <ng-container matColumnDef="discountValue">
+            <th mat-header-cell *matHeaderCellDef>
+                {{ 'COMMON.LABELS.DISCOUNT_VALUE' | translate }}
+            </th>
+            <td mat-cell *matCellDef="let entity">
+                {{
+                    entity.state?.negotiation?.discountValue
+                        | currency: entity.state.currencyCode:'code'
+                }}
+            </td>
+        </ng-container>
+        <ng-container matColumnDef="status">
+            <th mat-header-cell *matHeaderCellDef>
+                {{ 'COMMON.INVOICE_FIELDS.INVOICE_STATUS' | translate }}
+            </th>
+            <td mat-cell *matCellDef="let entity">
+                <status-chip [status]="entity.state.status">
+                    {{
+                        'COMMON.INVOICE_STATUS.' + entity.state.status
+                            | translate
+                    }}
+                </status-chip>
+            </td>
+        </ng-container>
+        <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+        <tr mat-row *matRowDef="let row; columns: displayedColumns"></tr>
+    </table>
+</div>

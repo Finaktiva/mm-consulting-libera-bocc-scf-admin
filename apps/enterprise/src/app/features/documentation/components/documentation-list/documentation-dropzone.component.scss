@@ -1,0 +1,15 @@
+@import '../../../../../styles';
+
+form,
+.ngez-file-dropzone {
+    height: 100%;
+}
+
+.ngez-file-dropzone {
+    padding: 16px;
+    border: 1.5px dashed #c7d0da;
+
+    &.active {
+        border: 1.5px solid $app-accent-color;
+    }
+}

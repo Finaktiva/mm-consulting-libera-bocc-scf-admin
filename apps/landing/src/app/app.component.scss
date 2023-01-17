@@ -1,0 +1,20 @@
+.page-container {
+    width: 60%;
+}
+
+.background {
+    background-image: url('/assets/img/LogoLanding.png');
+    background-repeat: no-repeat;
+    position: relative;
+
+    &-md {
+        background-size: 50%;
+    }
+
+    &-lg {
+        background-size: 48%;
+        background-position:center;
+        padding-left: 30px;
+    }
+}
+

@@ -1,0 +1,32 @@
+@import '../../../../../styles';
+
+.ngx-file-dropzone {
+    height: 170px;
+    padding: 16px;
+    border: 1px dashed #c7d0da;
+
+    &.active {
+        border: 1px solid $app-accent-color;
+    }
+}
+
+mat-icon {
+    font-size: 30px;
+    height: 30px;
+    width: 30px;
+}
+
+.action-row {
+    margin-top: 20px;
+}
+
+.example-viewport {
+    height: 200px;
+    border: 1px solid rgba(0, 0, 0, 0.12);
+    border-radius: 4px;
+}
+
+.example-item {
+    height: 40px;
+    padding: 5px;
+}

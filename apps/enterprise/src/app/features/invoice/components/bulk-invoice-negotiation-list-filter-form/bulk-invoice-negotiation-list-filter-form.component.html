@@ -1,0 +1,119 @@
+<form
+    (ngSubmit)="onSubmit()"
+    [formGroup]="form"
+    fxLayout="row"
+    fxLayoutGap="12px"
+>
+    <button
+        (click)="onReset()"
+        type="button"
+        mat-button
+        *ngIf="!shouldRenderResetButton()"
+    >
+        {{ 'COMMON.LABELS.CLEAN_FILTERS' | translate }}
+    </button>
+    <mat-form-field appearance="standard">
+        <mat-label>
+            {{ 'COMMON.LABELS.FILTER_BY' | translate }}
+        </mat-label>
+        <mat-select formControlName="filter_by">
+            <mat-option
+                [value]="
+                    bulkInvoiceNegotiationListPaginationFilterByType.enterpriseName
+                "
+            >
+                {{ 'COMMON.FILTERS.PROVIDER' | translate }}
+            </mat-option>
+            <mat-option
+                [value]="bulkInvoiceNegotiationListPaginationFilterByType.folio"
+            >
+                {{ 'COMMON.FILTERS.FOLIO' | translate }}
+            </mat-option>
+            <mat-option
+                [value]="
+                    bulkInvoiceNegotiationListPaginationFilterByType.status
+                "
+            >
+                {{ 'COMMON.FILTERS.STATUS' | translate }}
+            </mat-option>
+            <mat-option
+                [value]="
+                    bulkInvoiceNegotiationListPaginationFilterByType.creationDate
+                "
+            >
+                {{ 'COMMON.FILTERS.CREATION_DATE' | translate }}
+            </mat-option>
+        </mat-select>
+    </mat-form-field>
+    <mat-form-field
+        appearance="standard"
+        *ngIf="
+            form.value.filter_by ==
+            bulkInvoiceNegotiationListPaginationFilterByType.status
+        "
+    >
+        <mat-label>
+            {{ 'COMMON.LABELS.STATUS' | translate }}
+        </mat-label>
+        <mat-select #select name="status" formControlName="q">
+            <mat-option
+                [value]="item.value"
+                *ngFor="
+                    let item of (BULK_INVOICE_NEGOTIATION_STATUS | keyvalue)
+                "
+            >
+                {{
+                    'COMMON.BULK_INVOICE_NEGOTIATION_STATUS.' + item.value
+                        | translate
+                }}
+            </mat-option>
+            <!-- <mat-option [value]="INVOICE_STATUS.PAYMENT_CONFIRMED">
+                {{ 'COMMON.INVOICE_STATUS.PAYMENT_CONFIRMED' | translate }}
+            </mat-option>
+            <mat-option [value]="INVOICE_STATUS.NEGOTIATION_IN_PROGRESS">
+                {{ 'COMMON.INVOICE_STATUS.NEGOTIATION_IN_PROGRESS' | translate }}
+            </mat-option>
+            <mat-option [value]="INVOICE_STATUS.PAID">
+                {{ 'COMMON.INVOICE_STATUS.PAID' | translate }}
+            </mat-option>
+            <mat-option [value]="INVOICE_STATUS.DELETED">
+                {{ 'COMMON.INVOICE_STATUS.DELETED' | translate }}
+            </mat-option> -->
+        </mat-select>
+    </mat-form-field>
+    <mat-form-field
+        appearance="standard"
+        *ngIf="
+            form.value.filter_by ==
+                bulkInvoiceNegotiationListPaginationFilterByType.enterpriseName ||
+            form.value.filter_by ==
+                bulkInvoiceNegotiationListPaginationFilterByType.folio
+        "
+    >
+        <mat-label>
+            {{ 'INVOICE_LIST_FILTER_FORM.SEARCH' | translate }}
+        </mat-label>
+        <input #input formControlName="q" name="query" type="text" matInput />
+    </mat-form-field>
+    <mat-form-field
+        appearance="standard"
+        *ngIf="
+            form.value.filter_by ==
+            bulkInvoiceNegotiationListPaginationFilterByType.creationDate
+        "
+    >
+        <mat-label>
+            {{ 'COMMON.FILTERS.CREATION_DATE' | translate }}
+        </mat-label>
+        <input
+            #input
+            formControlName="q"
+            name="date"
+            type="text"
+            matInput
+            [matDatepicker]="picker"
+        />
+        <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
+        <mat-datepicker #picker></mat-datepicker>
+    </mat-form-field>
+</form>

@@ -1,0 +1,100 @@
+<div style="overflow: auto">
+    <table mat-table [dataSource]="entities" [trackBy]="trackBy">
+        <ng-container matColumnDef="name">
+            <th mat-header-cell *matHeaderCellDef>
+                {{ 'USER_TABLE.NAME' | translate }}
+            </th>
+            <td mat-cell *matCellDef="let entity">
+                {{ entity.state.name }} {{ entity.state.firstSurname }}
+                {{ entity.state.secondSurname }}
+            </td>
+        </ng-container>
+        <ng-container matColumnDef="email">
+            <th mat-header-cell *matHeaderCellDef>
+                {{ 'COMMON.LABELS.EMAIL' | translate }}
+            </th>
+            <td mat-cell *matCellDef="let entity">
+                {{ entity.state.email }}
+            </td>
+        </ng-container>
+        <ng-container matColumnDef="vinculationDate">
+            <th mat-header-cell *matHeaderCellDef>
+                {{ 'COMMON.LABELS.LINKING_DATE' | translate }}
+            </th>
+            <td mat-cell *matCellDef="let entity">
+                {{ entity.state.vinculationDate | date: 'mediumDate':'+0000': '' }}
+            </td>
+        </ng-container>
+        <ng-container matColumnDef="roles">
+            <th mat-header-cell *matHeaderCellDef>
+                {{ 'COMMON.LABELS.ROLES' | translate }}
+            </th>
+            <td mat-cell *matCellDef="let entity">
+                <div fxLayout="row" fxLayoutGap="8px">
+                    <circle-chip *ngFor="let role of entity.state.roles" color="primary">
+                        <span [matTooltip]="role.description">
+                            {{ role.acronym }}
+                        </span>
+                    </circle-chip>
+                </div>
+            </td>
+        </ng-container>
+        <ng-container matColumnDef="status">
+            <th mat-header-cell *matHeaderCellDef>
+                {{ 'COMMON.LABELS.STATUS' | translate }}
+            </th>
+            <td mat-cell *matCellDef="let entity">
+                <status-chip [status]="entity.state.status">
+                    <span>
+                        {{
+                            'COMMON.USER_STATUS.' + entity.state.status
+                                | translate
+                        }}
+                    </span>
+                </status-chip>
+            </td>
+        </ng-container>
+        <ng-container matColumnDef="toggle">
+            <th mat-header-cell *matHeaderCellDef>
+                {{ 'USER_TABLE.USER' | translate }}
+            </th>
+            <td mat-cell *matCellDef="let entity">
+                <mat-slide-toggle
+                    color="primary"
+                    [disabled]="entity.ui.patchStatus.submitting"
+                    (change)="onToggleStatus(entity.state, $event)"
+                    [checked]="isEnabled(entity.state)"
+                    *ngIf="shouldRenderToggleButton(entity.state.status)"
+                >
+                    {{ 'COMMON.ACTIONS.ACTIVATE' | translate }}
+                </mat-slide-toggle>
+            </td>
+        </ng-container>
+        <ng-container matColumnDef="actions">
+            <th class="auto" mat-header-cell *matHeaderCellDef>{{ 'USER_TABLE.ACTIONS' | translate }}</th>
+            <td class="auto" mat-cell *matCellDef="let entity">
+                <button mat-button [matMenuTriggerFor]="appMenu">
+                    <mat-icon>arrow_drop_down</mat-icon>
+                </button>
+                <mat-menu #appMenu="matMenu">
+                    <button
+                        [disabled]="entity.ui.invite.submitting"
+                        *ngIf="shouldRenderInviteButton(entity.state)"
+                        (click)="onInvite(entity.state.id)"
+                        mat-menu-item
+                    >
+                        {{ 'USER_TABLE.RESEND_INVITATION' | translate }}
+                    </button>
+                    <button (click)="onUpdate(entity.state.id)" mat-menu-item>
+                        {{ 'COMMON.ACTIONS.EDIT' | translate }}
+                    </button>
+                    <button (click)="onDelete(entity.state.id)" mat-menu-item>
+                        {{ 'COMMON.ACTIONS.DELETE' | translate }}
+                    </button>
+                </mat-menu>
+            </td>
+        </ng-container>
+        <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+        <tr mat-row *matRowDef="let row; columns: displayedColumns"></tr>
+    </table>
+</div>

@@ -1,0 +1,28 @@
+<mat-progress-bar
+    *ngIf="(isSubmitting$ | async)"
+    mode="indeterminate"
+></mat-progress-bar>
+<h2 mat-dialog-title>
+    {{ 'BULK_INVOICE_NEGOTIATION_COUNTER_OFFER_DIALOG.TITLE' | translate }}
+</h2>
+<mat-dialog-content>
+    <bulk-invoice-negotiation-counter-offer-form
+        #component
+        (onSubmit)="onSubmit($event)"
+        [invoices]="invoices$ | async"
+        [availableQuota]="quota$ | async"
+        [isSubmitting]="isSubmitting$ | async"
+    ></bulk-invoice-negotiation-counter-offer-form>
+</mat-dialog-content>
+<mat-dialog-actions fxLayout="row" fxLayoutAlign="end" fxLayoutGap="8px">
+    <button mat-button mat-dialog-close>
+        {{ 'COMMON.ACTIONS.CANCEL' | translate }}
+    </button>
+    <button
+        (click)="component.submit()"
+        [disabled]="component.shouldDisable()"
+        mat-button
+    >
+        {{ 'COMMON.ACTIONS.SEND' | translate }}
+    </button>
+</mat-dialog-actions>

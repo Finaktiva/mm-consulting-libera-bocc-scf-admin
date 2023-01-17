@@ -1,0 +1,98 @@
+<div *ngFor="let entity of entities; last as isLast" class="timeline-item">
+    <div fxLayout="row" fxLayoutGap="24px">
+        <div
+            fxLayout="column"
+            fxLayoutGap="4px"
+            fxFlex="10%"
+            fxLayoutAlign="start end"
+        >
+            <span class="mat-body-2 text-primary">
+                {{ entity.eventDate | date: 'dd/MM/yyyy' }}
+            </span>
+            <span class="mat-body">
+                {{ entity.eventDate | date: 'h:mm a' }}
+            </span>
+        </div>
+        <div fxLayout="column" fxLayoutAlign="start center">
+            <div
+                class="icon-container mat-elevation-z4"
+                [class.alternate-theme]="
+                    entity.eventType == NEGOTIATION_EVENT_TYPE.APPROVED
+                "
+            >
+                <mat-icon
+                    [ngSwitch]="entity.eventType"
+                    [color]="getColor(entity.eventType)"
+                >
+                    <ng-container
+                        *ngSwitchCase="NEGOTIATION_EVENT_TYPE.APPROVED"
+                    >
+                        thumb_up
+                    </ng-container>
+                    <ng-container
+                        *ngSwitchCase="NEGOTIATION_EVENT_TYPE.CANCELLED"
+                    >
+                        close
+                    </ng-container>
+                    <ng-container
+                        *ngSwitchCase="NEGOTIATION_EVENT_TYPE.EXPIRED"
+                    >
+                        access_time
+                    </ng-container>
+                    <ng-container
+                        *ngSwitchCase="NEGOTIATION_EVENT_TYPE.COUNTEROFFERED"
+                    >
+                        local_offer
+                    </ng-container>
+                    <ng-container
+                        *ngSwitchCase="NEGOTIATION_EVENT_TYPE.REJECTED"
+                    >
+                        thumb_down
+                    </ng-container>
+                    <ng-container
+                        *ngSwitchCase="NEGOTIATION_EVENT_TYPE.CREATED"
+                    >
+                        gavel
+                    </ng-container>
+                </mat-icon>
+            </div>
+            <mat-divider *ngIf="!isLast" fxFlex [vertical]="true"></mat-divider>
+        </div>
+        <div fxLayout="column" fxFlex>
+            <h4
+                class="mat-subheading-2"
+                [innerHTML]="
+                    'NEGOTIATION_TIMELINE.EVENT_TYPE.' + entity.eventType
+                        | translate: { name: entity.enterpriseName }
+                "
+            ></h4>
+            <p class="mat-body">
+                {{ 'COMMON.LABELS.DISCOUNT_TYPE' | translate }}:
+                <span class="mat-body-2">
+                    {{
+                        'COMMON.NEGOTIATION_DISCOUNT_TYPE.' +
+                            entity.discountType | translate
+                    }}
+                </span>
+            </p>
+            <p class="mat-body">
+                {{ 'COMMON.LABELS.DISCOUNT_RATE' | translate }}:
+                <span class="mat-body-2">
+                    {{ entity.discountPercentage | divide: 100 | percent }}
+                </span>
+            </p>
+            <p class="mat-body">
+                {{ 'COMMON.LABELS.DISCOUNT_EXPIRATION' | translate }}:
+                <span class="mat-body-2">
+                    {{ entity.discountDueDate | date }}
+                </span>
+            </p>
+            <p class="mat-body">
+                {{ 'COMMON.LABELS.EXPECTED_PAYMENT_DATE' | translate }}:
+                <span class="mat-body-2">
+                    {{ entity.expectedPaymentDate | date }}
+                </span>
+            </p>
+        </div>
+    </div>
+</div>

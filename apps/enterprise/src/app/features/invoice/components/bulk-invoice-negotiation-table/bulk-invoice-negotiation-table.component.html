@@ -1,0 +1,89 @@
+<div style="overflow: auto">
+    <table style="table-layout:fixed" mat-table [dataSource]="entities">
+        <ng-container matColumnDef="folio">
+            <th mat-header-cell *matHeaderCellDef>
+                {{ 'BULK_INVOICE_NEGOTIATION_TABLE.FOLIO' | translate }}
+            </th>
+            <td mat-cell *matCellDef="let entity">
+                <a
+                    [routerLink]="[
+                        type == 'PAYER'
+                            ? '/core/payer-invoices/bulk-negotiations'
+                            : '/core/provider-invoices/bulk-negotiations',
+                        entity.state.id
+                    ]"
+                    class="mat-body"
+                >
+                    {{ entity.state.folio }}
+                </a>
+            </td>
+        </ng-container>
+        <ng-container matColumnDef="enterpriseName">
+            <th mat-header-cell *matHeaderCellDef>
+                <ng-container [ngSwitch]="type">
+                    <span *ngSwitchCase="'PAYER'">
+                        {{
+                            'BULK_INVOICE_NEGOTIATION_TABLE.PROVIDER'
+                                | translate
+                        }}
+                    </span>
+                    <span *ngSwitchCase="'PROVIDER'">
+                        {{ 'BULK_INVOICE_NEGOTIATION_TABLE.PAYER' | translate }}
+                    </span>
+                </ng-container>
+            </th>
+            <td mat-cell *matCellDef="let entity">
+                <ng-container [ngSwitch]="type">
+                    <span *ngSwitchCase="'PAYER'">
+                        {{ entity.state.provider?.enterpriseName }}
+                    </span>
+                    <span *ngSwitchCase="'PROVIDER'">
+                        {{ entity.state.payer?.enterpriseName }}
+                    </span>
+                </ng-container>
+            </td>
+        </ng-container>
+        <ng-container matColumnDef="count">
+            <th mat-header-cell *matHeaderCellDef>
+                {{ 'BULK_INVOICE_NEGOTIATION_TABLE.COUNT' | translate }}
+            </th>
+            <td mat-cell *matCellDef="let entity">
+                {{ entity.state.amountInvoices }}
+            </td>
+        </ng-container>
+        <ng-container matColumnDef="amount">
+            <th mat-header-cell *matHeaderCellDef>
+                {{ 'BULK_INVOICE_NEGOTIATION_TABLE.AMOUNT' | translate }}
+            </th>
+            <td mat-cell *matCellDef="let entity">
+                {{
+                    entity.state.amount
+                        | currency: 'COP':'symbol-narrow':'1.2-2':'en'
+                }}
+            </td>
+        </ng-container>
+        <ng-container matColumnDef="creationDate">
+            <th mat-header-cell *matHeaderCellDef>
+                {{ 'BULK_INVOICE_NEGOTIATION_TABLE.CREATION_DATE' | translate }}
+            </th>
+            <td mat-cell *matCellDef="let entity">
+                {{ entity.state.creationDate | date }}
+            </td>
+        </ng-container>
+        <ng-container matColumnDef="status">
+            <th mat-header-cell *matHeaderCellDef>
+                {{ 'BULK_INVOICE_NEGOTIATION_TABLE.STATUS' | translate }}
+            </th>
+            <td mat-cell *matCellDef="let entity">
+                <status-chip [status]="entity.state.status">
+                    {{
+                        'COMMON.BULK_INVOICE_NEGOTIATION_STATUS.' +
+                            entity.state.status | translate
+                    }}
+                </status-chip>
+            </td>
+        </ng-container>
+        <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+        <tr mat-row *matRowDef="let row; columns: displayedColumns"></tr>
+    </table>
+</div>

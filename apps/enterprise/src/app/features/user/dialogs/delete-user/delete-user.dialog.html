@@ -1,0 +1,27 @@
+<mat-progress-bar
+    *ngIf="(isSubmitting$ | async)"
+    mode="indeterminate"
+></mat-progress-bar>
+<h1 mat-dialog-title>{{ 'DELETE_USER_DIALOG.TITLE' | translate }}</h1>
+<mat-dialog-content>
+    <p class="mat-body">
+        {{ 'DELETE_USER_DIALOG.BODY' | translate: (user$ | async) }}
+    </p>
+    <mat-checkbox [(ngModel)]="isChecked">
+        {{ 'DELETE_USER_DIALOG.CONFIRM' | translate }}
+    </mat-checkbox>
+    <p class="mat-body"></p>
+</mat-dialog-content>
+<mat-dialog-actions fxLayout="row" fxLayoutAlign="end center">
+    <button mat-dialog-close mat-button>
+        {{ 'COMMON.ACTIONS.CANCEL' | translate | uppercase }}
+    </button>
+    <button
+        [disabled]="!isChecked || (isSubmitting$ | async)"
+        (click)="onSubmit()"
+        mat-flat-button
+        color="warn"
+    >
+        {{ 'COMMON.ACTIONS.DELETE' | translate | uppercase }}
+    </button>
+</mat-dialog-actions>

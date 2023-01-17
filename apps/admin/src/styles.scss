@@ -1,0 +1,17 @@
+/* You can add global styles to this file, and also import other style files */
+@import './libs/styles/theme.scss';
+@import './libs/styles/main.scss';
+
+.mat-list-item.active {
+    font-weight: 500;
+    background-color: #F5F5F5;
+}
+
+.status-label {
+    &.success {
+        color: #41D49A;
+    }
+    &.warning {
+        color: #F29B20;
+    }
+}

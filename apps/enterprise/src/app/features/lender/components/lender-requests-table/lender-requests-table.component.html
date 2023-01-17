@@ -1,0 +1,357 @@
+<div style="overflow:auto">
+    <table mat-table [dataSource]="entities" multiTemplateDataRows>
+        <ng-container matColumnDef="lender">
+            <th  mat-header-cell *matHeaderCellDef>
+                {{ 'LENDER_REQUEST_TABLE.FUNDING' | translate }}
+            </th>
+            <td  mat-cell *matCellDef="let entity">
+                {{ entity.state.lender.enterpriseName }}
+            </td>
+        </ng-container>
+        <ng-container matColumnDef="nit">
+            <th  mat-header-cell *matHeaderCellDef>
+                {{ 'LENDER_REQUEST_TABLE.NIT' | translate }}
+            </th>
+            <td  mat-cell *matCellDef="let entity">
+                {{ entity.state.lender.nit }}
+            </td>
+        </ng-container>
+        <ng-container matColumnDef="requestedQuota">
+            <th  mat-header-cell *matHeaderCellDef>
+                {{ 'LENDER_REQUEST_TABLE.REQUESTED_QUOTE' | translate }}
+            </th>
+            <td  mat-cell *matCellDef="let entity">
+                {{ entity.state.requestedQuota }}
+            </td>
+        </ng-container>
+        <ng-container matColumnDef="grantedQuota">
+            <th  mat-header-cell *matHeaderCellDef>
+                {{ 'LENDER_REQUEST_TABLE.ASSIGNED_QUOTE' | translate }}
+            </th>
+            <td  mat-cell *matCellDef="let entity">
+                {{ entity.state.grantedQuota }}
+            </td>
+        </ng-container>
+        <ng-container matColumnDef="rateType">
+            <th  mat-header-cell *matHeaderCellDef>
+                {{ 'LENDER_REQUEST_TABLE.TYPE_RATE' | translate }}
+            </th>
+            <td  mat-cell *matCellDef="let entity">
+                <span *ngIf="entity.state.rateType">
+                    {{
+                        'COMMON.LENDER_QUOTA_RATE.' + entity.state.rateType
+                            | translate
+                    }}
+                </span>
+            </td>
+        </ng-container>
+        <ng-container matColumnDef="rate">
+            <th  mat-header-cell *matHeaderCellDef>
+                {{ 'LENDER_REQUEST_TABLE.INTEREST_RATE' | translate }}
+            </th>
+            <td  mat-cell *matCellDef="let entity">
+                {{ entity.state.rate }}
+            </td>
+        </ng-container>
+        <ng-container matColumnDef="creationDate">
+            <th  mat-header-cell *matHeaderCellDef>
+                {{ 'LENDER_REQUEST_TABLE.APPLICATION_DATE' | translate }}
+            </th>
+            <td  mat-cell *matCellDef="let entity">
+                {{ entity.state.creationDate | date: 'dd/MM/yyyy' }}
+            </td>
+        </ng-container>
+        <ng-container matColumnDef="requestType">
+            <th  mat-header-cell *matHeaderCellDef>
+                {{ 'LENDER_REQUEST_TABLE.TYPE_REQUEST' | translate }}
+            </th>
+            <td  mat-cell *matCellDef="let entity">
+                <span [ngSwitch]="entity.state.requestType">
+                    {{
+                        'COMMON.LENDER_QUOTA_REQUEST_TYPE.' +
+                            entity.state.requestType | translate
+                    }}
+                </span>
+            </td>
+        </ng-container>
+        <ng-container matColumnDef="payerComments">
+            <th  mat-header-cell *matHeaderCellDef>
+                {{ 'LENDER_REQUEST_TABLE.OBSERVATIONS' | translate }}
+            </th>
+            <td  mat-cell *matCellDef="let entity">
+                <ng-container *ngIf="entity.state?.payerComments">
+                    {{
+                        entity.state.payerComments.length > 10
+                            ? (entity.state.payerComments | slice: 0:10) + '...'
+                            : entity.state.payerComments
+                    }}
+                </ng-container>
+            </td>
+        </ng-container>
+        <ng-container matColumnDef="lenderComments">
+            <th  mat-header-cell *matHeaderCellDef>
+                {{ 'LENDER_REQUEST_TABLE.OBSERVATIONS_FUNDING' | translate }}
+            </th>
+            <td  mat-cell *matCellDef="let entity">
+                <ng-container *ngIf="entity.state?.lenderComments">
+                    {{
+                        entity.state.lenderComments.length > 10
+                            ? (entity.state.lenderComments | slice: 0:10) +
+                              '...'
+                            : entity.state.lenderComments
+                    }}
+                </ng-container>
+            </td>
+        </ng-container>
+        <ng-container matColumnDef="status">
+            <th  mat-header-cell *matHeaderCellDef>
+                {{ 'LENDER_REQUEST_TABLE.STATUS' | translate }}
+            </th>
+            <td  mat-cell *matCellDef="let entity">
+                <status-chip
+                    [status]="entity.state.status"
+                    [ngSwitch]="entity.state.status"
+                >
+                    {{
+                        'COMMON.LENDER_QUOTA_REQUEST_STATUS.' +
+                            entity.state.status | translate
+                    }}
+                </status-chip>
+            </td>
+        </ng-container>
+
+        <ng-container matColumnDef="expandedDetail">
+            <th class="auto" mat-header-cell *matHeaderCellDef></th>
+            <td
+                mat-cell
+                *matCellDef="let entity"
+                [attr.colspan]="displayedColumns.length"
+            >
+                <div
+                    [ngStyle]="{ overflow: 'hidden' }"
+                    fxLayout="row"
+                    fxLayoutGap="18px"
+                    [@detailExpand]="
+                        entity.state.id === expandedEntityId
+                            ? 'expanded'
+                            : 'collapsed'
+                    "
+                >
+                    <ng-template #empty>
+                        - -
+                    </ng-template>
+                    <div
+                        fxLayout="column"
+                        fxLayoutAlign="start space-between"
+                        fxFlex="50%"
+                        fxLayoutGap="10px"
+                    >
+                        <h2 class="mat-title">
+                            {{
+                                'LENDER_REQUEST_TABLE.OBSERVATIONS' | translate
+                            }}
+                        </h2>
+                        <div>
+                            <h3 class="mat-subheading-2">
+                                {{ 'LENDER_REQUEST_TABLE.FUNDING' | translate }}
+                            </h3>
+                            <p class="mat-body no-margin">
+                                {{ entity.state.lenderComments || '- -' }}
+                            </p>
+                        </div>
+                        <mat-divider></mat-divider>
+                        <div>
+                            <h3 class="mat-subheading-2">
+                                {{ 'LENDER_REQUEST_TABLE.PAYMENT' | translate }}
+                            </h3>
+                            <p class="mat-body no-margin">
+                                {{ entity.state.payerComments || '- -' }}
+                            </p>
+                        </div>
+                    </div>
+                    <mat-divider [vertical]="true"></mat-divider>
+                    <div fxLayout="column" fxFlex="50%">
+                        <h2 class="mat-title">
+                            {{ 'LENDER_REQUEST_TABLE.QUOTA' | translate }}
+                        </h2>
+                        <div fxLayout="column" fxLayoutGap="18px">
+                            <div
+                                fxLayoutAlign="start center"
+                                fxLayoutGap="10px"
+                            >
+                                <span
+                                    fxLayoutAlign="end"
+                                    fxFlex="18%"
+                                    class="quota__description"
+                                >
+                                    {{
+                                        'LENDER_REQUEST_TABLE.QUOTA' | translate
+                                    }}
+                                </span>
+                                <span class="quota__value">
+                                    {{ 'COP' | currencySymbol }}
+                                    {{
+                                        entity.state.grantedQuota ||
+                                            entity.state.requestedQuota
+                                    }}
+                                </span>
+                            </div>
+                            <div
+                                fxLayoutAlign="start center"
+                                fxLayoutGap="10px"
+                            >
+                                <span
+                                    fxLayoutAlign="end"
+                                    fxFlex="18%"
+                                    class="quota__description"
+                                >
+                                    {{
+                                        'LENDER_REQUEST_TABLE.TYPE_RATE'
+                                            | translate
+                                    }}
+                                </span>
+                                <span
+                                    [ngSwitch]="entity.state.rateType"
+                                    class="quota__value"
+                                >
+                                    <ng-container
+                                        *ngIf="
+                                            entity.state.rateType;
+                                            else empty
+                                        "
+                                    >
+                                        <ng-container
+                                            *ngSwitchCase="
+                                                LENDER_QUOTA_REQUEST_RATE.ADVANCE_MONTH_RATE
+                                            "
+                                        >
+                                            {{
+                                                'COMMON.LENDER_QUOTA_RATE.ADVANCE_MONTH_RATE'
+                                                    | translate
+                                            }}
+                                        </ng-container>
+                                        <ng-container
+                                            *ngSwitchCase="
+                                                LENDER_QUOTA_REQUEST_RATE.ANNUAL_RATE
+                                            "
+                                        >
+                                            {{
+                                                'COMMON.LENDER_QUOTA_RATE.ANNUAL_RATE'
+                                                    | translate
+                                            }}
+                                        </ng-container>
+                                        <ng-container
+                                            *ngSwitchCase="
+                                                LENDER_QUOTA_REQUEST_RATE.DUE_MONTH_RATE
+                                            "
+                                        >
+                                            {{
+                                                'COMMON.LENDER_QUOTA_RATE.DUE_MONTH_RATE'
+                                                    | translate
+                                            }}
+                                        </ng-container>
+                                        <ng-container
+                                            *ngSwitchCase="
+                                                LENDER_QUOTA_REQUEST_RATE.FIXED_RATE
+                                            "
+                                        >
+                                            {{
+                                                'COMMON.LENDER_QUOTA_RATE.FIXED_RATE'
+                                                    | translate
+                                            }}
+                                        </ng-container>
+                                        <ng-container
+                                            *ngSwitchCase="
+                                                LENDER_QUOTA_REQUEST_RATE.PREFERENTIAL_RATE
+                                            "
+                                        >
+                                            {{
+                                                'COMMON.LENDER_QUOTA_RATE.PREFERENTIAL_RATE'
+                                                    | translate
+                                            }}
+                                        </ng-container>
+                                        <ng-container
+                                            *ngSwitchCase="
+                                                LENDER_QUOTA_REQUEST_RATE.VARIABLE_RATE
+                                            "
+                                        >
+                                            {{
+                                                'COMMON.LENDER_QUOTA_RATE.VARIABLE_RATE'
+                                                    | translate
+                                            }}
+                                        </ng-container>
+                                    </ng-container>
+                                </span>
+                            </div>
+                            <div
+                                fxLayoutAlign="start center"
+                                fxLayoutGap="10px"
+                            >
+                                <span
+                                    fxLayoutAlign="end"
+                                    fxFlex="18%"
+                                    class="quota__description"
+                                >
+                                    {{
+                                        'LENDER_REQUEST_TABLE.RATE' | translate
+                                    }}
+                                </span>
+                                <span class="quota__value">
+                                    <ng-container
+                                        *ngIf="entity.state.rate; else empty"
+                                    >
+                                        {{ entity.state.rate }}%
+                                    </ng-container>
+                                </span>
+                            </div>
+                            <div
+                                fxLayoutAlign="end center"
+                                fxLayoutGap="10px"
+                                *ngIf="
+                                    entity.state.status ==
+                                    LENDER_QUOTA_REQUEST_STATUS.PENDING_PAYER_APPROVAL
+                                "
+                            >
+                                <button
+                                    mat-button
+                                    (click)="onReject(entity.state.id)"
+                                >
+                                    {{
+                                        'COMMON.ACTIONS.REJECT'
+                                            | translate
+                                            | uppercase
+                                    }}
+                                </button>
+                                <button
+                                    mat-flat-button
+                                    color="primary"
+                                    (click)="onAccept(entity.state.id)"
+                                >
+                                    {{
+                                        'COMMON.ACTIONS.ACCEPT'
+                                            | translate
+                                            | uppercase
+                                    }}
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </td>
+        </ng-container>
+
+        <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+        <tr
+            *matRowDef="let entity; columns: displayedColumns"
+            mat-row
+            class="element-row"
+            [class.expanded-row]="entity.state.id === expandedEntityId"
+            (click)="onSelectRow(entity.state.id)"
+        ></tr>
+        <tr
+            *matRowDef="let row; columns: ['expandedDetail']"
+            mat-row
+            class="detail-row"
+        ></tr>
+    </table>
+</div>

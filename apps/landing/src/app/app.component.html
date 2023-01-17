@@ -1,0 +1,17 @@
+<div fxLayout="row">
+    <div fxFlex fxLayout="column" fxLayoutAlign="center center">
+        <div class="page-container">
+            <router-outlet></router-outlet>
+        </div>
+    </div>
+    <div
+        class="background"
+        *ngIf="(isGreaterThanExtraSmall$ | async)"
+        fxFlex
+        ngClass.gt-sm="background-md"
+        ngClass.gt-md="background-lg"
+        fxLayout.gt-md="column"
+        fxLayoutAlign.gt-md="center"
+    >
+    </div>
+</div>

@@ -1,0 +1,68 @@
+<div style="overflow: auto;">
+    <table mat-table [dataSource]="invoices">
+        <ng-container matColumnDef="invoiceNumber">
+            <th mat-header-cell *matHeaderCellDef>
+                {{
+                    'BULK_INVOICE_NEGOTIATION_DETAIL_PAGE.INVOICE_LIST.INVOICE_NUMBER'
+                        | translate
+                }}
+            </th>
+            <td mat-cell *matCellDef="let invoice">
+                {{ invoice.invoiceNumber }}
+            </td>
+        </ng-container>
+        <ng-container matColumnDef="provider">
+            <th mat-header-cell *matHeaderCellDef>
+                {{
+                    'BULK_INVOICE_NEGOTIATION_DETAIL_PAGE.INVOICE_LIST.PROVIDER'
+                        | translate
+                }}
+            </th>
+            <td mat-cell *matCellDef="let invoice">
+                {{ invoice.provider.enterpriseName }}
+            </td>
+        </ng-container>
+        <ng-container matColumnDef="nit">
+            <th mat-header-cell *matHeaderCellDef>
+                {{
+                    'BULK_INVOICE_NEGOTIATION_DETAIL_PAGE.INVOICE_LIST.NIT'
+                        | translate
+                }}
+            </th>
+            <td mat-cell *matCellDef="let invoice">
+                {{ invoice.nit }}
+            </td>
+        </ng-container>
+        <ng-container matColumnDef="expirationDate">
+            <th mat-header-cell *matHeaderCellDef>
+                {{
+                    'BULK_INVOICE_NEGOTIATION_DETAIL_PAGE.INVOICE_LIST.EXPIRATION_DATE'
+                        | translate
+                }}
+            </th>
+            <td mat-cell *matCellDef="let invoice">
+                {{ invoice.expirationDate | date }}
+            </td>
+        </ng-container>
+        <ng-container matColumnDef="amount">
+            <th mat-header-cell *matHeaderCellDef>
+                {{
+                    'BULK_INVOICE_NEGOTIATION_DETAIL_PAGE.INVOICE_LIST.AMOUNT'
+                        | translate
+                }}
+            </th>
+            <td mat-cell *matCellDef="let invoice">
+                {{
+                    invoice.amount
+                        | currency
+                            : invoice.currencyCode
+                            : 'symbol-narrow'
+                            : '1.2-2'
+                            : 'en'
+                }}
+            </td>
+        </ng-container>
+        <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+        <tr mat-row *matRowDef="let row; columns: displayedColumns"></tr>
+    </table>
+</div>

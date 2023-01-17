@@ -1,0 +1,53 @@
+<div fxLayout="column">
+    <div
+        fxLayout="row"
+        fxLayoutAlign="space-between center"
+        class="page-toolbar"
+    >
+        <span class="mat-headline no-margin"
+            >{{ 'PROVIDER_BULK_LIST_PAGE.TITLE' | translate }}
+        </span>
+
+        <div fxLayout="row" fxLayoutAlign="end center">
+            <button
+                style="margin-right: 15px;"
+                (click)="fetchCurrentPage(true)"
+                mat-flat-button
+                color="primary"
+            >
+                {{ 'COMMON.ACTIONS.UPDATE' | translate }}
+            </button>
+
+            <a
+                routerLink="/core/providers/bulk/create"
+                mat-flat-button
+                color="primary"
+            >
+                {{ 'COMMON.LABELS.BULK_LOAD' | translate | uppercase }}
+            </a>
+        </div>
+    </div>
+    <div class="page-content progress-bar-container mat-elevation-z1 table-container">
+        <mat-progress-bar
+            *ngIf="(isLoading$ | async)"
+            mode="indeterminate"
+        ></mat-progress-bar>
+        <p *ngIf="(error$ | async)" class="mat-body">
+            {{ 'COMMON.ERRORS.PAGE_LOAD' | translate }}
+            <button (click)="fetchCurrentPage()" mat-flat-button color="warn">
+                {{ 'COMMON.ACTIONS.RETRY' | translate | uppercase }}
+            </button>
+        </p>
+        <provider-bulk-table
+            [entities]="entities$ | async"
+        ></provider-bulk-table>
+        <mat-paginator
+            [showFirstLastButtons]="true"
+            [pageSize]="pageSize$ | async"
+            [length]="total$ | async"
+            [pageIndex]="pageIndex$ | async"
+            [pageSizeOptions]="PAGE_SIZE_OPTIONS"
+            (page)="onChangePage($event)"
+        ></mat-paginator>
+    </div>
+</div>

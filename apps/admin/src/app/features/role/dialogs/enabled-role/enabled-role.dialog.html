@@ -1,0 +1,20 @@
+<form fxLayout="column" fxLayoutGap="12px" [formGroup]="form">
+    <mat-progress-bar *ngIf="(isSubmitting$ | async)" mode="indeterminate"></mat-progress-bar>
+    <h2 mat-dialog-title>
+        {{ 'ENABLED_ROLE_DIALOG.TITLE_' + data.rol.status | translate }}
+    </h2>
+    <mat-dialog-content>
+        <p class="mat-body">
+            {{ 'ENABLED_ROLE_DIALOG.BODY_' + data.rol.status | translate }}
+        </p>
+    </mat-dialog-content>
+    <mat-checkbox (change)="onChangeConfirm()">{{ 'ENABLED_ROLE_DIALOG.CHECK_TEXT' | translate }}</mat-checkbox>
+    <mat-dialog-actions fxLayout="row" fxLayoutAlign="end">
+        <button mat-button mat-dialog-close>
+        {{ 'COMMON.ACTIONS.CANCEL' | translate | uppercase }}
+    </button>
+        <button [disabled]="isSubmitting$ | async" (click)="onSubmit()" mat-flat-button color="primary">
+        {{ 'COMMON.ACTIONS.ACCEPT' | translate | uppercase }}
+    </button>
+    </mat-dialog-actions>
+</form>

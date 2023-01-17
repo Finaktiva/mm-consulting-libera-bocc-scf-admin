@@ -1,0 +1,339 @@
+<mat-accordion>
+    <mat-expansion-panel *ngFor="let entity of history">
+        <mat-expansion-panel-header>
+            <mat-panel-title fxLayoutGap="5px" fxLayoutAlign="start center">
+                <span *ngIf="entity.event">
+                    {{ entity.event.date | date: 'dd/MM/yy h:mm' }} hrs.
+                </span>
+                <span *ngIf="entity.liberaUser.name">
+                    {{ entity.liberaUser.name }}
+                    {{ entity.liberaUser.firstSurname }}
+                    {{ entity.liberaUser.secondSurname }}
+                </span>
+            </mat-panel-title>
+            <mat-panel-description style="max-width: 40%">
+                <span
+                    [statusLabelColor]="entity.event.eventType"
+                    [ngSwitch]="entity.event.eventType"
+                    class="mat-body-2"
+                >
+                    <ng-container
+                        *ngSwitchCase="ENTERPRISE_EVENT_RECORD_TYPE.CREATION"
+                    >
+                        {{
+                            'ACTIVITIES_HISTORY.EVENT_TYPE.CREATION' | translate
+                        }}
+                    </ng-container>
+                    <ng-container
+                        *ngSwitchCase="
+                            ENTERPRISE_EVENT_RECORD_TYPE.RESEND_INVITE
+                        "
+                    >
+                        {{
+                            'ACTIVITIES_HISTORY.EVENT_TYPE.RESEND_INVITE'
+                                | translate
+                        }}
+                    </ng-container>
+                    <ng-container
+                        *ngSwitchCase="
+                            ENTERPRISE_EVENT_RECORD_TYPE.DOCUMENT_APPROVED
+                        "
+                    >
+                        {{
+                            'ACTIVITIES_HISTORY.EVENT_TYPE.DOCUMENT_APPROVED'
+                                | translate
+                        }}
+                    </ng-container>
+                    <ng-container
+                        *ngSwitchCase="
+                            ENTERPRISE_EVENT_RECORD_TYPE.DOCUMENT_REJECTED
+                        "
+                    >
+                        {{
+                            'ACTIVITIES_HISTORY.EVENT_TYPE.DOCUMENT_REJECTED'
+                                | translate
+                        }}
+                    </ng-container>
+                    <ng-container
+                        *ngSwitchCase="
+                            ENTERPRISE_EVENT_RECORD_TYPE.DOCUMENT_REQUESTED
+                        "
+                    >
+                        {{
+                            'ACTIVITIES_HISTORY.EVENT_TYPE.DOCUMENT_REQUESTED'
+                                | translate
+                        }}
+                    </ng-container>
+                    <ng-container
+                        *ngSwitchCase="
+                            ENTERPRISE_EVENT_RECORD_TYPE.ENTERPRISE_REJECTED
+                        "
+                    >
+                        {{
+                            'ACTIVITIES_HISTORY.EVENT_TYPE.ENTERPRISE_REJECTED'
+                                | translate
+                        }}
+                    </ng-container>
+                    <ng-container
+                        *ngSwitchCase="
+                            ENTERPRISE_EVENT_RECORD_TYPE.ENTERPRISE_APPROVED
+                        "
+                    >
+                        {{
+                            'ACTIVITIES_HISTORY.EVENT_TYPE.ENTERPRISE_APPROVED'
+                                | translate
+                        }}
+                    </ng-container>
+                    <ng-container
+                        *ngSwitchCase="
+                            ENTERPRISE_EVENT_RECORD_TYPE.MODULE_APPROVED
+                        "
+                    >
+                        {{
+                            'ACTIVITIES_HISTORY.EVENT_TYPE.MODULE_APPROVED'
+                                | translate
+                        }}
+                    </ng-container>
+                    <ng-container
+                        *ngSwitchCase="
+                            ENTERPRISE_EVENT_RECORD_TYPE.MODULE_REJECTED
+                        "
+                    >
+                        {{
+                            'ACTIVITIES_HISTORY.EVENT_TYPE.MODULE_REJECTED'
+                                | translate
+                        }}
+                    </ng-container>
+                    <ng-container
+                        *ngSwitchCase="
+                            ENTERPRISE_EVENT_RECORD_TYPE.PROFILE_UPDATED
+                        "
+                    >
+                        {{
+                            'ACTIVITIES_HISTORY.EVENT_TYPE.PROFILE_UPDATED'
+                                | translate
+                        }}
+                    </ng-container>
+                    <ng-container
+                        *ngSwitchCase="
+                            ENTERPRISE_EVENT_RECORD_TYPE.MODULE_REQUESTED
+                        "
+                    >
+                        {{
+                            'ACTIVITIES_HISTORY.EVENT_TYPE.MODULE_REQUESTED'
+                                | translate
+                        }}
+                    </ng-container>
+                </span>
+            </mat-panel-description>
+        </mat-expansion-panel-header>
+        <ng-template matExpansionPanelContent>
+            <div fxLayout="column" fxLayoutGap="5px">
+                <div fxLayout="column">
+                    <strong class="mat-body-strong">
+                        {{ 'ACTIVITIES_HISTORY.DETAIL' | translate }}:
+                    </strong>
+                    <div
+                        style="display: flex"
+                        fxLayoutGap="5px"
+                        *ngIf="entity.event.entity; else nothing"
+                    >
+                        <span [ngSwitch]="entity.event.entity">
+                            <ng-container
+                                *ngSwitchCase="
+                                    ENTERPRISE_ENTITY_RECORD.ENTERPRISE_NAME
+                                "
+                            >
+                                {{
+                                    'ACTIVITIES_HISTORY.EVENT_ENTITY.ENTERPRISE_NAME'
+                                        | translate
+                                }}
+                            </ng-container>
+                            <ng-container
+                                *ngSwitchCase="
+                                    ENTERPRISE_ENTITY_RECORD.OWNER_NAME
+                                "
+                            >
+                                {{
+                                    'ACTIVITIES_HISTORY.EVENT_ENTITY.OWNER_NAME'
+                                        | translate
+                                }}
+                            </ng-container>
+                            <ng-container
+                                *ngSwitchCase="
+                                    ENTERPRISE_ENTITY_RECORD.ENTERPRISE_TYPE
+                                "
+                            >
+                                {{
+                                    'ACTIVITIES_HISTORY.EVENT_ENTITY.ENTERPRISE_TYPE'
+                                        | translate
+                                }}
+                            </ng-container>
+                            <ng-container
+                                *ngSwitchCase="
+                                    ENTERPRISE_ENTITY_RECORD.ENTERPRISE_SECTOR
+                                "
+                            >
+                                {{
+                                    'ACTIVITIES_HISTORY.EVENT_ENTITY.ENTERPRISE_SECTOR'
+                                        | translate
+                                }}
+                            </ng-container>
+                            <ng-container
+                                *ngSwitchCase="
+                                    ENTERPRISE_ENTITY_RECORD.OWNER_FIRST_SURNAME
+                                "
+                            >
+                                {{
+                                    'ACTIVITIES_HISTORY.EVENT_ENTITY.OWNER_FIRST_SURNAME'
+                                        | translate
+                                }}
+                            </ng-container>
+                            <ng-container
+                                *ngSwitchCase="
+                                    ENTERPRISE_ENTITY_RECORD.OWNER_SECOND_SURNAME
+                                "
+                            >
+                                {{
+                                    'ACTIVITIES_HISTORY.EVENT_ENTITY.OWNER_SECOND_SURNAME'
+                                        | translate
+                                }}
+                            </ng-container>
+                            <ng-container
+                                *ngSwitchCase="ENTERPRISE_ENTITY_RECORD.LADA"
+                            >
+                                {{
+                                    'ACTIVITIES_HISTORY.EVENT_ENTITY.LADA'
+                                        | translate
+                                }}
+                            </ng-container>
+                            <ng-container
+                                *ngSwitchCase="ENTERPRISE_ENTITY_RECORD.PHONE"
+                            >
+                                {{
+                                    'ACTIVITIES_HISTORY.EVENT_ENTITY.PHONE'
+                                        | translate
+                                }}
+                            </ng-container>
+                            <ng-container
+                                *ngSwitchCase="ENTERPRISE_ENTITY_RECORD.PAYER"
+                            >
+                                {{
+                                    'ACTIVITIES_HISTORY.EVENT_ENTITY.PAYER'
+                                        | translate
+                                }}
+                            </ng-container>
+                            <ng-container
+                                *ngSwitchCase="
+                                    ENTERPRISE_ENTITY_RECORD.PROVIDER
+                                "
+                            >
+                                {{
+                                    'ACTIVITIES_HISTORY.EVENT_ENTITY.PROVIDER'
+                                        | translate
+                                }}
+                            </ng-container>
+                            <ng-container
+                                *ngSwitchCase="ENTERPRISE_ENTITY_RECORD.LENDER"
+                            >
+                                {{
+                                    'ACTIVITIES_HISTORY.EVENT_ENTITY.LENDER'
+                                        | translate
+                                }}
+                            </ng-container>
+                            <ng-container
+                                *ngSwitchCase="
+                                    ENTERPRISE_ENTITY_RECORD.CHAMBER_OF_COMMERCE_CERTIFICATE
+                                "
+                            >
+                                {{
+                                    'ACTIVITIES_HISTORY.EVENT_ENTITY.CHAMBER_OF_COMMERCE_CERTIFICATE'
+                                        | translate
+                                }}
+                            </ng-container>
+                            <ng-container
+                                *ngSwitchCase="
+                                    ENTERPRISE_ENTITY_RECORD.ENROLLMENT_FORM
+                                "
+                            >
+                                {{
+                                    'ACTIVITIES_HISTORY.EVENT_ENTITY.ENROLLMENT_FORM'
+                                        | translate
+                                }}
+                            </ng-container>
+                            <ng-container
+                                *ngSwitchCase="
+                                    ENTERPRISE_ENTITY_RECORD.FUNDING_AGREEMENT
+                                "
+                            >
+                                {{
+                                    'ACTIVITIES_HISTORY.EVENT_ENTITY.FUNDING_AGREEMENT'
+                                        | translate
+                                }}
+                            </ng-container>
+                            <ng-container
+                                *ngSwitchCase="
+                                    ENTERPRISE_ENTITY_RECORD.LEGAL_REPRESENTATIVE_ID
+                                "
+                            >
+                                {{
+                                    'ACTIVITIES_HISTORY.EVENT_ENTITY.LEGAL_REPRESENTATIVE_ID'
+                                        | translate
+                                }}
+                            </ng-container>
+                            <ng-container
+                                *ngSwitchCase="
+                                    ENTERPRISE_ENTITY_RECORD.PAYER_AGREEMENT
+                                "
+                            >
+                                {{
+                                    'ACTIVITIES_HISTORY.EVENT_ENTITY.PAYER_AGREEMENT'
+                                        | translate
+                                }}
+                            </ng-container>
+                            <ng-container
+                                *ngSwitchCase="
+                                    ENTERPRISE_ENTITY_RECORD.PROVIDER_AGREEMENT
+                                "
+                            >
+                                {{
+                                    'ACTIVITIES_HISTORY.EVENT_ENTITY.PROVIDER_AGREEMENT'
+                                        | translate
+                                }}
+                            </ng-container>
+                            <ng-container
+                                *ngSwitchCase="ENTERPRISE_ENTITY_RECORD.RUT"
+                            >
+                                {{
+                                    'ACTIVITIES_HISTORY.EVENT_ENTITY.RUT'
+                                        | translate
+                                }}
+                            </ng-container>
+                            <ng-container
+                                *ngSwitchCase="
+                                    ENTERPRISE_ENTITY_RECORD.SHAREHOLDING_STRUCTURE
+                                "
+                            >
+                                {{
+                                    'ACTIVITIES_HISTORY.EVENT_ENTITY.SHAREHOLDING_STRUCTURE'
+                                        | translate
+                                }}
+                            </ng-container>
+                            ({{ entity.event.value }})
+                        </span>
+                        <!-- <span [title]="entity.event.value">
+                            {{  | slice: 0:15 }}...
+                        </span> -->
+                    </div>
+                    <ng-template #nothing>- -</ng-template>
+                </div>
+                <div fxLayout="column">
+                    <strong class="mat-body-strong">
+                        {{ 'ACTIVITIES_HISTORY.COMMENT' | translate }}:
+                    </strong>
+                    {{ entity.event.comment ? entity.event.comment : '- -' }}
+                </div>
+            </div>
+        </ng-template>
+    </mat-expansion-panel>
+</mat-accordion>

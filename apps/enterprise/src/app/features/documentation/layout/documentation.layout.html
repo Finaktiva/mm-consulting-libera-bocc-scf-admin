@@ -1,0 +1,8 @@
+<mat-toolbar class="mat-elevation-z1" fxLayout="row" fxLayoutAlign="end">
+    <button [disabled]="isSubmitting$ | async" (click)="onSignOut()" mat-button>
+        {{ 'COMMON.ACTIONS.LOGOUT' | translate | uppercase }}
+    </button>
+</mat-toolbar>
+<div fxLayout="column" class="page-container" fxFlex="1 1 auto">
+    <router-outlet></router-outlet>
+</div>

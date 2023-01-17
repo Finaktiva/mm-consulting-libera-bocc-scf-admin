@@ -1,0 +1,27 @@
+<mat-progress-bar
+    *ngIf="(isSubmitting$ | async) || (isLoading$ | async)"
+    mode="indeterminate"
+></mat-progress-bar>
+<h2 mat-dialog-title>
+    {{ 'EDIT_USER_DIALOG.TITLE' | translate }}
+</h2>
+<mat-dialog-content>
+    <user-form
+        #component
+        [user]="entity$ | async"
+        (onSubmit)="onSubmit($event)"
+    ></user-form>
+</mat-dialog-content>
+<mat-dialog-actions fxLayout="row" fxLayoutAlign="end">
+    <button mat-button mat-dialog-close>
+        {{ 'COMMON.ACTIONS.CANCEL' | translate | uppercase }}
+    </button>
+    <button
+        [disabled]="component.shouldDisable() || (isSubmitting$ | async)"
+        (click)="component.submit()"
+        mat-flat-button
+        color="primary"
+    >
+        {{ 'COMMON.ACTIONS.SAVE' | translate | uppercase }}
+    </button>
+</mat-dialog-actions>

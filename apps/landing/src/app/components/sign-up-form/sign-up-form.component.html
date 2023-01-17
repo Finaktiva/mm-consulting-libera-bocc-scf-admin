@@ -1,0 +1,159 @@
+<form
+    (ngSubmit)="onSubmit()"
+    [formGroup]="form"
+    fxLayout="column"
+    fxLayoutAlign="center stretch"
+>
+    <mat-form-field>
+        <mat-label>Email</mat-label>
+        <input
+            matInput
+            name="email"
+            formControlName="email"
+            placeholder="ejemplo@ejemplo.com"
+            autocapitalize="none"
+        />
+        <mat-error>
+            <span *ngIf="form.hasError('required', 'email')">
+                Este campo es requerido
+            </span>
+            <span *ngIf="form.hasError('pattern', 'email')">
+                No es un formato válido de correo electrónico
+                <mat-icon style="transform: scale(1.3);" [matTooltip]="'El email deberá contener mínimo 5 y máximo 32 caracteres antes del arroba'">help_outline</mat-icon>
+            </span>
+        </mat-error>
+    </mat-form-field>
+    <mat-form-field>
+        <mat-label>Razón social (empresa)</mat-label>
+        <input
+            matInput
+            name="business-name"
+            formControlName="businessName"
+            placeholder="Empresa"
+        />
+        <mat-error>
+            Este campo es requerido
+        </mat-error>
+    </mat-form-field>
+    <mat-form-field>
+        <mat-label>NIT</mat-label>
+        <input
+            matInput
+            name="nit"
+            formControlName="nit"
+            [errorStateMatcher]="errorStateMatcher"
+            placeholder="Ejemplo: 900.876.256-2"
+        />
+        <mat-spinner
+            *ngIf="form.get('nit').status === 'PENDING'"
+            mode="indeterminate"
+            diameter="20"
+            matSuffix
+        ></mat-spinner>
+        <span *ngIf="form.get('nit').valid" class="alternate-theme" matSuffix>
+            <mat-icon color="primary">check</mat-icon>
+        </span>
+        <mat-icon *ngIf="shouldRenderErrorIcon()" matSuffix color="warn">
+            close
+        </mat-icon>
+        <mat-error>
+            <span *ngIf="form.hasError('required', 'nit')">
+                Este campo es requerido
+            </span>
+            <span *ngIf="form.hasError('pattern', 'nit')">
+                El NIT debe seguir el formato: XXX.XXX.XXX-Y
+            </span>
+            <span *ngIf="form.hasError('nit', 'nit')">No es un NIT válido</span>
+            <span *ngIf="form.hasError('found', 'nit')">
+                Ya se encuentra una empresa con ese NIT.
+            </span>
+            <span *ngIf="form.hasError('somethingWentWrong', 'nit')">
+                Algo salió mal, compruebe su conexión.
+            </span>
+        </mat-error>
+    </mat-form-field>
+    <mat-form-field>
+        <mat-label>Contraseña</mat-label>
+        <input
+            matInput
+            name="password"
+            [minLength]="PASSWORD_MINLENGTH"
+            [maxLength]="PASSWORD_MAXLENGTH"
+            [type]="shouldHidePassword ? 'password' : 'text'"
+            formControlName="password"
+            placeholder="Contraseña"
+            autocapitalize="none"
+        />
+        <mat-icon matSuffix (click)="togglePassword()">
+            {{ shouldHidePassword ? 'visibility_off' : 'visibility' }}
+        </mat-icon>
+        <mat-error>
+            <span *ngIf="form.hasError('required', 'password')">
+                Este campo es requerido
+            </span>
+            <span *ngIf="form.hasError('minlength', 'password')">
+                Debe tener por lo menos {{ PASSWORD_MINLENGTH }} caracteres
+            </span>
+            <span *ngIf="form.hasError('maxlength', 'password')">
+                No puede tener más de {{ PASSWORD_MAXLENGTH }} caracteres
+            </span>
+            <span *ngIf="form.hasError('nonequalsvalidator')">
+                El email y el password no pueden ser iguales
+            </span>
+            <span
+                *ngIf="
+                    form.hasError('passwordValid', 'password') &&
+                    !(
+                        form.hasError('minlength', 'password') ||
+                        form.hasError('maxlength', 'password') ||
+                        form.hasError('nonequalsvalidator') ||
+                        form.hasError('required', 'password')
+                    )
+                "
+            >
+                Debe tener una mayúscula, minúscula, número y caracter especial.
+            </span>
+        </mat-error>
+    </mat-form-field>
+    <mat-form-field>
+        <mat-label>Confirmar contraseña</mat-label>
+        <input
+            matInput
+            name="confirm-password"
+            [type]="shouldHideConfirmPassword ? 'password' : 'text'"
+            formControlName="confirmPassword"
+            placeholder="Repita su contraseña"
+            [errorStateMatcher]="confirmPasswordErrorStateMatcher"
+            autocapitalize="none"
+        />
+        <mat-icon matSuffix (click)="toggleConfirmPassword()">
+            {{ shouldHideConfirmPassword ? 'visibility_off' : 'visibility' }}
+        </mat-icon>
+        <mat-error>
+            <span *ngIf="form.hasError('required', 'confirmPassword')">
+                Este campo es requerido
+            </span>
+            <span *ngIf="form.hasError('equals') && !form.hasError('required', 'confirmPassword')">
+                Las contraseñas no coinciden
+            </span>
+        </mat-error>
+    </mat-form-field>
+    <button
+        type="submit"
+        [disabled]="shouldDisable()"
+        mat-flat-button
+        color="primary"
+    >
+        CONFIRMAR REGISTRO
+    </button>
+</form>
+<div fxLayoutAlign="center">
+    <p class="mat-body">
+        <span>
+            ¿Ya tienes una cuenta?
+        </span>
+        <a routerLink="/sign-in">
+            Inicia sesión
+        </a>
+    </p>
+</div>

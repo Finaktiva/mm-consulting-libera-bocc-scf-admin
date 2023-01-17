@@ -1,0 +1,32 @@
+<div fxLayout="row" fxLayoutAlign="start center">
+    <div
+        style="color: #8798AD"
+        fxFlex
+        fxLayout="row"
+        fxLayoutAlign="start center"
+        fxLayoutGap="8px"
+    >
+        <mat-icon>
+            picture_as_pdf
+        </mat-icon>
+        <span class="mat-subheading-2 no-margin">
+            {{ file.name }}
+        </span>
+    </div>
+    <div fxLayout="row" fxLayoutGap="4px" fxLayoutAlign="center center">
+        <button
+            [disabled]="isDeleting"
+            (click)="onDelete()"
+            type="button"
+            mat-button
+            color="warn"
+        >
+            {{ 'COMMON.ACTIONS.DELETE' | translate | uppercase }}
+        </button>
+        <div class="alternate-theme">
+            <mat-icon color="primary" matTooltip="Correcto">
+                check_circle
+            </mat-icon>
+        </div>
+    </div>
+</div>

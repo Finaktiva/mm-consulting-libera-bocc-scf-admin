@@ -1,0 +1,41 @@
+<mat-progress-bar
+    *ngIf="(isLoading$ | async)"
+    mode="indeterminate"
+></mat-progress-bar>
+<h1 mat-dialog-title>{{ 'CREATE_USER_DIALOG.TITLE' | translate }}</h1>
+<div
+    *ngIf="(error$ | async)"
+    fxLayout="row"
+    fxLayoutAlign="start center"
+    fxLayoutGap="12px"
+>
+    <span class="mat-body">
+        {{ 'COMMON.ERRORS.LOAD_MODULES' | translate }}
+    </span>
+    <button (click)="onReload()" mat-flat-button color="warn">
+        {{ 'COMMON.ACTIONS.RETRY' | translate | uppercase }}
+    </button>
+</div>
+<ng-container *ngIf="(hasLoaded$ | async)">
+    <mat-dialog-content>
+        <user-form
+            #form
+            [isSubmitting]="isSubmitting$ | async"
+            (onSubmit)="onSubmit($event)"
+            [enterpriseModules]="modules$ | async"
+        ></user-form>
+    </mat-dialog-content>
+    <mat-dialog-actions fxLayout="row" fxLayoutAlign="end center">
+        <button mat-dialog-close mat-button>
+            {{ 'COMMON.ACTIONS.CANCEL' | translate | uppercase }}
+        </button>
+        <button
+            [disabled]="form.shouldDisable()"
+            (click)="form.submit()"
+            mat-flat-button
+            color="primary"
+        >
+            {{ 'CREATE_USER_DIALOG.ACTION_SEND' | translate | uppercase }}
+        </button>
+    </mat-dialog-actions>
+</ng-container>

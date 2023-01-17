@@ -1,0 +1,44 @@
+<form [formGroup]="form">
+    <div fxLayout="row wrap" style="margin: 15px 0" fxLayoutGap="12px">
+        <mat-form-field appearance="standard" fxFlex>
+            <mat-label>
+                {{
+                    'PAYMENT_REQUEST_FORM.EFFECTIVE_DATE_PAYMENT'
+                        | translate
+                        | uppercase
+                }}
+            </mat-label>
+            <input
+                matInput
+                formControlName="effectivePaymentDate"
+                type="text"
+                name="emission-date"
+                [matDatepicker]="emissionDate"
+            />
+            <mat-datepicker-toggle
+                matSuffix
+                [for]="emissionDate"
+            ></mat-datepicker-toggle>
+            <mat-datepicker #emissionDate></mat-datepicker>
+        </mat-form-field>
+
+        <mat-form-field appearance="standard" fxFlex>
+            <mat-label>
+                {{
+                    'PAYMENT_REQUEST_FORM.EFFECTED_AMOUNT_PAID'
+                        | translate
+                        | uppercase
+                }}
+            </mat-label>
+            <input
+                matInput
+                type="text"
+                formControlName="effectivePaymentAmount"
+                name="invoice-number"
+            />
+            <span matPrefix>
+                {{ currencyCode | currencySymbol }}
+            </span>
+        </mat-form-field>
+    </div>
+</form>

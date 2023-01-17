@@ -1,0 +1,29 @@
+<form fxLayout="column" fxLayoutGap="12px" [formGroup]="form">
+    <h2 mat-dialog-title class="mat-title" *ngIf="data.action === 'CREATE'; else titleEdit">
+        {{ 'ROLE_DIALOG.CREATE_TITLE' | translate | titlecase }}
+    </h2>
+    <ng-template #titleEdit>
+        <h2 mat-dialog-title class="mat-title">
+            {{ 'ROLE_DIALOG.EDIT_TITLE' | translate | titlecase }}
+        </h2>
+    </ng-template>
+    <mat-dialog-content>
+        <p class="mat-body" *ngIf="data.action === 'CREATE'; else edit">
+            {{ 'ROLE_DIALOG.CREATE_BODY' | translate }}
+        </p>
+        <ng-template #edit>
+            <p class="mat-body">
+                {{ 'ROLE_DIALOG.EDIT_BODY' | translate }}
+            </p>
+        </ng-template>
+    </mat-dialog-content>
+    <mat-checkbox (change)="onChangeConfirm()">{{ 'COMMON.LABELS.CHECK_YES_CONFIRM' | translate }}</mat-checkbox>
+    <mat-dialog-actions fxLayout="row" fxLayoutAlign="end">
+        <button mat-button [mat-dialog-close]="true">
+        {{ 'COMMON.ACTIONS.CANCEL' | translate | uppercase }}
+    </button>
+        <button (click)="onSubmit()" mat-flat-button color="primary">
+        {{ 'COMMON.ACTIONS.ACCEPT' | translate | uppercase }}
+    </button>
+    </mat-dialog-actions>
+</form> 

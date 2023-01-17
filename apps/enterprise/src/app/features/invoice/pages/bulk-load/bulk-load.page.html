@@ -1,0 +1,47 @@
+<div fxLayout="column">
+    <div
+        fxLayout="row"
+        fxLayoutAlign="space-between center"
+        class="page-toolbar"
+    >
+        <span class="mat-headline no-margin"
+            >{{ 'COMMON.LABELS.INVOICES' | translate }} -
+            {{ 'COMMON.LABELS.BULK_LOADS' | translate }}
+        </span>
+    </div>
+    <div
+        fxLayout="column"
+        fxLayoutAlign="start stretch"
+        fxLayoutGap="12px"
+        class="page-content progress-bar-container mat-elevation-z1 table-container"
+    >
+        <mat-spinner
+            fxFlexAlign="center"
+            *ngIf="(shouldRenderProgressSpinner$ | async)"
+        ></mat-spinner>
+        <alert *ngIf="(currenciesError$ | async)">
+            <span>{{ 'BULK_LOAD_PAGE.ERRORS.LOAD_COINS' | translate }}</span>
+            <button (click)="fetchCurrencies()" mat-flat-button color="warn">
+                {{ 'COMMON.ACTIONS.RETRY' | translate | uppercase }}
+            </button>
+        </alert>
+        <alert *ngIf="(customAttributesError$ | async)">
+            <span>
+                {{ 'COMMON.ERRORS.LOAD_CUSTOMIZED_FIELDS' | translate }}
+            </span>
+            <button
+                (click)="fetchCustomAttributes()"
+                mat-flat-button
+                color="warn"
+            >
+                {{ 'COMMON.ACTIONS.RETRY' | translate | uppercase }}
+            </button>
+        </alert>
+        <bulk-invoice-form
+            *ngIf="(shouldRenderForm$ | async)"
+            (onSubmit)="onSubmit($event)"
+            [isSubmitting]="isSubmitting$ | async"
+            [currencies]="currencies$ | async"
+        ></bulk-invoice-form>
+    </div>
+</div>

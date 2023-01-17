@@ -1,0 +1,117 @@
+<form (ngSubmit)="onSubmit()" [formGroup]="form">
+    <div
+        fxLayout.gt-xs="row"
+        fxLayout.xs="column"
+        fxLayoutAlign.xs="start"
+        fxLayoutAlign.gt-xs="stretch"
+        fxLayoutGap.gt-xs="12px"
+    >
+        <mat-form-field fxFlex.gt-xs>
+            <mat-label>
+                {{ 'CUSTOM_ATTRIBUTES_FORM.FIELD_NAME' | translate }}
+            </mat-label>
+            <input matInput formControlName="name" />
+            <mat-error>
+                <span *ngIf="form.hasError('required', 'name')">
+                    {{ 'COMMON.VALIDATIONS.REQUIRED' | translate }}
+                </span>
+                <span *ngIf="form.hasError('whitespace', 'name')">
+                    {{
+                        'COMMON.VALIDATIONS.NOT_CONTAINS_CHARACTERS' | translate
+                    }}
+                </span>
+            </mat-error>
+        </mat-form-field>
+        <mat-form-field fxFlex.gt-xs>
+            <mat-label>
+                {{ 'CUSTOM_ATTRIBUTES_FORM.FIELD_TYPE' | translate }}
+            </mat-label>
+            <mat-select formControlName="type">
+                <mat-option [value]="LENDER_CUSTOM_ATTRIBUTE_TYPE.TEXT">
+                    {{ 'CUSTOM_ATTRIBUTES_FORM.FIELD_TYPES.TEXT' | translate }}
+                </mat-option>
+                <mat-option [value]="LENDER_CUSTOM_ATTRIBUTE_TYPE.DATE">
+                    {{ 'CUSTOM_ATTRIBUTES_FORM.FIELD_TYPES.DATE' | translate }}
+                </mat-option>
+                <mat-option [value]="LENDER_CUSTOM_ATTRIBUTE_TYPE.INTEGER">
+                    {{
+                        'CUSTOM_ATTRIBUTES_FORM.FIELD_TYPES.INTEGER' | translate
+                    }}
+                </mat-option>
+                <mat-option [value]="LENDER_CUSTOM_ATTRIBUTE_TYPE.DECIMAL">
+                    {{
+                        'CUSTOM_ATTRIBUTES_FORM.FIELD_TYPES.DECIMAL' | translate
+                    }}
+                </mat-option>
+                <mat-option [value]="LENDER_CUSTOM_ATTRIBUTE_TYPE.CURRENCY">
+                    {{
+                        'CUSTOM_ATTRIBUTES_FORM.FIELD_TYPES.CURRENCY'
+                            | translate
+                    }}
+                </mat-option>
+                <mat-option [value]="LENDER_CUSTOM_ATTRIBUTE_TYPE.CHECKBOX">
+                    {{
+                        'CUSTOM_ATTRIBUTES_FORM.FIELD_TYPES.CHECKBOX'
+                            | translate
+                    }}
+                </mat-option>
+                <mat-option [value]="LENDER_CUSTOM_ATTRIBUTE_TYPE.RADIO">
+                    {{ 'CUSTOM_ATTRIBUTES_FORM.FIELD_TYPES.RADIO' | translate }}
+                </mat-option>
+            </mat-select>
+            <mat-error>
+                {{ 'COMMON.VALIDATIONS.REQUIRED' | translate }}
+            </mat-error>
+        </mat-form-field>
+    </div>
+    <div *ngIf="(shouldRenderOptionsInput$ | async)" formGroupName="options">
+        <p class="mat-subheading-2">
+            {{ 'CUSTOM_ATTRIBUTES_FORM.OPTIONS' | translate }}
+        </p>
+        <div fxLayout="column">
+            <mat-form-field
+                *ngFor="let control of optionsControls; let i = index"
+            >
+                <mat-label>
+                    {{ 'CUSTOM_ATTRIBUTES_FORM.OPTION' | translate }}
+                    {{ i + 1 }}
+                </mat-label>
+                <input matInput [formControlName]="i" />
+                <button
+                    *ngIf="optionsControls.length > 1"
+                    mat-icon-button
+                    matSuffix
+                    (click)="onRemoveOption(i)"
+                >
+                    <mat-icon>clear</mat-icon>
+                </button>
+                <mat-error>
+                    {{
+                        'COMMON.VALIDATIONS.NOT_CONTAINS_CHARACTERS' | translate
+                    }}
+                </mat-error>
+            </mat-form-field>
+        </div>
+        <button
+            *ngIf="optionsControls.length < 25"
+            mat-button
+            color="accent"
+            (click)="onAddOption()"
+        >
+            + {{ 'CUSTOM_ATTRIBUTES_FORM.ACTIONS.ADD_OPTION' | translate }}
+        </button>
+    </div>
+    <div fxLayoutGap="10px" fxLayoutAlign="end">
+        <button mat-button (click)="cancel.emit()">
+            {{ 'COMMON.ACTIONS.CANCEL' | translate }}
+        </button>
+        <button
+            mat-flat-button
+            color="primary"
+            type="submit"
+            [disabled]="shouldDisable()"
+        >
+            + {{ 'CUSTOM_ATTRIBUTES_FORM.ACTIONS.ADD' | translate }}
+        </button>
+    </div>
+</form>

@@ -1,0 +1,25 @@
+<mat-progress-bar
+    *ngIf="(isSubmitting$ | async)"
+    mode="indeterminate"
+></mat-progress-bar>
+<h2 mat-dialog-title>
+    {{ 'APPROVE_MODULE_DIALOG.TITLE' | translate }}
+</h2>
+<mat-dialog-content>
+    <p class="mat-body">
+        {{ 'COMMON.LABELS.CONTINUE' | translate }}
+    </p>
+</mat-dialog-content>
+<mat-dialog-actions fxLayout="row" fxLayoutAlign="end" fxLayoutGap="12px">
+    <button mat-button mat-dialog-close>
+        {{ 'COMMON.ACTIONS.CANCEL' | translate | uppercase }}
+    </button>
+    <button
+        (click)="onSubmit()"
+        [disabled]="isSubmitting$ | async"
+        mat-flat-button
+        color="primary"
+    >
+        {{ 'COMMON.ACTIONS.ACCEPT' | translate | uppercase }}
+    </button>
+</mat-dialog-actions>

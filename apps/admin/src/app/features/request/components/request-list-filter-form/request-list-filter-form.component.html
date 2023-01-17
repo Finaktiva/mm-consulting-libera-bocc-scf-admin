@@ -1,0 +1,92 @@
+<form (ngSubmit)="onSubmit()" [formGroup]="form" fxLayoutGap="12px">
+    <button
+        type="button"
+        mat-button
+        *ngIf="!shouldRender()"
+        (click)="onClear()"
+    >
+        {{ 'COMMON.LABELS.CLEAN_FILTERS' | translate }}
+    </button>
+
+    <mat-form-field appearance="standard">
+        <mat-label>
+            {{ 'COMMON.LABELS.FILTER_BY' | translate }}
+        </mat-label>
+        <mat-select formControlName="filter_by">
+            <mat-option
+                [value]="
+                    ENTERPRISE_REQUEST_PAGINATION_FILTER_BY.ENTERPRISE_NAME
+                "
+            >
+                {{ 'REQUEST_LIST_FILTER.FILTER.ENTERPRISE' | translate }}
+            </mat-option>
+            <mat-option [value]="ENTERPRISE_REQUEST_PAGINATION_FILTER_BY.NIT">
+                {{ 'REQUEST_LIST_FILTER.FILTER.NIT' | translate }}
+            </mat-option>
+            <mat-option
+                [value]="ENTERPRISE_REQUEST_PAGINATION_FILTER_BY.STATUS"
+            >
+                {{ 'REQUEST_LIST_FILTER.FILTER.STATUS' | translate }}
+            </mat-option>
+            <mat-option [value]="ENTERPRISE_REQUEST_PAGINATION_FILTER_BY.DATE">
+                {{ 'REQUEST_LIST_FILTER.FILTER.DATE' | translate }}
+            </mat-option>
+        </mat-select>
+    </mat-form-field>
+    <mat-form-field
+        appearance="standard"
+        *ngIf="
+            form.value.filter_by ==
+            ENTERPRISE_REQUEST_PAGINATION_FILTER_BY.STATUS
+        "
+    >
+        <mat-label> {{ 'COMMON.LABELS.STATUS' | translate }}</mat-label>
+        <mat-select name="status" formControlName="status">
+            <mat-option [value]="ENTERPRISE_REQUEST_STATUS.ACCEPTED">
+                {{ 'COMMON.ENTERPRISE_REQUEST_STATUS.ACCEPTED' | translate }}
+            </mat-option>
+            <mat-option [value]="ENTERPRISE_REQUEST_STATUS.EVALUATION_PENDING">
+                {{
+                    'COMMON.ENTERPRISE_REQUEST_STATUS.EVALUATION_PENDING'
+                        | translate
+                }}
+            </mat-option>
+            <mat-option [value]="ENTERPRISE_REQUEST_STATUS.REJECTED">
+                {{ 'COMMON.ENTERPRISE_REQUEST_STATUS.REJECTED' | translate }}
+            </mat-option>
+        </mat-select>
+    </mat-form-field>
+    <mat-form-field
+        appearance="standard"
+        *ngIf="
+            form.value.filter_by ==
+                ENTERPRISE_REQUEST_PAGINATION_FILTER_BY.ENTERPRISE_NAME ||
+            form.value.filter_by == ENTERPRISE_REQUEST_PAGINATION_FILTER_BY.NIT
+        "
+    >
+        <mat-label>
+            {{ 'REQUEST_LIST_FILTER.SEARCH' | translate }}
+        </mat-label>
+        <input formControlName="q" name="query" type="text" matInput />
+    </mat-form-field>
+    <mat-form-field
+        appearance="standard"
+        *ngIf="
+            form.value.filter_by == ENTERPRISE_REQUEST_PAGINATION_FILTER_BY.DATE
+        "
+    >
+        <mat-label>
+            {{ 'REQUEST_LIST_FILTER.DATE' | translate }}
+        </mat-label>
+        <input
+            formControlName="q"
+            name="date"
+            type="text"
+            matInput
+            [matDatepicker]="picker"
+        />
+        <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
+        <mat-datepicker #picker></mat-datepicker>
+    </mat-form-field>
+    <button hidden #submitButton></button>
+</form>

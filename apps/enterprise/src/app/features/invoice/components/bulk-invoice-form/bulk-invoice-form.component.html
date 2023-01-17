@@ -1,0 +1,666 @@
+<form (ngSubmit)="onSubmit()" [formGroup]="form">
+    <mat-horizontal-stepper [linear]="true" #stepper>
+        <mat-step
+            [stepControl]="form.get('file')"
+            [label]="'BULK_INVOICE_FORM.CHOOSE_FILE' | translate"
+        >
+            <p class="mat-body-2">
+                {{
+                    'BULK_INVOICE_FORM.UPLOAD_RECOMENDATIONS.TITLE' | translate
+                }}:
+            </p>
+            <ul class="mat-body">
+                <li>
+                    {{
+                        'BULK_INVOICE_FORM.UPLOAD_RECOMENDATIONS.VALID_VALUES'
+                            | translate
+                    }}
+                </li>
+                <li>
+                    {{
+                        'BULK_INVOICE_FORM.UPLOAD_RECOMENDATIONS.NIT'
+                            | translate
+                    }}
+                </li>
+                <li>
+                    {{
+                        'BULK_INVOICE_FORM.UPLOAD_RECOMENDATIONS.DATE'
+                            | translate
+                    }}
+                </li>
+                <li>
+                    {{
+                        'BULK_INVOICE_FORM.UPLOAD_RECOMENDATIONS.CONFIGS'
+                            | translate
+                    }}
+                </li>
+                <li>
+                    {{
+                        'BULK_INVOICE_FORM.UPLOAD_RECOMENDATIONS.PAYMENT'
+                            | translate
+                    }}
+                </li>
+                <li>
+                    {{
+                        'BULK_INVOICE_FORM.UPLOAD_RECOMENDATIONS.FORMAT'
+                            | translate
+                    }}
+                </li>
+            </ul>
+            <div
+                fxLayout="column"
+                fxLayoutAlign="center center"
+                fxLayoutGap="8px"
+                ngx-file-dropzone
+                #dropzone="ngxFileDropzone"
+                formControlName="file"
+                accept=".xlsx"
+            >
+                <ng-container *ngIf="form.hasError('required', 'file')">
+                    <h2 class="mat-title">
+                        {{
+                            'FILE_DROPZONE.MESSAGE_TEMPLATE'
+                                | translate: { type: '.xlsx' }
+                        }}
+                    </h2>
+                    <span class="mat-body">
+                        {{ 'FILE_DROPZONE.OR' | translate }}
+                    </span>
+                    <button
+                        type="button"
+                        (click)="dropzone.browse()"
+                        mat-flat-button
+                        color="primary"
+                    >
+                        {{
+                            'FILE_DROPZONE.SEARCH_FILE' | translate | uppercase
+                        }}
+                    </button>
+                </ng-container>
+                <ng-container *ngIf="!form.hasError('required', 'file')">
+                    <div
+                        fxLayout="row"
+                        fxLayoutAlign="start center"
+                        fxLayoutGap="12px"
+                    >
+                        <div
+                            fxFlex
+                            fxLayout="row"
+                            fxLayoutAlign="start center"
+                            fxLayoutGap="12px"
+                        >
+                            <mat-icon>insert_drive_file</mat-icon>
+                            <div fxLayout="column">
+                                <span class="mat-body-2">
+                                    {{ form.value.file.name }}
+                                </span>
+                                <span class="mat-body">
+                                    {{
+                                        form.value.file.size
+                                            | ngezBytes: null:'kibibyte'
+                                            | number: '1.1-1'
+                                    }}
+                                    KB
+                                </span>
+                            </div>
+                        </div>
+                        <mat-icon *ngIf="form.get('file').valid" color="primary"
+                            >check_circle</mat-icon
+                        >
+                        <mat-icon
+                            *ngIf="form.hasError('fileType', 'file')"
+                            matTooltip="'COMMON.VALIDATIONS.ONLY_XLSX_FILES' | translate"
+                            matTooltipPosition="after"
+                            color="warn"
+                        >
+                            error
+                        </mat-icon>
+                    </div>
+                    <button
+                        type="button"
+                        (click)="dropzone.browse()"
+                        mat-flat-button
+                        color="accent"
+                    >
+                        {{
+                            'FILE_DROPZONE.REPLACE_FILE' | translate | uppercase
+                        }}
+                    </button>
+                </ng-container>
+            </div>
+            <div class="action-row" fxLayout="row" fxLayoutAlign="center">
+                <button type="button" mat-button matStepperNext>
+                    {{ 'COMMON.LABELS.NEXT' | translate }}
+                </button>
+            </div>
+        </mat-step>
+        <mat-step [label]="'BULK_INVOICE_FORM.CONFIG.TITLE' | translate">
+            <p class="mat-body">
+                {{ 'BULK_INVOICE_FORM.CONFIG.MESSAGE' | translate }}
+            </p>
+            <div fxLayout="row" fxLayoutGap="12px">
+                <mat-form-field fxFlex>
+                    <mat-label>
+                        {{ 'BULK_INVOICE_FORM.CONFIG.CURRENCY' | translate }}
+                    </mat-label>
+                    <mat-select formControlName="currencyCode">
+                        <mat-option
+                            [value]="currency.code"
+                            *ngFor="let currency of currencies"
+                        >
+                            {{ currency.description }}
+                        </mat-option>
+                    </mat-select>
+                </mat-form-field>
+                <mat-form-field fxFlex>
+                    <mat-label>
+                        {{
+                            'BULK_INVOICE_FORM.CONFIG.PAYMENT_TYPE' | translate
+                        }}
+                    </mat-label>
+                    <mat-select formControlName="paymentType">
+                        <mat-option [value]="INVOICE_PAYMENT_TYPE.CASH">
+                            {{ 'COMMON.INVOICE_PAYMENT_TYPE.CASH' | translate }}
+                        </mat-option>
+                        <mat-option [value]="INVOICE_PAYMENT_TYPE.DEPOSIT">
+                            {{
+                                'COMMON.INVOICE_PAYMENT_TYPE.DEPOSIT'
+                                    | translate
+                            }}
+                        </mat-option>
+                        <mat-option [value]="INVOICE_PAYMENT_TYPE.PAYCHECK">
+                            {{
+                                'COMMON.INVOICE_PAYMENT_TYPE.PAYCHECK'
+                                    | translate
+                            }}
+                        </mat-option>
+                        <mat-option
+                            [value]="
+                                INVOICE_PAYMENT_TYPE.ELECTRONIC_TRANSFERENCE
+                            "
+                        >
+                            {{
+                                'COMMON.INVOICE_PAYMENT_TYPE.ELECTRONIC_TRANSFERENCE'
+                                    | translate
+                            }}
+                        </mat-option>
+                    </mat-select>
+                </mat-form-field>
+                <mat-form-field fxFlex>
+                    <mat-label>
+                        {{
+                            'BULK_INVOICE_FORM.CONFIG.DOCUMENT_TYPE' | translate
+                        }}
+                    </mat-label>
+                    <mat-select formControlName="documentType">
+                        <mat-option [value]="INVOICE_DOCUMENT_TYPE.CREDIT_NOTE">
+                            {{
+                                'COMMON.INVOICE_DOCUMENT_TYPE.CREDIT_NOTE'
+                                    | translate
+                            }}
+                        </mat-option>
+                        <mat-option [value]="INVOICE_DOCUMENT_TYPE.INVOICE">
+                            {{
+                                'COMMON.INVOICE_DOCUMENT_TYPE.INVOICE'
+                                    | translate
+                            }}
+                        </mat-option>
+                    </mat-select>
+                </mat-form-field>
+            </div>
+            <mat-divider style="margin-bottom: 12px"></mat-divider>
+            <div fxLayout="row" fxLayoutAlign="space-between center">
+                <h3 class="mat-title">
+                    {{ 'COMMON.CUSTOMIZE.TITLE' | translate }}
+                </h3>
+                <button
+                    (click)="onManageCustomAttributes()"
+                    type="button"
+                    mat-stroked-button
+                    color="primary"
+                >
+                    {{
+                        'COMMON.CUSTOMIZE.MANAGE_CUSTOM_INFO'
+                            | translate
+                            | uppercase
+                    }}
+                </button>
+            </div>
+            <div
+                formArrayName="customAttributes"
+                fxLayout="row wrap"
+                fxLayoutGap="12px"
+            >
+                <ng-container
+                    *ngFor="
+                        let customAttribute of customAttributeFormArray.controls;
+                        let index = index
+                    "
+                >
+                    <mat-form-field
+                        appearance="standard"
+                        *ngIf="
+                            customAttribute.value.type ==
+                                ENTERPRISE_CUSTOM_ATTRIBUTE_TYPE.DATE;
+                            else input
+                        "
+                        [formGroupName]="index"
+                        [fxFlex]="flex$ | async"
+                    >
+                        <mat-label>{{ customAttribute.value.name }}</mat-label>
+                        <input
+                            matInput
+                            formControlName="value"
+                            type="text"
+                            name="custom-attribute"
+                            [matDatepicker]="date"
+                        />
+                        <mat-datepicker-toggle
+                            matSuffix
+                            [for]="date"
+                        ></mat-datepicker-toggle>
+                        <mat-datepicker #date></mat-datepicker>
+                        <mat-error>
+                            {{ 'COMMON.VALIDATIONS.REQUIRED' | translate }}
+                        </mat-error>
+                    </mat-form-field>
+                    <ng-template #input>
+                        <mat-form-field
+                            appearance="standard"
+                            [formGroupName]="index"
+                            [fxFlex]="flex$ | async"
+                        >
+                            <mat-label>{{
+                                customAttribute.value.name
+                            }}</mat-label>
+                            <input
+                                *ngIf="
+                                    customAttribute.value.type ==
+                                    ENTERPRISE_CUSTOM_ATTRIBUTE_TYPE.TEXT
+                                "
+                                matInput
+                                formControlName="value"
+                                name="custom-attribute"
+                                type="text"
+                            />
+                            <input
+                                *ngIf="
+                                    customAttribute.value.type ==
+                                        ENTERPRISE_CUSTOM_ATTRIBUTE_TYPE.DECIMAL ||
+                                    customAttribute.value.type ==
+                                        ENTERPRISE_CUSTOM_ATTRIBUTE_TYPE.INTEGER
+                                "
+                                [step]="
+                                    customAttribute.value.type ==
+                                    ENTERPRISE_CUSTOM_ATTRIBUTE_TYPE.DECIMAL
+                                        ? 0.1
+                                        : 1
+                                "
+                                matInput
+                                formControlName="value"
+                                name="custom-attribute"
+                                type="number"
+                            />
+                            <mat-error>
+                                {{ 'COMMON.VALIDATIONS.REQUIRED' | translate }}
+                            </mat-error>
+                        </mat-form-field>
+                    </ng-template>
+                </ng-container>
+            </div>
+            <div class="action-row" fxLayout="row" fxLayoutAlign="center">
+                <button type="button" mat-button matStepperPrevious>
+                    {{ 'COMMON.LABELS.BACK' | translate }}
+                </button>
+                <button type="button" mat-button matStepperNext>
+                    {{ 'COMMON.LABELS.NEXT' | translate }}
+                </button>
+            </div>
+        </mat-step>
+        <mat-step
+            [stepControl]="form.get('sheetName')"
+            [label]="'BULK_INVOICE_FORM.SHEET.TITLE' | translate"
+        >
+            <p class="mat-body">
+                {{ 'BULK_INVOICE_FORM.SHEET.TITLE' | translate }}
+            </p>
+            <mat-form-field>
+                <mat-label>
+                    {{ 'BULK_INVOICE_FORM.SHEET.LABEL' | translate }}
+                </mat-label>
+                <mat-select formControlName="sheetName">
+                    <mat-option
+                        *ngFor="let sheetName of (sheetNames$ | async)"
+                        [value]="sheetName"
+                    >
+                        {{ sheetName }}
+                    </mat-option>
+                </mat-select>
+                <mat-error>
+                    {{
+                        'BULK_INVOICE_FORM.SHEET.SELECT_SHEET_ERROR' | translate
+                    }}
+                </mat-error>
+            </mat-form-field>
+            <div fxLayout="row" fxLayoutAlign="center" fxLayoutGap="12px">
+                <button type="button" mat-button matStepperPrevious>
+                    {{ 'COMMON.LABELS.BACK' | translate }}
+                </button>
+                <button type="button" mat-button matStepperNext>
+                    {{ 'COMMON.LABELS.NEXT' | translate }}
+                </button>
+            </div>
+        </mat-step>
+        <mat-step [label]="'BULK_INVOICE_FORM.COLUMNS.TITLE' | translate">
+            <p class="mat-body">
+                {{ 'BULK_INVOICE_FORM.COLUMNS.MESSAGE' | translate }}
+            </p>
+            <!-- <div
+                fxLayout="row wrap"
+                fxLayoutAlign="center center"
+                fxLayoutGap="24px"
+            >
+                <ng-template #errorIcon>
+                    <mat-icon color="warn">close</mat-icon>
+                </ng-template>
+                <div fxLayout="row" fxLayoutAlign="start center">
+                    <mat-icon
+                        *ngIf="hasMappedEnterpriseName; else errorIcon"
+                        color="primary"
+                    >
+                        check
+                    </mat-icon>
+
+                    <span>Empresa</span>
+                </div>
+                <div fxLayout="row" fxLayoutAlign="start center">
+                    <mat-icon
+                        *ngIf="hasMappedNIT; else errorIcon"
+                        color="primary"
+                    >
+                        check
+                    </mat-icon>
+                    <span>NIT</span>
+                </div>
+                <div fxLayout="row" fxLayoutAlign="start center">
+                    <mat-icon
+                        *ngIf="hasMappedName; else errorIcon"
+                        color="primary"
+                    >
+                        check
+                    </mat-icon>
+                    <span>Nombre</span>
+                </div>
+                <div fxLayout="row" fxLayoutAlign="start center">
+                    <mat-icon
+                        *ngIf="hasMappedFirstSurname; else errorIcon"
+                        color="primary"
+                    >
+                        check
+                    </mat-icon>
+                    <span>Primer apellido</span>
+                </div>
+                <div fxLayout="row" fxLayoutAlign="start center">
+                    <mat-icon
+                        *ngIf="hasMappedSecondSurname; else errorIcon"
+                        color="primary"
+                    >
+                        check
+                    </mat-icon>
+                    <span>Segundo apellido</span>
+                </div>
+                <div fxLayout="row" fxLayoutAlign="start center">
+                    <mat-icon
+                        *ngIf="hasMappedEmail; else errorIcon"
+                        color="primary"
+                    >
+                        check
+                    </mat-icon>
+                    <span>Email</span>
+                </div>
+                <div fxLayout="row" fxLayoutAlign="start center">
+                    <mat-icon
+                        *ngIf="hasMappedPhoneNumber; else errorIcon"
+                        color="primary"
+                    >
+                        check
+                    </mat-icon>
+                    <span>Télefono</span>
+                </div>
+            </div> -->
+            <div formArrayName="columns" fxLayout="row wrap" fxLayoutGap="12px">
+                <div
+                    *ngFor="
+                        let cells of (sheetAsColumns$ | async);
+                        let index = index
+                    "
+                    fxLayout="column"
+                    fxLayoutAlign="start stretch"
+                    [fxFlex]="flex$ | async"
+                >
+                    <mat-form-field appearance="standard">
+                        <mat-select
+                            [placeholder]="
+                                'COMMON.LABELS.SELECT_FIELD' | translate
+                            "
+                            [formControlName]="index"
+                            name="field"
+                        >
+                            <mat-option [value]="null">
+                                {{
+                                    'BULK_INVOICE_FORM.INVOICE_FIELD.NONE'
+                                        | translate
+                                }}
+                            </mat-option>
+                            <mat-option
+                                [disabled]="
+                                    shouldDisableSelectOption(
+                                        BULK_INVOICE_FIELD.INVOICE_NUMBER
+                                    )
+                                "
+                                [value]="{
+                                    field: BULK_INVOICE_FIELD.INVOICE_NUMBER,
+                                    cells: cells
+                                }"
+                            >
+                                {{ 'COMMON.LABELS.INVOICE_NUMBER' | translate }}
+                            </mat-option>
+                            <mat-option
+                                [disabled]="
+                                    shouldDisableSelectOption(
+                                        BULK_INVOICE_FIELD.ALTERNATIVE_INVOICE_ID
+                                    )
+                                "
+                                [value]="{
+                                    field:
+                                        BULK_INVOICE_FIELD.ALTERNATIVE_INVOICE_ID,
+                                    cells: cells
+                                }"
+                            >
+                                {{
+                                    'COMMON.INVOICE_FIELDS.ALTERNATE_INVOICE_ID'
+                                        | translate
+                                }}
+                            </mat-option>
+                            <mat-option
+                                [disabled]="
+                                    shouldDisableSelectOption(
+                                        BULK_INVOICE_FIELD.EMISSION_DATE
+                                    )
+                                "
+                                [value]="{
+                                    field: BULK_INVOICE_FIELD.EMISSION_DATE,
+                                    cells: cells
+                                }"
+                            >
+                                {{
+                                    'COMMON.INVOICE_FIELDS.EMISSION_DATE'
+                                        | translate
+                                }}
+                            </mat-option>
+                            <mat-option
+                                [disabled]="
+                                    shouldDisableSelectOption(
+                                        BULK_INVOICE_FIELD.EXPIRATION_DATE
+                                    )
+                                "
+                                [value]="{
+                                    field: BULK_INVOICE_FIELD.EXPIRATION_DATE,
+                                    cells: cells
+                                }"
+                            >
+                                {{
+                                    'COMMON.INVOICE_FIELDS.EXPIRATION_DATE'
+                                        | translate
+                                }}
+                            </mat-option>
+                            <mat-option
+                                [disabled]="
+                                    shouldDisableSelectOption(
+                                        BULK_INVOICE_FIELD.AMOUNT
+                                    )
+                                "
+                                [value]="{
+                                    field: BULK_INVOICE_FIELD.AMOUNT,
+                                    cells: cells
+                                }"
+                            >
+                                {{ 'COMMON.INVOICE_FIELDS.AMOUNT' | translate }}
+                            </mat-option>
+
+                            <mat-option
+                                [disabled]="
+                                    shouldDisableSelectOption(
+                                        BULK_INVOICE_FIELD.VAT
+                                    )
+                                "
+                                [value]="{
+                                    field: BULK_INVOICE_FIELD.VAT,
+                                    cells: cells
+                                }"
+                            >
+                                {{ 'COMMON.INVOICE_FIELDS.VAT' | translate }}
+                            </mat-option>
+                            <mat-option
+                                [disabled]="
+                                    shouldDisableSelectOption(
+                                        BULK_INVOICE_FIELD.RETENTIONS
+                                    )
+                                "
+                                [value]="{
+                                    field: BULK_INVOICE_FIELD.RETENTIONS,
+                                    cells: cells
+                                }"
+                            >
+                                {{
+                                    'COMMON.INVOICE_FIELDS.RETENTIONS'
+                                        | translate
+                                }}
+                            </mat-option>
+                            <mat-option
+                                [disabled]="
+                                    shouldDisableSelectOption(
+                                        BULK_INVOICE_FIELD.CREDIT_NOTES_VALUE
+                                    )
+                                "
+                                [value]="{
+                                    field:
+                                        BULK_INVOICE_FIELD.CREDIT_NOTES_VALUE,
+                                    cells: cells
+                                }"
+                            >
+                                {{
+                                    'COMMON.INVOICE_FIELDS.CREDIT_NOTES_VALUE'
+                                        | translate
+                                }}
+                            </mat-option>
+
+                            <mat-option
+                                [disabled]="
+                                    shouldDisableSelectOption(
+                                        BULK_INVOICE_FIELD.PAYMENT_ADVANCE
+                                    )
+                                "
+                                [value]="{
+                                    field: BULK_INVOICE_FIELD.PAYMENT_ADVANCE,
+                                    cells: cells
+                                }"
+                            >
+                                {{
+                                    'BULK_INVOICE_FORM.INVOICE_FIELD.PAYMENT_ADVANCE'
+                                        | translate
+                                }}
+                            </mat-option>
+                            <mat-optgroup [label]="'BULK_INVOICE_FORM.INVOICE_FIELD.PROVIDER' | translate">
+                                <mat-option
+                                    [disabled]="
+                                        shouldDisableSelectOption(
+                                            BULK_INVOICE_FIELD.NIT
+                                        )
+                                    "
+                                    [value]="{
+                                        field: BULK_INVOICE_FIELD.NIT,
+                                        cells: cells
+                                    }"
+                                >
+                                    {{
+                                        'BULK_INVOICE_FORM.INVOICE_FIELD.NIT'
+                                            | translate
+                                    }}
+                                </mat-option>
+                            </mat-optgroup>
+                        </mat-select>
+                    </mat-form-field>
+                    <cdk-virtual-scroll-viewport
+                        itemSize="50"
+                        class="example-viewport"
+                    >
+                        <div
+                            *cdkVirtualFor="let cell of cells; last as last"
+                            class="example-item"
+                            [class.is-last]="last"
+                        >
+                            <div *ngIf="cell; else template">
+                                <span class="mat-body-2" *ngIf="isDate(cell)">
+                                    {{ cell | date: 'fullDate':'UTC' }}
+                                </span>
+
+                                <span class="mat-body-2" *ngIf="!isDate(cell)">
+                                    {{ cell }}
+                                </span>
+                            </div>
+
+                            <ng-template #template>
+                                <span style="font-style: italic">
+                                    {{
+                                        'BULK_INVOICE_FORM.EMPTY_CELL'
+                                            | translate
+                                    }}
+                                </span>
+                            </ng-template>
+                        </div>
+                    </cdk-virtual-scroll-viewport>
+                </div>
+            </div>
+            <div
+                class="action-row"
+                fxLayout="row"
+                fxLayoutAlign="center"
+                fxLayoutGap="12px"
+            >
+                <button type="button" mat-button matStepperPrevious>
+                    {{ 'COMMON.LABELS.BACK' | translate }}
+                </button>
+                <button
+                    [disabled]="shouldDisable()"
+                    type="submit"
+                    mat-button
+                    mat-flat-button
+                    color="primary"
+                >
+                    {{ 'COMMON.LABELS.FINISH' | translate }}
+                </button>
+            </div>
+        </mat-step>
+    </mat-horizontal-stepper>
+</form>

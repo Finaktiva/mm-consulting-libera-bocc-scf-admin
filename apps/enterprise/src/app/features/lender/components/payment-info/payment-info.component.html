@@ -1,0 +1,46 @@
+<div fxLayout="row" fxLayoutGap="24px">
+    <div fxFlex fxLayout="column" fxLayoutGap="12px">
+        <div fxLayout="column">
+            <span class="mat-body">
+                {{ 'PAYMENT_INFO.INVOICE_NUMBER' | translate }}
+            </span>
+            <span class="mat-body-2">
+                {{ entity?.invoiceNumber }}
+            </span>
+        </div>
+        <div fxLayout="column">
+            <span class="mat-body">
+                {{ 'PAYMENT_INFO.CURRENCY' | translate }}
+            </span>
+            <span class="mat-body-2">
+                {{ entity?.currencyCode }}
+            </span>
+        </div>
+    </div>
+    <div fxFlex fxLayout="column" fxLayoutGap="12px">
+        <div fxLayout="column">
+            <span class="mat-body">
+                {{ 'COMMON.LABELS.DISCOUNT_VALUE' | translate }}
+            </span>
+            <span class="mat-body-2">
+                <ng-container *ngIf="entity?.discountValue; else noData">
+                    {{
+                        entity?.discountValue
+                            | currency: entity?.currencyCode:'symbol-narrow'
+                    }}
+                </ng-container>
+                <ng-template #noData>
+                    - -
+                </ng-template>
+            </span>
+        </div>
+        <div fxLayout="column">
+            <span class="mat-body">
+                {{ 'PAYMENT_INFO.PROVIDER' | translate }}
+            </span>
+            <span class="mat-body-2">
+                {{ entity?.provider?.enterpriseName }}
+            </span>
+        </div>
+    </div>
+</div>

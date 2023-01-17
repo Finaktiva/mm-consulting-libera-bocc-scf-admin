@@ -1,0 +1,130 @@
+<div fxLayout="column" fxLayoutGap="12px">
+    <div fxLayout="column">
+        <span class="mat-body">
+            {{ 'ENTERPRISE_DETAIL.DOCUMENT_TYPE' | translate }}
+        </span>
+        <span class="mat-body-2" *ngIf="entity.documentType; else empty">
+            {{ 'CREATE_PROGRAM_FORM.DOCUMENT_TYPES.' + entity.documentType | translate}}
+        </span>
+    </div>
+    <div fxLayout="column">
+        <span class="mat-body">
+            {{ 'ENTERPRISE_DETAIL.NIT' | translate }}
+        </span>
+        <span class="mat-body-2" *ngIf="entity.nit; else empty">
+            {{ entity.nit }}
+        </span>
+    </div>
+    <div fxLayout="column">
+        <span class="mat-body">
+            {{ 'ENTERPRISE_DETAIL.SOCIAL_REASON' | translate }}
+        </span>
+        <span class="mat-body-2" *ngIf="entity.enterpriseName; else empty">
+            {{ entity.enterpriseName }}
+        </span>
+    </div>
+    <div fxLayout="column">
+        <span class="mat-body">
+            {{ 'ENTERPRISE_DETAIL.DEPARTMENT' | translate }}
+        </span>
+        <span class="mat-body-2" *ngIf="entity.department; else empty">
+            {{ entity.department }}
+        </span>
+    </div>
+    <div fxLayout="column">
+        <span class="mat-body">
+            {{ 'ENTERPRISE_DETAIL.CITY' | translate }}
+        </span>
+        <span class="mat-body-2" *ngIf="entity.city; else empty">
+            {{ entity.city }}
+        </span>
+    </div>
+    <div fxLayout="column">
+        <span class="mat-body">
+            {{ 'ENTERPRISE_DETAIL.REGION' | translate }}
+        </span>
+        <span class="mat-body-2" *ngIf="entity.bankRegion; else empty">
+            {{ entity.bankRegion.description }}
+        </span>
+    </div>
+    <div fxLayout="column">
+        <span class="mat-body">
+            {{ 'ENTERPRISE_DETAIL.CIIU' | translate }}
+        </span>
+        <span class="mat-body-2" *ngIf="entity.economicActivity?.ciiuCode; else empty">
+            {{ entity.economicActivity.ciiuCode }}
+        </span>
+    </div>
+    <div fxLayout="column">
+        <span class="mat-body">
+            {{ 'ENTERPRISE_DETAIL.ECONOMIC_ACTIVITY' | translate }}
+        </span>
+        <span class="mat-body-2" *ngIf="entity.economicActivity?.description; else empty">
+            {{ entity.economicActivity.description }}
+        </span>
+    </div>
+    <div fxLayout="column">
+        <span class="mat-body">
+            {{ 'ENTERPRISE_DETAIL.ECONOMIC_SECTOR' | translate }}
+        </span>
+        <span class="mat-body-2" *ngIf="entity.economicActivity?.economicSector?.description; else empty">
+            {{ entity.economicActivity.economicSector.description }}
+        </span>
+    </div>
+    <div fxLayout="column">
+        <span class="mat-body">
+            {{ 'ENTERPRISE_DETAIL.RELATIONSHIP_MANAGER' | translate }}
+        </span>
+        <div *ngIf="entity.relationshipManager; else empty">
+            <div *ngFor="let manager of entity.relationshipManager.split(',')">
+                <span class="mat-body-2">
+                    {{ manager }}
+                </span>
+            </div>
+        </div>
+    </div>
+    <div fxLayout="column">
+        <span class="mat-body">
+            {{ 'ENTERPRISE_DETAIL.FORM_OF_DISBURSEMENT' | translate }}
+        </span>
+        <span class="mat-body-2">
+            N/A
+        </span>
+    </div>
+    <div fxLayout="column">
+        <span class="mat-body">
+            {{ 'ENTERPRISE_DETAIL.SALES' | translate }}
+        </span>
+        <span class="mat-body-2" *ngIf="entity.sales != null; else empty">
+            {{ entity.sales | currency: "COP" : "" }}
+        </span>
+    </div>
+    <div fxLayout="column">
+        <span class="mat-body">
+            {{ 'ENTERPRISE_DETAIL.SALES_CUT' | translate }}
+        </span>
+        <span class="mat-body-2" *ngIf="entity.salesCut; else empty">
+            {{ entity.salesCut | date }}
+        </span>
+    </div>
+    <div fxLayout="column">
+        <span class="mat-body">
+            {{ 'ENTERPRISE_DETAIL.LINKING_DATE' | translate }}
+        </span>
+        <span class="mat-body-2" *ngIf="entity.vinculationDate; else empty">
+            {{ entity.vinculationDate  | date }}
+        </span>
+
+    </div>
+    <div fxLayout="column">
+        <span class="mat-body">
+            {{ 'ENTERPRISE_DETAIL.PRODUCT_TYPE' | translate }}
+        </span>
+        <span class="mat-body-2" *ngIf="entity.productType; else empty">
+            {{ 'CREATE_PROGRAM_FORM.PRODUCT_TYPE.OPTIONS.' + entity.productType | translate}}
+        </span>
+    </div>
+    <ng-template #empty>
+        --
+    </ng-template>
+</div>

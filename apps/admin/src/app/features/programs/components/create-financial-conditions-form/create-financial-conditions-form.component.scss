@@ -1,0 +1,10 @@
+.card {
+    padding: 12px;
+    background-color: white;
+    border-radius: 2%;
+    &.tab {
+        border-width: 1px;
+        border-color: #e0e0e0;
+        border-style: solid;
+    }
+}

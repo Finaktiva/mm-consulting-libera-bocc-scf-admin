@@ -1,0 +1,87 @@
+<div fxLayout="column">
+    <mat-spinner
+        fxFlexAlign="center"
+        *ngIf="(isLoading$ | async)"
+    ></mat-spinner>
+    <alert *ngIf="(error$ | async)">
+        <span>{{
+            'PAYMENT_REQUEST_PAGE.ERRORS.LOAD_PAYMENT' | translate
+        }}</span>
+        <button (click)="fetchPayment()" mat-flat-button>
+            {{ 'COMMON.ACTIONS.RETRY' | translate | uppercase }}
+        </button>
+    </alert>
+    <h1
+        fxFlexAlign="center"
+        *ngIf="(shouldRenderEmptyPaymentMessage$ | async)"
+        class="mat-headline text-muted"
+        style="margin: 48px 0;"
+    >
+        {{ 'PAYMENT_REQUEST_PAGE.ERRORS.NO_PAYMENT_REGISTER' | translate }}
+    </h1>
+
+    <div
+        *ngIf="(shouldRenderPaymentInfo$ | async)"
+        fxLayout="row"
+        fxLayoutGap="12px"
+    >
+        <div fxFlex="70%" fxLayout="column" fxLayoutGap="12px">
+            <div class="card-outline" fxLayoutGap="12px" fxLayout="column">
+                <div fxLayout="column">
+                    <payment-request-info [payment]="payment$ | async">
+                    </payment-request-info>
+
+                    <mat-divider
+                        *ngIf="(shouldRenderPaymentButton$ | async)"
+                    ></mat-divider>
+                </div>
+
+                <div
+                    fxLayout="column"
+                    style="margin-top: 10px"
+                    fxLayoutAlign="start end"
+                    *ngIf="(shouldRenderPaymentButton$ | async)"
+                >
+                    <button mat-button (click)="onOpenPaymentRequestDialog()">
+                        <mat-icon style="font-size: 1.2rem">thumb_up</mat-icon>
+                        {{ 'PAYMENT_REQUEST_PAGE.CONFIRM_PAYMENT' | translate }}
+                    </button>
+                </div>
+            </div>
+        </div>
+
+        <div fxFlex="30%" fxLayout="column" fxLayoutGap="12px">
+            <div
+                class="card-outline"
+                style="border-color: #1E88E5"
+                fxLayoutAlign="start center"
+                fxLayoutGap="12px"
+                fxLayout="row"
+            >
+                <div>
+                    <i
+                        class="material-icons"
+                        style="min-height: 110px;color: #1E88E5"
+                    >
+                        info_outline
+                    </i>
+                </div>
+
+                <div fxLayout="column">
+                    <span class="mat-body">
+                        {{ 'PAYMENT_REQUEST_PAGE.INFO' | translate }}
+                    </span>
+                    <span class="mat-body-2" style="color:#1E88E5">
+                        servicioalcliente@liberascf.com
+                    </span>
+                    <span class="mat-body">
+                        Bogotá (571) 7954355
+                    </span>
+                    <span class="mat-body">
+                        Medellín (574) 4484514
+                    </span>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

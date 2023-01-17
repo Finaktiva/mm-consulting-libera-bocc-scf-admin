@@ -1,0 +1,61 @@
+<div fxLayout="column" fxLayoutGap="24px">
+    <div fxLayout="row" fxLayoutGap="12px" fxLayoutAlign="start center">
+        <div fxFlex="30%" fxLayout="row" fxLayoutAlign="end center">
+            <span class="mat-body">{{
+                'INVOICE_REQUEST_INFO.EMISSION_DATE' | translate
+            }}</span>
+        </div>
+        <div fxFlex>
+            <h1 class="mat-title no-margin">
+                {{ entity?.emissionDate | date }}
+            </h1>
+        </div>
+    </div>
+    <div fxLayout="row" fxLayoutGap="12px" fxLayoutAlign="start center">
+        <div fxFlex="30%" fxLayout="row" fxLayoutAlign="end center">
+            <span class="mat-body">{{
+                'INVOICE_REQUEST_INFO.PAYMENT_EXPIRATION' | translate
+            }}</span>
+        </div>
+        <div fxFlex>
+            <h1 class="mat-title no-margin">
+                <ng-container *ngIf="entity?.discountDays; else noData">
+                    {{ entity?.discountDays }}
+                    {{ 'INVOICE_REQUEST_INFO.DAYS' | translate }}
+                </ng-container>
+            </h1>
+        </div>
+    </div>
+    <div fxLayout="row" fxLayoutGap="12px" fxLayoutAlign="start center">
+        <div fxFlex="30%" fxLayout="row" fxLayoutAlign="end center">
+            <span class="mat-body">{{
+                'INVOICE_REQUEST_INFO.INVOICE_VALUE' | translate
+            }}</span>
+        </div>
+        <div fxFlex>
+            <h1 class="mat-title no-margin">
+                {{ entity?.amount | currency: entity?.currencyCode:'code' }}
+            </h1>
+        </div>
+    </div>
+    <div fxLayout="row" fxLayoutGap="12px" fxLayoutAlign="start center">
+        <div fxFlex="30%" fxLayout="row" fxLayoutAlign="end center">
+            <span class="mat-body">{{
+                'INVOICE_REQUEST_INFO.DISCOUNT_VALUE' | translate
+            }}</span>
+        </div>
+        <div fxFlex>
+            <h1 class="mat-title no-margin text-primary">
+                <ng-container *ngIf="entity?.discountValue; else noData">
+                    {{
+                        entity?.discountValue
+                            | currency: entity?.currencyCode:'code'
+                    }}
+                </ng-container>
+            </h1>
+        </div>
+    </div>
+    <ng-template #noData>
+        - -
+    </ng-template>
+</div>

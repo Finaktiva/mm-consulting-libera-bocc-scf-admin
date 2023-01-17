@@ -1,0 +1,18 @@
+<div fxLayout="column">
+    <div
+        class="page-content progress-bar-container mat-elevation-z1 table-container"
+        fxLayout="column"
+        fxLayoutGap="12px"
+        fxLayoutAlign="start stretch"
+    >
+        <mat-progress-bar
+            *ngIf="(isLoading$ | async)"
+            mode="indeterminate"
+        ></mat-progress-bar>
+        <module-table
+            [canRequestModule]="canRequestModule$ | async"
+            (activate)="onOpenDialog($event)"
+            [entities]="entities$ | async"
+        ></module-table>
+    </div>
+</div>

@@ -1,0 +1,49 @@
+<h1 class="mat-display-1" style="text-align: center">
+    {{ 'ROLE_SELECTOR_PAGE.TITLE' | translate }}
+</h1>
+<div
+    fxFlexAlign="center"
+    fxLayout.gt-sm="row"
+    fxLayout.lt-md="column"
+    fxLayoutGap="24px"
+    fxLayoutAlign="center center"
+>
+    <div
+        fxLayout.gt-xs="row"
+        fxLayout.xs="column"
+        fxLayoutGap="24px"
+        fxLayoutAlign="center center"
+    >
+        <role-card
+            (pick)="onSelect($event)"
+            [role]="AUTHENTICATION_ROLE.ENTERPRISE_PAYER_ADMIN"
+            [roles]="roles$ | async"
+            icon="/enterprise/assets/images/Pagador.png"
+        ></role-card>
+        <role-card
+            (pick)="onSelect($event)"
+            [role]="AUTHENTICATION_ROLE.ENTERPRISE_PROVIDER_ADMIN"
+            [roles]="roles$ | async"
+            icon="/enterprise/assets/images/Proveedor.png"
+        ></role-card>
+    </div>
+    <div
+        fxLayout.gt-xs="row"
+        fxLayout.xs="column"
+        fxLayoutGap="24px"
+        fxLayoutAlign="center center"
+    >
+        <role-card
+            (pick)="onSelect($event)"
+            [role]="AUTHENTICATION_ROLE.ENTERPRISE_FUNDING_ADMIN"
+            [roles]="roles$ | async"
+            icon="/enterprise/assets/images/Funcionario.png"
+        ></role-card>
+        <role-card
+            (pick)="onSelect($event)"
+            [role]="AUTHENTICATION_ROLE.ENTERPRISE_CONSOLE_ADMIN"
+            [roles]="roles$ | async"
+            icon="/enterprise/assets/images/Administrador.png"
+        ></role-card>
+    </div>
+</div>

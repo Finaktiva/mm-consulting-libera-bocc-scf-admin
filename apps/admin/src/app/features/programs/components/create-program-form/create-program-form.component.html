@@ -1,0 +1,313 @@
+<form [formGroup]="form" (ngSubmit)="submitData()" fxLayout="column" fxLayoutAlign="center stretch">
+    <mat-form-field>
+        <mat-label>
+            {{ 'CREATE_PROGRAM_FORM.DOCUMENT_TYPE' | translate }}*
+        </mat-label>
+        <mat-select name="enterprise-document-type" [placeholder]="'CREATE_PROGRAM_FORM.DOCUMENT_TYPE' | translate" formControlName="enterpriseDocumentType" (selectionChange)="changeDocumentType($event)">
+            <mat-option *ngFor="let document of documentTypes" [value]="document.value">
+                {{ 'CREATE_PROGRAM_FORM.DOCUMENT_TYPES.' + document.value | translate }}
+            </mat-option>
+        </mat-select>
+        <mat-error *ngIf="form.hasError('required', 'enterpriseDocumentType')">
+            {{ 'COMMON.VALIDATIONS.REQUIRED' | translate }}
+        </mat-error>
+    </mat-form-field>
+    <div fxLayoutAlign="space-between center" fxLayoutGap="10px">
+        <mat-form-field fxflex [style.width.%]="100">
+            <mat-label>{{ 'CREATE_PROGRAM_FORM.DOCUMENT_NUMBER' | translate }} *
+            </mat-label>
+            <input (input)="onSearchDocument($event.target.value)" matInput [maxlength]="documentSelect.maxLength" [minlength]="documentSelect.minLength" type="text" formControlName="nit" [placeholder]="'CREATE_PROGRAM_FORM.NIT_EXAMPLE' | translate" />
+            <mat-error>
+                <span *ngIf="form.hasError('required', 'nit')">
+                    {{ 'COMMON.VALIDATIONS.REQUIRED' | translate }}
+                </span>
+                <span *ngIf="form.hasError('minlength', 'nit')">
+                    {{ 'COMMON.VALIDATIONS.MIN_LENGTH' | translate: { minLength: documentSelect.minLength} }}
+                </span>
+                <span *ngIf="form.hasError('maxlength', 'nit')">
+                    {{ 'COMMON.VALIDATIONS.MAX_LENGTH' | translate: { maxLength: documentSelect.maxLength} }}
+                </span>
+                <span *ngIf="(form.hasError('pattern', 'nit') && documentSelect.value != 'PASSPORT')">
+                    {{ 'COMMON.VALIDATIONS.ONLY_DIGITS' | translate }}
+                </span>
+                <span *ngIf="(form.hasError('pattern', 'nit') && documentSelect.value == 'PASSPORT')">
+                    {{ 'COMMON.VALIDATIONS.ALPHANUMERIC' | translate }}
+                </span>
+            </mat-error>
+        </mat-form-field>
+        <button mat-icon-button type="button" [matTooltip]="'CREATE_PROGRAM_FORM.DOC_NUM_ADVICE' | translate">
+            <mat-icon>help_outline</mat-icon>
+        </button>
+    </div>
+
+    <div style='display: flex; justify-content: space-between; align-items: center; margin-bottom: 20px; margin-top: 20px' *ngIf='showNoRegisterSaved'>
+        <span class='mat-body' style='color: #e24c4c; font-size: 12px;'>{{ 'COMMON.VALIDATIONS.NO_REGISTERS_SAVED' | translate }}</span>
+        <mat-icon style='color: #e24c4c'>warning</mat-icon>
+    </div>
+
+    <mat-form-field>
+        <mat-label>
+            {{ 'CREATE_PROGRAM_FORM.SOCIAL_REASON' | translate }}*
+        </mat-label>
+        <input matInput type="text" maxlength="100" formControlName="enterpriseName" [placeholder]="'CREATE_PROGRAM_FORM.SOCIAL_REASON' | translate" />
+        <mat-error *ngIf="form.hasError('required', 'enterpriseName')">
+            {{ 'COMMON.VALIDATIONS.REQUIRED' | translate }}
+        </mat-error>
+    </mat-form-field>
+    <mat-form-field>
+        <mat-label>
+            {{ 'CREATE_PROGRAM_FORM.PRODUCT_TYPE.LABEL' | translate }}*
+        </mat-label>
+        <mat-select name="product-type" [placeholder]="'CREATE_PROGRAM_FORM.PRODUCT_TYPE.LABEL' | translate" formControlName="productType">
+            <mat-option *ngFor="let type of types" [value]="type.value" [disabled]="type.disabled">
+                {{ 'CREATE_PROGRAM_FORM.PRODUCT_TYPE.OPTIONS.' + type.value | translate }}
+            </mat-option>
+        </mat-select>
+        <mat-error *ngIf="form.hasError('required', 'productType')">
+            {{ 'COMMON.VALIDATIONS.REQUIRED' | translate }}
+        </mat-error>
+    </mat-form-field>
+    <mat-form-field>
+        <mat-label>{{ 'CREATE_PROGRAM_FORM.DEPARTMENT' | translate }}*</mat-label>
+        <input type="text" [placeholder]="'CREATE_PROGRAM_FORM.DEPARTMENT' | translate" matInput formControlName="department" [matAutocomplete]="auto">
+        <mat-autocomplete #auto="matAutocomplete">
+            <mat-option *ngFor="let option of filteredOptions | async" [value]="option.departmentName">
+                {{ option.departmentName }}
+            </mat-option>
+        </mat-autocomplete>
+        <mat-error *ngIf="form.hasError('required', 'department')">
+            {{ 'COMMON.VALIDATIONS.REQUIRED' | translate }}
+        </mat-error>
+        <mat-error *ngIf="form.hasError('departamentVal', 'department')">
+            {{ 'COMMON.VALIDATIONS.INVALID_DEPARTMENT' | translate }}
+        </mat-error>
+    </mat-form-field>
+    <mat-form-field>
+        <mat-label>{{ 'CREATE_PROGRAM_FORM.CITY' | translate }}*</mat-label>
+        <input type="text" [placeholder]="'CREATE_PROGRAM_FORM.CITY' | translate" matInput formControlName="city" [matAutocomplete]="ciudad">
+
+
+        <mat-autocomplete #ciudad="matAutocomplete">
+            <mat-option *ngFor="let city of filteredOptions2 | async" [value]="city.cityName">
+                {{ city.cityName }}
+            </mat-option>
+        </mat-autocomplete>
+        <mat-error *ngIf="form.hasError('required', 'city')">
+            {{ 'COMMON.VALIDATIONS.REQUIRED' | translate }}
+        </mat-error>
+        <mat-error *ngIf="form.hasError('cityVal', 'city')">
+            {{ 'COMMON.VALIDATIONS.INVALID_CITY' | translate }}
+        </mat-error>
+    </mat-form-field>
+    <mat-form-field>
+        <mat-label>{{ 'CREATE_PROGRAM_FORM.CIIU' | translate }} *</mat-label>
+        <input (input)="onSearchChange($event.target.value)" matInput maxlength="4" type="text" formControlName="ciiu" [placeholder]="'CREATE_PROGRAM_FORM.CIIU' | translate" />
+        <mat-error>
+            <span *ngIf="form.hasError('required', 'ciiu')">
+                {{ 'COMMON.VALIDATIONS.REQUIRED' | translate }}
+            </span>
+            <span *ngIf="form.hasError('pattern', 'ciiu')">
+                {{ 'COMMON.VALIDATIONS.CIIU_PATTERN' | translate }}
+            </span>
+            <span *ngIf="form.hasError('ciiuNotFound', 'ciiu')">
+                {{ 'COMMON.VALIDATIONS.CIIU_NOT_FOUND' | translate }}
+            </span>
+        </mat-error>
+    </mat-form-field>
+    <mat-form-field>
+        <mat-label>{{ 'CREATE_PROGRAM_FORM.ECONOMIC_ACTIVITY' | translate }} *
+        </mat-label>
+        <input matInput type="text" formControlName="economicActivity" name="economicActivity" [placeholder]="'CREATE_PROGRAM_FORM.ECONOMIC_ACTIVITY' | translate" />
+        <mat-error>
+            <span *ngIf="form.hasError('required', 'economicActivity')">
+                {{ 'COMMON.VALIDATIONS.REQUIRED' | translate }}
+            </span>
+        </mat-error>
+    </mat-form-field>
+    <mat-form-field>
+        <mat-label>{{ 'CREATE_PROGRAM_FORM.ECONOMIC_SECTOR' | translate }} *
+        </mat-label>
+        <input matInput type="text" formControlName="economicSector" name="economicSector" [placeholder]="'CREATE_PROGRAM_FORM.ECONOMIC_SECTOR' | translate" />
+        <mat-error>
+            <span *ngIf="form.hasError('required', 'economicSector')">
+                {{ 'COMMON.VALIDATIONS.REQUIRED' | translate }}
+            </span>
+        </mat-error>
+    </mat-form-field>
+    <mat-form-field>
+        <mat-label>{{ 'CREATE_PROGRAM_FORM.RELATIONSHIP_MANAGER' | translate }}
+        </mat-label>
+        <input matInput type="text" maxlength="100" formControlName="relationshipManager" [placeholder]="'CREATE_PROGRAM_FORM.RELATIONSHIP_MANAGER' | translate" />
+    </mat-form-field>
+    <mat-form-field>
+        <mat-label>{{ 'CREATE_PROGRAM_FORM.BANK_REGION' | translate }} *
+        </mat-label>
+        <mat-select
+            name="bankRegion"
+            [placeholder]="'CREATE_PROGRAM_FORM.BANK_REGION' | translate"
+            formControlName="bankRegion"
+            [compareWith]="compareWith"
+        >
+            <mat-option *ngFor="let bank of bankRegions" [value]="bank">
+                {{ bank.description }}
+            </mat-option>
+        </mat-select>
+        <mat-error>
+            <span *ngIf="form.hasError('required', 'bankRegion')">
+                {{ 'COMMON.VALIDATIONS.REQUIRED' | translate }}
+            </span>
+        </mat-error>
+    </mat-form-field>
+    <mat-form-field>
+        <mat-label>{{ 'CREATE_PROGRAM_FORM.SALES' | translate }}
+        </mat-label>
+        <input matInput type="text" [placeholder]="'CREATE_PROGRAM_FORM.SALES_EXAMPLE' | translate" formControlName="sales" maxlength="24" (input)="validateSale($event, this.form.value.sales)" (blur)="formatAmount($event.target.value)" />
+    </mat-form-field>
+
+    <mat-form-field>
+        <mat-label>{{ 'CREATE_PROGRAM_FORM.SALES_CUT' | translate }}
+        </mat-label>
+        <input matInput type="date" formControlName="salesPerYear" [max]="maxDate" [placeholder]="'CREATE_PROGRAM_FORM.SALES_PER_YEAR_EXAMPLE' | translate" />
+    </mat-form-field>
+
+    <p class="mat-body">
+        <strong>
+            {{ 'CREATE_PROGRAM_FORM.PROGRAM_ADMIN' | translate }}
+        </strong>
+    </p>
+    <mat-form-field>
+        <mat-label> {{ 'CREATE_PROGRAM_FORM.EMAIL' | translate }}* </mat-label>
+        <input matInput type="text" formControlName="email" [placeholder]="'CREATE_PROGRAM_FORM.EMAIL_EXAMPLE' | translate" />
+        <mat-error>
+            <span *ngIf="form.hasError('required', 'email')">
+                {{ 'COMMON.VALIDATIONS.REQUIRED' | translate }}
+            </span>
+            <span *ngIf="form.hasError('pattern', 'email')">
+                {{ 'COMMON.VALIDATIONS.INVALID_EMAIL' | translate }}
+                <mat-icon style="transform: scale(1.3);" [matTooltip]="'COMMON.VALIDATIONS.EMAIL_INFORMATION' | translate">help_outline</mat-icon>
+            </span>
+        </mat-error>
+    </mat-form-field>
+    <mat-form-field>
+        <mat-label>
+            {{ 'CREATE_PROGRAM_FORM.NAME' | translate }} *
+        </mat-label>
+        <input matInput maxlength="50" type="text" formControlName="name" />
+        <mat-error>
+            <span *ngIf="form.hasError('required', 'name')">
+                {{ 'COMMON.VALIDATIONS.REQUIRED' | translate }}
+            </span>
+            <span *ngIf="form.hasError('pattern', 'name')">
+                {{ 'COMMON.VALIDATIONS.ONLY_LETTERS' | translate }}
+            </span>
+        </mat-error>
+    </mat-form-field>
+    <div fxLayoutAlign="start" fxLayoutGap="10px">
+        <mat-form-field>
+            <mat-label>
+                {{ 'CREATE_PROGRAM_FORM.FIRST_SURNAME' | translate }} *
+            </mat-label>
+            <input matInput maxlength="50" type="text" formControlName="firstSurname" />
+            <mat-error>
+                <span *ngIf="form.hasError('required', 'firstSurname')">
+                    {{ 'COMMON.VALIDATIONS.REQUIRED' | translate }}
+                </span>
+                <span *ngIf="form.hasError('pattern', 'firstSurname')">
+                    {{ 'COMMON.VALIDATIONS.ONLY_LETTERS' | translate }}
+                </span>
+            </mat-error>
+        </mat-form-field>
+        <mat-form-field [style.width.%]="100">
+            <mat-label>
+                {{ 'CREATE_PROGRAM_FORM.SECOND_SURNAME' | translate }}
+            </mat-label>
+            <input matInput maxlength="50" type="text" formControlName="secondSurname" />
+            <mat-error *ngIf="form.hasError('pattern', 'secondSurname')">
+                {{ 'COMMON.VALIDATIONS.ONLY_LETTERS' | translate }}
+            </mat-error>
+        </mat-form-field>
+    </div>
+    <div fxLayoutAlign="start" fxLayoutGap="10px">
+        <mat-form-field>
+            <mat-label>
+                {{ 'CREATE_PROGRAM_FORM.DOCUMENT_TYPE' | translate }}*
+            </mat-label>
+            <mat-select name="document-type" [placeholder]="'CREATE_PROGRAM_FORM.DOCUMENT_TYPE' | translate" formControlName="documentType" (selectionChange)="changeUserDocumentType($event)">
+                <mat-option *ngFor="let document of documentTypes" [value]="document.value">
+                    {{ 'CREATE_PROGRAM_FORM.DOCUMENT_TYPES.' + document.value | translate }}
+                </mat-option>
+            </mat-select>
+            <mat-error *ngIf="form.hasError('required', 'documentType')">
+                {{ 'COMMON.VALIDATIONS.REQUIRED' | translate }}
+            </mat-error>
+        </mat-form-field>
+        <mat-form-field [style.width.%]="100">
+            <mat-label>{{ 'CREATE_PROGRAM_FORM.DOCUMENT_NUMBER' | translate }} *
+            </mat-label>
+            <input matInput [maxlength]="documentUserSelect.maxLength" [minlength]="documentUserSelect.minLength" type="text" formControlName="documentNumber" [placeholder]="" />
+            <mat-error>
+                <span *ngIf="form.hasError('required', 'documentNumber')">
+                    {{ 'COMMON.VALIDATIONS.REQUIRED' | translate }}
+                </span>
+                <span *ngIf="form.hasError('minlength', 'documentNumber')">
+                    {{ 'COMMON.VALIDATIONS.MIN_LENGTH' | translate: { minLength: documentUserSelect.minLength} }}
+                </span>
+                <span *ngIf="form.hasError('maxlength', 'documentNumber')">
+                    {{ 'COMMON.VALIDATIONS.MAX_LENGTH' | translate: { maxLength: documentUserSelect.maxLength} }}
+                </span>
+                <span *ngIf="(form.hasError('pattern', 'documentNumber') && documentUserSelect.value != 'PASSPORT')">
+                    {{ 'COMMON.VALIDATIONS.ONLY_DIGITS' | translate }}
+                </span>
+                <span *ngIf="(form.hasError('pattern', 'documentNumber') && documentUserSelect.value == 'PASSPORT')">
+                    {{ 'COMMON.VALIDATIONS.ALPHANUMERIC' | translate }}
+                </span>
+            </mat-error>
+        </mat-form-field>
+    </div>
+    <div fxLayoutAlign="space-between center" fxLayoutGap="10px">
+        <mat-form-field fxflex [style.width.%]="90">
+            <mat-label>{{ 'CREATE_PROGRAM_FORM.PHONE_NUMBER' | translate }} *
+            </mat-label>
+            <input matInput type="text" maxlength="10" formControlName="phoneNumber" [placeholder]="'CREATE_PROGRAM_FORM.PHONE_EXAMPLE' | translate" />
+            <mat-error>
+                <span *ngIf="form.hasError('required', 'phoneNumber')">
+                {{ 'COMMON.VALIDATIONS.REQUIRED' | translate }}
+            </span>
+                <span *ngIf="form.hasError('pattern', 'phoneNumber')">
+                {{ 'COMMON.VALIDATIONS.ONLY_DIGITS' | translate }}
+            </span>
+            </mat-error>
+        </mat-form-field>
+        <button mat-icon-button type="button" [matTooltip]="'CREATE_PROGRAM_FORM.PHONE_NUMBER_ADVICE' | translate">
+            <mat-icon>help_outline</mat-icon>
+        </button>
+        <mat-form-field>
+            <mat-label>{{ 'CREATE_PROGRAM_FORM.PHONE_EXTENSION' | translate }}
+            </mat-label>
+            <input matInput maxlength="6" type="text" formControlName="phoneExt" [placeholder]="'Ext.'" />
+            <mat-error>
+                <span *ngIf="form.hasError('pattern', 'phoneExt')">
+                {{ 'COMMON.VALIDATIONS.ONLY_DIGITS' | translate }}
+            </span>
+            </mat-error>
+        </mat-form-field>
+    </div>
+    <!-- <p class="mat-body">
+        <strong> {{ 'CREATE_PROGRAM_FORM.MODULES' | translate }}* </strong>
+    </p> -->
+
+    <mat-form-field fxLayout="column" fxLayoutGap="10px" [style.width.%]="100" [color]="this.editOrCreate=='edit' ? 'warn' : 'primary'">
+        <mat-label>{{ 'CREATE_PROGRAM_FORM.MODULES' | translate }} *</mat-label>
+        <ng-container *ngFor="let module of modules">
+            <mat-checkbox *ngIf="(canCreateProvider$ | async)?true:module.value != 'PROVIDER'" (change)="onSelectModule($event)" [value]="module.value" [checked]="module.checked" [disabled]="module.disabled" [color]="module.color" style='margin-right: 15px;'>
+                {{ 'COMMON.MODULES.' + module.value | translate }}
+            </mat-checkbox>
+        </ng-container>
+        <input matInput type="text" formControlName="modules" hidden/>
+        <mat-error class="mat-body" *ngIf="form.hasError('required', 'modules')">
+            {{ 'COMMON.VALIDATIONS.AT_LEAST_ONE_MODULE' | translate }}
+        </mat-error>
+    </mat-form-field>
+
+    <button #submitButton hidden></button>
+</form>

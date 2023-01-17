@@ -1,0 +1,25 @@
+<form fxLayout="column" fxLayoutGap="12px" [formGroup]="form">
+    <mat-progress-bar
+        *ngIf="(isSubmitting$ | async)"
+        mode="indeterminate"
+    ></mat-progress-bar>
+    <mat-dialog-content>
+        <p class="mat-body">
+            {{ 'CONFIRM_DOCUMENT_APPROVAL.BODY' | translate }}
+        </p>
+    </mat-dialog-content>
+    <mat-checkbox (change)="onChangeConfirm()">{{ 'CONFIRM_DOCUMENT_APPROVAL.CHECK_TEXT' | translate }}</mat-checkbox>
+    <mat-dialog-actions fxLayoutAlign="end" fxLayoutGap="12px">
+        <button mat-button mat-dialog-close>
+            {{ 'COMMON.ACTIONS.CANCEL' | translate }}
+        </button>
+        <button
+            mat-flat-button
+            color="primary"
+            (click)="onSubmit()"
+            [disabled]="isSubmitting$ | async"
+        >
+            {{ 'COMMON.ACTIONS.ACCEPT' | translate }}
+        </button>
+    </mat-dialog-actions>
+</form>

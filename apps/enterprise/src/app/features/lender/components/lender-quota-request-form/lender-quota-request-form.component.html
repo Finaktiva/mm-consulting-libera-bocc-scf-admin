@@ -1,0 +1,101 @@
+<form
+    (ngSubmit)="onSubmit()"
+    [formGroup]="form"
+    fxLayout="column"
+    fxLayoutAlign="start stretch"
+>
+    <mat-form-field>
+        <mat-label>
+            {{ 'LENDER_QUOTA_REQUEST_FORM.QUOTA' | translate }}*
+        </mat-label>
+        <input
+            formControlName="grantedQuota"
+            matInput
+            name="quota"
+            (blur)="onBlur()"
+        />
+        <mat-error>
+            <span *ngIf="form.hasError('required', 'grantedQuota')">
+                {{ 'COMMON.VALIDATIONS.REQUIRED' | translate }}
+            </span>
+            <span *ngIf="form.hasError('min', 'grantedQuota')">
+                {{ 'COMMON.VALIDATIONS.MIN' | translate: { min: 1 } }}
+            </span>
+        </mat-error>
+    </mat-form-field>
+    <mat-form-field>
+        <mat-label>
+            {{ 'LENDER_QUOTA_REQUEST_FORM.TYPE_RATE' | translate }}
+        </mat-label>
+        <mat-select formControlName="rateType">
+            <mat-option [value]="LENDER_QUOTA_REQUEST_RATE.ADVANCE_MONTH_RATE">
+                {{ 'COMMON.LENDER_QUOTA_RATE.ADVANCE_MONTH_RATE' | translate }}
+            </mat-option>
+            <mat-option [value]="LENDER_QUOTA_REQUEST_RATE.DUE_MONTH_RATE">
+                {{ 'COMMON.LENDER_QUOTA_RATE.DUE_MONTH_RATE' | translate }}
+            </mat-option>
+        </mat-select>
+        <mat-error>
+            {{ 'COMMON.VALIDATIONS.REQUIRED' | translate }}
+        </mat-error>
+    </mat-form-field>
+    <mat-form-field>
+        <mat-label>
+            {{ 'LENDER_QUOTA_REQUEST_FORM.INTEREST_RATE' | translate }}
+        </mat-label>
+        <input
+            formControlName="rate"
+            type="number"
+            name="rate"
+            matInput
+            min="0"
+        />
+        <mat-error>
+            <span *ngIf="form.hasError('required', 'rate')">
+                {{ 'COMMON.VALIDATIONS.REQUIRED' | translate }}
+            </span>
+            <span *ngIf="form.hasError('min', 'rate')">
+                {{ 'COMMON.VALIDATIONS.NEGATIVE_NUMBER' | translate }}
+            </span>
+        </mat-error>
+    </mat-form-field>
+    <mat-form-field>
+        <mat-label>
+            {{ 'LENDER_QUOTA_REQUEST_FORM.OBSERVATIONS' | translate }}
+        </mat-label>
+        <textarea
+            formControlName="comments"
+            matInput
+            name="comment"
+            cols="30"
+            rows="3"
+        ></textarea>
+        <mat-error>
+            {{ 'COMMON.VALIDATIONS.REQUIRED' | translate }}
+        </mat-error>
+    </mat-form-field>
+    <div fxLayout="row" fxLayoutAlign="end" fxLayoutGap="12px">
+        <button (click)="onReject()" mat-flat-button type="button" color="warn">
+            {{ 'COMMON.ACTIONS.REJECT' | translate | uppercase }}
+        </button>
+        <button
+            [fxShow]="wasModified"
+            (click)="onAssign()"
+            mat-flat-button
+            type="button"
+            color="primary"
+            [disabled]="isFormInvalid()"
+        >
+            {{ 'COMMON.ACTIONS.ASSIGN' | translate | uppercase }}
+        </button>
+        <button
+            [fxHide]="wasModified"
+            mat-flat-button
+            type="submit"
+            color="accent"
+            [disabled]="shouldDisable()"
+        >
+            {{ 'COMMON.ACTIONS.SEND' | translate | uppercase }}
+        </button>
+    </div>
+</form>

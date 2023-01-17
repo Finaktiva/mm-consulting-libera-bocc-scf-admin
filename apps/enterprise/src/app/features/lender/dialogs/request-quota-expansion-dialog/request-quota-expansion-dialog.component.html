@@ -1,0 +1,29 @@
+<mat-progress-bar
+    *ngIf="(isSubmitting$ | async)"
+    mode="indeterminate"
+></mat-progress-bar>
+
+<h2 mat-dialog-title>
+    {{ 'REQUEST_QUOTA_EXPANSION_DIALOG.TITLE' | translate }}
+</h2>
+
+<div mat-dialog-content>
+    <request-quota-expansion-form
+        #form
+        (onSubmit)="onSubmit($event)"
+    ></request-quota-expansion-form>
+</div>
+
+<div mat-dialog-actions fxLayoutAlign="end" fxLayoutGap="10px">
+    <button mat-flat-button (click)="dialogRef.close()">
+        {{ 'COMMON.ACTIONS.CANCEL' | translate }}
+    </button>
+    <button
+        [disabled]="form.shouldDisable()"
+        mat-flat-button
+        color="primary"
+        (click)="form.submit()"
+    >
+        {{ 'COMMON.ACTIONS.SEND_REQUEST' | translate }}
+    </button>
+</div>

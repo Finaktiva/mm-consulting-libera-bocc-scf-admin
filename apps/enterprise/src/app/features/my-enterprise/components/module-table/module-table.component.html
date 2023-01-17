@@ -1,0 +1,78 @@
+<div style="overflow: auto">
+    <table mat-table [dataSource]="entities">
+        <ng-container matColumnDef="module">
+            <th mat-header-cell *matHeaderCellDef>
+                {{ 'MODULE_TABLE.MODULES' | translate }}
+            </th>
+            <td mat-cell *matCellDef="let entity">
+                {{ 'COMMON.MODULES.' + entity.state.name | translate }}
+            </td>
+        </ng-container>
+        <ng-container matColumnDef="status">
+            <th mat-header-cell *matHeaderCellDef>
+                {{ 'MODULE_TABLE.STATUS' | translate }}
+            </th>
+            <td mat-cell *matCellDef="let entity">
+                <ng-container *ngIf="entity.state.status">
+                    {{
+                        'MODULE_TABLE.ENTERPRISE_MODULE_STATUS.' +
+                            entity.state.status | translate
+                    }}
+                </ng-container>
+            </td>
+        </ng-container>
+        <ng-container matColumnDef="activationDate">
+            <th mat-header-cell *matHeaderCellDef>
+                {{ 'MODULE_TABLE.ACTIVATION_DATE' | translate }}
+            </th>
+            <td mat-cell *matCellDef="let entity">
+                {{ entity.state.activationDate | date }}
+            </td>
+        </ng-container>
+        <ng-container matColumnDef="download">
+            <th mat-header-cell *matHeaderCellDef>
+                {{ 'MODULE_TABLE.REQUIRED_DOCUMENTATION' | translate }}
+            </th>
+            <td mat-cell *matCellDef="let entity">
+                <a
+                    *ngIf="entity.state.requiredDocumentation"
+                    mat-icon-button
+                    [href]="entity.state.requiredDocumentation"
+                    target="_blank"
+                    [matTooltip]="'MODULE_TABLE.DOWNLOAD' | translate"
+                >
+                    <mat-icon>cloud_download</mat-icon>
+                </a>
+            </td>
+        </ng-container>
+        <ng-container matColumnDef="comment">
+            <th mat-header-cell *matHeaderCellDef>
+                {{ 'MODULE_TABLE.COMMENT' | translate }}
+            </th>
+            <td mat-cell *matCellDef="let entity">
+                {{ entity.state.comment }}
+            </td>
+        </ng-container>
+        <ng-container matColumnDef="actions">
+            <th mat-header-cell *matHeaderCellDef></th>
+            <td mat-cell *matCellDef="let entity">
+                <button
+                    *ngIf="
+                        shouldRenderRequestActivationButton(entity.state.status)
+                    "
+                    (click)="onActivate(entity.state)"
+                    mat-stroked-button
+                    color="warn"
+                >
+                    {{
+                        'MODULE_TABLE.REQUEST_ACTIVATION'
+                            | translate
+                            | uppercase
+                    }}
+                </button>
+            </td>
+        </ng-container>
+        <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+        <tr mat-row *matRowDef="let row; columns: displayedColumns"></tr>
+    </table>
+</div>

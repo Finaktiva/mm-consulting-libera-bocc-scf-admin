@@ -1,0 +1,23 @@
+<mat-progress-bar mode="indeterminate" *ngIf="(shouldRenderProgressBar$ | async)"></mat-progress-bar>
+<h2 class="mat-title" mat-dialog-title>
+    {{ 'ADD_PROVIDER_DIALOG.TITLE' | translate }}
+</h2>
+<p *ngIf="(error$ | async)" class="mat-body">
+    {{ 'COMMON.ERRORS.INFO_LOAD' | translate }}
+    <button (click)="fetchCountryCallingCodes()" mat-flat-button color="warn">
+        {{ 'COMMON.ACTIONS.RETRY' | translate | uppercase }}
+    </button>
+</p>
+<ng-container *ngIf="(hasLoaded$ | async)">
+    <mat-dialog-content>
+        <provider-form #component [entity]="data.entity$ | async" (onSubmit)="onSubmit($event)" [countryCallingCodes]="countryCallingCodes$ | async" [banksInformation]="banks" [isSubmitting]="isSubmitting$ | async"></provider-form>
+    </mat-dialog-content>
+    <mat-dialog-actions fxLayout="row" fxLayoutAlign="end">
+        <button mat-button mat-dialog-close>
+            {{ 'COMMON.ACTIONS.CANCEL' | translate | uppercase }}
+        </button>
+        <button (click)="component.submit()" mat-flat-button color="primary">
+            {{ 'COMMON.ACTIONS.SEND' | translate }}
+        </button>
+    </mat-dialog-actions>
+</ng-container>

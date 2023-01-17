@@ -1,0 +1,13 @@
+<p class="mat-body" *ngIf="(isLoading$ | async)">
+    {{ 'COMMON.LOADING' | translate }}...
+</p>
+<alert *ngIf="(error$ | async)">
+    {{ 'COMMON.ERRORS.LOAD_HISTORY' | translate }}
+    <button mat-flat-button color="warn">
+        {{ 'COMMON.ACTIONS.RETRY' | translate | uppercase }}
+    </button>
+</alert>
+<negotiation-timeline
+    *ngIf="(hasLoaded$ | async)"
+    [entities]="logs$ | async"
+></negotiation-timeline>

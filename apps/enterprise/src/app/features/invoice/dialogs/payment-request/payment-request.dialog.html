@@ -1,0 +1,33 @@
+<h1 mat-dialog-title style="font-size: 1.5rem">
+    {{ 'PAYMENT_REQUEST_DIALOG.TITLE' | translate }}
+</h1>
+
+<mat-dialog-content>
+    <div fxLayout="column" style="max-width: 350px">
+        <span class="mat-body-2" style="font-size: 1rem">
+            {{ 'PAYMENT_REQUEST_DIALOG.BODY' | translate }}
+        </span>
+    </div>
+
+    <div fxLayout="column">
+        <payment-request-form
+            [payment]="payment$ | async"
+            [currencyCode]="currencyCode$ | async"
+        >
+        </payment-request-form>
+    </div>
+</mat-dialog-content>
+
+<mat-dialog-actions fxLayout="row" fxLayoutAlign="end" fxLayoutGap="12px">
+    <button mat-button mat-dialog-close>
+        {{ 'COMMON.ACTIONS.CANCEL' | translate | uppercase }}
+    </button>
+    <button
+        (click)="onSubmit()"
+        mat-flat-button
+        color="primary"
+        [disabled]="isSubmittingForm$ | async"
+    >
+        {{ 'PAYMENT_REQUEST_DIALOG.CONFIRM' | translate }}
+    </button>
+</mat-dialog-actions>

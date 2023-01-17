@@ -1,0 +1,79 @@
+<form
+    (ngSubmit)="onSubmit()"
+    [formGroup]="form"
+    fxLayout="row"
+    fxLayoutGap="12px"
+>
+    <button
+        type="button"
+        mat-button
+        *ngIf="!shouldRenderResetButton()"
+        (click)="onReset()"
+    >
+        {{ 'COMMON.LABELS.CLEAN_FILTERS' | translate }}
+    </button>
+    <mat-form-field appearance="standard">
+        <mat-label> {{ 'COMMON.LABELS.FILTER_BY' | translate }} </mat-label>
+        <mat-select formControlName="filter_by">
+            <mat-option
+                [value]="PROVIDER_INVOICE_PAGINATION_FILTER_BY.INVOICE_NUMBER"
+            >
+                {{ 'COMMON.LABELS.INVOICE_NUMBER' | translate }}
+            </mat-option>
+            <mat-option [value]="PROVIDER_INVOICE_PAGINATION_FILTER_BY.PAYER">
+                {{ 'COMMON.LABELS.PAYER' | translate }}
+            </mat-option>
+            <mat-option [value]="PROVIDER_INVOICE_PAGINATION_FILTER_BY.NIT">
+                {{ 'COMMON.LABELS.NIT' | translate }}
+            </mat-option>
+            <mat-option
+                [value]="PROVIDER_INVOICE_PAGINATION_FILTER_BY.STARTING_DATE"
+            >
+                {{ 'PROVIDER_INVOICE_LIST_FILTER_FORM.START_DATE' | translate }}
+            </mat-option>
+            <mat-option
+                [value]="
+                    PROVIDER_INVOICE_PAGINATION_FILTER_BY.EFFECTIVE_PAYMENT_DATE
+                "
+            >
+                {{ 'COMMON.LABELS.PAYMENT_DATE' | translate }}
+            </mat-option>
+            <mat-option
+                [value]="
+                    PROVIDER_INVOICE_PAGINATION_FILTER_BY.DISCOUNT_DUE_DATE
+                "
+            >
+                {{ 'COMMON.LABELS.DISCOUNT_EXPIRATION' | translate }}
+            </mat-option>
+            <mat-option
+                [value]="
+                    PROVIDER_INVOICE_PAGINATION_FILTER_BY.DISCOUNT_PERCENTAGE
+                "
+            >
+                {{ 'COMMON.LABELS.DISCOUNT_RATE' | translate }}
+            </mat-option>
+            <mat-option
+                [value]="PROVIDER_INVOICE_PAGINATION_FILTER_BY.DISCOUNT_VALUE"
+            >
+                {{ 'COMMON.LABELS.DISCOUNT_VALUE' | translate }}
+            </mat-option>
+        </mat-select>
+    </mat-form-field>
+    <mat-form-field appearance="standard" *ngIf="shouldRenderTextInput()">
+        <input matInput formControlName="q" type="text" name="query" />
+    </mat-form-field>
+    <mat-form-field appearance="standard" *ngIf="shouldRenderNumberInput()">
+        <input matInput formControlName="q" type="number" name="query" />
+    </mat-form-field>
+    <mat-form-field appearance="standard" *ngIf="shouldRenderDatepicker()">
+        <input
+            formControlName="q"
+            name="date"
+            type="text"
+            matInput
+            [matDatepicker]="picker"
+        />
+        <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
+        <mat-datepicker #picker></mat-datepicker>
+    </mat-form-field>
+</form>

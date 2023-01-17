@@ -1,0 +1,17 @@
+@import '../../../../../styles';
+
+.ngx-file-dropzone {
+    height: 170px;
+    padding: 16px;
+    border: 1px dashed #c7d0da;
+    margin-bottom: 12px;
+    &.active {
+        border: 1px solid $app-accent-color;
+    }
+}
+
+mat-icon {
+    font-size: 30px;
+    height: 30px;
+    width: 30px;
+}

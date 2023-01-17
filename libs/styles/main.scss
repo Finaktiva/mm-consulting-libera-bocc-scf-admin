@@ -1,0 +1,159 @@
+@import url('https://fonts.googleapis.com/css?family=Roboto:300,400,500');
+@import url('https://fonts.googleapis.com/css?family=Material+Icons');
+@import 'variables';
+html,
+body {
+    margin: 0;
+}
+
+body {
+    display: flex;
+    flex-direction: column;
+}
+
+app-root {
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+    &>*:not(router-outlet) {
+        flex: 1 0 auto;
+    }
+}
+
+mat-sidenav {
+    min-width: 15vw;
+}
+
+.page-container>*:not(router-outlet) {
+    flex: 1 1 auto;
+    flex-direction: column;
+    display: flex;
+}
+
+.mat-drawer-container {
+    background-color: #f3f3f7 !important;
+}
+
+.page-toolbar {
+    padding: 16px;
+    border-bottom: solid 1px rgba(0, 0, 0, 0.12);
+    background-color: white;
+}
+
+.page-content {
+    margin: 16px;
+    padding: 16px;
+    background-color: white;
+}
+
+.table-container {
+    padding-top: 0px;
+    padding-left: 0px;
+    padding-right: 0px;
+}
+
+.mat-dialog-container,
+.mat-bottom-sheet-container,
+.progress-bar-container {
+    position: relative;
+    & mat-progress-bar {
+        position: absolute;
+        box-sizing: border-box;
+        top: 0;
+        left: 0;
+        bottom: 0;
+        right: 0;
+    }
+}
+
+.no-margin {
+    margin: 0 !important;
+}
+
+.no-margin-bottom {
+    margin-bottom: 0 !important;
+}
+
+.no-margin-top {
+    margin-top: 0 !important;
+}
+
+.text-primary {
+    color: $app-primary-color;
+}
+
+.text-alternate-primary {
+    color: $alternate-primary-color;
+}
+
+.text-warn {
+    color: $app-warn-color;
+}
+
+.text-muted {
+    color: #737a88;
+}
+
+.wide {
+    width: 100%;
+}
+
+table {
+    width: 100%;
+}
+
+.mat-header-cell:not(.auto),
+.mat-footer-cell:not(.auto),
+.mat-cell:not(.auto) {
+    padding: 0 12px;
+    min-width: 100px;
+}
+
+.pointer {
+    cursor: pointer;
+}
+
+button {
+    text-transform: uppercase;
+}
+
+.mat-menu-content button {
+    text-transform: inherit;
+}
+
+.checkbox-wrapper {
+    min-height: 50px;
+    display: flex;
+    >mat-checkbox {
+        align-self: center;
+    }
+}
+
+.card {
+    padding: 12px;
+    background-color: white;
+}
+
+.card-outline {
+    padding: 12px;
+    border-radius: 2px;
+    border: 2px solid rgba(0, 0, 0, 0.12);
+    &.active {
+        border-color: $app-primary-color;
+    }
+}
+
+.no-padding {
+    padding: 0 !important;
+}
+
+.vertical-aligned {
+    margin-top: auto;
+    margin-bottom: auto;
+}
+
+#file-error {
+    padding-left: 3%;
+    font-size: 13px;
+    font-family: Roboto, "Helvetica Neue", sans-serif;
+}

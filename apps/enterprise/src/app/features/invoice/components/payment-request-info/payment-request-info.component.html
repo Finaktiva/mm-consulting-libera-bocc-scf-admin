@@ -1,0 +1,35 @@
+<div fxLayoutGap="12px" fxLayout="column">
+    <h1 class="mat-title">
+        {{ 'PAYMENT_REQUEST_INFO.PAYMENT_DETAILS' | translate }}
+    </h1>
+
+    <div fxLayout="column">
+        <span class="mat-subheading-2">
+            {{ 'PAYMENT_REQUEST_INFO.PAYMENT_ISSUER' | translate | uppercase }}
+        </span>
+        <span class="mat-body-2">
+            {{ payment?.lenderName }}
+        </span>
+    </div>
+
+    <div fxLayout="column">
+        <span class="mat-subheading-2">
+            {{ 'PAYMENT_REQUEST_INFO.DETAILS' | translate | uppercase }}
+        </span>
+        <span class="mat-body">
+            {{ payment?.comments }}
+        </span>
+    </div>
+
+    <div fxLayout="column" *ngIf="payment?.file">
+        <div fxLayout="row" style="margin: 20px 0">
+            <mat-icon>attach_file</mat-icon>
+            <a
+                href="{{ payment?.file?.url }}"
+                target="_blank"
+                class="mat-body"
+                >{{ payment?.file?.name }}</a
+            >
+        </div>
+    </div>
+</div>

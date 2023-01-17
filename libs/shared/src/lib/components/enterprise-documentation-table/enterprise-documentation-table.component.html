@@ -1,0 +1,89 @@
+<div style="overflow: auto">
+    <table mat-table [dataSource]="entities">
+        <ng-container matColumnDef="document">
+            <th mat-header-cell *matHeaderCellDef>
+                {{ 'ENTERPRISE_DOCUMENTATION_TABLE.DOCUMENT' | translate }}
+            </th>
+            <td mat-cell *matCellDef="let entity" style='padding: 20px 0;'>
+                <span>{{ entity?.state?.type?.description }}</span>
+                <button mat-icon-button type="button" [matTooltip]="entity?.state?.type?.announcement" *ngIf='entity?.state?.type?.announcement'>
+                    <mat-icon>help_outline</mat-icon>
+                </button>
+                <br/>
+                <small style='font-weight: 600;'>{{ entity?.state?.documentTypeDescription }}</small>
+            </td>
+        </ng-container>
+        <ng-container matColumnDef="file">
+            <th mat-header-cell *matHeaderCellDef>
+                {{ 'ENTERPRISE_DOCUMENTATION_TABLE.FILE' | translate }}
+            </th>
+            <td mat-cell *matCellDef="let entity">
+                <a *ngIf="entity.state.file?.url; else template" [href]="entity.state.file?.url" target="_blank">
+                    {{ entity?.state?.file?.name }}
+                </a>
+                <ng-template #template>
+                    <span>{{ entity?.state?.file?.name }}</span>
+                </ng-template>
+            </td>
+        </ng-container>
+        <!--<ng-container matColumnDef="uploadDate">
+            <th mat-header-cell *matHeaderCellDef>
+                {{ 'ENTERPRISE_DOCUMENTATION_TABLE.UPLOAD_DATE' | translate }}
+            </th>
+            <td mat-cell *matCellDef="let entity">
+                {{ entity?.state.creationDate | date: 'dd/MM/yyyy' }}
+            </td>
+        </ng-container>
+        -->
+        <ng-container matColumnDef="updateDate">
+            <th mat-header-cell *matHeaderCellDef>
+                {{ 'ENTERPRISE_DOCUMENTATION_TABLE.UPDATE_DATE' | translate }}
+            </th>
+            <td mat-cell *matCellDef="let entity">
+                {{ entity.state.file?.name && entity.state.status != 'REJECTED' ? (entity?.state?.modificationDate | date: 'dd/MM/yyyy':'+0000') : '' }}
+            </td>
+        </ng-container>
+
+        <ng-container matColumnDef="validityDate">
+            <th mat-header-cell *matHeaderCellDef>
+                {{ 'ENTERPRISE_DOCUMENTATION_TABLE.VALIDITY_DATE' | translate }}
+            </th>
+            <td mat-cell *matCellDef="let entity">
+                {{ entity.state.file?.name && entity.state.status != 'REJECTED' ? (entity?.state?.effectivenessDate | date: 'dd/MM/yyyy':'+0000') : '' }}
+            </td>
+        </ng-container>
+
+        <ng-container matColumnDef="status">
+            <th mat-header-cell *matHeaderCellDef>
+                {{ 'ENTERPRISE_DOCUMENTATION_TABLE.STATE' | translate }}
+            </th>
+            <td mat-cell *matCellDef="let entity">
+                <status-chip [status]="entity.state.status" *ngIf="entity.state.status != 'PENDING'">
+                    {{ 'COMMON.ENTERPRISE_DOCUMENTATION_STATUS.' + entity?.state.status | translate }}
+                </status-chip>
+            </td>
+        </ng-container>
+        <ng-container matColumnDef="comments">
+            <th mat-header-cell style="max-width:250px !important; word-wrap: break-word;" *matHeaderCellDef>
+                {{ 'ENTERPRISE_DOCUMENTATION_TABLE.COMMENTS' | translate }}
+            </th>
+            <td mat-cell style="max-width:250px !important; word-wrap: break-word;" *matCellDef="let entity">
+                {{ entity?.state.comment }}
+            </td>
+        </ng-container>
+        <ng-container matColumnDef="actions">
+            <th class="auto" mat-header-cell *matHeaderCellDef>
+                {{ 'ENTERPRISE_DOCUMENTATION_TABLE.ACTIONS' | translate }}
+            </th>
+            <td class="auto" mat-cell *matCellDef="let entity">
+                <div *ngIf="(entity.state.type.code == 'ENTAILMENT_FORM' && canAdmin) || (entity.state.type.code != 'ENTAILMENT_FORM')">
+                    <enterprise-documentation-table-actions [file]='entity.state.file?.url' [status]="entity?.state.status" [isSubmitting]="entity.ui.upload.submitting" [isDeleting]="entity.ui.delete.submitting" [isChangingStatus]="entity.ui.update.submitting" [canAdmin]="canAdmin"
+                        [canDelete]="canDelete" (onSubmit)="onUpload(entity.state.id, $event)" (delete)="onDelete(entity.state.id)" (approve)="onChangeStatus(entity.state.id, 'ACCEPTED')" (reload)="onChangeStatus(entity.state.id, 'RELOAD_FILE')" [idDoc]="entity.state.id"
+                        [description]="entity?.state?.type?.description" [date]="entity?.state?.expeditionDate" [enterpriseStatus]="enterpriseStatus" [comment]='entity?.state.comment'></enterprise-documentation-table-actions>
+                </div>
+            </td>
+        </ng-container>
+        <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+        <tr mat-row *matRowDef="let row; columns: displayedColumns"></tr>
+    </table>
+</div>

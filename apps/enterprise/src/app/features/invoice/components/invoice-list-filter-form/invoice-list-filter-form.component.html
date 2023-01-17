@@ -1,0 +1,85 @@
+<form
+    (ngSubmit)="onSubmit()"
+    [formGroup]="form"
+    fxLayout="row"
+    fxLayoutGap="12px"
+>
+    <button
+        type="button"
+        mat-button
+        *ngIf="!shouldRenderResetButton()"
+        (click)="onReset()"
+    >
+        {{ 'COMMON.LABELS.CLEAN_FILTERS' | translate }}
+    </button>
+    <mat-form-field appearance="standard">
+        <mat-label>
+            {{ 'COMMON.LABELS.FILTER_BY' | translate }}
+        </mat-label>
+        <mat-select formControlName="filter_by">
+            <mat-option [value]="INVOICE_PAGINATION_FILTER_BY.PROVIDER">
+                {{ 'COMMON.FILTERS.PROVIDER' | translate }}
+            </mat-option>
+            <mat-option [value]="INVOICE_PAGINATION_FILTER_BY.INVOICE_NUMBER">
+                {{ 'COMMON.FILTERS.INVOICE_NUMBER' | translate }}
+            </mat-option>
+            <mat-option [value]="INVOICE_PAGINATION_FILTER_BY.STATUS">
+                {{ 'COMMON.FILTERS.STATUS' | translate }}
+            </mat-option>
+            <mat-option [value]="INVOICE_PAGINATION_FILTER_BY.EXPIRATION_DATE">
+                {{ 'COMMON.FILTERS.EXPIRATION_DATE' | translate }}
+            </mat-option>
+        </mat-select>
+    </mat-form-field>
+    <mat-form-field
+        appearance="standard"
+        *ngIf="form.value.filter_by == INVOICE_PAGINATION_FILTER_BY.STATUS"
+    >
+        <mat-label>
+            {{ 'COMMON.LABELS.STATUS' | translate }}
+        </mat-label>
+        <mat-select #select name="status" formControlName="status">
+            <mat-option [value]="INVOICE_STATUS.AVAILABLE">
+                {{ 'COMMON.INVOICE_STATUS.AVAILABLE' | translate }}
+            </mat-option>
+            <mat-option [value]="INVOICE_STATUS.LOADED">
+                {{ 'COMMON.INVOICE_STATUS.LOADED' | translate }}
+            </mat-option>
+            <mat-option [value]="INVOICE_STATUS.PAID">
+                {{ 'COMMON.INVOICE_STATUS.PAID' | translate }}
+            </mat-option>
+        </mat-select>
+    </mat-form-field>
+    <mat-form-field
+        appearance="standard"
+        *ngIf="
+            form.value.filter_by == INVOICE_PAGINATION_FILTER_BY.PROVIDER ||
+            form.value.filter_by == INVOICE_PAGINATION_FILTER_BY.INVOICE_NUMBER
+        "
+    >
+        <mat-label>
+            {{ 'INVOICE_LIST_FILTER_FORM.SEARCH' | translate }}
+        </mat-label>
+        <input #input formControlName="q" name="query" type="text" matInput />
+    </mat-form-field>
+    <mat-form-field
+        appearance="standard"
+        *ngIf="
+            form.value.filter_by == INVOICE_PAGINATION_FILTER_BY.EXPIRATION_DATE
+        "
+    >
+        <mat-label>
+            {{ 'INVOICE_LIST_FILTER_FORM.DATE' | translate }}
+        </mat-label>
+        <input
+            #input
+            formControlName="q"
+            name="date"
+            type="text"
+            matInput
+            [matDatepicker]="picker"
+        />
+        <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
+        <mat-datepicker #picker></mat-datepicker>
+    </mat-form-field>
+</form>

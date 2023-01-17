@@ -1,0 +1,168 @@
+<div fxLayout="column">
+    <div class="page-toolbar" fxLayout="row" fxLayoutAlign="space-between center">
+        <div fxLayout="row" fxLayoutAlign="start center">
+            <button mat-icon-button (click)="goBack()">
+                <mat-icon>arrow_back</mat-icon>
+            </button>
+            <span class="mat-headline no-margin">
+                {{ 'COMMON.LABELS.BACK_TO_LIST' | translate }}
+            </span>
+        </div>
+        <status-chip *ngIf="(hasLoaded$ | async)" [status]="(detail$ | async).status">
+            {{ 'COMMON.ENTERPRISE_STATUS.' + (detail$ | async).status | translate }}
+        </status-chip>
+    </div>
+
+    <div class="mat-title" style="margin: 16px;" fxLayout="column" fxLayoutGap="15px">
+        <div class="card" style="display: flex; justify-content: space-between; align-items: center;" *ngIf="(hasLoaded$ | async)">
+            <span> {{ (detail$ | async).enterpriseName }}</span>
+        </div>
+        <mat-tab-group class="card">
+            <mat-tab label="{{ 'DETAIL_PAGE.BASIC_INFO' | translate}}">
+                <div style="margin: 16px;" fxLayout="column" fxLayoutGap="15px">
+                    <div *ngIf="canReadEnterpriseDocumentation$ | async" class="mat-elevation-z2 progress-bar-container card tab" fxLayout="column" fxLayoutGap="12px">
+                        <div style="display: flex; justify-content: space-between; align-items: center;">
+                            <h1 class="mat-title">
+                                {{ 'COMMON.LABELS.DOCUMENTATION' | translate }}
+                            </h1>
+                            <div style="display: flex;">
+                                <button mat-flat-button color="primary" style="margin-right: 10px;" *ngIf="(shouldRenderSendInvitation$ | async)" (click)="sendInvitation()" [disabled]="(!isDocumentLoaded$ | async)">{{ 'COMMON.LABELS.SEND' | translate }}</button>
+                                <button mat-flat-button color="primary" style="margin-right: 10px;" *ngIf="(shouldRenderActionButtons$ | async)" (click)="sendDocumentResolution()" [disabled]="(!isDocumentLoaded$ | async)">{{ 'COMMON.LABELS.SEND' | translate }}</button>
+                                <button *ngIf="canRequestDocuments$ | async" mat-flat-button color="primary" (click)="loadNewDocument()">{{ 'COMMON.LABELS.ADD_NEW_DOCUMENT' | translate }}</button>
+                            </div>
+                        </div>
+                        <mat-spinner fxFlexAlign="center" *ngIf="(isLoadingDocumentation$ | async)"></mat-spinner>
+            
+                        <p *ngIf="(documentationError$ | async)" class="mat-body">
+                            {{ 'COMMON.ERRORS.DOCUMENTATION_LOAD' | translate }}
+                            <button (click)="onRetryDocumentation()" mat-flat-button color="warn">
+                                {{ 'COMMON.RETRY' | translate }}
+                            </button>
+                        </p>
+            
+                        <enterprise-documentation-table *ngIf="(hasLoadedDocumentation$ | async)" [showActions]="true" [canAdmin]="true" [canDelete]="true" [entities]="documentationEntities$ | async" (upload)="onUploadFile($event)" (changeStatus)="onChangeDocumentationStatus($event)"></enterprise-documentation-table>
+                        <div *ngIf="(shouldRenderActionButtons$ | async)" fxLayout="row" fxLayoutAlign="end" fxLayoutGap="10px">
+                            <button (click)="onChangeProgramStatus(ENTERPRISE_STATUS.REJECTED)" [disabled]="shouldDisableRejectButton$ | async" mat-button>
+                                {{ 'DETAIL_PAGE.REJECT_PROGRAM' | translate }}
+                            </button>
+                            <button [disabled]="shouldDisableApprovalButton$ | async" (click)="onChangeProgramStatus(ENTERPRISE_STATUS.ENABLED)" mat-flat-button color="accent">
+                                {{ 'DETAIL_PAGE.APROVE_PROGRAM' | translate }}
+                            </button>
+                        </div>
+                    </div>
+                    <div *ngIf="canReadEnterpriseDetail$ | async" class="mat-elevation-z2 progress-bar-container card tab" fxLayout="column" fxLayoutGap="12px">
+                        <div style="display: flex; justify-content: space-between; align-items: center;">
+                            <h1 class="mat-title no-margin">
+                                {{ 'DETAIL_PAGE.INFO' | translate }}
+                            </h1>
+                            <button (click)="onEdit()" *ngIf="(hasLoadedAndEditing$ | async) && (canUpdateEnterprise$ | async)" [matTooltip]="'DETAIL_PAGE.EDIT' | translate" mat-icon-button>
+                                <mat-icon>edit</mat-icon>
+                            </button>
+                        </div>
+                        <div fxLayout.gt-xs="row" fxLayout.xs="column" fxLayoutGap="15px">
+                            <div fxFlex.gt-xs class="mat-elevation-z3 progress-bar-container card" fxLayout="column" fxLayoutGap="12px">
+                                <div *ngIf="(hasLoadedAndEditing$ | async)" fxLayout="row" fxLayoutAlign="space-between center">
+                                    <h1 class="mat-title no-margin">
+                                        {{ 'DETAIL_PAGE.ENTERPRISE_INFO' | translate }}
+                                    </h1>
+                                </div>
+                                <mat-spinner fxFlexAlign="center" *ngIf="
+                                        (isLoadingDetail$ | async) ||
+                                        (isLoadingCountryCallingCodes$ | async) ||
+                                        (isLoadingEnterpriseSectors$ | async)
+                                    "></mat-spinner>
+                                <p *ngIf="(error$ | async)" class="mat-body">
+                                    {{ 'COMMON.ERRORS.INFO_LOAD' | translate }}
+                                    <button (click)="onRetryDetail()" mat-flat-button color="warn">
+                                        {{ 'COMMON.RETRY' | translate }}
+                                    </button>
+                                </p>
+                                <p *ngIf="(enterpriseSectorsError$ | async)" class="mat-body">
+                                    {{ 'DETAIL_PAGE.SECTOR_LOAD_ERROR' | translate }}
+                                    <button (click)="fetchEnterpriseSectors()" mat-flat-button color="warn">
+                                        {{ 'COMMON.RETRY' | translate }}
+                                    </button>
+                                </p>
+                                <p *ngIf="(countryCallingCodesError$ | async)" class="mat-body">
+                                    {{ 'COMMON.ERRORS.LADA_LOAD_ERROR' | translate }}
+                                    <button (click)="fetchCountryCallingCodes()" mat-flat-button color="warn">
+                                        {{ 'COMMON.RETRY' | translate }}
+                                    </button>
+                                </p>
+                                <enterprise-form (cancel)="onCancel()" (onSubmit)="onSubmit($event)" *ngIf="(shouldRenderEnterpriseForm$ | async)" [showCancelButton]="true" [isSubmitting]="isSubmitting$ | async" [entity]="detail$ | async" [enterpriseSectors]="enterpriseSectors$ | async"
+                                    [countryCallingCodes]="countryCallingCodes$ | async" [bankRegions]="bankRegions$ | async" [productAdmin]="true">
+                                </enterprise-form>
+                                <enterprise-detail *ngIf="(hasLoadedAndEditing$ | async)" [entity]="detail$ | async"></enterprise-detail>
+                            </div>
+                            <div *ngIf="(hasLoadedAndEditing$ | async)" fxFlex.gt-xs class="mat-elevation-z3 progress-bar-container card" fxLayout="column" fxLayoutGap="12px">
+                                <div>
+                                    <h1 class="mat-title no-margin">
+                                        {{ 'DETAIL_PAGE.ADMIN_INFO' | translate }}
+                                    </h1>
+                                </div>
+                                <admin-detail [entity]="detail$ | async"></admin-detail>
+                            </div>
+                        </div>
+                    </div>
+                    <div>
+                        <div fxFlex.gt-md="50%" fxFlex="100%" fxFlexFill class="mat-elevation_z2 progress-bar-container card" fxLayout="column" fxLayoutGap="15px">
+                            <div>
+                                <h1 class="mat-title no-margin">
+                                    {{ 'DETAIL_PAGE.HISTORICAL' | translate }}
+                                </h1>
+                            </div>
+                            <mat-spinner fxFlexAlign="center" *ngIf="(isLoadingActivitiesHistory$ | async)"></mat-spinner>
+                            <p *ngIf="(activitiesHistoryError$ | async)" class="mat-body">
+                                {{ 'COMMON.ERRORS.INFO_LOAD' | translate }}
+                                <button (click)="onRetryActivitiesHistory()" mat-flat-button color="warn">
+                                    {{ 'COMMON.ACTIONS.RETRY' | translate | uppercase }}
+                                </button>
+                            </p>
+                            <div class="history mat-elevation-z2">
+                                <activities-history [history]="history$ | async"></activities-history>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </mat-tab>
+            <mat-tab *ngIf="enterprise ? (enterprise.modules.includes('PAYER') && (shouldRenderFinancialPlanTable$ | async)) : false" label="{{ 'DETAIL_PAGE.FINANCIAL_CONDITIONS' | translate}}">
+                <div
+                    fxLayout="row"
+                    fxLayoutAlign="start center"
+                    fxLayoutGap="15px"
+                >
+                    <span fxFlex="1 1 auto"></span>
+                    <filter-plan-form
+                        [filters]="filters$ | async"
+                        (onSubmit)="onUpdateFilters($event)"
+                    ></filter-plan-form>
+                    <div style="display: flex;">
+                        <button *ngIf="canCreateFinancialPlan$ | async" mat-flat-button color="primary" style="margin-right: 10px;" (click)="onAddPlan()" [disabled]="!canAddPlan">{{ 'COMMON.LABELS.NEW_PLAN' | translate }}</button>
+                    </div>
+                </div>
+                <div class="page-content progress-bar-container mat-elevation-z2 table-container" fxLayout="column">
+                    <mat-spinner
+                        *ngIf="(isLoadingFinancialPlan$ | async)"
+                        fxFlexAlign="center"
+                    ></mat-spinner>
+            
+                    <financial-conditions-table
+                        *ngIf="(hasLoaded$ | async)"
+                        (edit)="onEditFC($event)"
+                        [entities]="planEntities$ | async"
+                        [detail]="detail$ | async"
+                    ></financial-conditions-table>
+            
+                    <mat-paginator
+                        [showFirstLastButtons]="true"
+                        [pageSize]="paginationSize$ | async"
+                        [length]="total$ | async"
+                        [pageIndex]="paginationIndex$ | async"
+                        [pageSizeOptions]="PAGE_SIZE_OPTIONS"
+                        (page)="onChangePage($event)"
+                    ></mat-paginator>
+                </div>
+            </mat-tab>
+        </mat-tab-group>
+    </div>
+</div>

@@ -1,0 +1,57 @@
+<form fxLayout="column" fxLayoutGap="12px" [formGroup]="form" (ngSubmit)='onSubmit()'>
+
+  <h2 mat-dialog-title class="mat-title">Cargar archivo</h2>
+
+  <mat-form-field>
+    <mat-label>{{ 'APPROVE_DOCUMENT.EXPEDITION_DATE' | translate }}</mat-label>
+    <input 
+      matInput 
+      type="date" 
+      autocomplete='off'
+      formControlName="expeditionDate"
+    />
+  </mat-form-field>
+
+  <mat-form-field>
+    <mat-label>{{ 'APPROVE_DOCUMENT.COMMENTS' | translate }}</mat-label>
+    <input 
+      matInput 
+      type="text" 
+      autocomplete='off'
+      formControlName="comments"
+    />
+  </mat-form-field>
+
+  <div style='display: flex; align-items: center; justify-content: space-between;'>
+    <h2 class='mat-body'>Adjuntar documento</h2>
+    <button 
+      mat-flat-button 
+      color="primary"
+      (click)="fileButton.click()"
+      type="button"
+    >Selecciona un archivo</button>
+  </div>
+
+  <button
+    formControlName="file"
+    hidden
+    #fileButton
+    type="button"
+    ngezFileInput
+    accept=".pdf"
+  ></button>
+
+  <mat-dialog-actions fxLayoutAlign="end" fxLayoutGap="15px">
+    <button type="button" mat-button mat-dialog-close>
+      {{ 'APPROVE_DOCUMENT.CANCEL' | translate }}
+    </button>
+    <button
+        mat-flat-button
+        color="primary"
+        type='submit'
+    >
+      {{ 'APPROVE_DOCUMENT.ACCEPT' | translate }}
+    </button>
+  </mat-dialog-actions>
+
+</form>

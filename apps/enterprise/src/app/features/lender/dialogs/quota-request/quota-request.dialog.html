@@ -1,0 +1,30 @@
+<mat-progress-bar
+    *ngIf="(isSubmitting$ | async)"
+    mode="indeterminate"
+></mat-progress-bar>
+<h2 mat-dialog-title>
+    {{ 'QUOTA_REQUEST_DIALOG.TITLE' | translate }}
+</h2>
+<mat-dialog-content>
+    <div fxLayout="column" fxLayoutGap="12px" fxLayoutAlign="start stretch">
+        <quota-request-form
+            #form
+            (onSubmit)="onSubmit($event)"
+            [isSubmitting]="isSubmitting$ | async"
+        >
+        </quota-request-form>
+    </div>
+</mat-dialog-content>
+<mat-dialog-actions fxLayout="row" fxLayoutGap="12px" fxLayoutAlign="end">
+    <button type="button" mat-button mat-dialog-close>
+        {{ 'COMMON.ACTIONS.CANCEL' | translate | uppercase }}
+    </button>
+    <button
+        (click)="form.submit()"
+        mat-flat-button
+        color="accent"
+        [disabled]="form.shouldDisable()"
+    >
+        {{ 'COMMON.ACTIONS.REQUEST' | translate | uppercase }}
+    </button>
+</mat-dialog-actions>

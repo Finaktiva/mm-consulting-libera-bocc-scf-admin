@@ -1,0 +1,84 @@
+<div fxLayout="column" fxLayoutGap="8px">
+    <div fxLayout="row" fxLayoutGap="12px" fxLayoutAlign="start center">
+        <div fxFlex="40%" fxLayout="row" fxLayoutAlign="end center">
+            <span class="mat-body">
+                {{ 'NEGOTIATION_OFFER_CARD.INVOICE_VALUE' | translate }}
+            </span>
+        </div>
+        <div fxFlex>
+            <h1 class="mat-title no-margin">
+                {{ invoiceAmount | currency: currencyCode:'code' }}
+            </h1>
+        </div>
+    </div>
+    <div fxLayout="row" fxLayoutGap="12px" fxLayoutAlign="start center">
+        <div fxFlex="40%" fxLayout="row" fxLayoutAlign="end center">
+            <!-- <mat-icon>attach_money</mat-icon> -->
+            <span class="mat-body">
+                {{ 'COMMON.LABELS.DISCOUNT_TYPE' | translate }}
+            </span>
+        </div>
+        <div fxFlex>
+            <h1 class="mat-title no-margin">
+                {{
+                    'COMMON.NEGOTIATION_DISCOUNT_TYPE.' + offer.discountType
+                        | translate
+                }}
+            </h1>
+        </div>
+    </div>
+
+    <div fxLayout="row" fxLayoutGap="12px" fxLayoutAlign="start center">
+        <div fxFlex="40%" fxLayout="row" fxLayoutAlign="end center">
+            <!-- <mat-icon [inline]="true" matSuffix>%</mat-icon> -->
+            <span class="mat-body">
+                {{ 'COMMON.LABELS.DISCOUNT_RATE' | translate }}
+            </span>
+        </div>
+        <div fxFlex>
+            <h1 class="mat-title no-margin">
+                {{ offer.percentage | divide: 100 | percent: '1.2-2' }}
+            </h1>
+        </div>
+    </div>
+    <div fxLayout="row" fxLayoutGap="12px" fxLayoutAlign="start center">
+        <div fxFlex="40%" fxLayout="row" fxLayoutAlign="end center">
+            <!-- <mat-icon>attach_money</mat-icon> -->
+            <span class="mat-body">
+                {{ 'COMMON.LABELS.DISCOUNT_EXPIRATION' | translate }}
+            </span>
+        </div>
+        <div fxFlex>
+            <h1 class="mat-title no-margin">
+                {{ offer.discountDueDate | date }}
+            </h1>
+        </div>
+    </div>
+    <div fxLayout="row" fxLayoutGap="12px" fxLayoutAlign="start center">
+        <div fxFlex="40%" fxLayout="row" fxLayoutAlign="end center">
+            <!-- <mat-icon>attach_money</mat-icon> -->
+            <span class="mat-body">
+                {{ 'COMMON.LABELS.EXPECTED_PAYMENT_DATE' | translate }}
+            </span>
+        </div>
+        <div fxFlex>
+            <h1 class="mat-title no-margin">
+                {{ offer.expectedPaymentDate | date }}
+            </h1>
+        </div>
+    </div>
+    <mat-divider></mat-divider>
+    <div fxLayout="row" fxLayoutGap="12px" fxLayoutAlign="start center">
+        <div fxFlex="40%" fxLayout="row" fxLayoutAlign="end center">
+            <!-- <mat-icon [inline]="true" matSuffix>%</mat-icon> -->
+            <span class="mat-body">
+                {{ 'COMMON.LABELS.DISCOUNT_VALUE' | translate }}
+            </span>
+        </div>
+        <div fxFlex>
+            <h1 class="mat-title no-margin text-primary">
+                {{ offer.discountValue | currency: currencyCode:'code' }}
+            </h1>
+        </div>
+    </div>
+</div>

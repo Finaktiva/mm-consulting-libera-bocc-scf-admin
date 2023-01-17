@@ -1,0 +1,91 @@
+<form
+    (ngSubmit)="onSubmit()"
+    [formGroup]="form"
+    fxLayout="row"
+    fxLayoutGap="12px"
+>
+    <button
+        type="button"
+        mat-button
+        *ngIf="!shouldRenderResetButton()"
+        (click)="onReset()"
+    >
+        {{ 'COMMON.LABELS.CLEAN_FILTERS' | translate }}
+    </button>
+    <mat-form-field appearance="standard">
+        <mat-label>{{ 'COMMON.LABELS.FILTER_BY' | translate }}</mat-label>
+        <mat-select formControlName="filter_by">
+            <mat-option
+                [value]="PayerListPaginationFilterByType.enterpriseName"
+            >
+                {{
+                    'PAYER_LIST_FILTER_FORM.FILTER_BY_TYPE.ENTERPRISENAME'
+                        | translate
+                }}
+            </mat-option>
+            <mat-option [value]="PayerListPaginationFilterByType.nit">
+                {{ 'COMMON.LABELS.NIT' | translate }}
+            </mat-option>
+            <mat-option [value]="PayerListPaginationFilterByType.sector">
+                {{ 'PAYER_LIST_FILTER_FORM.FILTER_BY_TYPE.SECTOR' | translate }}
+            </mat-option>
+            <mat-option
+                [value]="PayerListPaginationFilterByType.enterpriseType"
+            >
+                {{
+                    'PAYER_LIST_FILTER_FORM.FILTER_BY_TYPE.ENTERPRISETYPE'
+                        | translate
+                }}
+            </mat-option>
+        </mat-select>
+    </mat-form-field>
+
+    <ng-container
+        *ngIf="form.value.filter_by"
+        [ngSwitch]="form.value.filter_by"
+    >
+        <mat-form-field
+            *ngSwitchCase="PayerListPaginationFilterByType.enterpriseType"
+            appearance="standard"
+        >
+            <mat-label>{{
+                'COMMON.LABELS.ENTERPRISE_TYPE' | translate
+            }}</mat-label>
+            <mat-select #select name="query" formControlName="q">
+                <mat-option [value]="ENTERPRISE_TYPE.PRIVATE">
+                    {{ 'COMMON.ENTERPRISE_TYPE.PRIVATE' | translate }}
+                </mat-option>
+                <mat-option [value]="ENTERPRISE_TYPE.PUBLIC">
+                    {{ 'COMMON.ENTERPRISE_TYPE.PUBLIC' | translate }}
+                </mat-option>
+                <mat-option [value]="ENTERPRISE_TYPE.MIXED">
+                    {{ 'COMMON.ENTERPRISE_TYPE.MIXED' | translate }}
+                </mat-option>
+                <mat-option [value]="ENTERPRISE_TYPE.SELF_MANAGEMENT">
+                    {{ 'COMMON.ENTERPRISE_TYPE.SELF_MANAGEMENT' | translate }}
+                </mat-option>
+            </mat-select>
+        </mat-form-field>
+
+        <mat-form-field
+            *ngSwitchCase="PayerListPaginationFilterByType.sector"
+            appearance="standard"
+        >
+            <mat-label
+                >{{ 'PAYER_LIST_FILTER_FORM.ECONOMIC_SECTOR' | translate }}
+            </mat-label>
+            <mat-select #select name="query" formControlName="q">
+                <mat-option
+                    *ngFor="let sector of enterpriseSectors"
+                    [value]="sector.id"
+                >
+                    {{ sector.name }}
+                </mat-option>
+            </mat-select>
+        </mat-form-field>
+
+        <mat-form-field *ngSwitchDefault appearance="standard">
+            <input matInput formControlName="q" type="text" name="query" />
+        </mat-form-field>
+    </ng-container>
+</form>

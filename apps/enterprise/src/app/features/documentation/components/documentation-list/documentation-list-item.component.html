@@ -1,0 +1,33 @@
+<div fxLayoutGap="24px">
+    <div fxFlex="30%" fxLayout="column" fxLayoutAlign="start end">
+        <h1 class="mat-subheading-2">
+            {{ documentation.type?.description }}
+        </h1>
+        <a
+            *ngIf="documentation.type?.templateUrl"
+            [href]="documentation.type?.templateUrl"
+            target="_blank"
+            mat-button
+            color="accent"
+        >
+            {{ 'COMMON.ACTIONS.DOWNLOAD' | translate }}
+        </a>
+    </div>
+    <documentation-card
+        (delete)="onDelete()"
+        *ngIf="documentation.file; else dropzone"
+        [file]="documentation.file"
+        [isDeleting]="isDeleting"
+        class="mat-elevation-z1 card"
+        fxFlex
+    ></documentation-card>
+    <ng-template #dropzone>
+        <documentation-dropzone
+            [error]="error"
+            [isSubmitting]="isUploading"
+            (onSubmit)="onSubmit($event)"
+            fxFlex
+            class="card"
+        ></documentation-dropzone>
+    </ng-template>
+</div>

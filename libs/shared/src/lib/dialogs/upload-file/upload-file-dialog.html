@@ -1,0 +1,54 @@
+<form fxLayout="column" fxLayoutGap="12px" [formGroup]="form" (ngSubmit)='onSubmit()'>
+
+    <h2 mat-dialog-title class="mat-title">{{ data.description }}</h2>
+
+    <mat-form-field>
+        <mat-label>{{ 'LOAD_MODAL.EXPEDITION_DATE' | translate }}*</mat-label>
+        <input matInput type="date" autocomplete='off' formControlName="expeditionDate" [max]="maxDate" />
+        <mat-error>
+            <span *ngIf="form.hasError('required', 'expeditionDate')">
+                {{ 'COMMON.VALIDATIONS.REQUIRED' | translate }}
+            </span>
+            <span *ngIf="form.hasError('isValideDate', 'expeditionDate')">
+                {{ 'COMMON.VALIDATIONS.INVALID_DATE' | translate }}
+            </span>
+        </mat-error>
+    </mat-form-field>
+
+    <mat-form-field>
+        <mat-label>{{ 'LOAD_MODAL.COMMENTS' | translate }}</mat-label>
+        <textarea matInput type="text" autocomplete='off' formControlName="explanation" rows='4' maxlength='500'></textarea>
+        <mat-error>
+            <span *ngIf="form.hasError('maxlength', 'documentNumber')">
+                {{ 'COMMON.VALIDATIONS.MAX_LENGTH' | translate: { maxLength: 500} }}
+            </span>
+        </mat-error>
+    </mat-form-field>
+
+    <div style='display: flex; align-items: center; justify-content: space-between;'>
+
+        <h2 class='mat-body' *ngIf='fileName else template' [textContent]="fileName"></h2>
+        <ng-template #template>
+            <h2 class='mat-body'>{{ 'LOAD_MODAL.ADD_DOCUMENT' | translate }}</h2>
+        </ng-template>
+
+        <button type="button" #file formControlName="file" ngezFileInput accept=".pdf" mat-flat-button color="primary" style='margin-left: 30px !important;' [disabled]='isLoadingDocument'>{{ 'LOAD_MODAL.SELECT_DOCUMENT' | translate }}</button>
+    </div>
+    <mat-error id="file-error">
+        <span *ngIf="form.hasError('required', 'file')">
+                {{ 'COMMON.VALIDATIONS.DOCUMENT_REQUIRED' | translate }}
+            </span>
+        <span *ngIf="form.hasError('fileType', 'file')">
+                {{ 'COMMON.VALIDATIONS.ONLY_PDF' | translate }}
+            </span>
+    </mat-error>
+    <mat-dialog-actions fxLayoutAlign="end" fxLayoutGap="15px">
+        <button type="button" mat-button mat-dialog-close [disabled]='isLoadingDocument'>
+      {{ 'COMMON.ACTIONS.CANCEL' | translate }}
+    </button>
+        <button mat-flat-button color="primary" type='submit' [disabled]='isLoadingDocument'>
+      {{ 'COMMON.ACTIONS.SAVE' | translate }}
+    </button>
+    </mat-dialog-actions>
+
+</form>

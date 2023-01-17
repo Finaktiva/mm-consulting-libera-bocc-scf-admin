@@ -1,0 +1,128 @@
+<div fxLayout="column" fxLayoutGap="12px">
+    <div fxLayout="column">
+        <span class="mat-body">
+            {{ 'COMMON.INVOICE_FIELDS.INVOICE_NUMBER' | translate }}
+        </span>
+        <span class="mat-body-2">
+            {{ entity.invoiceNumber }}
+        </span>
+    </div>
+    <div fxLayout="column">
+        <span class="mat-body">
+            {{ 'COMMON.INVOICE_FIELDS.ALTERNATE_INVOICE_ID' | translate }}
+        </span>
+        <span class="mat-body-2">
+            {{ entity.alternativeInvoiceId }}
+        </span>
+    </div>
+    <div fxLayout="column">
+        <span class="mat-body">
+            {{ 'COMMON.INVOICE_FIELDS.EMISSION_DATE' | translate }}
+        </span>
+        <span class="mat-body-2">
+            {{ entity.emissionDate | date }}
+        </span>
+    </div>
+    <div fxLayout="column">
+        <span class="mat-body">
+            {{ 'COMMON.INVOICE_FIELDS.EXPECTED_PAYMENT_DATE' | translate }}
+        </span>
+        <span
+            class="mat-body-2"
+            *ngIf="entity?.negotiation?.expectedPaymentDate; else noData"
+        >
+            {{ entity?.negotiation?.expectedPaymentDate | date }}
+        </span>
+        <ng-template #noData>
+            - -
+        </ng-template>
+    </div>
+    <div fxLayout="column">
+        <span class="mat-body">
+            {{ 'COMMON.INVOICE_FIELDS.EXPIRATION_DATE' | translate }}
+        </span>
+        <span class="mat-body-2" *ngIf="entity?.expirationDate; else noData">
+            {{ entity?.expirationDate | date }}
+        </span>
+        <ng-template #noData>
+            - -
+        </ng-template>
+    </div>
+    <div fxLayout="column">
+        <span class="mat-body">
+            {{ 'COMMON.INVOICE_FIELDS.DOCUMENT_TYPE' | translate }}
+        </span>
+        <span class="mat-body-2">
+            {{
+                'COMMON.INVOICE_DOCUMENT_TYPE.' + entity.documentType
+                    | translate
+            }}
+        </span>
+    </div>
+    <div fxLayout="column">
+        <span class="mat-body">
+            {{ 'COMMON.INVOICE_FIELDS.INVOICE_VALUE' | translate }}
+        </span>
+        <span class="mat-body-2">
+            {{
+                entity.payment?.amount
+                    | currency: entity.currencyCode:'code':'1.2-2':'en'
+            }}
+        </span>
+    </div>
+    <div fxLayout="column">
+        <span class="mat-body">
+            {{ 'COMMON.INVOICE_FIELDS.PAYMENT_TYPE' | translate }}
+        </span>
+        <span class="mat-body-2">
+            {{
+                'COMMON.INVOICE_PAYMENT_TYPE.' + entity.payment.paymentType
+                    | translate
+            }}
+        </span>
+    </div>
+    <div fxLayout="column">
+        <span class="mat-body">
+            {{ 'COMMON.INVOICE_FIELDS.VAT' | translate }}
+        </span>
+        <span class="mat-body-2">
+            {{
+                entity.payment?.vat
+                    | currency: entity.currencyCode:'code':'1.2-2':'en'
+            }}
+        </span>
+    </div>
+    <div fxLayout="column">
+        <span class="mat-body">
+            {{ 'COMMON.INVOICE_FIELDS.RETENTIONS' | translate }}
+        </span>
+        <span class="mat-body-2">
+            {{
+                entity.payment?.retentions
+                    | currency: entity.currencyCode:'code':'1.2-2':'en'
+            }}
+        </span>
+    </div>
+    <div fxLayout="column">
+        <span class="mat-body">
+            {{ 'COMMON.INVOICE_FIELDS.CREDIT_NOTES_VALUE' | translate }}
+        </span>
+        <span class="mat-body-2">
+            {{
+                entity.payment?.creditNotesValue
+                    | currency: entity.currencyCode:'code':'1.2-2':'en'
+            }}
+        </span>
+    </div>
+    <div fxLayout="column">
+        <span class="mat-body">
+            {{ 'COMMON.INVOICE_FIELDS.PAYMENT_ADVANCE' | translate }}
+        </span>
+        <span class="mat-body-2">
+            {{
+                entity.payment?.inAdvance
+                    | currency: entity.currencyCode:'code':'1.2-2':'en'
+            }}
+        </span>
+    </div>
+</div>

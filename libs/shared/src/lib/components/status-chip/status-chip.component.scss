@@ -1,0 +1,30 @@
+:host {
+    display: inline-block;
+    white-space: nowrap;
+    padding: 4px 12px;
+    border-radius: 4px;
+    &.success {
+        background-color: #08a16d;
+        color: white;
+    }
+    &.warning {
+        background-color: #F4D03F;
+        color: white;
+    }
+    &.error {
+        background-color: #e24e4d;
+        color: white;
+    }
+    &.alternate {
+        background-color: #4172b3;
+        color: white;
+    }
+    &.placeholder {
+        color: #000000;
+        background-color: #92eeee;
+    }
+    &.display {
+        background-color: #9f9f9f;
+        color: white;
+    }
+}

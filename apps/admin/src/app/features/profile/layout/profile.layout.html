@@ -1,0 +1,45 @@
+<div fxLayout="column">
+    <div
+        fxLayout="row"
+        fxLayoutAlign="space-between center"
+        class="page-toolbar"
+    >
+        <span class="mat-headline no-margin">
+            {{ 'PROFILE_LAYOUT.TITLE' | translate }}
+        </span>
+    </div>
+    <div
+        fxFlex
+        style="padding: 0"
+        class="page-content progress-bar-container mat-elevation-z1 table-container"
+    >
+        <nav mat-tab-nav-bar>
+            <a
+                mat-tab-link
+                routerLink="/profile"
+                routerLinkActive
+                #profile="routerLinkActive"
+                [routerLinkActiveOptions]="{ exact: true }"
+                [active]="profile.isActive"
+            >
+                {{ 'PROFILE_LAYOUT.MENU.ACCOUNT' | translate }}
+            </a>
+            <a
+                mat-tab-link
+                routerLink="/profile/security"
+                routerLinkActive
+                #secury="routerLinkActive"
+                [active]="secury.isActive"
+            >
+                {{ 'PROFILE_LAYOUT.MENU.SECURITY' | translate }}
+            </a>
+        </nav>
+
+        <div fxLayout="row">
+            <div fxFlex style="padding: 16px" class="progress-bar-container">
+                <router-outlet></router-outlet>
+            </div>
+            <div fxFlex.gt-xs></div>
+        </div>
+    </div>
+</div>

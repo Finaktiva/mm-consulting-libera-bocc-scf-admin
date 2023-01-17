@@ -1,0 +1,23 @@
+<h2 mat-dialog-title>
+    {{ 'NO_CUSTOM_ATTRIBUTES_DIALOG.TITLE' | translate }}
+</h2>
+
+<div mat-dialog-content>
+    <p class="mat-body">
+        {{ 'NO_CUSTOM_ATTRIBUTES_DIALOG.BODY' | translate }}
+    </p>
+</div>
+
+<div mat-dialog-actions fxLayoutAlign="end" fxLayoutGap="10px">
+    <button mat-button mat-dialog-close>
+        {{ 'COMMON.ACTIONS.CANCEL' | translate }}
+    </button>
+    <a
+        routerLink="/core/payers/custom-attributes"
+        mat-flat-button
+        color="primary"
+        (click)="onClose()"
+    >
+        {{ 'NO_CUSTOM_ATTRIBUTES_DIALOG.LINK' | translate }}
+    </a>
+</div>

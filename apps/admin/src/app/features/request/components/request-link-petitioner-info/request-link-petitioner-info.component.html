@@ -1,0 +1,52 @@
+<div fxLayout="row wrap" fxLayoutGap="12px">
+    <mat-form-field>
+        <mat-label>
+            {{ 'COMMON.LABELS.SOCIAL_REASON' | translate }}
+        </mat-label>
+        <input
+            [value]="entity?.enterpriseRequester?.enterpriseName"
+            disabled
+            type="text"
+            matInput
+        />
+    </mat-form-field>
+    <mat-form-field>
+        <mat-label>
+            {{ 'COMMON.LABELS.NIT' | translate }}
+        </mat-label>
+        <input
+            [value]="entity?.enterpriseRequester?.nit"
+            disabled
+            type="text"
+            matInput
+        />
+    </mat-form-field>
+    <mat-form-field>
+        <mat-label>
+            {{ 'COMMON.LABELS.EMAIL' | translate }}
+        </mat-label>
+        <input
+            [value]="entity?.enterpriseRequester?.email"
+            disabled
+            type="text"
+            matInput
+        />
+    </mat-form-field>
+    <mat-form-field>
+        <mat-label>
+            {{ 'REQUEST_LINK_PETITIONER_INFO.REQUESTER_NAME' | translate }}
+        </mat-label>
+        <input [value]="getFullName()" disabled type="text" matInput />
+    </mat-form-field>
+    <mat-form-field>
+        <mat-label>
+            {{ 'REQUEST_LINK_PETITIONER_INFO.REQUEST_DATE' | translate }}
+        </mat-label>
+        <input
+            [value]="entity?.requestDate | date"
+            disabled
+            type="text"
+            matInput
+        />
+    </mat-form-field>
+</div>

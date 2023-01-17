@@ -1,0 +1,88 @@
+<ng-container *ngIf="(isLoading$ | async); else app">
+    <div fxLayout="column" fxFlexFill fxLayoutAlign="center center">
+        <mat-spinner></mat-spinner>
+    </div>
+</ng-container>
+
+<ng-template #app>
+    <div fxLayout="column">
+        <mat-toolbar color="primary">
+            <mat-toolbar-row fxLayoutAlign="end center">
+                <button (click)="sidenav.toggle()" mat-icon-button>
+                    <mat-icon>menu</mat-icon>
+                </button>
+                <img width="18%" class="menu-logo" alt="Logo Banco Occidente" src="/admin/assets/img/LogoMenu.png">
+                <span fxFlex></span>
+                <!-- <button mat-icon-button>
+                    <mat-icon>notifications_none</mat-icon>
+                </button> -->
+                <mat-spinner *ngIf="(isChangingLanguage$ | async)" [diameter]="20" color="accent"></mat-spinner>
+                <button mat-button [matMenuTriggerFor]="lang">
+                    {{ currentLanguage$ | async | slice: 0:3 | uppercase }}
+                    <mat-icon>keyboard_arrow_down</mat-icon>
+                </button>
+                <mat-menu #lang="matMenu" xPosition="before">
+                    <button mat-menu-item *ngFor="let language of (languages$ | async)" (click)="onChangeLanguage(language)">
+                        {{ language.description }}
+                    </button>
+                </mat-menu>
+                <button mat-button [matMenuTriggerFor]="appMenu">
+                    {{ email$ | async }} &#x25BE;
+                    <!-- <mat-icon>arrow_drop_down</mat-icon> -->
+                </button>
+                <mat-menu #appMenu="matMenu" xPosition="before">
+                    <a routerLink="/profile" mat-menu-item>
+                        {{ 'NAVBAR.PROFILE' | translate }}
+                    </a>
+                    <mat-divider></mat-divider>
+                    <button (click)="onSignOut()" mat-menu-item>
+                        {{ 'NAVBAR.LOGOUT' | translate }}
+                    </button>
+                </mat-menu>
+            </mat-toolbar-row>
+        </mat-toolbar>
+
+        <mat-sidenav-container fxFlex fxLayout="column">
+            <mat-sidenav #sidenav [mode]="mode$ | async" opened>
+                <mat-nav-list dense>
+                    <h3 mat-subheader translate>
+                        {{ 'SIDENAV.PROGRAM.TITLE' | translate }}
+                    </h3>
+                    <a mat-list-item routerLink="/programs" routerLinkActive="active">
+                        {{ 'SIDENAV.PROGRAM.ALL' | translate }}
+                    </a>
+                    <mat-divider></mat-divider>
+                    <h1 mat-subheader translate>
+                        {{ 'SIDENAV.REQUEST.TITLE' | translate }}
+                    </h1>
+                    <!--<a mat-list-item routerLink="/requests/modules" routerLinkActive="active">
+                        {{ 'SIDENAV.REQUEST.MODULE' | translate }}
+                    </a>-->
+                    <a mat-list-item routerLink="/requests/links" routerLinkActive="active">
+                        {{ 'SIDENAV.REQUEST.LINKING' | translate }}
+                    </a>
+                    <mat-divider></mat-divider>
+                    <h1 mat-subheader translate>
+                        {{ 'SIDENAV.SECURITY_MANAGEMENT.TITLE' | translate }}
+                    </h1>
+                    <a mat-list-item routerLink="/users" routerLinkActive="active">
+                        {{ 'SIDENAV.SECURITY_MANAGEMENT.USER' | translate }}
+                    </a>
+                    <a mat-list-item routerLink="/role" routerLinkActive="active">
+                        {{ 'SIDENAV.SECURITY_MANAGEMENT.ROLE' | translate }}
+                    </a>
+                    <mat-divider></mat-divider>
+                    <h1 mat-subheader translate>
+                        {{ 'SIDENAV.QUERIES.TITLE' | translate }}
+                    </h1>
+                    <a mat-list-item routerLink="/duty" routerLinkActive="active">
+                        {{ 'SIDENAV.QUERIES.DUTY' | translate }}
+                    </a>
+                </mat-nav-list>
+            </mat-sidenav>
+            <mat-sidenav-content fxFlex="1 1 auto">
+                <router-outlet></router-outlet>
+            </mat-sidenav-content>
+        </mat-sidenav-container>
+    </div>
+</ng-template>

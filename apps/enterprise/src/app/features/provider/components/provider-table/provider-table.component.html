@@ -1,0 +1,70 @@
+<div style="overflow: auto">
+    <table mat-table [dataSource]="entities">
+        <ng-container matColumnDef="name">
+            <th mat-header-cell *matHeaderCellDef>
+                {{ 'PROVIDER_TABLE.SOCIAL_REASON' | translate }}
+            </th>
+            <td mat-cell *matCellDef="let entity">
+                {{ entity.state.enterpriseName }}
+            </td>
+        </ng-container>
+        <ng-container matColumnDef="nit">
+            <th mat-header-cell *matHeaderCellDef>
+                {{ 'PROVIDER_TABLE.NIT' | translate }}
+            </th>
+            <td mat-cell *matCellDef="let entity">
+                {{ entity.state.nit }}
+            </td>
+        </ng-container>
+        <ng-container matColumnDef="email">
+            <th mat-header-cell *matHeaderCellDef>
+                {{ 'PROVIDER_TABLE.EMAIL' | translate }}
+            </th>
+            <td mat-cell *matCellDef="let entity">
+                {{ entity.state.owner?.email }}
+            </td>
+        </ng-container>
+        <ng-container matColumnDef="contact">
+            <th mat-header-cell *matHeaderCellDef>
+                {{ 'PROVIDER_TABLE.CONTACT' | translate }}
+            </th>
+            <td mat-cell *matCellDef="let entity">
+                {{ entity.state.owner?.name }}
+                {{ entity.state.owner?.firstSurname }}
+                {{ entity.state.owner?.secondSurname }}
+            </td>
+        </ng-container>
+        <ng-container matColumnDef="phone">
+            <th mat-header-cell *matHeaderCellDef>
+                {{ 'PROVIDER_TABLE.PHONE' | translate }}
+            </th>
+            <td mat-cell *matCellDef="let entity">
+                {{ entity.state.phone?.countryCode?.code }}
+                {{ entity.state.phone?.number }}
+            </td>
+        </ng-container>
+        <ng-container matColumnDef="vinculationDate">
+            <th mat-header-cell *matHeaderCellDef>
+                {{ 'PROVIDER_TABLE.LINKING_DATE' | translate }}
+            </th>
+            <td mat-cell *matCellDef="let entity">
+                {{ entity.state.vinculationDate | date }}
+            </td>
+        </ng-container>
+        <ng-container matColumnDef="status">
+            <th mat-header-cell *matHeaderCellDef>
+                {{ 'PROVIDER_TABLE.STATUS' | translate }}
+            </th>
+            <td mat-cell *matCellDef="let entity">
+                <status-chip [status]="entity.state.linkStatus">
+                    {{
+                        'PROVIDER_TABLE.ENTERPRISE_LINK_STATUS.' +
+                            entity.state.linkStatus | translate
+                    }}
+                </status-chip>
+            </td>
+        </ng-container>
+        <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+        <tr mat-row *matRowDef="let row; columns: displayedColumns"></tr>
+    </table>
+</div>

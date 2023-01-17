@@ -1,0 +1,63 @@
+<form
+    (ngSubmit)="onSubmit()"
+    [formGroup]="form"
+    fxLayout="column"
+    fxLayoutAlign="start stretch"
+>
+    <mat-form-field>
+        <mat-label>
+            {{ 'ENTERPRISE_FORM.SOCIAL_REASON' | translate }}
+        </mat-label>
+        <input
+            type="text"
+            matInput
+            name="provider"
+            formControlName="enterprise"
+            [matAutocomplete]="auto"
+        />
+        <mat-error *ngIf="type == TYPE.PROVIDER">
+            {{ 'COMMON.VALIDATIONS.NO_PROVIDER_SELECTED' | translate }}
+        </mat-error>
+
+        <mat-error *ngIf="type == TYPE.FUNDING">
+            {{ 'ENTERPRISE_FORM.FUNDING_REQUEST' | translate }}
+        </mat-error>
+
+        <mat-icon
+            *ngIf="(error$ | async)"
+            matSuffix
+            matTooltip="Error al hacer la busqueda. Compruebe su conexión."
+            color="warn"
+        >
+            error_outline
+        </mat-icon>
+        <mat-spinner
+            *ngIf="(isLoading$ | async)"
+            [diameter]="25"
+            mode="indeterminate"
+            matSuffix
+        ></mat-spinner>
+        <span matSuffix>{{ form.value.enterprise?.nit }}</span>
+        <mat-autocomplete [displayWith]="displayWith" #auto="matAutocomplete">
+            <mat-option
+                *ngFor="let enterprise of (enterprises$ | async)"
+                [value]="enterprise"
+            >
+                {{ enterprise.enterpriseName }} ({{ enterprise.nit }})
+            </mat-option>
+        </mat-autocomplete>
+    </mat-form-field>
+    <div fxLayout="row" fxLayoutAlign="end" fxLayoutGap="12px">
+        <button (click)="onCancel()" type="button" mat-button>
+            {{ 'COMMON.ACTIONS.CANCEL' | translate | uppercase }}
+        </button>
+        <button
+            [disabled]="shouldDisable()"
+            type="submit"
+            mat-flat-button
+            color="accent"
+        >
+            {{ 'COMMON.ACTIONS.SAVE' | translate | uppercase }}
+        </button>
+    </div>
+</form>

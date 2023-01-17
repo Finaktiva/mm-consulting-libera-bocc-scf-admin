@@ -1,0 +1,89 @@
+<form [formGroup]="form" fxLayout="row" (ngSubmit)="onSubmit()">
+
+    <mat-form-field style='padding-top: 15px !important;' *ngIf="(shouldRenderDeleteButton || shouldRenderUploadButton || shouldRenderAdminButtons || shouldRenderUpdateButton || shouldRenderRejectButton) && 
+    (((userType$| async) === 'LIBERA_USER')?((canUploadDocuments$ | async) || (canDeleteDocuments$ | async) || (canApproveDocuments$ | async) || (canUpdateDocuments$ | async)):true)">
+        <mat-label>
+            {{ 'DOCUMENTATION_TABLE_ACTIONS.TITLE' | translate }}
+        </mat-label>
+        <mat-select name="product-type" (selectionChange)="changeAction($event)" formControlName='option'>
+            <mat-option [value]="1" *ngIf="shouldRenderUploadButton && (((userType$| async) === 'LIBERA_USER')?(canUploadDocuments$ | async):true)">{{ 'DOCUMENTATION_TABLE_ACTIONS.LOAD' | translate }}</mat-option>
+            <mat-option [value]="2" *ngIf="shouldRenderDeleteButton && (((userType$| async) === 'LIBERA_USER')?(canDeleteDocuments$ | async):true)">{{ 'DOCUMENTATION_TABLE_ACTIONS.DELETE' | translate }}</mat-option>
+            <mat-option [value]="3" *ngIf="shouldRenderAdminButtons && (((userType$| async) === 'LIBERA_USER')?(canApproveDocuments$ | async):true)">{{ 'DOCUMENTATION_TABLE_ACTIONS.APPROVE' | translate }}</mat-option>
+            <mat-option [value]="4" *ngIf="(shouldRenderAdminButtons || shouldRenderRejectButton) && (((userType$| async) === 'LIBERA_USER')?(canApproveDocuments$ | async):true)">{{ 'DOCUMENTATION_TABLE_ACTIONS.REJECT' | translate }}</mat-option>
+            <mat-option [value]="5" *ngIf="shouldRenderUpdateButton && (((userType$| async) === 'LIBERA_USER')?(canUpdateDocuments$ | async):true)">{{ 'DOCUMENTATION_TABLE_ACTIONS.UPDATE' | translate }}</mat-option>
+        </mat-select>
+    </mat-form-field>
+
+    <!-- <div
+        *ngIf="shouldRenderUploadButton"
+        fxLayout="row"
+        fxLayoutAlign="start center"
+    >
+        <button
+            [disabled]="shouldDisable()"
+            [matTooltip]="
+                'ENTERPRISE_DOCUMENTATION_TABLE_ACTIONS.CHOOSE_FILE' | translate
+            "
+            mat-icon-button
+            (click)="fileButton.click()"
+            type="button"
+        >
+            <mat-icon>attach_file</mat-icon>
+        </button>
+        <span *ngIf="isSubmitting" class="mat-body">
+            {{ 'COMMON.LOADING' | translate }}...
+        </span>
+        <button
+            formControlName="file"
+            hidden
+            #fileButton
+            type="button"
+            ngezFileInput
+            accept=".pdf"
+        ></button>
+    </div> -->
+
+    <!-- <button
+        *ngIf="shouldRenderAdminButtons"
+        [disabled]="isChangingStatus"
+        mat-icon-button
+        type="button"
+        (click)="reload.emit()"
+        [matTooltip]="'ENTERPRISE_DOCUMENTATION_TABLE_ACTIONS.RE_REQUEST_FILE' | translate"
+    >
+        <mat-icon>reply_all</mat-icon>
+    </button> -->
+
+    <!-- <button
+        *ngIf="shouldRenderAdminButtons"
+        [disabled]="isChangingStatus"
+        mat-icon-button
+        type="button"
+        (click)="approve.emit()"
+        [matTooltip]="'ENTERPRISE_DOCUMENTATION_TABLE_ACTIONS.APPROVE_FILE' | translate"
+    >
+        <mat-icon>thumb_up_alt</mat-icon>
+    </button>
+    <div
+        *ngIf="shouldRenderDeleteButton"
+        fxLayout="row"
+        fxLayoutAlign="start center"
+    >
+        <button
+            [disabled]="isDeleting"
+            (click)="onDelete()"
+            type="button"
+            [matTooltip]="
+                'ENTERPRISE_DOCUMENTATION_TABLE_ACTIONS.DELETE_FILE' | translate
+            "
+            mat-icon-button
+        >
+            <mat-icon>delete_outline</mat-icon>
+        </button>
+        <span *ngIf="isDeleting" class="mat-body">
+            {{ 'COMMON.DELETING' | translate }}...
+        </span>
+    </div> -->
+
+    <button type="submit" hidden #submitButton></button>
+</form>

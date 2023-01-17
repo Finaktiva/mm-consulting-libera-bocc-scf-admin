@@ -1,0 +1,50 @@
+<div style="overflow: auto">
+    <table mat-table [dataSource]="entities">
+        <ng-container matColumnDef="folio">
+            <th mat-header-cell *matHeaderCellDef>
+                {{ 'PROVIDER_BULK_TABLE.INVOICE' | translate }}
+            </th>
+            <td mat-cell *matCellDef="let entity">{{ entity.state.folio }}</td>
+        </ng-container>
+        <ng-container matColumnDef="file">
+            <th mat-header-cell *matHeaderCellDef>
+                {{ 'PROVIDER_BULK_TABLE.FILE' | translate }}
+            </th>
+            <td mat-cell *matCellDef="let entity">
+                {{ entity.state.filename }}
+            </td>
+        </ng-container>
+        <ng-container matColumnDef="creationDate">
+            <th mat-header-cell *matHeaderCellDef>
+                {{ 'COMMON.LABELS.UPLOAD_DATE' | translate }}
+            </th>
+            <td mat-cell *matCellDef="let entity">
+                {{ entity.state.creationDate | date }}
+            </td>
+        </ng-container>
+        <ng-container matColumnDef="providers">
+            <th mat-header-cell *matHeaderCellDef>
+                {{ 'COMMON.LABELS.PROVIDERS' | translate }}
+            </th>
+            <td mat-cell *matCellDef="let entity">
+                {{ entity.state.completedRequests }} /
+                {{ entity.state.totalRequests }}
+            </td>
+        </ng-container>
+        <ng-container matColumnDef="status">
+            <th mat-header-cell *matHeaderCellDef>
+                {{ 'COMMON.LABELS.STATUS' | translate }}
+            </th>
+            <td mat-cell *matCellDef="let entity">
+                <status-chip [status]="entity.state.status">
+                    {{
+                        'PROVIDER_BULK_TABLE.ENTERPRISE_PROVIDER_BULK_STATUS.' +
+                            entity.state.status | translate
+                    }}
+                </status-chip>
+            </td>
+        </ng-container>
+        <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+        <tr mat-row *matRowDef="let row; columns: displayedColumns"></tr>
+    </table>
+</div>

@@ -1,0 +1,23 @@
+<form fxLayout="column" fxLayoutGap="12px" [formGroup]="form">
+    <mat-progress-bar *ngIf="(isSubmitting$ | async)" mode="indeterminate"></mat-progress-bar>
+    <h2 mat-dialog-title>
+        {{ 'SEND_DOCUMENTATION_DIALOG.TITLE' | translate }}
+    </h2>
+    <mat-dialog-content>
+        <p class="mat-body">
+            {{ 'SEND_DOCUMENTATION_DIALOG.BODY' | translate }}
+        </p>
+        <p class="mat-body">
+            {{ 'SEND_DOCUMENTATION_DIALOG.QUESTION' | translate }}
+        </p>
+    </mat-dialog-content>
+    <mat-checkbox (change)="onChangeConfirm()">{{ 'SEND_DOCUMENTATION_DIALOG.CHECK_TEXT' | translate }}</mat-checkbox>
+    <mat-dialog-actions fxLayout="row" fxLayoutAlign="end">
+        <button mat-button [mat-dialog-close]="false">
+        {{ 'COMMON.ACTIONS.CANCEL' | translate | uppercase }}
+    </button>
+        <button [disabled]="isSubmitting$ | async" (click)="onSubmit()" mat-flat-button color="primary">
+        {{ 'COMMON.ACTIONS.ACCEPT' | translate | uppercase }}
+    </button>
+    </mat-dialog-actions>
+</form>

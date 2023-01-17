@@ -1,0 +1,76 @@
+<form
+    (ngSubmit)="onSubmit()"
+    [formGroup]="form"
+    fxLayout="column"
+    fxLayoutGap="4px"
+>
+    <div
+        [accept]="accept"
+        ngezFileDropzone
+        formControlName="file"
+        fxLayout="column"
+        fxLayoutAlign="center stretch"
+    >
+        <div
+            *ngIf="!form.value.file"
+            fxLayout="row"
+            fxFlex
+            fxLayoutAlign="center center"
+        >
+            <span style="color: #8798AD" class="mat-subheading-2 no-margin">
+                {{ 'FILE_DROPZONE.MESSAGE' | translate }}
+            </span>
+            <button
+                [matTooltip]="'IMAGE_FORM.TOOLTIP' | translate"
+                type="button"
+                (click)="onBrowse()"
+                mat-button
+                color="accent"
+            >
+                {{ 'FILE_DROPZONE.SELECT' | translate | uppercase }}
+            </button>
+        </div>
+        <div
+            *ngIf="form.value.file"
+            fxLayout="row"
+            fxFlex
+            fxLayoutAlign="space-between center"
+        >
+            <div fxFlex fxLayout="column">
+                <span
+                    style="font-weight: 500; word-break: break-all;"
+                    class="mat-subheading-2 no-margin"
+                >
+                    {{ form.value.file.name }}
+                </span>
+                <span class="mat-subheading-2 no-margin">
+                    {{
+                        form.value.file.size
+                            | ngezBytes: null:'kibibyte'
+                            | number: '1.1-1'
+                    }}
+                    KB
+                </span>
+            </div>
+            <button
+                [matTooltip]="'IMAGE_FORM.TOOLTIP' | translate"
+                type="button"
+                (click)="onBrowse()"
+                mat-button
+                color="accent"
+            >
+                {{ 'COMMON.ACTIONS.REPLACE' | translate | uppercase }}
+            </button>
+        </div>
+    </div>
+    <ng-content></ng-content>
+    <button
+        [disabled]="shouldDisable()"
+        type="submit"
+        mat-flat-button
+        color="primary"
+        fxFlexAlign="end"
+    >
+        {{ 'COMMON.ACTIONS.SAVE' | translate | uppercase }}
+    </button>
+</form>

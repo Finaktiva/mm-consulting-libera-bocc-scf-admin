@@ -1,0 +1,72 @@
+<div fxLayout="column" fxLayoutGap="12px">
+    <div fxLayout="column">
+        <span class="mat-body">
+            {{ 'ADMIN_DETAIL.ADMIN_NAME' | translate }}
+        </span>
+        <span class="mat-body-2" *ngIf="entity?.owner; else empty">
+            {{ entity?.owner?.name }}
+            {{ entity?.owner?.firstSurname }}
+            {{ entity?.owner?.secondSurname }}
+        </span>
+    </div>
+    <div fxLayout="column">
+        <span class="mat-body">
+            {{ 'ADMIN_DETAIL.DOCUMENT_TYPE' | translate }}
+        </span>
+        <span class="mat-body-2" *ngIf="entity?.owner?.documentType; else empty">
+            {{ 'CREATE_PROGRAM_FORM.DOCUMENT_TYPES.' + entity.owner?.documentType | translate}}
+        </span>
+    </div>
+    <div fxLayout="column">
+        <span class="mat-body">
+            {{ 'ADMIN_DETAIL.DOCUMENT_NUMBER' | translate }}
+        </span>
+        <span class="mat-body-2" *ngIf="entity?.owner?.documentNumber; else empty">
+            {{ entity.owner?.documentNumber}}
+        </span>
+    </div>
+    <div fxLayout="column">
+        <span class="mat-body">
+            {{ 'ADMIN_DETAIL.EMAIL' | translate }}
+        </span>
+        <span class="mat-body-2" *ngIf="entity?.owner?.email; else empty">
+            {{ entity.owner?.email }}
+        </span>
+    </div>
+        <div fxLayout="column">
+        <span class="mat-body">
+            {{ 'ENTERPRISE_DETAIL.PHONE_EXTENSION' | translate }}
+        </span>
+        <span class="mat-body-2" *ngIf="entity.phone?.extension; else empty">
+            {{ entity.phone?.extension }}
+        </span>
+    </div>
+    <div fxLayout="column">
+        <span class="mat-body">
+            {{ 'ENTERPRISE_DETAIL.PHONE' | translate }}
+        </span>
+        <span class="mat-body-2" *ngIf="entity.phone?.number; else empty">
+            {{ entity.phone?.number }}
+        </span>
+    </div>
+    <div fxLayout="column">
+        <span class="mat-subheading-2 no-margin">
+            {{ 'COMMON.ACTIVE_MODULES' | translate }}
+        </span>
+        <div fxLayout="row wrap" fxLayoutGap="12px">
+            <circle-chip *ngFor="let module of entity?.owner?.modules" color="primary">
+                <span [matTooltip]="'COMMON.MODULES.' + module | translate">
+                    {{
+                        'COMMON.MODULES.' + module
+                            | translate
+                            | slice: 0:2
+                            | uppercase
+                    }}
+                </span>
+            </circle-chip>
+        </div>
+    </div>
+    <ng-template #empty>
+        --
+    </ng-template>
+</div>

@@ -1,0 +1,11 @@
+<div fxLayout="column" fxLayoutAlign="start stretch" fxLayoutGap="12px">
+    <documentation-list-item
+        (delete)="onDelete($event)"
+        (upload)="onUpload($event)"
+        [error]="entity.ui.upload.error"
+        [isDeleting]="entity.ui.delete.submitting"
+        [isUploading]="entity.ui.upload.submitting"
+        [documentation]="entity.state"
+        *ngFor="let entity of entities; trackBy: trackBy"
+    ></documentation-list-item>
+</div>

@@ -1,0 +1,37 @@
+<div fxLayout="column">
+    <div style="margin: 16px;" fxLayout="column" fxLayoutGap="15px">
+        <div class="page-content mat-elevation-z1 table-container" fxLayout="column" fxLayoutGap="12px">
+            <div style="display: flex; justify-content: space-between; align-items: center; padding: 12px; padding-bottom: 0px;">
+                <h1 class='mat-title' style='margin-bottom: 0px;'>{{ 'FINANCIAL_CONDITIONS.TITLE' | translate }}</h1>
+            </div>
+            <div style="padding: 12px;">
+
+                <div
+                    fxLayout="row"
+                    fxLayoutAlign="start center"
+                    fxLayoutGap="15px"
+                >
+                    <span fxFlex="1 1 auto"></span>
+                    <filter-plan-form
+                        [filters]="filters$ | async"
+                        (onSubmit)="onUpdateFilters($event)"
+                    ></filter-plan-form>
+                </div>                
+                <div class="progress-bar-container">
+                    <mat-progress-bar fxFlexAlign="center" *ngIf="(isLoading$ | async)" mode="indeterminate"></mat-progress-bar>
+
+                    <financial-conditions-table [entities]="entities"></financial-conditions-table>
+                    
+                    <mat-paginator
+                        [showFirstLastButtons]="true"
+                        [pageSize]="paginationSize$ | async"
+                        [length]="total$ | async"
+                        [pageIndex]="paginationIndex$ | async"
+                        [pageSizeOptions]="PAGE_SIZE_OPTIONS"
+                        (page)="onChangePage($event)"
+                    ></mat-paginator>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

@@ -1,0 +1,33 @@
+<div style="overflow: auto">
+    <table [dataSource]="entities" mat-table>
+        <ng-container matColumnDef="name">
+            <th mat-header-cell *matHeaderCellDef>
+                {{ 'CUSTOM_ATTRIBUTE_TABLE.CUSTOM_FIELD' | translate }}
+            </th>
+            <td mat-cell *matCellDef="let entity">{{ entity.state.name }}</td>
+        </ng-container>
+        <ng-container matColumnDef="creationDate">
+            <th mat-header-cell *matHeaderCellDef>
+                {{ 'CUSTOM_ATTRIBUTE_TABLE.CREATION_DATE' | translate }}
+            </th>
+            <td mat-cell *matCellDef="let entity">
+                {{ entity.state.creationDate | date }}
+            </td>
+        </ng-container>
+        <ng-container matColumnDef="menu">
+            <th mat-header-cell *matHeaderCellDef></th>
+            <td mat-cell *matCellDef="let entity">
+                <mat-menu #appMenu="matMenu">
+                    <button (click)="onDelete(entity.state.id)" mat-menu-item>
+                        {{ 'COMMON.ACTIONS.DELETE' | translate | uppercase }}
+                    </button>
+                </mat-menu>
+                <button mat-icon-button [matMenuTriggerFor]="appMenu">
+                    <mat-icon>more_vert</mat-icon>
+                </button>
+            </td>
+        </ng-container>
+        <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+        <tr mat-row *matRowDef="let row; columns: displayedColumns"></tr>
+    </table>
+</div>

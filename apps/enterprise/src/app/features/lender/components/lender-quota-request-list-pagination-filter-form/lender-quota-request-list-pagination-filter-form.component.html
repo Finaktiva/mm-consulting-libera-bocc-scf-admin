@@ -1,0 +1,55 @@
+<form
+    (ngSubmit)="onSubmit()"
+    [formGroup]="form"
+    fxLayout="row"
+    fxLayoutGap="12px"
+>
+    <button
+        type="button"
+        mat-button
+        *ngIf="!shouldRenderResetButton()"
+        (click)="onReset()"
+    >
+        {{ 'COMMON.LABELS.CLEAN_FILTERS' | translate }}
+    </button>
+    <mat-form-field appearance="standard">
+        <mat-label>{{ 'COMMON.LABELS.FILTER_BY' | translate }}</mat-label>
+        <mat-select formControlName="filter_by">
+            <mat-option
+                [value]="
+                    LenderQuotaRequestListPaginationFilterByType.enterpriseName
+                "
+            >
+                {{ 'COMMON.FILTERS.PAYER_SOCIAL_REASON' | translate }}
+            </mat-option>
+            <mat-option
+                [value]="LenderQuotaRequestListPaginationFilterByType.status"
+            >
+                {{ 'COMMON.FILTERS.STATUS' | translate }}
+            </mat-option>
+        </mat-select>
+    </mat-form-field>
+    <mat-form-field appearance="standard" *ngIf="shouldRenderTextInput()">
+        <input matInput formControlName="q" type="text" name="query" />
+    </mat-form-field>
+    <mat-form-field appearance="standard" *ngIf="shouldRenderSelect()">
+        <mat-select formControlName="q" type="number" name="query">
+            <mat-option [value]="LENDER_QUOTA_REQUEST_STATUS.APPROVED">
+                {{ 'LENDER_QUOTA_REQUEST_LIST.ACCEPT' | translate }}
+            </mat-option>
+            <mat-option [value]="LENDER_QUOTA_REQUEST_STATUS.REJECTED">
+                {{ 'LENDER_QUOTA_REQUEST_LIST.REJECT' | translate }}
+            </mat-option>
+            <mat-option
+                [value]="LENDER_QUOTA_REQUEST_STATUS.PENDING_LENDER_APPROVAL"
+            >
+                {{ 'LENDER_QUOTA_REQUEST_LIST.NEW' | translate }}
+            </mat-option>
+            <mat-option
+                [value]="LENDER_QUOTA_REQUEST_STATUS.PENDING_PAYER_APPROVAL"
+            >
+                {{ 'LENDER_QUOTA_REQUEST_LIST.QUOTA' | translate }}
+            </mat-option>
+        </mat-select>
+    </mat-form-field>
+</form>

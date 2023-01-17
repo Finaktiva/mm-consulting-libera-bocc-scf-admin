@@ -1,0 +1,25 @@
+<mat-progress-bar
+    *ngIf="(isSubmitting$ | async)"
+    mode="indeterminate"
+></mat-progress-bar>
+<h2 mat-dialog-title>{{ 'NEGOTIATION_DIALOG.TITLE' | translate }}</h2>
+<mat-dialog-content>
+    <negotiation-form
+        #form
+        (onSubmit)="onSubmit($event)"
+        [isSubmitting]="isSubmitting$ | async"
+    ></negotiation-form>
+</mat-dialog-content>
+<mat-dialog-actions fxLayout="row" fxLayoutAlign="end" fxLayoutGap="12px">
+    <button mat-button mat-dialog-close>
+        {{ 'COMMON.ACTIONS.CANCEL' | translate | uppercase }}
+    </button>
+    <button
+        [disabled]="form.shouldDisable()"
+        (click)="form.submit()"
+        mat-flat-button
+        color="primary"
+    >
+        {{ 'COMMON.ACTIONS.SEND' | translate | uppercase }}
+    </button>
+</mat-dialog-actions>

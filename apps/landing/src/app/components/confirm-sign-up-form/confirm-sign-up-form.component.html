@@ -1,0 +1,87 @@
+<form
+    (ngSubmit)="onSubmit()"
+    [formGroup]="form"
+    fxLayout="column"
+    fxLayoutAlign="center stretch"
+>
+    <mat-form-field>
+        <mat-label>Email</mat-label>
+        <input
+            matInput
+            name="email"
+            formControlName="email"
+            placeholder="ejemplo@ejemplo.com"
+        />
+        <mat-error>
+            <span *ngIf="form.hasError('required', 'email')">
+                Este campo es requerido
+            </span>
+            <span *ngIf="form.hasError('email', 'email')">
+                No es un formato válido de email
+            </span>
+        </mat-error>
+    </mat-form-field>
+    <mat-form-field>
+        <mat-label>Código</mat-label>
+        <input
+            matInput
+            name="code"
+            formControlName="code"
+            placeholder="Ejemplo: 123456"
+            [minlength]="codeLength"
+            [maxlength]="codeLength"
+        />
+        <mat-error>
+            <span *ngIf="form.hasError('required', 'code')">
+                Este campo es requerido
+            </span>
+            <span
+                *ngIf="
+                    form.hasError('minlength', 'code') ||
+                    form.hasError('maxlength', 'code')
+                "
+            >
+                El código de verificación consiste de 6 caracteres.
+            </span>
+        </mat-error>
+    </mat-form-field>
+    <div fxLayout="column" fxLayoutAlign="start stretch" fxLayoutGap="24px">
+        <div fxLayoutAlign="start center" fxLayoutGap="8px">
+            <span class="mat-body">
+                ¿No recibiste ningún email?
+            </span>
+            <button
+                type="button"
+                (click)="onSendConfirmationCode()"
+                [disabled]="
+                    isSendingConfirmationCode ||
+                    (this.form.get('email').invalid &&
+                        this.form.get('email').touched)
+                "
+                mat-button
+                color="primary"
+            >
+                REENVIAR CÓDIGO
+            </button>
+            <button
+                type="button"
+                mat-button
+                color="primary"
+                (click)="onOpenContactInfo()"
+            >
+                CONTÁCTANOS
+            </button>
+        </div>
+        <button
+            type="submit"
+            mat-flat-button
+            color="primary"
+            [disabled]="shouldDisable()"
+        >
+            VERIFICAR CÓDIGO
+        </button>
+        <a type="button" mat-button routerLink="/sign-in">
+            REGRESAR
+        </a>
+    </div>
+</form>

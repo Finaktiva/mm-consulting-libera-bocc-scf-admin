@@ -1,0 +1,113 @@
+<div fxLayout="column">
+    <div class="page-toolbar" fxLayoutAlign="start center">
+        <a mat-icon-button routerLink="/requests/modules">
+            <mat-icon>arrow_back</mat-icon>
+        </a>
+        <span class="mat-headline no-margin">
+            {{ 'COMMON.LABELS.BACK_TO_LIST' | translate }}
+        </span>
+    </div>
+    <div style="margin: 16px;" fxLayout="column" fxLayoutGap="15px">
+        <mat-spinner
+            *ngIf="(isLoading$ | async)"
+            fxFlexAlign="center"
+        ></mat-spinner>
+        <alert *ngIf="(error$ | async)" color="warn">
+            <span>
+                {{ 'COMMON.ERRORS.REQUEST_LOAD' | translate }}
+            </span>
+            <button (click)="onRetryRequest()" mat-flat-button color="warn">
+                {{ 'COMMON.ACTIONS.RETRY' | translate | uppercase }}
+            </button>
+        </alert>
+        <ng-container *ngIf="(hasLoaded$ | async)">
+            <div
+                class="mat-elevation-z1 card"
+                fxLayout="column"
+                fxLayoutGap="12px"
+            >
+                <h1 class="mat-title">
+                    {{ 'MODULE_DETAIL_PAGE.PROGRAM_GENERAL_INFO' | translate }}
+                </h1>
+                <mat-spinner
+                    fxFlexAlign="center"
+                    *ngIf="(isLoadingEnterprise$ | async)"
+                ></mat-spinner>
+                <alert *ngIf="(enterpriseError$ | async)" color="warn">
+                    <span>
+                        {{
+                            'MODULE_DETAIL_PAGE.ENTERPRISE_LOAD_ERROR'
+                                | translate
+                        }}
+                    </span>
+                    <button
+                        (click)="onRetryEnterprise()"
+                        mat-flat-button
+                        color="warn"
+                    >
+                        {{ 'COMMON.ACTIONS.RETRY' | translate | uppercase }}
+                    </button>
+                </alert>
+                <enterprise-info
+                    *ngIf="(hasLoadedEnterprise$ | async)"
+                    [info]="enterprise$ | async"
+                ></enterprise-info>
+            </div>
+            <div
+                class="mat-elevation-z1 progress-bar-container card"
+                fxLayout="column"
+                fxLayoutGap="12px"
+            >
+                <h1 class="mat-title">
+                    {{ 'COMMON.LABELS.DOCUMENTATION' | translate }}
+                </h1>
+                <mat-spinner
+                    fxFlexAlign="center"
+                    *ngIf="(isLoadingDocumentation$ | async)"
+                ></mat-spinner>
+                <alert *ngIf="(documentationError$ | async)" color="warn">
+                    <span>
+                        {{ 'COMMON.ERRORS.DOCUMENTATION_LOAD' }}
+                    </span>
+                    <button
+                        (click)="onRetryDocumentation()"
+                        mat-flat-button
+                        color="warn"
+                    >
+                        {{ 'COMMON.ACTIONS.RETRY' | translate | uppercase }}
+                    </button>
+                </alert>
+                <enterprise-documentation-table
+                    *ngIf="(hasLoadedDocumentation$ | async)"
+                    [showActions]="true"
+                    [canAdmin]="true"
+                    [entities]="documentationEntities$ | async"
+                    (upload)="onUploadFile($event)"
+                    (changeStatus)="onChangeDocumentationStatus($event)"
+                ></enterprise-documentation-table>
+                <div
+                    *ngIf="(shouldRenderActionButtons$ | async)"
+                    fxLayout="row"
+                    fxLayoutAlign="end"
+                    fxLayoutGap="10px"
+                >
+                    <button
+                        (click)="onRejectRequest()"
+                        [disabled]="shouldDisableRejectButton$ | async"
+                        mat-button
+                    >
+                        {{ 'COMMON.ACTIONS.REJECT_MODULE' | translate }}
+                    </button>
+                    <button
+                        [disabled]="shouldDisableApproveModuleButton$ | async"
+                        (click)="onAcceptRequest()"
+                        mat-flat-button
+                        color="accent"
+                    >
+                        {{ 'COMMON.ACTIONS.APPROVE_MODULE' | translate }}
+                    </button>
+                </div>
+            </div>
+        </ng-container>
+    </div>
+</div>

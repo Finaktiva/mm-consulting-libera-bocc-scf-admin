@@ -1,0 +1,80 @@
+<form
+    [formGroup]="form"
+    (ngSubmit)="onSubmit()"
+    fxLayout="column"
+    fxLayoutAlign="start stretch"
+>
+    <mat-form-field>
+        <mat-label>
+            {{ 'PROFILE_FORM.NAME' | translate }}
+        </mat-label>
+        <input formControlName="name" name="name" type="text" matInput />
+        <mat-error>
+            <span *ngIf="form.hasError('required', 'name')">
+                {{ 'COMMON.VALIDATIONS.REQUIRED' | translate }}
+            </span>
+            <span *ngIf="form.hasError('alphaWithSpace', 'name')">
+                {{ 'COMMON.VALIDATIONS.ONLY_LETTERS' | translate }}
+            </span>
+            <span *ngIf="form.hasError('whitespace', 'name')">
+                {{ 'COMMON.VALIDATIONS.NO_CONTENT' | translate }}
+            </span>
+        </mat-error>
+    </mat-form-field>
+    <mat-form-field>
+        <mat-label>
+            {{ 'PROFILE_FORM.FIRST_SURNAME' | translate }}
+        </mat-label>
+        <input
+            formControlName="firstSurname"
+            name="first-surname"
+            type="text"
+            matInput
+        />
+        <mat-error>
+            <span *ngIf="form.hasError('required', 'firstSurname')">
+                {{ 'COMMON.VALIDATIONS.REQUIRED' | translate }}
+            </span>
+            <span *ngIf="form.hasError('alphaWithSpace', 'firstSurname')">
+                {{ 'COMMON.VALIDATIONS.ONLY_LETTERS' | translate }}
+            </span>
+            <span *ngIf="form.hasError('whitespace', 'firstSurname')">
+                {{ 'COMMON.VALIDATIONS.NO_CONTENT' | translate }}
+            </span>
+        </mat-error>
+    </mat-form-field>
+    <mat-form-field>
+        <mat-label>
+            {{ 'PROFILE_FORM.SECOND_SURNAME' | translate }}
+        </mat-label>
+        <input
+            formControlName="secondSurname"
+            name="second-surname"
+            type="text"
+            matInput
+        />
+        <mat-error>
+            <span *ngIf="form.hasError('alphaWithSpace', 'secondSurname')">
+                {{ 'COMMON.VALIDATIONS.ONLY_LETTERS' | translate }}
+            </span>
+            <span *ngIf="form.hasError('whitespace', 'secondSurname')">
+                {{ 'COMMON.VALIDATIONS.NO_CONTENT' | translate }}
+            </span>
+        </mat-error>
+    </mat-form-field>
+    <mat-form-field>
+        <mat-label>
+            {{ 'PROFILE_FORM.EMAIL' | translate }}
+        </mat-label>
+        <input formControlName="email" name="email" type="text" matInput />
+    </mat-form-field>
+    <button
+        [disabled]="shouldDisable()"
+        fxFlexAlign="end"
+        type="submit"
+        mat-flat-button
+        color="accent"
+    >
+        {{ 'COMMON.ACTIONS.SAVE' | translate | uppercase }}
+    </button>
+</form>

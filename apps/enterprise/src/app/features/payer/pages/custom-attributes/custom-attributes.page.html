@@ -1,0 +1,45 @@
+<div fxLayout="column">
+    <div fxLayout="row" fxLayoutAlign="start center" class="page-toolbar">
+        <span class="mat-headline no-margin">
+            {{ 'CUSTOM_ATTRIBUTES_PAGE.TITLE' | translate }}
+        </span>
+    </div>
+
+    <div class="page-content progress-bar-container mat-elevation-z1 table-container">
+        <mat-progress-bar
+            *ngIf="(shouldRenderLoader$ | async)"
+            mode="indeterminate"
+        ></mat-progress-bar>
+        <div
+            fxLayout="column"
+            fxLayoutAlign="center center"
+            [fxShow]="shouldRenderMessage$ | async"
+        >
+            <h2 class="mat-display-1 no-margin">
+                {{ 'CUSTOM_ATTRIBUTES_PAGE.MESSAGE' | translate }}
+            </h2>
+            <p class="mat-body">
+                {{ 'CUSTOM_ATTRIBUTES_PAGE.BODY' | translate }}
+            </p>
+            <button mat-button color="accent" (click)="onAddCustomAttribute()">
+                + {{ 'CUSTOM_ATTRIBUTES_PAGE.NEW_FIELD' | translate }}
+            </button>
+        </div>
+        <div [fxShow]="shouldRenderTable$ | async">
+            <custom-attributes-table
+                [entities]="entities$ | async"
+                (delete)="onDelete($event)"
+            ></custom-attributes-table>
+            <mat-divider></mat-divider>
+            <button mat-button color="accent" (click)="onAddCustomAttribute()">
+                + {{ 'CUSTOM_ATTRIBUTES_PAGE.ADD_FIELD' | translate }}
+            </button>
+        </div>
+        <custom-attributes-form
+            *ngIf="(isAddingCustomAttribute$ | async)"
+            (cancel)="onCloseForm()"
+            (onSubmit)="onSubmit($event)"
+            [isSubmitting]="isSubmitting$ | async"
+        ></custom-attributes-form>
+    </div>
+</div>

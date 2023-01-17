@@ -1,0 +1,23 @@
+<mat-progress-bar
+    *ngIf="(isSubmitting$ | async)"
+    mode="indeterminate"
+></mat-progress-bar>
+<h2 mat-dialog-title>{{ 'COMMON.OFFER.ACCEPT.TITLE' | translate }}</h2>
+<mat-dialog-content>
+    <p class="mat-body">
+        {{ 'COMMON.OFFER.ACCEPT.BODY' | translate }}
+    </p>
+</mat-dialog-content>
+<mat-dialog-actions fxLayout="row" fxLayoutAlign="end" fxLayoutGap="12px">
+    <button mat-button mat-dialog-close>
+        {{ 'COMMON.ACTIONS.CANCEL' | translate | uppercase }}
+    </button>
+    <button
+        [disabled]="isSubmitting$ | async"
+        (click)="onSubmit()"
+        mat-flat-button
+        color="accent"
+    >
+        {{ 'COMMON.ACTIONS.ACCEPT' | translate | uppercase }}
+    </button>
+</mat-dialog-actions>

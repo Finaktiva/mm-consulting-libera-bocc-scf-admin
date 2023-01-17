@@ -1,0 +1,68 @@
+<div fxLayout="column">
+    <div
+        fxLayout="row"
+        fxLayoutAlign="space-between center"
+        class="page-toolbar "
+    >
+        <span class="mat-headline no-margin">
+            {{ 'COMMON.LABELS.PERSONALIZATION' | translate }}
+        </span>
+    </div>
+    <div
+        class="page-content mat-elevation-z1"
+        fxLayout="column"
+        fxLayoutAlign="start stretch"
+    >
+        <mat-spinner
+            *ngIf="(isLoading$ | async)"
+            fxFlexAlign="center"
+        ></mat-spinner>
+        <alert *ngIf="(error$ | async)" color="warn">
+            <span>
+                {{ 'COMMON.ERRORS.LOAD_CUSTOMIZED_FIELDS' | translate }}</span
+            >
+            <button (click)="fetchAll()" mat-flat-button color="warn">
+                {{ 'COMMON.ACTIONS.RETRY' | translate | uppercase }}
+            </button>
+        </alert>
+        <ng-container *ngIf="(hasLoaded$ | async)">
+            <custom-attribute-form
+                [isSubmitting]="isSubmitting$ | async"
+                (onSubmit)="onSubmit($event)"
+                (cancel)="onCloseForm()"
+                *ngIf="shouldRenderForm; else content"
+            ></custom-attribute-form>
+
+            <ng-template #content>
+                <div
+                    *ngIf="(shouldRenderInfo$ | async); else table"
+                    fxLayout="column"
+                    fxLayoutAlign="start center"
+                >
+                    <h1 class="mat-headline text-muted">
+                        {{ 'CUSTOM_ATTRIBUTE_LIST_PAGE.NO_CUSTOMIZED_FIELDS' |
+                        translate }}
+                    </h1>
+                    <h2 class="mat-subheading-2">
+                        {{ 'CUSTOM_ATTRIBUTE_LIST_PAGE.BODY' | translate }}
+                    </h2>
+                </div>
+                <ng-template #table>
+                    <custom-attribute-table
+                        (delete)="onDelete($event)"
+                        [entities]="entities$ | async"
+                    ></custom-attribute-table>
+                </ng-template>
+                <mat-divider style="margin-bottom: 16px"></mat-divider>
+                <button
+                    fxFlexAlign="start"
+                    (click)="onOpenForm()"
+                    mat-button
+                    color="accent"
+                >
+                    {{ 'CUSTOM_ATTRIBUTE_LIST_PAGE.NEW_FIELD' | translate }}
+                </button>
+            </ng-template>
+        </ng-container>
+    </div>
+</div>

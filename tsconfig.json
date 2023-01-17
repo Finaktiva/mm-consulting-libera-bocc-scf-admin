@@ -1,0 +1,34 @@
+{
+    "compileOnSave": false,
+    "compilerOptions": {
+        "sourceMap": true,
+        "declaration": false,
+        "moduleResolution": "node",
+        "emitDecoratorMetadata": true,
+        "experimentalDecorators": true,
+        "importHelpers": true,
+        "target": "es2015",
+        "module": "esnext",
+        "typeRoots": ["node_modules/@types"],
+        "lib": ["es2017", "dom"],
+        "skipLibCheck": true,
+        "skipDefaultLibCheck": true,
+        "baseUrl": ".",
+        "paths": {
+            "@libera/api": ["libs/api/src/index.ts"],
+            "@libera/constants": ["libs/constants/index.ts"],
+            "@libera/models/*": ["libs/models/*"],
+            "@libera/environment": ["libs/environment/index.ts"],
+            "@libera/base": ["libs/base/src/index.ts"],
+            "@libera/authentication": ["libs/authentication/src/index.ts"],
+            "@libera/providers": ["libs/providers/src/index.ts"],
+            "@libera/validators": ["libs/validators/src/index.ts"],
+            "@libera/shared": ["libs/shared/src/index.ts"],
+            "@libera/mocks/*": ["libs/mocks/*"],
+            "@libera/utils": ["libs/utils/index.ts"],
+            "@libera/state": ["libs/state/src/index.ts"]
+        },
+        "rootDir": "."
+    },
+    "exclude": ["node_modules", "tmp"]
+}

@@ -1,0 +1,31 @@
+<mat-progress-bar
+    *ngIf="(isSubmitting$ | async)"
+    mode="indeterminate"
+></mat-progress-bar>
+
+<h2 mat-dialog-title>
+    {{ 'CONFIRM_DELETE_CUSTOM_ATTRIBUTE_DIALOG.TITLE' | translate }}
+</h2>
+
+<div mat-dialog-content>
+    <p class="mat-body">
+        {{ 'CONFIRM_DELETE_CUSTOM_ATTRIBUTE_DIALOG.BODY' | translate }}
+    </p>
+    <mat-checkbox [(ngModel)]="isConfirmed" color="primary">
+        {{ 'COMMON.LABELS.CONFIRM' | translate }}
+    </mat-checkbox>
+</div>
+
+<div mat-dialog-actions fxLayoutGap="10px" fxLayoutAlign="end">
+    <button mat-button mat-dialog-close>
+        {{ 'COMMON.ACTIONS.CANCEL' | translate }}
+    </button>
+    <button
+        mat-flat-button
+        color="accent"
+        (click)="onSubmit()"
+        [disabled]="!isConfirmed || (isSubmitting$ | async)"
+    >
+        {{ 'COMMON.ACTIONS.DELETE' | translate }}
+    </button>
+</div>

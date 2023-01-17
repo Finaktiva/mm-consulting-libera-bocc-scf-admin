@@ -1,0 +1,29 @@
+<form fxLayout="column" fxLayoutGap="12px" [formGroup]="form">
+    <mat-progress-bar *ngIf="(isSubmitting$ | async)" mode="indeterminate"></mat-progress-bar>
+    <h2 mat-dialog-title>
+        {{ 'APPROVE_FINANCIAL_CONDITIONS_DIALOG.TITLE_'+data.action | translate }}
+    </h2>
+    <mat-dialog-content>
+        <p class="mat-body">
+            {{ 'APPROVE_FINANCIAL_CONDITIONS_DIALOG.BODY_'+data.action | translate }}
+        </p>
+    </mat-dialog-content>
+    <mat-checkbox (change)="onChangeConfirm()">{{ 'APPROVE_FINANCIAL_CONDITIONS_DIALOG.CHECK_TEXT' | translate }}</mat-checkbox>
+    <mat-form-field *ngIf="data.action === 'DECLINE'" [style.width.%]="100" style="align-self: center;" >
+        <mat-label>{{ 'COMMON.LABELS.COMMENTS' | translate }}*</mat-label>
+        <textarea formControlName="comment" [style.max-height.px]="200" matInput type="text" autocomplete='off' rows='4' maxlength='200'></textarea>
+        <mat-error>
+            <span *ngIf="form.hasError('required', 'comment')">
+                {{ 'COMMON.VALIDATIONS.REQUIRED' | translate }}
+            </span>
+        </mat-error>
+    </mat-form-field>
+    <mat-dialog-actions fxLayout="row" fxLayoutAlign="end">
+        <button mat-button mat-dialog-close>
+            {{ 'COMMON.ACTIONS.CANCEL' | translate | uppercase }}
+        </button>
+        <button [disabled]="isSubmitting$ | async" (click)="onSubmit()" mat-flat-button color="primary">
+            {{ 'COMMON.ACTIONS.ACCEPT' | translate | uppercase }}
+        </button>
+    </mat-dialog-actions>
+</form>

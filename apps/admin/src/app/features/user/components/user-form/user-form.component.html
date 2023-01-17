@@ -1,0 +1,109 @@
+<mat-progress-bar
+    *ngIf="(checkingEmail | async)"
+    mode="indeterminate"
+></mat-progress-bar>
+<form
+    (ngSubmit)="onSubmit()"
+    [formGroup]="form"
+    fxLayout="column"
+    fxLayoutAlign="start stretch"
+>
+    <mat-form-field>
+        <mat-label> {{ 'USER_FORM.NAME' | translate }}* </mat-label>
+        <input maxlength='50' matInput type="text" name="name" formControlName="name" />
+        <mat-error>
+            <span *ngIf="form.hasError('required', 'name')">
+                {{ 'COMMON.VALIDATIONS.REQUIRED' | translate }}
+            </span>
+            <span *ngIf="form.hasError('alphaWithSpace', 'name')">
+                {{ 'COMMON.VALIDATIONS.ONLY_LETTERS' | translate }}
+            </span>
+            <span *ngIf="form.hasError('whitespace', 'name')">
+                {{ 'COMMON.VALIDATIONS.NO_CONTENT' | translate }}
+            </span>
+        </mat-error>
+    </mat-form-field>
+    <div fxLayout.gt-md="row" fxLayout="column" fxLayoutGap.gt-md="12px">
+        <mat-form-field fxFlex.gt-md>
+            <mat-label>
+                {{ 'USER_FORM.FIRST_SURNAME' | translate }}*
+            </mat-label>
+            <input
+                matInput
+                type="text"
+                name="first-surname"
+                formControlName="firstSurname"
+                maxlength='50'
+            />
+            <mat-error>
+                <span *ngIf="form.hasError('required', 'firstSurname')">
+                    {{ 'COMMON.VALIDATIONS.REQUIRED' | translate }}
+                </span>
+                <span *ngIf="form.hasError('alphaWithSpace', 'firstSurname')">
+                    {{ 'COMMON.VALIDATIONS.ONLY_LETTERS' | translate }}
+                </span>
+                <span *ngIf="form.hasError('whitespace', 'firstSurname')">
+                    {{ 'COMMON.VALIDATIONS.NO_CONTENT' | translate }}
+                </span>
+            </mat-error>
+        </mat-form-field>
+        <mat-form-field fxFlex.gt-md>
+            <mat-label>
+                {{ 'USER_FORM.SECOND_SURNAME' | translate }}
+            </mat-label>
+            <input
+                matInput
+                type="text"
+                name="second-surname"
+                formControlName="secondSurname"
+                maxlength='50'
+            />
+            <mat-error>
+                <span *ngIf="form.hasError('alphaWithSpace', 'secondSurname')">
+                    {{ 'COMMON.VALIDATIONS.ONLY_LETTERS' | translate }}
+                </span>
+                <span *ngIf="form.hasError('whitespace', 'secondSurname')">
+                    {{ 'COMMON.VALIDATIONS.NO_CONTENT' | translate }}
+                </span>
+            </mat-error>
+        </mat-form-field>
+    </div>
+    <mat-form-field>
+        <mat-label> {{ 'COMMON.LABELS.EMAIL' | translate }}* </mat-label>
+        <input matInput type="text" name="email" formControlName="email" />
+        <mat-error>
+            <span *ngIf="form.hasError('required', 'email')">
+                {{ 'COMMON.VALIDATIONS.REQUIRED' | translate }}.
+            </span>
+            <span *ngIf="form.hasError('pattern', 'email')">
+                {{ 'COMMON.VALIDATIONS.INVALID_EMAIL' | translate }}
+                <mat-icon style="transform: scale(1.3);" [matTooltip]="'COMMON.VALIDATIONS.EMAIL_INFORMATION' | translate">help_outline</mat-icon>
+            </span>
+            <span *ngIf="form.hasError('registered', 'email') &&
+                    (!form.hasError('pattern', 'email') && !form.hasError('required', 'email'))
+            ">
+                {{ 'COMMON.VALIDATIONS.EMAIL_REGISTERED' | translate }}
+            </span>
+        </mat-error>
+    </mat-form-field>
+    <mat-form-field>
+        <mat-label>
+            {{ 'ROLE_FORM.APPLIES_TO' | translate }}
+        </mat-label>
+        <input [disabled]="true" matInput type="text" [placeholder]="'ROLE_FORM.APPLIES_TO' | translate" [value]="'COMMON.USER_TYPES.LIBERA_USER' | translate"/>
+    </mat-form-field>
+    <mat-form-field>
+        <mat-label> {{ 'COMMON.LABELS.ROLES' | translate }}* </mat-label>
+        <mat-select [compareWith]="compareWith" [disabled]="!(!!userRoles)" name="roles" formControlName="roles">
+            <ng-container *ngFor="let item of userRoles" >
+                <mat-option *ngIf="item.status === 'ENABLED'" [value]="item">
+                    {{ item.description }}
+                </mat-option>
+            </ng-container>
+        </mat-select>
+        <mat-error>
+            {{ 'COMMON.VALIDATIONS.REQUIRED' | translate }}.
+        </mat-error>
+    </mat-form-field>
+    <button #submitButton hidden></button>
+</form>

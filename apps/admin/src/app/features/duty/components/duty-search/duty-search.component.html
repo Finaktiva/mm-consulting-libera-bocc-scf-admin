@@ -1,0 +1,55 @@
+<mat-progress-bar *ngIf="searching" mode="indeterminate"></mat-progress-bar>
+<div style="overflow: auto" fxLayout="row" fxLayoutGap="100px" fxLayoutAlign="start center">
+    <form (ngSubmit)="onSubmit()"
+    [formGroup]="form"
+    [style.margin-left.px]="25"
+    [style.margin-top.px]="20"
+    fxLayout="row"
+    fxLayoutAlign="start center"
+    fxLayoutGap="15px"
+    style="height: fit-content;"
+    class="mat-body-2">
+        <span>{{ 'DUTY_SEARCH.DUTY_NUMBER' | translate }}</span>
+        <mat-form-field [style.height]="form.hasError('error', 'dutyNumber') ? '100px' : 'fit-content'">
+            <input matInput type="text" formControlName="dutyNumber" maxlength="11"/>
+            <mat-error style="height: fit-content;">
+                <span *ngIf="form.hasError('required', 'dutyNumber') && !form.hasError('error', 'dutyNumber')">
+                    {{ 'COMMON.VALIDATIONS.REQUIRED' | translate }}
+                </span>
+                <span *ngIf="form.hasError('pattern', 'dutyNumber')">
+                    {{ 'COMMON.VALIDATIONS.ONLY_DIGITS' | translate }}
+                </span>
+                <span *ngIf="form.hasError('maxlength', 'dutyNumber')">
+                    {{ 'COMMON.VALIDATIONS.MAX_LENGTH' | translate: { maxLength: 11 } }}
+                </span>
+                <span *ngIf="showNotFound" [style.align-text]="'center'">
+                    <mat-icon>info_outline</mat-icon> {{ 'COMMON.VALIDATIONS.DUTY_NOT_FOUND' | translate: { dutyNumber: searchedValue } }}
+                </span>
+                <span *ngIf="showInvalidProduct">
+                    <mat-icon>info_outline</mat-icon> {{ 'COMMON.VALIDATIONS.DUTY_INVALID_PRODUCT' | translate: { dutyNumber: searchedValue } }}
+                </span>
+                <span *ngIf="showErrorConnection">
+                    <mat-icon>info_outline</mat-icon> {{ 'COMMON.ERRORS.CONNECTION' | translate }}
+                </span>
+            </mat-error>
+        </mat-form-field>
+
+        <span [style.margin-left.px]="10">{{ 'DUTY_SEARCH.CONSULTATION_DATE' | translate }}</span>
+        <mat-form-field>
+            <input matInput type="text" formControlName="consultationDate" />
+            <mat-error>
+                <span *ngIf="form.hasError('required', 'consultationDate')">
+                    {{ 'COMMON.VALIDATIONS.REQUIRED' | translate }}
+                </span>
+            </mat-error>
+        </mat-form-field>
+    </form>
+    <div fxLayoutGap="10px">
+        <button mat-flat-button type="button" color="accent" #buttonC (click)="clean()">
+            {{ 'COMMON.ACTIONS.CLEAN' | translate | uppercase }}
+        </button>
+        <button mat-flat-button type="button" color="primary" (click)="search()" [disabled]="searching">
+            {{ 'COMMON.ACTIONS.SEARCH' | translate | uppercase }}
+        </button>
+    </div>
+</div>

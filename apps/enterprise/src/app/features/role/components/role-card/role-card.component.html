@@ -1,0 +1,23 @@
+<div
+    fxLayout="column"
+    fxLayoutAlign="start stretch"
+    fxLayoutGap="12px"
+    class="container"
+>
+    <div
+        fxLayout="column"
+        fxLayoutAlign="center center"
+        class="content"
+        fxLayoutGap="8px"
+    >
+        <img [src]="icon">
+    </div>
+    <button
+        (click)="onSelect()"
+        [disabled]="!hasRole()"
+        mat-flat-button
+        color="accent"
+    >
+        {{ 'ROLE_CARD.ACTION_ENTER' | translate | uppercase }}
+    </button>
+</div>

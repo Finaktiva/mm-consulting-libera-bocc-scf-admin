@@ -1,0 +1,24 @@
+<h2 mat-dialog-title>
+    {{ 'CREATE_INVOICE_REDIRECT_DIALOG.TITLE' | translate }}
+</h2>
+<mat-dialog-content>
+    <p class="mat-body">
+        {{ 'CREATE_INVOICE_REDIRECT_DIALOG.BODY' | translate }}
+    </p>
+</mat-dialog-content>
+<mat-dialog-actions fxLayout="row" fxLayoutGap="12px" fxLayoutAlign="end">
+    <button mat-button [mat-dialog-close]="false">
+        {{
+            'CREATE_INVOICE_REDIRECT_DIALOG.ACTIONS.CANCEL'
+                | translate
+                | uppercase
+        }}
+    </button>
+    <button [mat-dialog-close]="true" mat-button>
+        {{
+            'CREATE_INVOICE_REDIRECT_DIALOG.ACTIONS.ACCEPT'
+                | translate
+                | uppercase
+        }}
+    </button>
+</mat-dialog-actions>

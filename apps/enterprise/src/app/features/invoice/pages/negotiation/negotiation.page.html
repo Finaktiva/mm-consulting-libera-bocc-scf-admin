@@ -1,0 +1,127 @@
+<div fxLayout="column">
+    <mat-spinner fxFlexAlign="center" *ngIf="(isLoading$ | async)"></mat-spinner>
+    <alert *ngIf="(error$ | async)">
+        <span>
+            {{ 'COMMON.NEGOTIATION.ERROR_LOAD_NEGOTIATIONS' | translate }}</span>
+        <button (click)="fetchNegotiations()" mat-flat-button>
+            {{ 'COMMON.ACTIONS.RETRY' | translate | uppercase }}
+        </button>
+    </alert>
+    <h1 *ngIf="(shouldRenderEmptyNegotiationsMessage$ | async)" class="mat-headline text-muted"
+        style="text-align: center; margin: 48px 0;">
+        {{ 'COMMON.NEGOTIATION.WITHOUT_NEGOTIATIONS' | translate }}
+    </h1>
+    <div *ngIf="(shouldRenderNegotiationOffers$ | async)" fxLayout="column" fxLayoutGap="12px">
+        <p class="mat-body text-muted">
+            {{ 'COMMON.NEGOTIATION.DISCLAIMER' | translate }}
+        </p>
+        <div fxLayout="row" fxLayoutGap="12px">
+            <ng-container>
+                <div fxFlex="50%" fxLayout="column">
+                    <p class="mat-body-2 text-primary">
+                        {{ 'COMMON.NEGOTIATION.PAYER_OFFER' | translate }}
+                    </p>
+                    <div class="card-outline" [class.active]="shouldRenderForm$ | async"
+                        [class.no-padding]="shouldRenderInfo$ | async">
+                        <negotiation-form (onSubmit)="onSubmitOffer($event)" (cancel)="onCancelOffer()"
+                            [isSubmitting]="isSubmitting$ | async" [showActions]="true"
+                            *ngIf="(shouldRenderForm$ | async)"></negotiation-form>
+                        <negotiation-offer-card *ngIf="(shouldRenderInfo$ | async)"
+                            [currencyCode]="currencyCode$ | async" [offer]="payerOffer$ | async"
+                            [invoiceAmount]="invoiceAmount$ | async"></negotiation-offer-card>
+                    </div>
+                </div>
+            </ng-container>
+            <ng-container *ngIf="(shouldRenderProviderOffer$ | async)">
+                <div fxFlex="50%" fxLayout="column">
+                    <p class="mat-body-2 text-primary">
+                        {{ 'COMMON.NEGOTIATION.PROVIDER_OFFER' | translate }}
+                    </p>
+                    <div class="card-outline no-padding">
+                        <negotiation-offer-card [currencyCode]="currencyCode$ | async" [offer]="providerOffer$ | async"
+                            [invoiceAmount]="invoiceAmount$ | async"></negotiation-offer-card>
+                    </div>
+                </div>
+            </ng-container>
+        </div>
+        <div fxLayout="row" [fxHide]="invoiceHasBulkNegotiationId$ | async">
+            <button (click)="onOpenCancelNegotiationDialog()" *ngIf="(shouldRenderCancelButton$ | async)" mat-button>
+                {{ 'COMMON.ACTIONS.CANCEL' | translate | uppercase }}
+            </button>
+            <div *ngIf="(shouldRenderNegotiationActions$ | async)" fxFlex fxLayout="row" fxLayoutAlign="end"
+                fxLayoutGap="12px">
+                <button (click)="onOpenRejectOfferDialog()" mat-button>
+                    {{
+                        'COMMON.NEGOTIATION.ACTIONS.REJECT_OFFER'
+                            | translate
+                            | uppercase
+                    }}
+                </button>
+                <button (click)="onCounterOffer()" mat-button>
+                    {{
+                        'COMMON.NEGOTIATION.ACTIONS.COUNTER_OFFER'
+                            | translate
+                            | uppercase
+                    }}
+                </button>
+                <button (click)="onOpenAcceptOfferDialog()" mat-button>
+                    {{
+                        'COMMON.NEGOTIATION.ACTIONS.ACCEPT_OFFER'
+                            | translate
+                            | uppercase
+                    }}
+                </button>
+            </div>
+        </div>
+        <div fxLayout="row" [fxShow]="invoiceHasBulkNegotiationId$ | async">
+            <p class="mat-body text-warn" fxLayoutAlign="start center" fxLayoutGap="5px">
+                <mat-icon>error_outline</mat-icon>
+                <span>
+                    {{ 'COMMON.NEGOTIATION.BULK_LOAD' | translate }}
+                </span>
+            </p>
+
+        </div>
+        <mat-divider></mat-divider>
+    </div>
+
+    <div *ngIf="(shouldRenderCancelledNegotiationMessage$ | async)" fxLayout="column" fxLayoutGap="12px">
+        <h1 class="mat-headline text-muted" style="text-align: center; margin: 48px 0;">
+            {{ 'NEGOTIATION_PAGE.WITHOUT_NEGOTIATIONS' | translate }}
+        </h1>
+        <mat-divider></mat-divider>
+    </div>
+    <div *ngIf="(shouldRenderNegotiationList$ | async)" style="margin-top: 20px" [fxHide]="invoiceHasBulkNegotiationId$ | async">
+        <h1 class="mat-headline">
+            {{ 'NEGOTIATION_PAGE.LIST_NEGOTIATIONS' | translate }}
+        </h1>
+        <mat-accordion>
+            <mat-expansion-panel *ngFor="let entity of (entities$ | async); trackBy: trackBy">
+                <mat-expansion-panel-header>
+                    <mat-panel-title>
+                        <span *ngIf="entity.creationDate">
+                            {{ entity.creationDate | date }} ({{
+                                'NEGOTIATION_PAGE.START_DATE' | translate
+                            }})
+                        </span>
+                        <span *ngIf="entity.finishDate">
+                            {{ entity.finishDate | date }} ({{
+                                'NEGOTIATION_PAGE.FINISH_DATE' | translate
+                            }})
+                        </span>
+                    </mat-panel-title>
+                    <mat-panel-description>
+                        {{
+                            'NEGOTIATION_PAGE.NEGOTIATION_STATUS.' +
+                                entity.status | translate
+                        }}
+                    </mat-panel-description>
+                </mat-expansion-panel-header>
+                <ng-template matExpansionPanelContent>
+                    <negotiation-log-panel [invoiceId]="id$ | async" [negotiationId]="entity.id">
+                    </negotiation-log-panel>
+                </ng-template>
+            </mat-expansion-panel>
+        </mat-accordion>
+    </div>
+</div>

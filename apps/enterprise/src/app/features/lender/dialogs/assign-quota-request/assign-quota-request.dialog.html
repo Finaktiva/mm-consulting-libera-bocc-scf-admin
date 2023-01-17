@@ -1,0 +1,24 @@
+<mat-progress-bar
+    mode="indeterminate"
+    *ngIf="(isSubmitting$ | async)"
+></mat-progress-bar>
+<h2 mat-dialog-title>
+    {{ 'ASSIGN_QUOTA_REQUEST_DIALOG.TITLE' | translate }}
+</h2>
+<mat-dialog-content>
+    <p class="mat-body">
+        {{ 'ASSIGN_QUOTA_REQUEST_DIALOG.BODY' | translate }}
+    </p>
+</mat-dialog-content>
+<mat-dialog-actions fxLayout="row" fxLayoutGap="12px" fxLayoutAlign="end">
+    <button type="button" mat-button mat-dialog-close>CANCELAR</button>
+    <button
+        [disabled]="isSubmitting$ | async"
+        (click)="onSubmit()"
+        type="button"
+        mat-flat-button
+        color="accent"
+    >
+        {{ 'COMMON.ACTIONS.CONFIRM' | translate | uppercase }}
+    </button>
+</mat-dialog-actions>

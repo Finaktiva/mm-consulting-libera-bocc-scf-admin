@@ -1,0 +1,30 @@
+<mat-progress-bar
+    *ngIf="(isSubmitting$ | async)"
+    mode="indeterminate"
+></mat-progress-bar>
+<h2 mat-dialog-title>
+    {{ 'DELETE_USER_DIALOG.TITLE' | translate }}
+</h2>
+<mat-dialog-content>
+    <p class="mat-body">
+        {{ 'DELETE_USER_DIALOG.MESSAGE' | translate }}
+    </p>
+    <div class="checkbox-wrapper">
+        <mat-checkbox [(ngModel)]="isSure">
+            {{ 'DELETE_USER_DIALOG.CONFIRM' | translate }}
+        </mat-checkbox>
+    </div>
+</mat-dialog-content>
+<mat-dialog-actions fxLayout="row" fxLayoutAlign="end">
+    <button mat-button mat-dialog-close>
+        {{ 'COMMON.ACTIONS.CANCEL' | translate | uppercase }}
+    </button>
+    <button
+        [disabled]="!isSure || (isSubmitting$ | async)"
+        (click)="onSubmit()"
+        mat-flat-button
+        color="warn"
+    >
+        {{ 'COMMON.ACTIONS.DELETE' | translate | uppercase }}
+    </button>
+</mat-dialog-actions>

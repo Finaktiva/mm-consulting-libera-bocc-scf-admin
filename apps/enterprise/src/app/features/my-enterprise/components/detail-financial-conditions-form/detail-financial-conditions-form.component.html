@@ -1,0 +1,161 @@
+<div fxLayoutAlign="space-between center" fxLayoutGap="10px">
+        <mat-form-field>
+            <mat-label>
+                {{ 'DETAIL_FINANCIAL_CONDITIONS_FORM.DOCUMENT_TYPE' | translate }}
+            </mat-label>
+            <input matInput type="text" [placeholder]="'DETAIL_FINANCIAL_CONDITIONS_FORM.DOCUMENT_TYPE' | translate" [value]="payer?.documentType ? ( 'COMMON.LABELS.DOCUMENT_TYPES.' + payer?.documentType | translate): null" disabled />
+        </mat-form-field>
+        <mat-form-field>
+            <mat-label>{{ 'DETAIL_FINANCIAL_CONDITIONS_FORM.DOCUMENT_NUMBER' | translate }}
+            </mat-label>
+            <input matInput type="text" [placeholder]="'DETAIL_FINANCIAL_CONDITIONS_FORM.DOCUMENT_NUMBER' | translate" [value]="payer?.nit" disabled />
+        </mat-form-field>
+        <mat-form-field>
+            <mat-label>{{ 'DETAIL_FINANCIAL_CONDITIONS_FORM.PAYER' | translate }}
+            </mat-label>
+            <input matInput type="text" [placeholder]="'DETAIL_FINANCIAL_CONDITIONS_FORM.PAYER' | translate" [value]="payer?.enterpriseName" disabled />
+        </mat-form-field>
+        <mat-form-field>
+            <mat-label>{{ 'DETAIL_FINANCIAL_CONDITIONS_FORM.RELATIONSHIP_MANAGER' | translate}}
+            </mat-label>
+            <input matInput type="text" [placeholder]="'DETAIL_FINANCIAL_CONDITIONS_FORM.RELATIONSHIP_MANAGER' | translate" *ngIf="payer?.relationshipManager ? payer?.relationshipManager.split(',').length <= 1 : true" [value]="payer?.relationshipManager" disabled />
+            <mat-select *ngIf="payer?.relationshipManager?.split(',').length > 1" [placeholder]="'DETAIL_FINANCIAL_CONDITIONS_FORM.RELATIONSHIP_MANAGERS' | translate" [(value)]="payer.relationshipManager">
+                <mat-option *ngFor="let relationshipManager of payer?.relationshipManager.split(',')" [value]="payer?.relationshipManager" disabled>
+                    {{ relationshipManager }}
+                </mat-option>
+            </mat-select>
+        </mat-form-field>
+    </div>
+
+
+    <div>
+        <div fxLayoutAlign="space-between center" fxLayoutGap="10px" [style.margin-top]="'20px'">
+            <mat-form-field fxLayout="column" fxLayoutGap="10px" [style.width.%]="16.5">
+                <mat-label>{{ 'DETAIL_FINANCIAL_CONDITIONS_FORM.LINKED_TO_PROVIDER' | translate }}</mat-label>
+                <mat-checkbox 
+                    *ngFor="let option of linkedToProvider" 
+                    [value]="option.value" 
+                    [hidden]="!(option.value === (plan?.providerOptions != null))" 
+                    [checked]="option.value === (plan?.providerOptions != null)" 
+                    [disabled]="true" 
+                    style='margin-right: 15px;'
+                    >
+                    {{ 'DETAIL_FINANCIAL_CONDITIONS_FORM.OPTIONS_YES_OR_NO.' + option.label | translate }}
+                </mat-checkbox>
+                <input matInput type="text" hidden/>
+            </mat-form-field>
+            <mat-form-field *ngIf="(plan?.providerOptions != null)">
+                <mat-label>
+                    {{ 'DETAIL_FINANCIAL_CONDITIONS_FORM.DOCUMENT_TYPE' | translate }}
+                </mat-label>
+                <input 
+                    matInput 
+                    type="text" 
+                    [value]="(plan?.providerOptions != null) ? (('NIT')) : valueNull" 
+                    [placeholder]="'DETAIL_FINANCIAL_CONDITIONS_FORM.DOCUMENT_TYPE' | translate" 
+                    disabled
+                    />
+            </mat-form-field>
+           <mat-form-field *ngIf="(plan?.providerOptions != null)">
+                <mat-label>{{ 'DETAIL_FINANCIAL_CONDITIONS_FORM.DOCUMENT_NUMBER' | translate }}
+                </mat-label>
+                <input matInput type="text" [value]="plan?.providerOptions?.provider.document" [placeholder]="'DETAIL_FINANCIAL_CONDITIONS_FORM.DOCUMENT_NUMBER' | translate" disabled/>
+            </mat-form-field>
+            <mat-form-field *ngIf="(plan?.providerOptions != null)">
+                <mat-label>{{ 'DETAIL_FINANCIAL_CONDITIONS_FORM.PROVIDER' | translate }}
+                </mat-label>
+                <input [value]="plan?.providerOptions?.provider.name" matInput type="text" [placeholder]="'DETAIL_FINANCIAL_CONDITIONS_FORM.PROVIDER' | translate" disabled/>
+            </mat-form-field>
+        </div>
+        <div fxLayout="column" fxLayoutAlign="space-around center" fxLayoutGap="10px" [style.margin-top]="'20px'" class="card info tab">
+            <div fxLayout="row">
+                <span class="title-field">{{ 'DETAIL_FINANCIAL_CONDITIONS_FORM.TURNING_DAY' | translate}}:</span>
+                <span class="content-field" *ngIf="(+plan?.paydayInitialRange > 0 && plan?.paydayFinalRange === null)"> {{ 'DETAIL_FINANCIAL_CONDITIONS_FORM.TURNING_DAY_LABELS.PAYDAY' | translate: { day: plan?.paydayInitialRange || 0 } }}</span>
+                <span class="content-field" *ngIf="(+plan?.paydayInitialRange === 0 && plan?.paydayFinalRange === null)"> {{ 'DETAIL_FINANCIAL_CONDITIONS_FORM.TURNING_DAY_LABELS.PAYDAY_ZERO' | translate }}</span>
+                <span class="content-field" *ngIf="(+plan?.paydayInitialRange > 0 && plan?.paydayFinalRange !== null)"> {{ 'DETAIL_FINANCIAL_CONDITIONS_FORM.TURNING_DAY_LABELS.PAYDAY_RANGE' | translate: { dayInitial: plan?.paydayInitialRange || 0, dayFinal:plan?.paydayFinalRange || 0 } }}</span>
+            </div>
+            <div fxLayout="row">
+                <span class="title-field">{{ 'DETAIL_FINANCIAL_CONDITIONS_FORM.FINANCING_TERM.LABEL' | translate }}: </span>
+                <span class="content-field">{{ 'DETAIL_FINANCIAL_CONDITIONS_FORM.FINANCING_TERM.COMPLEMENT' | translate: { termDays: plan?.termDays || 0, labelDay: 'COMMON.LABELS.'+(+plan?.termDays | i18nPlural: daysPluralMap) | translate | lowercase } }}</span>
+            </div>
+            <div fxLayout="row">
+                <span class="title-field">{{ 'DETAIL_FINANCIAL_CONDITIONS_FORM.PAYMENT_METHOD.LABEL' | translate }}: </span>
+                <span class="content-field">{{ 'DETAIL_FINANCIAL_CONDITIONS_FORM.PAYMENT_METHOD.COMPLEMENT' | translate: { paymentMethod: ( 'DETAIL_FINANCIAL_CONDITIONS_FORM.METHODS_OF_PAYMENT.' + plan?.paymentMethod | translate) || 0 } }}</span>
+            </div>
+            <div *ngIf="plan?.negotiatedRate" fxLayout="row">
+                <span class="title-field">{{ 'DETAIL_FINANCIAL_CONDITIONS_FORM.INTEREST_RATE.LABEL' | translate }}: </span>
+                <span class="content-field">
+                    {{ 'DETAIL_FINANCIAL_CONDITIONS_FORM.INTEREST_RATE.COMPLEMENT' | translate: 
+                        { 
+                            termDays: plan?.termDays || 0, 
+                            labelDay: 'COMMON.LABELS.'+(+plan?.termDays | i18nPlural: daysPluralMap) | translate | lowercase, 
+                            baseType: plan?.negotiatedRate?.baseType ,
+                            specialRate: plan?.negotiatedRate?.specialRate?.toString().replace(".",","),
+                            periodicityType: plan?.negotiatedRate?.periodicityType
+                        }
+                    }}
+                </span>
+            </div>
+        </div>
+
+        <div *ngIf="plan?.negotiatedRate" fxLayoutAlign="center" fxLayoutGap="10px">
+                <input class="dotted-input" [value]="plan?.negotiatedRate?.ea + ' EA' + ' - '+ plan?.negotiatedRate?.mv + ' MV'" matInput type="text" disabled/>
+        </div>
+        
+        <div fxLayoutAlign="center" fxLayoutGap="10px" fxLayout="row" [style.margin-top]="'50px'" *ngIf="(plan?.providerOptions != null)">
+            <mat-form-field fxLayout="column" fxLayoutGap="10px" [style.width.%]="16.5">
+                <input matInput type="text" hidden />
+                <mat-label>{{ 'DETAIL_FINANCIAL_CONDITIONS_FORM.AGREEMENT' | translate }}</mat-label>
+                <mat-checkbox 
+                    *ngFor="let option of agreement" 
+                    [value]="option.value" 
+                    [hidden]="!(option.value === !!plan?.providerOptions?.hasAgreement)" 
+                    [checked]="!!plan?.providerOptions?.hasAgreement === option.value" 
+                    [disabled]="true" 
+                    style='margin-right: 15px;'
+                    >
+                    {{ 'DETAIL_FINANCIAL_CONDITIONS_FORM.OPTIONS_YES_OR_NO.' + option.label | translate }}
+                </mat-checkbox>
+            </mat-form-field>
+            <div fxLayout="column" fxLayoutGap="10px" [style.width.px]="370" class="card tab">
+                <span style="text-align: start;">{{ 'DETAIL_FINANCIAL_CONDITIONS_FORM.REQUIRED_AUTHORIZATION' | translate }}</span>
+                <div fxLayout="row" fxLayoutGap="10px" >
+                    <mat-checkbox 
+                        *ngFor="let option of requiredAuthorization" 
+                        [value]="option.value" 
+                        [checked]="(!!plan?.providerOptions?.requireAuthToPerformOperation === option.value)" 
+                        [hidden]="!(!!plan?.providerOptions?.requireAuthToPerformOperation === option.value)" 
+                        [disabled]="true" style='margin-right: 15px;'
+                        >
+                        {{ 'DETAIL_FINANCIAL_CONDITIONS_FORM.OPTIONS_YES_OR_NO.' + option.label | translate }}
+                    </mat-checkbox>
+                </div>
+                <div fxLayout="column" fxLayoutGap="10px" style="align-items: flex-start;" *ngIf="(!!plan?.providerOptions?.requireAuthToPerformOperation)">
+                    <span style="text-align: start;">{{ 'DETAIL_FINANCIAL_CONDITIONS_FORM.REQUEST_AUTHORIZATION' | translate }}</span>
+                    <div fxLayoutAlign="space-between center"  fxLayout="row" class="center">
+                        <div fxLayoutGap="10px">
+                            <mat-form-field fxLayoutGap="10px" [style.width.%]="40">
+                                <input matInput type="text" [value]="plan?.providerOptions?.authDay" disabled/>
+                            </mat-form-field>
+                            <span class="center">FEF</span>
+                        </div>
+                        <mat-checkbox 
+                            class="center" 
+                            [disabled]="true" 
+                            [checked]="(!plan?.providerOptions?.authDay) && (!!plan?.providerOptions?.requireAuthToPerformOperation)" 
+                            [hidden]="!!plan?.providerOptions?.authDay"
+                            >
+                            {{ 'DETAIL_FINANCIAL_CONDITIONS_FORM.ALWAYS' | translate }}
+                        </mat-checkbox>
+                    </div>
+                </div>
+            </div>
+        </div>        
+        <div fxLayout="row" fxLayoutAlign="space-between center" [style.margin-top]="'20px'">
+            <div fxLayout="row" fxLayoutGap="6px">
+                <mat-checkbox [disabled]="true" [checked]="(plan?.isPunctualPlan)">
+                    {{  'COMMON.LABELS.PUNCTUAL_PLAN' | translate }}
+                </mat-checkbox>
+            </div>
+        </div>
+    </div>

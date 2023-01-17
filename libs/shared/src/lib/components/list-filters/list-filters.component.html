@@ -1,0 +1,63 @@
+<form [formGroup]="form" fxLayoutGap="10px">
+    <button
+        type="button"
+        mat-button
+        *ngIf="!shouldRenderClean"
+        (click)="onClear()"
+    >
+        {{ 'COMMON.LABELS.CLEAN_FILTERS' | translate }}
+    </button>
+    <mat-form-field appearance="standard">
+        <mat-select
+            name="filter-by"
+            [placeholder]="'COMMON.LABELS.FILTER_BY' | translate"
+            formControlName="filter_by"
+        >
+            <mat-option
+                *ngFor="let option of filterConfig.filterOptions"
+                [value]="option.value"
+            >
+                {{ option.label | translate }}
+            </mat-option>
+        </mat-select>
+    </mat-form-field>
+
+    <ng-container *ngFor="let filter of filterConfig.filters">
+        <mat-form-field
+            appearance="standard"
+            *ngIf="filter.renderWhenIs == form.value.filter_by"
+        >
+            <mat-label>
+                {{ filter.label | translate }}
+            </mat-label>
+            <ng-container [ngSwitch]="filter.type">
+                <ng-container *ngSwitchCase="FILTER_TYPES.SELECT">
+                    <mat-select
+                        #select
+                        [formControlName]="
+                            filter['fieldName'] || defaultQueryName
+                        "
+                    >
+                        <mat-option
+                            *ngFor="let option of filter['options']"
+                            [value]="option.value"
+                        >
+                            {{ option.label | translate }}
+                        </mat-option>
+                    </mat-select>
+                </ng-container>
+
+                <ng-container *ngSwitchCase="FILTER_TYPES.QUERY">
+                    <input
+                        #input
+                        matInput
+                        name="query"
+                        [formControlName]="
+                            filter['fieldName'] || defaultQueryName
+                        "
+                    />
+                </ng-container>
+            </ng-container>
+        </mat-form-field>
+    </ng-container>
+</form>

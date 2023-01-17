@@ -1,0 +1,34 @@
+<mat-progress-bar
+    *ngIf="(isSubmitting$ | async)"
+    mode="indeterminate"
+></mat-progress-bar>
+<h2 class="mat-title" mat-dialog-title>
+    {{ 'CONFIRM_REJECT_DIALOG.TITLE' | translate }}
+</h2>
+<mat-dialog-content>
+    <explanation-form
+        #component
+        (onSubmit)="onSubmit($event)"
+        [placeholder]="
+            'CONFIRM_REJECT_DIALOG.EXPLANATION_PLACEHOLDER' | translate
+        "
+    ></explanation-form>
+</mat-dialog-content>
+<mat-dialog-actions fxLayoutAlign="space-between">
+    <button
+        mat-button
+        [matTooltip]="'CONFIRM_REJECT_DIALOG.TOOLTIP' | translate"
+        [disabled]="isSubmitting$ | async"
+        (click)="onSubmit(null)"
+    >
+        {{ 'CONFIRM_REJECT_DIALOG.SKIP' | translate | uppercase }}
+    </button>
+    <button
+        mat-flat-button
+        color="warn"
+        (click)="component.submit()"
+        [disabled]="component.shouldDisable() || (isSubmitting$ | async)"
+    >
+        {{ 'COMMON.ACTIONS.SEND' | translate }}
+    </button>
+</mat-dialog-actions>

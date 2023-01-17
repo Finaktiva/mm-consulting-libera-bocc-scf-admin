@@ -1,0 +1,92 @@
+<form (ngSubmit)="onSubmit()" [formGroup]="form">
+    <div
+        fxLayout="column"
+        fxLayoutAlign="center stretch"
+        ngezFileDropzone
+        formControlName="file"
+        accept=".pdf"
+    >
+        <div
+            *ngIf="form.hasError('fileType', 'file') || error; else template"
+            fxLayout="column"
+            fxLayoutAlign="center stretch"
+        >
+            <div fxLayout="row" fxLayoutGap="12px">
+                <h2
+                    fxFlex
+                    style="color: #8798AD"
+                    class="mat-subheading-2"
+                    style="margin-bottom: 0"
+                >
+                    {{ form.value.file?.name }}
+                </h2>
+                <mat-icon
+                    [matTooltip]="
+                        form.hasError('fileType', 'file')
+                            ? 'El archivo debe ser extensión pdf'
+                            : 'Hubo un error al subir el archivo'
+                    "
+                    color="warn"
+                >
+                    error
+                </mat-icon>
+            </div>
+            <div
+                fxLayout="row"
+                fxLayoutAlign="center center"
+                fxLayoutGap="12px"
+            >
+                <button
+                    *ngIf="error && !form.hasError('fileType', 'file')"
+                    type="button"
+                    (click)="submit()"
+                    mat-button
+                    color="warn"
+                    matTooltip="Volver a intentar"
+                >
+                    {{ 'COMMON.ACTIONS.RETRY' | translate | uppercase }}
+                </button>
+                <button
+                    type="button"
+                    (click)="onBrowse()"
+                    mat-button
+                    color="warn"
+                    matTooltip="Escoger un archivo distinto"
+                >
+                    {{ 'COMMON.ACTIONS.REPLACE' | translate | uppercase }}
+                </button>
+            </div>
+        </div>
+        <ng-template #template>
+            <div fxLayout="column" fxLayoutAlign="center center">
+                <h2
+                    fxLayout="column"
+                    fxLayoutAlign="center center"
+                    style="color: #8798AD"
+                    class="mat-headline"
+                >
+                    <mat-icon style="font-size: 45px" [inline]="true">
+                        cloud_upload
+                    </mat-icon>
+                    <span *ngIf="isSubmitting; else text">
+                        {{ 'DOCUMENTATION_DROPZONE.UPLOADING' | translate }}...
+                    </span>
+                    <ng-template #text>
+                        <span>{{ 'FILE_DROPZONE.MESSAGE' | translate }}</span>
+                    </ng-template>
+                </h2>
+                <button
+                    *ngIf="!isSubmitting"
+                    type="button"
+                    (click)="onBrowse()"
+                    mat-button
+                    color="accent"
+                >
+                    {{ 'FILE_DROPZONE.SELECT' | translate | uppercase }}
+                </button>
+            </div>
+        </ng-template>
+    </div>
+
+    <button type="submit" #submitButton hidden></button>
+</form>

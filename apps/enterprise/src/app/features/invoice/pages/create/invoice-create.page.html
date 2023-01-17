@@ -1,0 +1,46 @@
+<div fxLayout="column">
+    <div
+        fxLayout="row"
+        fxLayoutAlign="space-between center"
+        class="page-toolbar"
+    >
+        <span class="mat-headline no-margin">
+            {{ 'INVOICE_CREATE_PAGE.ADD_INVOICE' | translate }}
+        </span>
+    </div>
+    <div
+        fxLayout="column"
+        class="page-content progress-bar-container mat-elevation-z1 table-container"
+    >
+        <mat-spinner
+            fxFlexAlign="center"
+            *ngIf="(shouldRenderProgressSpinner$ | async)"
+        ></mat-spinner>
+        <alert *ngIf="(currenciesError$ | async)" color="warn">
+            <span>{{
+                'INVOICE_CREATE_PAGE.ERRORS.LOAD_COINS' | translate
+            }}</span>
+            <button (click)="fetchCurrencies()" mat-flat-button color="warn">
+                {{ 'COMMON.ACTIONS.RETRY' | translate | uppercase }}
+            </button>
+        </alert>
+        <alert *ngIf="(customAttributesError$ | async)" color="warn">
+            <span>
+                {{ 'COMMON.ERRORS.LOAD_CUSTOMIZED_FIELDS' | translate }}
+            </span>
+            <button
+                (click)="fetchCustomAttributes()"
+                mat-flat-button
+                color="warn"
+            >
+                {{ 'COMMON.ACTIONS.RETRY' | translate | uppercase }}
+            </button>
+        </alert>
+        <invoice-form
+            (onSubmit)="onSubmit($event)"
+            [isSubmitting]="isSubmitting$ | async"
+            [currencies]="currencies$ | async"
+            *ngIf="(shouldRenderForm$ | async)"
+        ></invoice-form>
+    </div>
+</div>

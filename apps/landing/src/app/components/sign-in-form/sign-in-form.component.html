@@ -1,0 +1,60 @@
+<form
+    [formGroup]="form"
+    fxLayout="column"
+    fxLayoutAlign="center stretch"
+    (ngSubmit)="onSubmit()"
+>
+    <mat-form-field>
+        <mat-label>Email</mat-label>
+        <input
+            name="email"
+            formControlName="email"
+            matInput
+            placeholder="ejemplo@ejemplo.com"
+            type="text"
+            autocapitalize="none"
+        />
+        <mat-error>
+            <span *ngIf="form.hasError('required', 'email')">
+                Este campo es requerido
+            </span>
+            <span *ngIf="form.hasError('email', 'email')">
+                No es un formato válido de email
+            </span>
+        </mat-error>
+    </mat-form-field>
+    <mat-form-field>
+        <mat-label>Contraseña</mat-label>
+        <input
+            name="password"
+            [type]="shouldHidePassword ? 'password' : 'text'"
+            formControlName="password"
+            matInput
+            placeholder="Contraseña"
+            autocapitalize="none"
+        />
+        <mat-icon matSuffix (click)="togglePassword()">
+            {{ shouldHidePassword ? 'visibility_off' : 'visibility' }}
+        </mat-icon>
+        <mat-error>
+            Este campo es requerido
+        </mat-error>
+    </mat-form-field>
+    <div fxLayoutAlign="end" [style.margin-bottom.px]="10">
+        <a mat-button routerLink="/forgot-password" color="primary">
+            Olvidé contraseña
+        </a>
+    </div>
+    <button mat-flat-button type="submit" color="primary" [disabled]="shouldDisable()">
+        Iniciar sesión
+    </button>
+    <button mat-flat-button type="button" color="accent" (click)="federatedSignIn()" style="margin-top: 25px;">
+        Iniciar sesión HOSTED UI
+    </button>
+    <div fxLayoutAlign="center">
+        <p class="mat-body">
+            <span>¿No tienes una cuenta? </span>
+            <a routerLink="/sign-up"> Regístrate</a>
+        </p>
+    </div>
+</form>

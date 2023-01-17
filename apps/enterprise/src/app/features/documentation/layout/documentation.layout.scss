@@ -1,0 +1,12 @@
+:host {
+    display: flex;
+    flex-direction: column;
+}
+
+.page-container {
+    padding: 24px;
+
+    & > *:not(router-outlet) {
+        flex: 1 0 auto;
+    }
+}

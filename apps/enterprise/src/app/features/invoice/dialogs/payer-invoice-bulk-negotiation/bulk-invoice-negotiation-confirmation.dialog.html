@@ -1,0 +1,118 @@
+<h2 mat-dialog-title>
+    {{ 'BULK_INVOICE_NEGOTIATION_CONFIRMATION_DIALOG.TITLE' | translate }}
+</h2>
+<mat-dialog-content fxLayout="column">
+    <p class="mat-body">
+        {{
+            'BULK_INVOICE_NEGOTIATION_CONFIRMATION_DIALOG.INVESTOR' | translate
+        }}
+    </p>
+    <p class="mat-body-2">
+        {{ value.lender.enterpriseName }}
+    </p>
+    <div fxLayout="row" fxLayoutGap="12px">
+        <div>
+            <p class="mat-body">
+                {{
+                    'BULK_INVOICE_NEGOTIATION_CONFIRMATION_DIALOG.DISCOUNT_TYPE'
+                        | translate
+                }}
+            </p>
+            <p class="mat-body-2">
+                {{
+                    'COMMON.NEGOTIATION_DISCOUNT_TYPE.' + value.discountType
+                        | translate
+                }}
+            </p>
+        </div>
+        <div>
+            <p class="mat-body">
+                {{
+                    'BULK_INVOICE_NEGOTIATION_CONFIRMATION_DIALOG.PERCENTAGE'
+                        | translate
+                }}
+            </p>
+            <p class="mat-body-2">
+                {{ value.percentage}} %
+            </p>
+        </div>
+    </div>
+    <div fxLayout="row" fxLayoutGap="12px">
+        <div>
+            <p class="mat-body">
+                {{
+                    'BULK_INVOICE_NEGOTIATION_CONFIRMATION_DIALOG.DISCOUNT_DUE_DATE'
+                        | translate
+                }}
+            </p>
+            <p class="mat-body-2">
+                {{ value.discountDueDate?.toISOString() | date }}
+            </p>
+        </div>
+        <div>
+            <p class="mat-body">
+                {{
+                    'BULK_INVOICE_NEGOTIATION_CONFIRMATION_DIALOG.EXPECTED_PAYMENT_DATE'
+                        | translate
+                }}
+            </p>
+            <p class="mat-body-2">
+                {{ value.expectedPaymentDate?.toISOString() | date }}
+            </p>
+        </div>
+    </div>
+    <mat-divider style="margin-bottom: 12px"></mat-divider>
+    <p class="mat-body-2">
+        {{
+            'BULK_INVOICE_NEGOTIATION_CONFIRMATION_DIALOG.TOTAL'
+                | translate
+                    : {
+                          value:
+                              getTotal()
+                              | currency
+                                  : value.invoices[0]?.currencyCode
+                                  : 'symbol-narrow'
+                                  : null
+                                  : 'en-US'
+                      }
+        }}
+    </p>
+    <p class="mat-body-2">
+        {{
+            'BULK_INVOICE_NEGOTIATION_CONFIRMATION_DIALOG.DISCOUNT'
+                | translate
+                    : {
+                          value:
+                              getDiscount()
+                              | currency
+                                  : value.invoices[0]?.currencyCode
+                                  : 'symbol-narrow'
+                                  : null
+                                  : 'en-US'
+                      }
+        }}
+    </p>
+    <p class="mat-body-2">
+        {{
+            'BULK_INVOICE_NEGOTIATION_CONFIRMATION_DIALOG.SUBTOTAL'
+                | translate
+                    : {
+                          value:
+                              getSubtotal()
+                              | currency
+                                  : value.invoices[0]?.currencyCode
+                                  : 'symbol-narrow'
+                                  : null
+                                  : 'en-US'
+                      }
+        }}
+    </p>
+</mat-dialog-content>
+<mat-dialog-actions fxLayout="row" fxLayoutAlign="end" fxLayoutGap="8px">
+    <button mat-button [mat-dialog-close]="false">
+        {{ 'COMMON.ACTIONS.CANCEL' | translate }}
+    </button>
+    <button [mat-dialog-close]="true" mat-button>
+        {{ 'COMMON.ACTIONS.ACCEPT' | translate }}
+    </button>
+</mat-dialog-actions>

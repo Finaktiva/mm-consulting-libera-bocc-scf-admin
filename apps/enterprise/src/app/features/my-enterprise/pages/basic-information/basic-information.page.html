@@ -1,0 +1,83 @@
+<div fxLayout="column">
+    <div fxFlex class="page-content progress-bar-container mat-elevation-z1 table-container">
+        <div style="display: flex; justify-content: space-between; align-items: center; margin: 16px;">
+            <h1 class="mat-title no-margin">
+                {{ 'DETAIL_PAGE.INFO' | translate }}
+            </h1>
+            <button *ngIf="(hasLoadedAndEditing$ | async)" (click)="onEdit()" [matTooltip]="'DETAIL_PAGE.EDIT' | translate" mat-icon-button>
+                <mat-icon>edit</mat-icon>
+            </button>
+        </div>
+        <div
+            class="page-content progress-bar-container"
+            fxLayout="column"
+            fxLayoutGap="12px"
+            fxLayoutAlign="start stretch"
+        >
+            <mat-spinner
+                fxFlexAlign="center"
+                *ngIf="(shouldRenderProgressSpinner$ | async)"
+                mode="indeterminate"
+            ></mat-spinner>
+            <p *ngIf="(error$ | async)" class="mat-body">
+                {{ 'COMMON.ERRORS.INFO_LOAD' | translate }}
+                <button
+                    (click)="fetchEnterprise()"
+                    mat-flat-button
+                    color="warn"
+                >
+                    {{ 'COMMON.ACTIONS.RETRY' | translate | uppercase }}
+                </button>
+            </p>
+            <p *ngIf="(countryCallingCodesError$ | async)" class="mat-body">
+                {{ 'COMMON.ERRORS.LADA_LOAD_ERROR' | translate }}
+
+                <button
+                    (click)="fetchCountryCallingCodes()"
+                    mat-flat-button
+                    color="warn"
+                >
+                    {{ 'COMMON.ACTIONS.RETRY' | translate | uppercase }}
+                </button>
+            </p>
+            <p *ngIf="(enterpriseSectorsError$ | async)" class="mat-body">
+                {{
+                    'BASIC_INFORMATION_PAGE.ERRORS.ENTERPRISE_SELECTORS'
+                        | translate
+                }}
+                <button
+                    (click)="fetchEnterpriseSectors()"
+                    mat-flat-button
+                    color="warn"
+                >
+                    {{ 'COMMON.ACTIONS.RETRY' | translate | uppercase }}
+                </button>
+            </p>
+
+            <div *ngIf="(shouldRenderForm$ | async)" fxLayout="row" fxLayoutGap="12px">
+                    <div *ngIf="(hasLoadedAndEditing$ | async)" fxFlex.gt-xs class="mat-elevation-z3 progress-bar-container card" fxLayout="column" fxLayoutGap="12px">
+                        <enterprise-detail [entity]="entity$ | async"></enterprise-detail>
+                    </div>
+                    <div *ngIf="(hasLoadedAndEditing$ | async)" fxFlex.gt-xs class="mat-elevation-z3 progress-bar-container card" fxLayout="column" fxLayoutGap="12px">
+                        <admin-detail [entity]="entity$ | async"></admin-detail>
+                    </div>
+            </div>
+
+            <div *ngIf="(shouldRenderForm$ | async)">
+                <div *ngIf="(shouldRenderEnterpriseForm$| async)" fxFlex.gt-xs class="mat-elevation-z3 progress-bar-container card">
+                    <enterprise-form
+                    (cancel)="onCancel()"
+                    [showCancelButton]="true"
+                    (onSubmit)="onSubmit($event)"
+                    [isSubmitting]="isSubmitting$ | async"
+                    [entity]="entity$ | async"
+                    [countryCallingCodes]="countryCallingCodes$ | async"
+                    [enterpriseSectors]="enterpriseSectors$ | async"
+                    [bankRegions]="bankRegions$ | async"
+                ></enterprise-form>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<div fxLayout="column"></div>

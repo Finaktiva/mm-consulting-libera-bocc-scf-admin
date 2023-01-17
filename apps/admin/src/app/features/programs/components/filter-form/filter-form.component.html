@@ -1,0 +1,148 @@
+<form [formGroup]="form" fxLayoutGap="10px">
+    <button
+        type="button"
+        mat-button
+        *ngIf="!shouldRender()"
+        (click)="onClear()"
+    >
+        {{ 'COMMON.LABELS.CLEAN_FILTERS' | translate }}
+    </button>
+    <mat-form-field appearance="standard">
+        <mat-select
+            name="filter-by"
+            [placeholder]="'COMMON.LABELS.FILTER_BY' | translate"
+            formControlName="filter_by"
+        >
+            <mat-option value="NIT">
+                {{ 'COMMON.FILTERS.NIT' | translate }}
+            </mat-option>
+            <mat-option value="ENTERPRISE_NAME">
+                {{ 'COMMON.FILTERS.SOCIAL_REASON' | translate }}
+            </mat-option>
+            <mat-option value="DATE">
+                {{ 'COMMON.FILTERS.LINKING_DATE' | translate }}
+            </mat-option>
+            <mat-option value="REGION">
+                {{ 'COMMON.FILTERS.REGION' | translate }}
+            </mat-option>
+            <mat-option value="MODULE">
+                {{ 'COMMON.FILTERS.MODULE' | translate }}
+            </mat-option>
+            <mat-option value="STATUS">
+                {{ 'COMMON.FILTERS.STATUS' | translate}}
+            </mat-option>
+        </mat-select>
+    </mat-form-field>
+    <ng-container
+        *ngIf="shouldRenderQueryInput()"
+        [ngSwitch]="form.value.filter_by"
+    >
+        <mat-form-field appearance="standard" *ngSwitchCase="'DATE'">
+            <input
+                name="date"
+                matInput
+                [matDatepicker]="picker"
+                formControlName="q"
+            />
+            <mat-datepicker-toggle
+                matSuffix
+                [for]="picker"
+            ></mat-datepicker-toggle>
+            <mat-datepicker #picker></mat-datepicker>
+        </mat-form-field>
+
+        <mat-form-field appearance="standard" *ngSwitchCase="'REGION'">
+            <mat-select
+                name="search"
+                [placeholder]="'COMMON.LABELS.SELECT' | translate"
+                formControlName="q"
+            >
+                <mat-option *ngFor="let bank of bankRegions" [value]="bank.id">
+                    {{ bank.description }}
+                </mat-option>
+            </mat-select>
+        </mat-form-field>
+
+        <mat-form-field appearance="standard"  *ngSwitchCase="'NIT'">
+            <input name="search" matInput formControlName="q" />
+            <mat-icon matSuffix>search</mat-icon>
+        </mat-form-field>
+        <mat-form-field appearance="standard" *ngSwitchCase="'NIT'">
+            <mat-select
+                name="filter-by"
+                [placeholder]="'COMMON.LABELS.DOCUMENT_TYPE' | translate"
+                formControlName="documentType"
+            >
+                <mat-option ngDefaultControl value="NIT">
+                    {{ 'COMMON.FILTERS.DOCUMENT_TYPES.NIT' | translate }}
+                </mat-option>
+                <mat-option value="IDENTIFICATION_CARD">
+                    {{ 'COMMON.FILTERS.DOCUMENT_TYPES.IDENTIFICATION_CARD' | translate }}
+                </mat-option>
+                <mat-option value="FOREIGNER_ID">
+                    {{ 'COMMON.FILTERS.DOCUMENT_TYPES.FOREIGNER_ID' | translate }}
+                </mat-option>
+                <mat-option value="AUTONOMOUS_HERITAGE">
+                    {{ 'COMMON.FILTERS.DOCUMENT_TYPES.AUTONOMOUS_HERITAGE' | translate }}
+                </mat-option>
+                <mat-option value="PASSPORT">
+                    {{ 'COMMON.FILTERS.DOCUMENT_TYPES.PASSPORT' | translate }}
+                </mat-option>
+            </mat-select>
+        </mat-form-field>
+
+        <mat-form-field appearance="standard" *ngSwitchDefault>
+            <input name="search" matInput formControlName="q" />
+            <mat-icon matSuffix>search</mat-icon>
+        </mat-form-field>
+    </ng-container>
+    <ng-container
+        *ngIf="shouldRenderWithoutQueryInput()"
+        [ngSwitch]="form.value.filter_by"
+    >
+        <mat-form-field appearance="standard" *ngSwitchCase="'MODULE'">
+            <mat-select
+                name="filter-by"
+                [placeholder]="'COMMON.LABELS.SELECT' | translate"
+                formControlName="module"
+            >
+                <mat-option value="PAYER">
+                    {{ 'COMMON.FILTERS.PAYER' | translate }}
+                </mat-option>
+                <mat-option value="FUNDING">
+                    {{ 'COMMON.FILTERS.FUNDING' | translate }}
+                </mat-option>
+                <mat-option value="PROVIDER">
+                    {{ 'COMMON.FILTERS.PROVIDER' | translate }}
+                </mat-option>
+            </mat-select>
+        </mat-form-field>
+        <mat-form-field appearance="standard" *ngSwitchCase="'STATUS'">
+            <mat-select
+                name="filter-by"
+                [placeholder]="'COMMON.LABELS.SELECT' | translate"
+                (selectionChange)="changeStatus($event)"
+            >
+                <mat-option value="PENDING_ACCOUNT_CREATION">
+                    {{ 'COMMON.ENTERPRISE_STATUS.PENDING_ACCOUNT_CREATION' | translate }}
+                </mat-option>
+                <mat-option value="PENDING_ACCOUNT_CONFIRMATION">
+                    {{ 'COMMON.ENTERPRISE_STATUS.PENDING_ACCOUNT_CONFIRMATION' | translate }}
+                </mat-option>
+                <mat-option value="ENABLED">
+                    {{ 'COMMON.ENTERPRISE_STATUS.ENABLED' | translate }}
+                </mat-option>
+                <mat-option value="REJECTED">
+                    {{ 'COMMON.ENTERPRISE_STATUS.REJECTED' | translate }}
+                </mat-option>
+                <mat-option value="INCOMPLETE_ACCOUNT">
+                    {{ 'COMMON.ENTERPRISE_STATUS.INCOMPLETE_ACCOUNT' | translate }}
+                </mat-option>
+                <mat-option value="EVALUATION_PENDING">
+                    {{ 'COMMON.ENTERPRISE_STATUS.EVALUATION_PENDING' | translate }}
+                </mat-option>
+            </mat-select>
+        </mat-form-field>
+    </ng-container>
+    <button #submitButton type="submit" hidden></button>
+</form>

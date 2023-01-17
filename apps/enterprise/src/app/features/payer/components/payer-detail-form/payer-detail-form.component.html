@@ -1,0 +1,29 @@
+<form
+    (ngSubmit)="onSubmit()"
+    [formGroup]="form"
+    fxLayout="column"
+    fxLayoutGap="10px"
+>
+    <div formGroupName="values" fxLayout="column" fxLayoutGap="10px">
+        <custom-attribute-input
+            *ngFor="let control of controls; let i = index"
+            [formControlName]="i"
+        ></custom-attribute-input>
+    </div>
+
+    <mat-divider></mat-divider>
+
+    <div fxLayout="row" fxLayoutAlign="end" fxLayoutGap="10px">
+        <button (click)="cancel.emit()" mat-button type="button">
+            {{ 'COMMON.ACTIONS.CANCEL' | translate | uppercase }}
+        </button>
+        <button
+            [disabled]="shouldDisable()"
+            mat-flat-button
+            color="primary"
+            type="submit"
+        >
+            {{ 'COMMON.ACTIONS.SAVE' | translate | uppercase }}
+        </button>
+    </div>
+</form>

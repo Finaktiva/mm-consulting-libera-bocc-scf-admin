@@ -1,0 +1,58 @@
+<form
+    [formGroup]="form"
+    fxLayout="column"
+    fxLayoutAlign="center stretch"
+    (ngSubmit)="onSubmit()"
+>
+    <mat-form-field>
+        <mat-label>Nombre</mat-label>
+        <input
+            formControlName="name"
+            matInput
+            type="text"
+            name="name"
+        />
+        <mat-error>
+            <span *ngIf="form.hasError('required', 'name')">
+                Este campo es requerido
+            </span>
+            <span *ngIf="form.hasError('alphaWithSpace', 'name')">
+                Sólo se permiten letras
+            </span>
+        </mat-error>
+    </mat-form-field>
+    <mat-form-field>
+        <mat-label>Primer apellido</mat-label>
+        <input
+            formControlName="firstSurname"
+            matInput
+            type="text"
+            name="firstSurname"
+        />
+        <mat-error>
+            <span *ngIf="form.hasError('required', 'firstSurname')">
+                Este campo es requerido
+            </span>
+            <span *ngIf="form.hasError('alphaWithSpace', 'firstSurname')">
+                Sólo se permiten letras
+            </span>
+        </mat-error>
+    </mat-form-field>
+    <mat-form-field>
+        <mat-label>Segundo apellido</mat-label>
+        <input
+            formControlName="secondSurname"
+            matInput
+            type="text"
+            name="secondSurname"
+        />
+        <mat-error>
+            <span *ngIf="form.hasError('alphaWithSpace', 'secondSurname')">
+                Sólo se permiten letras
+            </span>
+        </mat-error>
+    </mat-form-field>
+    <button mat-flat-button color="primary" [disabled]="shouldDisable()">
+        Continuar
+    </button>
+</form>

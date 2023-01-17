@@ -1,0 +1,20 @@
+<mat-progress-bar *ngIf="(isLoadingRole$ | async) || (isLoadingPermissions$ | async)" mode="indeterminate"></mat-progress-bar>
+<h2 mat-dialog-title class="mat-title" *ngIf="data.action === 'CREATE'; else edit">
+    {{ 'ROLE_DIALOG.CREATE_TITLE' | translate | titlecase }}
+</h2>
+<ng-template #edit>
+    <h2 mat-dialog-title class="mat-title">
+        {{ 'ROLE_DIALOG.EDIT_TITLE' | translate | titlecase }}
+    </h2>
+</ng-template>
+<mat-dialog-content>
+    <role-form #component [action]="data.action" [role]="data.userRole"></role-form>
+</mat-dialog-content>
+<mat-dialog-actions fxLayoutAlign="end" fxLayoutGap="15px">
+    <button type="button" mat-button [mat-dialog-close]="false">
+        {{ 'COMMON.ACTIONS.CANCEL' | translate | uppercase }}
+    </button>
+    <button (click)="component.submit() || null" mat-flat-button color="primary" [disabled]="(isLoadingRole$ | async) || (isLoadingPermissions$ | async)">
+        {{ 'COMMON.ACTIONS.SAVE' | translate | uppercase }}
+    </button>
+</mat-dialog-actions>

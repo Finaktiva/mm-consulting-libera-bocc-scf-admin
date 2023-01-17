@@ -1,0 +1,26 @@
+<form
+    (ngSubmit)="onSubmit()"
+    [formGroup]="form"
+    fxLayout="row"
+    fxLayoutGap="12px"
+>
+    <button
+        type="button"
+        mat-button
+        *ngIf="!shouldRenderResetButton()"
+        (click)="onReset()"
+    >
+        {{ 'COMMON.LABELS.CLEAN_FILTERS' | translate }}
+    </button>
+    <mat-form-field appearance="standard">
+        <mat-label>{{ 'COMMON.LABELS.FILTER_BY' | translate }}</mat-label>
+        <mat-select formControlName="filter_by">
+            <mat-option *ngFor="let option of options" [value]="option.value">
+                {{ option.label | translate }}
+            </mat-option>
+        </mat-select>
+    </mat-form-field>
+    <mat-form-field appearance="standard" *ngIf="form.value.filter_by">
+        <input matInput formControlName="q" type="text" name="query" />
+    </mat-form-field>
+</form>

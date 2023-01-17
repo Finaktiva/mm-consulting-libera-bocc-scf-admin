@@ -1,0 +1,141 @@
+<div fxLayout="column">
+    <div fxLayout="row" fxLayoutAlign="start center" class="page-toolbar">
+        <a routerLink="/core/provider-invoices/bulk-negotiations" mat-button>
+            <mat-icon>arrow_back</mat-icon>
+            {{ 'COMMON.LABELS.BACK_TO_LIST' | translate }}
+        </a>
+    </div>
+    <div
+        fxLayout="column"
+        class="page-content progress-bar-container mat-elevation-z1 table-container"
+    >
+        <mat-spinner
+            *ngIf="(isLoading$ | async)"
+            fxFlexAlign="center"
+        ></mat-spinner>
+        <alert *ngIf="(error$ | async)" color="warn">
+            <span> {{ 'COMMON.ERRORS.PAGE_LOAD' | translate }}</span>
+            <button (click)="fetch()" mat-flat-button color="warn">
+                {{ 'COMMON.ACTIONS.RETRY' | translate | uppercase }}
+            </button>
+        </alert>
+        <div *ngIf="(hasLoaded$ | async)" fxLayout="column" fxLayoutGap="12px">
+            <div fxLayout="column" fxLayoutGap="12px">
+                <div
+                    fxLayout="row"
+                    fxLayoutAlign="start center"
+                    fxLayoutGap="12px"
+                >
+                    <h2 class="mat-h2 no-margin-bottom">
+                        {{ folio$ | async }}
+                    </h2>
+                    <status-chip [status]="status$ | async">
+                        {{
+                            'COMMON.NEGOTIATION_STATUS.' + (status$ | async)
+                                | translate
+                        }}
+                    </status-chip>
+                </div>
+                <div fxLayout="row">
+                    <span fxFlex class="mat-body">
+                        {{
+                            'BULK_INVOICE_NEGOTIATION_DETAIL_PAGE.HINT'
+                                | translate
+                        }}
+                    </span>
+                    <div
+                        fxFlex
+                        fxLayout="row"
+                        fxLayoutAlign="end"
+                        fxLayoutGap="8px"
+                    >
+                        <button
+                            *ngIf="(shouldRenderAcceptOfferButton$ | async)"
+                            (click)="onOpenAcceptOfferDialog()"
+                            mat-button
+                        >
+                            {{
+                                'BULK_INVOICE_NEGOTIATION_DETAIL_PAGE.ACCEPT_OFFER_BUTTON'
+                                    | translate
+                            }}
+                        </button>
+                        <button
+                            *ngIf="(shouldRenderCounterOfferButton$ | async)"
+                            (click)="onOpenCounterOfferDialog()"
+                            mat-button
+                        >
+                            {{
+                                'BULK_INVOICE_NEGOTIATION_DETAIL_PAGE.COUNTER_OFFER_BUTTON'
+                                    | translate
+                            }}
+                        </button>
+                        <button
+                            *ngIf="(shouldRenderRejectOfferButton$ | async)"
+                            (click)="onOpenRejectOfferDialog()"
+                            mat-button
+                        >
+                            {{
+                                'BULK_INVOICE_NEGOTIATION_DETAIL_PAGE.REJECT_OFFER_BUTTON'
+                                    | translate
+                            }}
+                        </button>
+                    </div>
+                </div>
+            </div>
+            <mat-divider></mat-divider>
+            <div>
+                <bulk-invoice-negotiation-offer-detail
+                    *ngIf="(hasPayerOffer$ | async); else noPayerOffer"
+                    type="PAYER"
+                    [total]="total$ | async"
+                    [lender]="lender$ | async"
+                    [provider]="provider$ | async"
+                    [offer]="payerOffer$ | async"
+                ></bulk-invoice-negotiation-offer-detail>
+                <ng-template #noPayerOffer>
+                    <h1
+                        class="mat-headline text-muted"
+                        style="text-align: center; margin: 48px 0;"
+                    >
+                        {{
+                            'BULK_INVOICE_NEGOTIATION_DETAIL_PAGE.NO_PAYER_OFFER_HINT'
+                                | translate
+                        }}
+                    </h1>
+                </ng-template>
+            </div>
+            <mat-divider></mat-divider>
+            <div>
+                <bulk-invoice-negotiation-offer-detail
+                    *ngIf="(hasProviderOffer$ | async); else noProviderOffer"
+                    type="PROVIDER"
+                    [total]="total$ | async"
+                    [lender]="lender$ | async"
+                    [provider]="provider$ | async"
+                    [offer]="providerOffer$ | async"
+                ></bulk-invoice-negotiation-offer-detail>
+                <ng-template #noProviderOffer>
+                    <h1
+                        class="mat-headline text-muted"
+                        style="text-align: center; margin: 48px 0;"
+                    >
+                        {{
+                            'BULK_INVOICE_NEGOTIATION_DETAIL_PAGE.NO_PROVIDER_OFFER_HINT'
+                                | translate
+                        }}
+                    </h1>
+                </ng-template>
+            </div>
+            <mat-divider></mat-divider>
+            <div>
+                <p class="mat-body-2">
+                    {{
+                        'BULK_INVOICE_NEGOTIATION_DETAIL_PAGE.LENGTH'
+                            | translate: { length: length$ | async }
+                    }}
+                </p>
+                <invoice-list [invoices]="invoices$ | async"></invoice-list>
+            </div>
+        </div>
+    </div>
+</div>

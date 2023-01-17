@@ -1,0 +1,25 @@
+<mat-progress-bar
+    *ngIf="(isSubmitting$ | async)"
+    mode="indeterminate"
+></mat-progress-bar>
+<h2 mat-dialog-title>
+    {{ 'BULK_INVOICE_NEGOTIATION_REJECT_OFFER_DIALOG.TITLE' | translate }}
+</h2>
+<mat-dialog-content>
+    <p class="mat-body">
+        {{ 'BULK_INVOICE_NEGOTIATION_REJECT_OFFER_DIALOG.CONTENT' | translate }}
+    </p>
+</mat-dialog-content>
+<mat-dialog-actions fxLayout="row" fxLayoutAlign="end" fxLayoutGap="8px">
+    <button mat-button mat-dialog-close>
+        {{ 'COMMON.ACTIONS.CANCEL' | translate }}
+    </button>
+    <button
+        (click)="onSubmit()"
+        [disabled]="isSubmitting$ | async"
+        mat-flat-button
+        color="warn"
+    >
+        {{ 'COMMON.ACTIONS.REJECT' | translate }}
+    </button>
+</mat-dialog-actions>

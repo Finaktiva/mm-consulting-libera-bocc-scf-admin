@@ -1,0 +1,11 @@
+@import '../../../../../styles';
+
+.ngez-file-dropzone {
+    height: 100px;
+    padding: 16px;
+    border: 1px dashed #c7d0da;
+
+    &.active {
+        border: 1px solid $app-accent-color;
+    }
+}

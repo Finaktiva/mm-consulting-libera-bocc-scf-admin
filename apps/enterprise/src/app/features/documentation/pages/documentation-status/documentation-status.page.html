@@ -1,0 +1,19 @@
+<div fxLayout="column" fxLayoutAlign="center stretch">
+    <h1 class="mat-headline" style="text-align: center;">
+        {{ 'DOCUMENTATION_STATUS_PAGE.TITLE' | translate }}
+    </h1>
+    <mat-spinner fxFlexAlign="center" *ngIf="(isLoading$ | async); else content"></mat-spinner>
+    <ng-template #content>
+        <div *ngIf="(error$ | async); else documentation" fxLayout="column" fxLayoutAlign="center center">
+            <p class="mat-body">
+                {{ 'COMMON.ERRORS.LOAD_DOCUMENTS' | translate }}
+            </p>
+            <button (click)="onRetry()" mat-flat-button color="warn">
+                {{ 'COMMON.ACTIONS.RETRY' | translate | uppercase }}
+            </button>
+        </div>
+        <ng-template #documentation>
+            <enterprise-documentation-table (upload)="onUpload($event)" (delete)="onDelete($event)" [canDelete]="true" [showActions]="true" [entities]="entities$ | async" [enterpriseStatus]="enterpriseStatus$ | async"></enterprise-documentation-table>
+        </ng-template>
+    </ng-template>
+</div>

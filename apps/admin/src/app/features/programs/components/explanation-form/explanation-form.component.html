@@ -1,0 +1,25 @@
+<form
+    fxLayout="column"
+    fxLayoutAlign="center stretch"
+    [formGroup]="form"
+    (ngSubmit)="onSubmit()"
+>
+    <mat-form-field>
+        <textarea
+            matInput
+            formControlName="explanation"
+            [placeholder]="placeholder"
+            maxlength="150"
+            rows="5"
+        ></textarea>
+        <mat-error>
+            <span *ngIf="form.hasError('required', 'explanation')">
+                {{ 'COMMON.VALIDATIONS.REQUIRED' | translate }}
+            </span>
+        </mat-error>
+        <mat-hint align="end">
+            {{ form.value.explanation.length }} / 150
+        </mat-hint>
+    </mat-form-field>
+    <button type="submit" #submitButton hidden></button>
+</form>

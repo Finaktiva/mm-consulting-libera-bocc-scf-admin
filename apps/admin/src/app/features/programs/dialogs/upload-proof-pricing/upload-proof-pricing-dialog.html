@@ -1,0 +1,25 @@
+<mat-progress-bar *ngIf="(isUploading$ | async) || isLoadingDocument" mode="indeterminate"></mat-progress-bar>
+
+<form fxLayout="column" fxLayoutGap="12px" [formGroup]="form" (ngSubmit)='onSubmit()'>
+
+    <button *ngIf="!isDeletingFile" #fileInput type="button" formControlName="file" ngezFileInput accept=".pdf, image/jpg, image/jpeg" mat-flat-button color="primary" style='margin-left: 30px !important;' [disabled]='isLoadingDocument'>
+        {{ 'COMMON.ACTIONS.SELECT_FILE' | translate }}
+    </button>
+    <div fxLayoutAlign="space-between center" fxLayout="row">
+        <h2 class='mat-body' *ngIf="getFormValue().file else template">{{ getFormValue().file.name }}</h2>
+        <ng-template #template>
+            <h2 class='mat-body'>{{ 'LOAD_MODAL.ADD_DOCUMENT' | translate }}</h2>
+        </ng-template>
+
+        <button type="button" mat-flat-button color="warn" (click)="deleteFile()" [disabled]='isLoadingDocument'>{{ 'COMMON.ACTIONS.DELETE' | translate }}</button>
+    </div>
+    <mat-dialog-actions fxLayoutAlign="end" fxLayoutGap="15px">
+        <button type="button" mat-button [mat-dialog-close]="'cancel'" [disabled]='isLoadingDocument'>
+      {{ 'COMMON.ACTIONS.CANCEL' | translate }}
+    </button>
+        <button mat-flat-button color="primary" type='submit' [disabled]='isLoadingDocument'>
+      {{ 'COMMON.ACTIONS.SAVE' | translate }}
+    </button>
+    </mat-dialog-actions>
+
+</form>

@@ -1,0 +1,174 @@
+<div fxLayout="row" fxLayoutGap="12px">
+    <div fxFlex fxLayout="column" fxLayoutGap="2px">
+        <div>
+            <p class="mat-body">
+                {{
+                    'BULK_INVOICE_NEGOTIATION_DETAIL_PAGE.OFFER.DISCOUNT_TYPE'
+                        | translate
+                }}
+            </p>
+            <span class="mat-body-2">
+                {{
+                    'COMMON.NEGOTIATION_DISCOUNT_TYPE.' + offer.discountType
+                        | translate
+                }}
+            </span>
+        </div>
+        <div>
+            <p class="mat-body">
+                {{
+                    'BULK_INVOICE_NEGOTIATION_DETAIL_PAGE.OFFER.RATE'
+                        | translate
+                }}
+            </p>
+            <span class="mat-body-2">
+                {{ offer.percentage | divide: 100 | percent: '1.0-2' }}
+            </span>
+        </div>
+        <div>
+            <p class="mat-body">
+                {{
+                    'BULK_INVOICE_NEGOTIATION_DETAIL_PAGE.OFFER.DUE_DATE'
+                        | translate
+                }}
+            </p>
+            <span class="mat-body-2">
+                {{ offer.discountDueDate | date }}
+            </span>
+        </div>
+        <div>
+            <p class="mat-body">
+                {{
+                    'BULK_INVOICE_NEGOTIATION_DETAIL_PAGE.OFFER.EXPECTED_PAYMENT_DATE'
+                        | translate
+                }}
+            </p>
+            <span class="mat-body-2">
+                {{ offer.expectedPaymentDate | date }}
+            </span>
+        </div>
+    </div>
+
+    <div fxFlex fxLayout="column" fxLayoutGap="2px">
+        <div>
+            <p class="mat-body">
+                {{
+                    'BULK_INVOICE_NEGOTIATION_DETAIL_PAGE.OFFER.PROVIDER'
+                        | translate
+                }}
+            </p>
+            <span class="mat-body-2">
+                {{ provider }}
+            </span>
+        </div>
+        <div>
+            <p class="mat-body">
+                {{
+                    'BULK_INVOICE_NEGOTIATION_DETAIL_PAGE.OFFER.LENDER'
+                        | translate
+                }}
+            </p>
+            <span class="mat-body-2">
+                {{ lender }}
+            </span>
+        </div>
+    </div>
+    <div fxFlex fxLayout="column" fxLayoutGap="8px" class="mat-body-2">
+        <div
+            class="mat-body"
+            fxLayout="row"
+            fxLayoutAlign="center center"
+            [ngSwitch]="type"
+        >
+            <span *ngSwitchCase="'PROVIDER'">
+                {{
+                    'BULK_INVOICE_NEGOTIATION_DETAIL_PAGE.PROVIDER_OFFER'
+                        | translate
+                }}
+            </span>
+            <span *ngSwitchCase="'PAYER'">
+                {{
+                    'BULK_INVOICE_NEGOTIATION_DETAIL_PAGE.PAYER_OFFER'
+                        | translate
+                }}
+            </span>
+        </div>
+        <div fxLayout="row">
+            <span fxFlex="60%">
+                {{
+                    'BULK_INVOICE_NEGOTIATION_DETAIL_PAGE.OFFER.TOTAL'
+                        | translate
+                }}
+            </span>
+            <span fxFlex>
+                {{ total | currency: 'COP':'symbol-narrow':'1.2-2':'en' }}
+            </span>
+        </div>
+        <div fxLayout="row">
+            <span fxFlex="60%">
+                {{
+                    'BULK_INVOICE_NEGOTIATION_DETAIL_PAGE.OFFER.DISCOUNT'
+                        | translate
+                }}
+            </span>
+            <span fxFlex>
+                {{
+                    offer.discountValue
+                        | currency: 'COP':'symbol-narrow':'1.2-2':'en'
+                }}
+            </span>
+        </div>
+        <mat-divider></mat-divider>
+        <div fxLayout="row">
+            <span fxFlex="60%">
+                {{
+                    'BULK_INVOICE_NEGOTIATION_DETAIL_PAGE.OFFER.NEGOTIATION_AMOUNT'
+                        | translate
+                }}
+            </span>
+            <span fxFlex>
+                {{
+                    total - offer.discountValue
+                        | currency: 'COP':'symbol-narrow':'1.2-2':'en'
+                }}
+            </span>
+        </div>
+        <mat-divider></mat-divider>
+        <ng-container *ngIf="shouldRenderQuota">
+            <div fxLayout="row">
+                <span fxFlex="60%">
+                    {{
+                        'BULK_INVOICE_NEGOTIATION_DETAIL_PAGE.OFFER.AVAILABLE_QUOTA'
+                            | translate
+                    }}
+                </span>
+                <span fxFlex>
+                    {{
+                        availableQuota
+                            | currency: 'COP':'symbol-narrow':'1.2-2':'en'
+                    }}
+                </span>
+            </div>
+            <div fxLayout="row">
+                <span fxFlex="60%">
+                    {{
+                        'BULK_INVOICE_NEGOTIATION_DETAIL_PAGE.OFFER.REMAINING_QUOTA'
+                            | translate
+                    }}
+                </span>
+                <span
+                    fxFlex
+                    [class.text-warn]="calculateRemainingQuota() < 0"
+                    [class.text-alternate-primary]="
+                        calculateRemainingQuota() >= 0
+                    "
+                >
+                    {{
+                        calculateRemainingQuota()
+                            | currency: 'COP':'symbol-narrow':'1.2-2':'en'
+                    }}
+                </span>
+            </div>
+        </ng-container>
+    </div>
+</div>

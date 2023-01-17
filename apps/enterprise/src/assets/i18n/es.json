@@ -1,0 +1,1918 @@
+{
+    "COMMON": {
+        "VALIDATIONS": {
+            "INVALID_COLOR": "No es un color valido",
+            "BEFORE_TODAY": "No puede elegir una fecha anterior al día actual.",
+            "AFTER_TODAY": "No puede elegir una fecha despues del día actual.",
+            "NO_PROVIDER_SELECTED": "Debe seleccionar algún proveedor de las opciones",
+            "ONLY_XLSX_FILES": "Sólo archivos .xlsx",
+            "SEVERAL_FILES": "Sólo archivos .pdf, .png, .jpg, .zip o .rar",
+            "SOME_FILES": "Sólo archivos .pdf o imágenes",
+            "REQUIRED": "Este campo es requerido",
+            "MIN_LENGTH": "Debe tener por lo menos {{ minLength }} caracteres",
+            "MAX_LENGTH": "No puede tener más de {{maxLength}} caracteres",
+            "PASSWORD_PATTERN": "Debe tener una mayúscula, minúscula, número y caracter especial.",
+            "PASSWORD_MISMATCH": "Las contraseñas no coinciden",
+            "EXACT_LENGTH": "Consiste de exactamente {{ length }} dígitos",
+            "ONLY_DIGITS": "Sólo se permiten dígitos",
+            "ONLY_LETTERS": "Sólo se permiten letras",
+            "INVALID_EMAIL": "No es un formato válido de correo electrónico",
+            "NO_CONTENT": "No has introducido caracteres.",
+            "NOT_CONTAINS_CHARACTERS": "No contiene caracteres",
+            "NIT_PATTERN": "El NIT debe contener un mínimo de 8 caracteres y solo números",
+            "CIIU_PATTERN": "El código CIIU debe contener 4 números.",
+            "CIIU_NOT_FOUND": "Código CIIU no encontrado, verifique la información",
+            "INVALID_NIT": "No es un NIT válido",
+            "AT_LEAST_ONE_MODULE": "Debe seleccionar por lo menos un módulo.",
+            "NEGATIVE_NUMBER": "Este campo no acepta numeros negativos.",
+            "MIN": "Este campo debe ser mayor o igual a {{ min }}",
+            "MAX_LENGTH_DIGIT": "No puede tener más de {{maxLength}} dígitos",
+            "ALPHANUMERIC": "El campo es alfanumérico",
+            "NO_REGISTERS_SAVED": "Número de documento no encontrado, verifique la información",
+            "DOCUMENT_REQUIRED": "Debe seleccionar un documento",
+            "ONLY_PDF": "Solo se permite la carga de archivos en extensión PDF",
+            "INVALID_DOCUMENT_TYPE": "Cargaste un archivo con un formato diferente al aceptado",
+            "INVALID_DATE":"No es posible diligenciar una fecha posterior al día de hoy",
+            "INVALID_DEPARTMENT": "No es un departamento válido",
+            "INVALID_CITY": "No es una ciudad válida",
+            "INVALID_BANK": "No es un banco válido",
+            "INVALID_REGION": "No es una región válida",
+            "EMAIL_INFORMATION": "El email deberá contener mínimo 5 y máximo 32 caracteres antes del arroba"
+        },
+        "ACTIVE_MODULES": "Módulos activos",
+        "PRODUCTS": {
+            "UNIDIRECT": "Unidirecto",
+            "FACTORING": "Factoring en Firme",
+            "CONFIRMING": "Confirming",
+            "DOCUMENT_DISCOUNT": "Descuento de Documentos"
+        },
+        "ERRORS": {
+            "LOAD_ENTERPRISE": "Hubo un error al cargar la información de su empresa.",
+            "LOAD_BRANDING": "Hubo un error al cargar el branding.",
+            "FILE_UPLOAD": "Hubo un error al subir el archivo.",
+            "LOAD_DOCUMENTS": "Hubo un error al cargar los documentos.",
+            "LOAD_HISTORY": "Hubo un error al cargar el historial.",
+            "LOAD_INVOICE": "Hubo un error al cargar la factura.",
+            "LOAD_CUSTOMIZED_FIELDS": "Hubo un error al cargar los campos personalizados.",
+            "LOAD_MODULES": "Hubo un error al cargar los módulos.",
+            "PAGE_LOAD": "Hubo un error al cargar la página.",
+            "INFO_LOAD": "Hubo un error al cargar la información.",
+            "LADA_LOAD_ERROR": "Hubo un error al cargar las ladas.",
+            "SESSION_EXPIRED": "Después de 10 minutos de inactividad hemos cerrado tu sesión por seguridad.",
+            "CODE": {
+                "SCF.LIBERA.226": "Debe adjuntar almenos un archivo o ingresar un comentario"
+            }
+        },
+        "ACTIONS": {
+            "RESET_VALUES": "Restaurar valores predeterminados",
+            "DOWNLOAD": "Descargar",
+            "LOGOUT": "Cerrar sesión",
+            "ADD_INVOICE": "Agregar factura",
+            "UPDATE": "Actualizar",
+            "RELOAD": "Recargar",
+            "ACCEPT": "Aceptar",
+            "CANCEL": "Cancelar",
+            "SEND": "Enviar",
+            "SAVE": "Guardar",
+            "CREATE": "Crear",
+            "RETRY": "Reintentar",
+            "ACTIVATE": "Activar",
+            "EDIT": "Editar",
+            "DELETE": "Eliminar",
+            "REPLACE": "Remplazar",
+            "GO_BACK": "Regresar",
+            "PAYMENT": "Pago",
+            "REJECT": "Rechazar",
+            "ASSIGN": "Asignar",
+            "QUOTE_REQUEST": "Solicitar cupo",
+            "UPDATE_QUOTE": "Actualizar cupo",
+            "REQUEST_QUOTA_EXTENSION": "Solicitar ampliación de cupo",
+            "YES_ACCEPT": "Sí, aceptar",
+            "CONFIRM": "Confirmar",
+            "REQUEST": "Solicitar",
+            "YES_REJECT": " Sí, rechazar",
+            "SEND_REQUEST": "Enviar solicitud",
+            "REJECT_PAYMENT": "Rechazar Pago",
+            "CONFIRM_PAYMENT": "Confirmar Pago",
+            "NEGOTIATE": "Negociar",
+            "APPROVE": "Aprobar"
+        },
+        "LOADING": "Cargando",
+        "DELETING": "Eliminando",
+        "LABELS": {
+            "SEND": "Enviar",
+            "ADD_NEW_DOCUMENT": "Agregar un nuevo documento",
+            "NEXT": "Siguiente",
+            "BACK": "Regresar",
+            "FINISH": "Terminar",
+            "UNASSIGNED": "Sin asignar",
+            "PAYMENT_DATE": "Fecha esperada de pago",
+            "DISCOUNT_TYPE": "Tipo de descuento",
+            "DISCOUNT_RATE": "Tasa descuento",
+            "DISCOUNT_EXPIRATION": "Vigencia de descuento",
+            "EXPECTED_PAYMENT_DATE": "Fecha esperada de pago",
+            "EXPIRATION_DATE": "Fecha de vencimiento",
+            "DISCOUNT_VALUE": "Factura con descuento",
+            "INVOICE_NUMBER": "Número de factura",
+            "PAYER": "Pagador",
+            "CONFIRM": "Sí, estoy seguro",
+            "PAYMENT_INDICATIONS": "Indicaciones de pago",
+            "FUNDING_REQUEST": "Solicitar fondeo",
+            "BULK_LOADS": "Cargas masivas",
+            "INVOICES": "Facturas",
+            "PERSONALIZATION": "Personalización",
+            "CONTACT": "Contacto",
+            "ENTERPRISE_TYPE": "Tipo de empresa",
+            "ENTERPRISE": "Empresa",
+            "PROVIDERS": "Proveedores",
+            "PHONE": "Télefono",
+            "BULK_LOAD": "Carga masiva",
+            "COMMENTS": "Comentarios",
+            "ECONOMIC_SECTOR": "Sector económico",
+            "SELECT_FIELD": "Seleccionar campo",
+            "NIT": "Número de documento",
+            "SOCIAL_REASON": "Razón social",
+            "EMAIL": "Email",
+            "ACTIVE_MODULES": "Módulos activos",
+            "LINKING_DATE": "Fecha de vinculación",
+            "ACTIONS": "Acciones",
+            "STATUS": "Estatus",
+            "DOCUMENTATION": "Documentación",
+            "ROLES": "Roles",
+            "ROLE": "Rol",
+            "RETRY": "Volver a intentar",
+            "FILTER_BY": "Filtrar por",
+            "CLEAN_FILTERS": "Limpiar filtros",
+            "PROVIDER": "Proveedor",
+            "UPLOAD_DATE": "Fecha de carga",
+            "BACK_TO_LIST": "Regresar al listado",
+            "INVOICE": "Factura",
+            "BULK_NEGOTIATION_WARN": "Si desea negociar de manera masiva deberá filtrar sus facturas por proveedor",
+            "BULK_NEGOTIATION_MULTIPLE_CURRENCIES_WARNING": "No es posible negociar facturas con multiples monedas: {{currencies}}",
+            "BULK_NEGOTIATION_ONLY_ONE_PROVIDER": "No es posible negociar facturas de más de un proveedor al mismo tiempo, verifique su selección",
+            "DAYS": "Días",
+            "DAY": "Día",
+            "RATE": "Tasa",
+            "PUNCTUAL_PLAN": "Plan puntual",
+            "DOCUMENT_TYPES": {
+                "NIT": "NIT",
+                "IDENTIFICATION_CARD": "Cédula de Ciudadanía",
+                "FOREIGNER_ID": "Cédula de extranjería",
+                "AUTONOMOUS_HERITAGE": "Patrimonio autónomo",
+                "PASSPORT": "Pasaporte"
+            }
+        },
+        "FILTERS": {
+            "INVOICE_NUMBER": "Número de factura",
+            "MODULE": "Módulo",
+            "EXPIRATION_DATE": "Fecha de vencimiento",
+            "CREATION_DATE": "Fecha de solicitud",
+            "FOLIO": "Folio",
+            "NIT": "Número de documento",
+            "SOCIAL_REASON": "Razón social",
+            "LINKING_DATE": "Fecha de vinculación",
+            "PAYER": "Pagador",
+            "FUNDING": "Fondeador",
+            "PROVIDER": "Proveedor",
+            "STATUS": "Estatus",
+            "STATUS_OPTIONS": {
+                "PENDING_ACCEPTANCE": "Pendiente aceptación pagador",
+                "CURRENT": "Vigente",
+                "ABOUT_TO_EXPIRE": "Próximo a vencer",
+                "EXPIRED": "Vencido",
+                "REJECTED": "Rechazado por pagador"
+            },
+            "IDENTIFICATION_NUMBER": "Número de identificación",
+            "MODALITY": "Modalidad",
+            "MODALITIES": {
+                "EXPONENTIAL": "Exponencial",
+                "COMMISSION": "Comisión",
+                "FINANCED": "Financiado"
+            },
+            "DESCRIPTION": "Descripción",
+            "DESCRIPTIONS": {
+                "EXPONENTIAL": "Con descuento",
+                "COMMISSION": "Sin descuento",
+                "FINANCED": "Con descuento y financiación adicional"
+            },
+            "EFFECTIVE_PAYMENT_DATE": "Fecha efectiva de pago",
+            "EXPECTED_PAYMENT_DATE": "Fecha esperada de pago",
+            "PAYER_SOCIAL_REASON": "Razón social del pagador"
+        },
+        "ENTERPRISE_REQUEST_STATUS": {
+            "ACCEPTED": "Aceptado",
+            "REJECTED": "Rechazado",
+            "EVALUATION_PENDING": "Pendiente"
+        },
+        "INVOICE_PAYMENT_TYPE": {
+            "CASH": "Efectivo",
+            "DEPOSIT": "Deposito",
+            "PAYCHECK": "Cheque",
+            "ELECTRONIC_TRANSFERENCE": "Transferencia electrónica"
+        },
+        "INVOICE_DOCUMENT_TYPE": {
+            "CREDIT_NOTE": "Nota crédito",
+            "INVOICE": "Factura"
+        },
+        "CUSTOMIZE": {
+            "TITLE": "Personalización",
+            "MANAGE_CUSTOM_INFO": "Gestionar datos personalizados"
+        },
+        "INVOICE_FIELDS": {
+            "INVOICE_NUMBER": "No. de factura",
+            "ALTERNATE_INVOICE_ID": "ID Alterno de factura",
+            "EMISSION_DATE": "Fecha de emisión",
+            "EXPIRATION_DATE": "Fecha de vencimiento",
+            "DOCUMENT_TYPE": "Tipo de documento",
+            "INVOICE_VALUE": "Valor de factura",
+            "CURRENCY": "Moneda",
+            "PAYMENT_TYPE": "Tipo de pago",
+            "VAT": "Valor IVA",
+            "RETENTIONS": "Valor de retenciones",
+            "CREDIT_NOTES_VALUE": "Valor notas crédito",
+            "PAYMENT_ADVANCE": "Valor anticipo",
+            "NIT": "Número de documento",
+            "INVOICE_STATUS": "Estatus",
+            "AMOUNT": "Monto",
+            "EXPECTED_PAYMENT_DATE": "Fecha esperada de pago"
+        },
+        "INVOICE_STATUS": {
+            "AVAILABLE": "Disponible",
+            "LOADED": "Cargado",
+            "PAID": "Pagado",
+            "DELETED": "Eliminado",
+            "FUNDING_IN_PROGRESS": "Fondeando",
+            "FUNDING_FINISHED": "Fondeado",
+            "NEGOTIATION_FINISHED": "Negociación completa",
+            "NEGOTIATION_IN_PROGRESS": "Negociación en progreso",
+            "PAYMENT_CONFIRMED": "Pago confirmado"
+        },
+        "NEGOTIATION_DISCOUNT_TYPE": {
+            "ANTICIPATED_MONTH_RATE": "Tasa mes anticipado",
+            "EXPIRED_MONTH_RATE": "Tasa mes vencido",
+            "FIXED_RATE": "Neto fijo"
+        },
+        "OFFER": {
+            "ACCEPT": {
+                "TITLE": "Aceptar oferta",
+                "BODY": " ¿Está seguro que desea aceptar la oferta?"
+            },
+            "REJECT": {
+                "TITLE": "Rechazar oferta",
+                "BODY": "¿Está seguro que desea rechazar la oferta?"
+            }
+        },
+        "INVOICE_TABS": {
+            "INVOICE_INFO": "Datos de la factura",
+            "NEGOTIATION": "Negociación",
+            "FUNDING": "Fondeo",
+            "PAYMENT": "Pago"
+        },
+        "INVOICE_PAYMENT": {
+            "EXPECTED_PAYMENT_DATE": "Fecha esperada de pago",
+            "DISCOUNT_AMOUNT": "Factura con descuento"
+        },
+        "NEGOTIATION": {
+            "ERROR_LOAD_NEGOTIATIONS": "Hubo un error al cargar las negociaciones.",
+            "WITHOUT_NEGOTIATIONS": "Aún no has realizado ninguna negociación sobre esta factura",
+            "PAYER_OFFER": "Simulación Oferta Pagador",
+            "PROVIDER_OFFER": "Simulación Oferta Proveedor",
+            "DISCLAIMER": "Esta es una simulación de negociación, los datos mostrados pueden variar; Los valores finales son responsabilidad de los negociantes.",
+            "ACTIONS": {
+                "REJECT_OFFER": "Rechazar oferta",
+                "COUNTER_OFFER": "Contra oferta",
+                "ACCEPT_OFFER": "Aceptar oferta",
+                "CANCEL_OFFER": "Cancelar oferta"
+            },
+            "BULK_LOAD": "Esta factura ha sido negociada por bloque, podrás encontrar el detalle general en la sección \"Negociaciones masivas\"."
+        },
+        "NEGOTIATION_STATUS": {
+            "APPROVED": "Aceptado",
+            "CANCELLED": "Cancelado",
+            "EXPIRED": "Expirado",
+            "PAYER_PENDING_RESPONSE": "Pendiente de respuesta de pagador",
+            "PROVIDER_PENDING_RESPONSE": "Pendiente de respuesta de proveedor",
+            "REJECTED": "Rechazado"
+        },
+        "LENDER_STATUS": {
+            "LENDER_PAYMENT_CONFIRMATION": "Pago confirmado por fondeador",
+            "PENDING_LENDER_PAYMENT_CONFIRMATION": "Pendiente pago de fondeador",
+            "PENDING_PROVIDER_PAYMENT_CONFIRMATION": "Pendiente por proveedor",
+            "PROVIDER_PAYMENT_CONFIRMATION": "Pago confirmado por proveedor",
+            "REJECTED": "Rechazado"
+        },
+        "LENDER_QUOTA_RATE": {
+            "ADVANCE_MONTH_RATE": "Mes anticipado",
+            "ANNUAL_RATE": "Anual",
+            "DUE_MONTH_RATE": "Mes vencido",
+            "FIXED_RATE": "Fijo",
+            "PREFERENTIAL_RATE": "Preferencial",
+            "VARIABLE_RATE": "Variable"
+        },
+        "LENDER_QUOTA_REQUEST_STATUS": {
+            "APPROVED": "Aprobado",
+            "PENDING_LENDER_APPROVAL": "Pendiente aprobación Fondeador",
+            "PENDING_PAYER_APPROVAL": "Pendiente aprobación Pagador",
+            "REJECTED": "Rechazado"
+        },
+        "LENDER_QUOTA_REQUEST_TYPE": {
+            "AMOUNT_UPGRADE": "Ampliacion",
+            "NEW_FUNDING": "Nuevo fondeo",
+            "PAYMENT": "Actualización"
+        },
+        "ENTERPRISE_DOCUMENTATION_STATUS": {
+            "ACCEPTED": "Aprobado",
+            "REJECTED": "Rechazado",
+            "PENDING": "Documento no cargado",
+            "LOADED": "Cargado",
+            "EVALUATION_PENDING": "En evaluación",
+            "DISABLED": "",
+            "RELOAD_FILE": "Re-solicitado",
+            "CURRENT": "Vigente",
+            "ABOUT_TO_EXPIRE": "Próximo a vencer",
+            "EXPIRED": "Vencido"
+        },
+        "USER_STATUS": {
+            "ACTIVE": "Activo",
+            "PENDING": "Pendiente",
+            "DISABLED": "Inactivo"
+        },
+        "ENTERPRISE_TYPE": {
+            "PUBLIC": "Público",
+            "PRIVATE": "Privado",
+            "MIXED": "Mixto",
+            "SELF_MANAGEMENT": "Autogestión"
+        },
+        "ENTERPRISE_STATUS": {
+            "PENDING_ACCOUNT_CONFIRMATION": "Pendiente de activación",
+            "ENABLED": "Activo",
+            "REJECTED": "Rechazado",
+            "INCOMPLETE_ACCOUNT": "Documentación faltante",
+            "EVALUATION_PENDING": "Aprobación pendiente",
+            "DISABLED": "Deshabilitado",
+            "PENDING_ACCOUNT_CREATION": "Pendiente de crear cuenta",
+            "REQUESTED_MODULE": "Solicitud de módulo"
+        },
+        "BULK_INVOICE_NEGOTIATION_STATUS": {
+            "NEGOTIATION_IN_PROGRESS": "Negociación en progreso",
+            "NEGOTIATION_APPROVED": "Negociación aprobada",
+            "NEGOTIATION_REJECTED": "Negociación rechazada",
+            "NEGOTIATION_CANCELED": "Negociación cancelada",
+            "NEGOTIATION_EXPIRED": "Negociación expirada"
+        },
+        "USER_ROLES": {
+            "LIBERA_ADMIN": "Administrador de Libera"
+        },
+        "ENTERPRISE": {
+            "ENTERPRISE_UPDATE": "Se ha actualizado la empresa.",
+            "ERROR_LOAD_ENTERPRISE": "Hubo un error al actualizar la empresa."
+        },
+        "MODULES": {
+            "PAYER": "Pagador",
+            "PROVIDER": "Proveedor",
+            "FUNDING": "Fondeador",
+            "ADMIN": "Administrador"
+        }
+    },
+    "APPROVE_DOCUMENT": {
+        "EXPEDITION_DATE": "Fecha de expedición",
+        "COMMENTS": "Comentarios",
+        "ACCEPT": "Aceptar",
+        "CANCEL": "Cancelar",
+        "ACCEPT_TITLE": "Aceptar documento",
+        "DECLINE_TITLE": "Declinar documento",
+        "DECLINE": "Declinar"
+    },
+    "DELETE_DOCUMENT": {
+        "TITLE": "Eliminar documento",
+        "BODY": "Si eliminas este archivo, no podrá ser recuperado. ¿Deseas continuar?",
+        "CHECK_TEXT": "Sí, estoy seguro",
+        "DELETE": "Borrar",
+        "CANCEL": "Cancelar"
+    },
+    "FILE_DROPZONE": {
+        "MESSAGE": "Arrastra aquí tu archivo o",
+        "MESSAGE_TEMPLATE": "Arrastra aquí tu archivo \"{{ type }}\"",
+        "SELECT": "Seleccionalo",
+        "SELECT_FILE": "Elige algún archivo",
+        "CHANGE_FILE": "Cambiar archivo",
+        "SEARCH_FILE": "Buscar archivo",
+        "REPLACE_FILE": "Remplazar archivo",
+        "OR": "o",
+        "MESSAGE_TWO": "Arrastra aquí tu archivo "
+    },
+    "IMAGE_FORM": {
+        "TOOLTIP": "Elige algúna imagen"
+    },
+    "THEME_FORM": {
+        "PRIMARY": "Primario",
+        "SECONDARY": "Secundario"
+    },
+    "APPEREANCE_PAGE": {
+        "TITLE": "Apariencia",
+        "COLORS": "Colores",
+        "COLORS_EXPLANATION": "Explicación del color primario y secundario",
+        "LOGO": "Logo",
+        "LOGO_RESTRICTIONS": "El archivo debe ser de extensión png y se recomienda que las dimensiones de la imagen sean alrededor de 40px x 200px.",
+        "FAVICON": "Favicon",
+        "FAVICON_RESTRICTIONS": "El archivo debe ser de extensión ico y se recomienda que sus dimensiones sean de 16px x 16px."
+    },
+    "DOCUMENTATION_DROPZONE": {
+        "ONLY_PDF_TOOLTIP": "Sólo se permiten archivos .pdf",
+        "UPLOADING": "Subiendo"
+    },
+    "DOCUMENTATION_STATUS_PAGE": {
+        "TITLE": "Solicitud en proceso"
+    },
+    "UPLOAD_DOCUMENTATION_PAGE": {
+        "TITLE": "Carga de documentos",
+        "SUBTITLE": "Descargue y diligencie el \"Formato de Vinculación\", deberá ser firmado por el Representante Legal, una vez firmados podrá cargarlo.",
+        "TAC_CHECKBOX_LABEL": "Estoy de acuerdo con los términos y condiciones"
+    },
+    "BULK_INVOICE_FORM": {
+        "CHOOSE_FILE": "Escoge un archivo",
+        "UPLOAD_RECOMENDATIONS": {
+            "TITLE": "Recomendaciones de carga",
+            "VALID_VALUES": "Verifica que las celdas del archivo tengan valores validos. Por ejemplo, que campos númericos no contengan letras u otros caracteres especiales.",
+            "NIT": "Los NIT deben obedecer el formato XXX.XXX.XXX-Y colocando las puntuaciones antes mencionadas.",
+            "CONFIGS": "Las configuraciones \"Tipo de documento\", \"Moneda\", \"Tipo de pago\" y \"Campos personalizados\", aplicarán a todas las facturas que se carguen en el archivo. Te recomendamos agrupar las facturas en archivos de carga masiva de acuerdo a estos criterios.",
+            "DATE": "Verifica que las fechas de tu archivo correspondan al formato DD/MM/AAAA ejemplo 10/01/2019 o 10-ene-2019",
+            "PAYMENT": "Los campos monto, valor IVA, valor retenciones, valor notas de credito y valor anticipo deben obedecer los siguientes formatos 100 ó 123,123,123.10 ó 00.12 sin signos como $",
+            "FORMAT": "Verifica que las celdas del archivo solo especifiquen las facturas, sin titulos de los campos."
+        },
+        "CONFIG": {
+            "TITLE": "Configuración",
+            "MESSAGE": "Por favor llene lo siguientes campos y recuerde que aplican para todas las facturas del archivo.",
+            "CURRENCY": "Moneda",
+            "PAYMENT_TYPE": "Tipo de pago",
+            "DOCUMENT_TYPE": "Tipo de documento"
+        },
+        "SHEET": {
+            "TITLE": "Selecciona la hoja",
+            "MESSAGE": "Por favor eliga la hoja de la cual desea extraer las facturas.",
+            "LABEL": "Hoja",
+            "SELECT_SHEET_ERROR": "Debes seleccionar alguna hoja para extraer la información"
+        },
+        "COLUMNS": {
+            "TITLE": "Asocia las columnas",
+            "MESSAGE": "Categorice las columnas de su archivo, no podrá continuar sin haber asociado todos los campos necesarios."
+        },
+        "INVOICE_FIELD": {
+            "NONE": "Ninguno",
+            "ALTERNATIVE_INVOICE_ID": "ID Alternativo de factura",
+            "EMISSION_DATE": "Fecha de emisión",
+            "EXPIRATION_DATE": "Fecha de expiración",
+            "AMOUNT": "Valor de factura",
+            "VAT": "Valor IVA",
+            "RETENTIONS": "Valor retenciones",
+            "CREDIT_NOTES_VALUE": "Valor notas crédito",
+            "PAYMENT_ADVANCE": "Valor anticipo",
+            "NIT": "Número de documento",
+            "PROVIDER": "Proveedor"
+        },
+        "EMPTY_CELL": "Celda vacía"
+    },
+    "BULK_INVOICE_TABLE": {
+        "FOLIO": "Folio",
+        "ARCHIVE": "Archivo",
+        "UPLOAD_DATE": "Fecha de carga",
+        "STATUS": "Estatus",
+        "INVOICE_STATUS": {
+            "COMPLETED": "Completo",
+            "ERROR": "Error",
+            "PENDING_COMPLETION": "Pendiente"
+        },
+        "ACTIONS": "Acciones"
+    },
+    "CUSTOM_ATTRIBUTE_FORM": {
+        "FIELD_NAME": "Nombre de campo",
+        "FIELD_TYPE": "Tipo de campo",
+        "FIELD_TYPES": {
+            "TEXT": "Texto",
+            "DATE": "Fecha",
+            "INTEGER": "Número entero",
+            "DECIMAL": "Número decimal"
+        }
+    },
+    "CUSTOM_ATTRIBUTE_TABLE": {
+        "CUSTOM_FIELD": "Campo personalizado",
+        "CREATION_DATE": "Fecha de creación"
+    },
+    "ENTERPRISE_FORM": {
+        "SOCIAL_REASON": "Razón social",
+        "SOCIAL_REASON_OR_NIT": "Razón social o NIT",
+        "FUNDING_REQUEST": "Debe seleccionar algún fondeador de las opciones",
+        "NIT": "Número de documento",
+        "ECONOMIC_SECTOR": "Sector económico",
+        "ENTERPRISE_TYPE_LABEL": "Tipo de empresa",
+        "INDICATIVE": "Indicativo",
+        "LADA": "Lada",
+        "EXT": "Extensión",
+        "PHONE": "Teléfono",
+        "NAME": "Nombre",
+        "FIRST_SURNAME": "Primer apellido",
+        "SECOND_SURNAME": "Segundo apellido",
+        "DOCUMENT_TYPE": {
+            "LABEL": "Tipo de documento",
+            "OPTIONS": {
+                "IDENTIFICATION_CARD": "Cédula de Ciudadanía",
+                "FOREIGNER_ID": "Cédula de extranjería",
+                "AUTONOMOUS_HERITAGE": "Patrimonio autónomo",
+                "PASSPORT": "Pasaporte"
+            }
+        },
+        "PRODUCT_TYPE": "Tipo de producto",
+        "DEPARTMENT": "Departamento",
+        "CITY": "Ciudad",
+        "CIIU": "CIIU",
+        "ECONOMIC_ACTIVITY": "Actividad económica",
+        "RELATIONSHIP_MANAGER": "Gerente de relación",
+        "REGION": "Regional banco",
+        "SALES": "Ventas último año",
+        "SALES_CUT": "Corte de ventas",
+        "ADMIN_INFO": "Datos de contacto",
+        "EMAIL": "Email",
+        "FORM_OF_DISBURSEMENT": {
+            "LABEL": "Forma de desembolso",
+            "OPTIONS": {
+                "CREDIT": "Abono a cuenta",
+                "CHECK": "Cheque"
+            }
+        },
+        "CREDIT_OPTIONS": {
+            "SAVINGS_ACCOUNT": "Cuenta de ahorros",
+            "CHECKING_ACCOUNT": "Cuenta corriente"
+        },
+        "SELECTED_BANK": "Banco seleccionado"
+    },
+    "INVOICE_FORM": {
+        "INVOICE_INFO": "Datos de factura",
+        "PROVIDER": "Proveedor",
+        "ERRORS": {
+            "AFTER_EXPIRATION_DATE": "No puede ser mayor a la fecha de vencimiento.",
+            "BEFORE_EMISSION_DATE": "No puede ser menor a la fecha de emisión."
+        }
+    },
+    "INVOICE_LIST_FILTER_FORM": {
+        "SEARCH": "Búsqueda",
+        "DATE": "Fecha"
+    },
+    "INVOICE_TABLE": {
+        "REAL_EXPIRATION_DATE": "Fecha de vencimiento",
+        "DISCOUNT": {
+            "VALUE": "Valor de descuento",
+            "RATE": "Tasa de descuento",
+            "DAYS": "Días de descuento"
+        },
+        "PAYMENT_EXPIRATION": "Vencimiento de pago"
+    },
+    "NEGOTIATION_FORM": {
+        "MIN_PERCENTAGE": "No puede ser menor a 0%.",
+        "MAX_PERCENTAGE": "No puede ser mayor a 99%.",
+        "TITLE": "Fecha efectiva de pago"
+    },
+    "NEGOTIATION_OFFER_CARD": {
+        "INVOICE_VALUE": "Valor de factura"
+    },
+    "NEGOTIATION_TIMELINE": {
+        "EVENT_TYPE": {
+            "APPROVED": "Oferta <span style=\"font-weight: 500\"> aceptada </span> por {{ name }}",
+            "CANCELLED": "Negociación <span style=\"font-weight: 500\"> cancelada </span> por {{ name }}",
+            "EXPIRED": "Oferta <span style=\"font-weight: 500\">expirada.</span> Fecha de vigencia de descuento vencida",
+            "COUNTEROFFERED": "Oferta <span style=\"font-weight: 500\"> realizada </span> por {{ name }}",
+            "REJECTED": "Oferta <span style=\"font-weight: 500\"> rechazada </span> por {{ name }}",
+            "CREATED": "“Negociación creada"
+        }
+    },
+    "PROVIDER_INVOICE_LIST_FILTER_FORM": {
+        "START_DATE": "Fecha de inicio"
+    },
+    "PROVIDER_INVOICE_TABLE": {
+        "START_NEGOTIATION": "Inicio negociación"
+    },
+    "CREATE_INVOICE_REDIRECT_DIALOG": {
+        "TITLE": "Negociación",
+        "BODY": "Su factura ha sido cargada exitosamente. Si desea negociar el pago de su factura, podrá hacerlo desde su detalle.",
+        "ACTIONS": {
+            "CANCEL": "En otro momento",
+            "ACCEPT": "Ir al detalle"
+        }
+    },
+    "CUSTOM_ATTRIBUTE_CONFIRM_DELETE_DIALOG": {
+        "TITLE": "Eliminar campo personalizado",
+        "BODY": "¿Está seguro que desea eliminar el campo personalizado? Ya no se mostrará en la carga de facturas."
+    },
+    "CUSTOM_ATTRIBUTE_PICKER_DIALOG": {
+        "TITLE": "Selecciona los campos deseados",
+        "ALERT": "Al parecer no has agregado campos personalizados aun."
+    },
+    "INVOICE_CONFIRM_DELETE_DIALOG": {
+        "TITLE": "Eliminar factura",
+        "BODY": "¿Está seguro que desea eliminar esta factura? La información capturada ya no podrá recuperarse."
+    },
+    "NEGOTIATION_DIALOG": {
+        "TITLE": "Negociar pago"
+    },
+    "PAYER_CANCEL_NEGOTIATION_DIALOG": {
+        "CANCEL_NEGOTIATION": "Cancelar negociación",
+        "BODY": " ¿Está seguro que desea cancelar la negociación?",
+        "NOTIFY_PROVIDER": "La cancelación será notificada al proveedor."
+    },
+    "PAYER_REJECT_OFFER_DIALOG": {
+        "REJECT": "Rechazar"
+    },
+    "FUNDING_REQUEST_FORM": {
+        "FUNDING_VALIDATION": "Debe seleccionar al fondeador de la lista"
+    },
+    "FUNDING_REQUEST_TIMELINE": {
+        "EVENT_TYPE": {
+            "APPROVED": "Solicitud <span style=\"font-weight: 500\"> con pago confirmado  </span> por {{ name }}",
+            "WAIT": "Solicitud <span style=\"font-weight: 500\"> en espera </span>",
+            "REJECTED": "Solicitud <span style=\"font-weight: 500\"> rechazada </span> por {{ name }}"
+        }
+    },
+    "INVOICE_LAYOUT": {
+        "NEGOCIATE_INVOICE_PAYMENT": "Negociar pago de factura"
+    },
+    "BULK_LIST_PAGE": {
+        "BULK_LOAD": "Cargar"
+    },
+    "BULK_LOAD_PAGE": {
+        "ERRORS": {
+            "LOAD_COINS": "Hubo un error al cargar las distintas monedas."
+        }
+    },
+    "INVOICE_CREATE_PAGE": {
+        "ADD_INVOICE": "Agregar factura",
+        "ERRORS": {
+            "LOAD_COINS": "Hubo un problema al cargar las monedas."
+        }
+    },
+    "CUSTOM_ATTRIBUTE_LIST_PAGE": {
+        "NO_CUSTOMIZED_FIELDS": "Aún no tienes campos personalizados",
+        "BODY": "Los campos personalizados que agregues aquí serán visibles en la carga de facturas",
+        "NEW_FIELD": "Nuevo campo personalizado"
+    },
+    "FUNDING_REQUEST_PAGE": {
+        "REQUEST_ERROR_LOAD": "Hubo un error al cargar las solicitudes de fondeo.",
+        "NO_FUNDING_REQUEST": "Aún no has realizado ninguna solicitud de fondeo sobre esta factura",
+        "LIST_FUNDING_REQUEST": "Listado de solicitudes de fondeo",
+        "START_DATE": "Inició",
+        "FINISH_DATE": "Terminó",
+        "STATUS": {
+            "LENDER_PAYMENT_CONFIRMATION": "Pago confirmado",
+            "REJECTED": "Rechazada",
+            "PENDING_LENDER_PAYMENT_CONFIRMATION": "En espera",
+            "PROVIDER_PAYMENT_CONFIRMATION": "Pago confirmado por proveedor",
+            "PENDING_PROVIDER_PAYMENT_CONFIRMATION": "Pago pendiente de confirmación del proveedor"
+        }
+    },
+    "INVOICE_DETAIL_PAGE": {
+        "INVOICE_INFO": "Datos de factura",
+        "PROVIDER": "Proveedor",
+        "FUNDING": "Fondeador",
+        "PERSONALIZED_FIELDS": "Campos personalizados",
+        "NO_PERSONALIZED_FIELDS": "Al parecer la factura no cuenta con campos personalizados.",
+        "WITHOUT_PROVIDER": "Al parecer la factura no cuenta con proveedor. Puede agregar uno",
+        "WITHOUT_FUNDING": " Al parecer la factura no cuenta con fondeador. Puede agregar uno."
+    },
+    "NEGOTIATION_PAGE": {
+        "WITHOUT_NEGOTIATIONS": "No hay negociaciones en proceso",
+        "LIST_NEGOTIATIONS": "Listado de negociaciones",
+        "START_DATE": "inició",
+        "FINISH_DATE": "fin",
+        "NEGOTIATION_STATUS": {
+            "APPROVED": "Aceptado",
+            "CANCELLED": "Cancelado",
+            "EXPIRED": "Expirado",
+            "PAYER_PENDING_RESPONSE": "Pendiente de respuesta de pagador",
+            "PROVIDER_PENDING_RESPONSE": "Pendiente de respuesta de proveedor",
+            "REJECTED": "Rechazado"
+        }
+    },
+    "PROVIDER": {
+        "INVOICE_DETAIL_PAGE": {
+            "TITLE": "Datos de factura",
+            "WITHOUT_PROVIDER": "Al parecer la factura no cuenta con proveedor. Puede agregar uno"
+        },
+        "INVOICE_LIST_PAGE": {
+            "TITLE": "Facturas"
+        }
+    },
+    "CONFIRM_LINK_PAGE": {
+        "ERROR_VALIDATE_INFO": "Hubo un error al validar la información.",
+        "EXPIRED_INVITATION": "Esta invitación ya expiró.",
+        "ACCEPTED_OR_REJECTED_INVITATION": "Esta invitación ya fue aceptada o rechazada.",
+        "LINK_BENEFITS": "Bienvenido, estos son los beneficios que obtendrá al vincularse con su pagador",
+        "LIST": {
+            "INVOICE_NEGOTIATIONS": "Solicite el cobro anticipado de sus facturas.",
+            "OBTAINING_LIQUIDITY": "Obtenga liquidez inmediata.",
+            "EVALUATE_PAYMENT": "Avale sus pagos mediante la plataforma y facilite la gestión de su tesorería."
+        }
+    },
+    "MODULE_TABLE": {
+        "MODULES": "Módulos",
+        "STATUS": "Estatus",
+        "ENTERPRISE_MODULE_STATUS": {
+            "ENABLED": "Activo",
+            "DISABLED": "Inactivo",
+            "REJECTED": "Rechazado",
+            "VALIDATING_REQUEST": "En revisión"
+        },
+        "ACTIVATION_DATE": "Fecha de activación",
+        "REQUIRED_DOCUMENTATION": "Documentación requerida",
+        "COMMENT": "Comentario",
+        "REQUEST_ACTIVATION": "Solicitar activación",
+        "DOWNLOAD": "Descargar archivo"
+    },
+    "DOCUMENTATION_DIALOG": {
+        "TITLE": "Carga de documentos",
+        "BODY": "Para continuar cargue aquí el Acuerdo digitalizado firmado por el representante legal."
+    },
+    "BASIC_INFORMATION_PAGE": {
+        "ERRORS": {
+            "LOAD_INFO": "Hubo un error al cargar la información",
+            "ENTERPRISE_SELECTORS": "Hubo un error al cargar los sectores de empresa"
+        }
+    },
+    "PAYER_LIST_FILTER_FORM": {
+        "FILTER_BY_TYPE": {
+            "ENTERPRISENAME": "Razón social del fondeador",
+            "SECTOR": "Sector económico",
+            "ENTERPRISETYPE": "Tipo de empresa"
+        },
+        "ECONOMIC_SECTOR": "Sector económico"
+    },
+    "CUSTOM_ATTRIBUTES_FORM": {
+        "FIELD_NAME": "Nombre de campo",
+        "FIELD_TYPE": "Tipo de campo",
+        "FIELD_TYPES": {
+            "TEXT": "Texto",
+            "DATE": "Fecha",
+            "INTEGER": "Número entero",
+            "DECIMAL": "Número decimal",
+            "CURRENCY": "Moneda",
+            "CHECKBOX": "Casillas de verificación",
+            "RADIO": "Selección"
+        },
+        "ACTIONS": {
+            "ADD_OPTION": "Agregar opción",
+            "ADD": "Agregar"
+        },
+        "OPTIONS": "Opciones",
+        "OPTION": "Opción"
+    },
+    "PAYER_DETAIL_ADDITIONAL_INFORMATION_CARD": {
+        "MESSAGE": "Aún no has capturado información",
+        "ADD_FIELD": "Nuevo campo personalizado"
+    },
+    "PAYER_DETAIL_BASIC_INFORMATION_CARD": {
+        "SECTOR": "Sector económico",
+        "CONTACT": "Contacto"
+    },
+    "PAYER_DETAIL_FORM": {
+        "CUSTOM_FIELD": "Campo personalizado"
+    },
+    "CONFIRM_DELETE_CUSTOM_ATTRIBUTE_DIALOG": {
+        "TITLE": "Eliminar campo personalizado",
+        "BODY": "¿Está seguro que desea eliminar el campo personalizado? Ya no se podrá hacer uso del mismo ni la información introducida previmente en los pagadores vinculados."
+    },
+    "CUSTOM_ATTRIBUTES_PAGE": {
+        "TITLE": "Personalización pagadores",
+        "MESSAGE": "Aún no tienes campos personalizados",
+        "BODY": "Los campos personalizados que agregues aquí, seran visibles en el detalle de sus pagadores.",
+        "NEW_FIELD": "Nuevo campo personalizado",
+        "ADD_FIELD": "Agregar campo personalizado"
+    },
+    "PAYER_LIST_PAGE": {
+        "TITLE": "Listado pagadores",
+        "WITHOUT_PAYERS": "Al parecer no hay pagadores."
+    },
+    "PROFILE_LAYOUT": {
+        "TITLE": "Mi perfil",
+        "TABS": {
+            "ACCOUNT": "Cuenta",
+            "SECURITY": "Seguridad"
+        }
+    },
+    "ACCOUNT_PAGE": {
+        "ERROR_LOAD_INFO": "Hubo un error al cargar la información",
+        "TITLE": "Módulos asignados"
+    },
+    "PROVIDER_BULK_FORM": {
+        "LABELS_STEPPER": {
+            "CHOOSE_FILE": "Escoge un archivo",
+            "CHOOSE_SHEET": "Selecciona la hoja",
+            "ASSOCIATE_CULUMNS": "Asocia las columnas"
+        },
+        "ACTION_NEXT": "Siguiente",
+        "ACTION_FINISH": "Terminar",
+        "SHEET": "Hoja",
+        "ERROR_EXTRACTION_INFO": "Debes seleccionar alguna hoja para extraer la información",
+        "NONE": "Ninguno",
+        "SELECT": {
+            "ENTERPRISE": "Empresa",
+            "NIT": "Número de documento",
+            "NAME": "Nombre",
+            "FIRST_SURNAME": "Apellido paterno",
+            "SECOND_SURNAME": "Apellido materno",
+            "EMAIL": "Email",
+            "PHONE_NUMBER": "Número de Teléfono"
+        },
+        "EMPTY_FIELD": "Campo vacío"
+    },
+    "PROVIDER_BULK_TABLE": {
+        "INVOICE": "Folio",
+        "FILE": "Archivo",
+        "ENTERPRISE_PROVIDER_BULK_STATUS": {
+            "PENDING_COMPLETION": "Pendiente de completar",
+            "COMPLETED": "Completado",
+            "ERROR": "Error"
+        }
+    },
+    "PROVIDER_FORM": {
+        "PASSPORT": "Pasaporte",
+        "DOCUMENT_NUMBER_ADVICE": "Por favor diligenciar número de documento con digito de verificación sin puntos, comas o espacios",
+        "PHONE_NUMBER_ADVICE": "Por favor colocar el número con la estructura definida:\n Teléfono fijo: Prefijo + Indicativo + número - Ejemplo: 6017462060 Celular: Solo número – Ejemplo:3165555555",
+        "ACCEPTED_DOCUMENT_TYPES_ADVICE": "Recuerde subir un archivo pdf, jpg o jpeg.",
+        "FILE_REQUIRED": "Archivo requerido",
+        "PHONE_EXT": "Ext",
+        "PHONE_EXTENSION": "Extensión",
+        "NO_DOCUMENT": "No hay archivo seleccionado",
+        "BANK_NUMBER": "Número de cuenta",
+        "LOAD": "Cargar",
+        "BANK_CERTIFICATION": "Certificación bancaria",
+        "BANK": "Banco",
+        "ACCOUNT_TYPE": "Tipo de cuenta",
+        "ACTIONS": {
+            "UPLOAD_FILE": "Cargar",
+            "CHANGE_FILE": "Cambiar"
+        },
+        "CREDIT_TYPES": {
+            "SAVINGS": "Cuenta de ahorro",
+            "CURRENT_COUNT": "Cuenta corriente"
+        },
+        "CHECK": "Cheque",
+        "CREDIT": "Abono a cuenta",
+        "DISBURSE_FORM": "Forma de desembolso",
+        "SALES_PER_YEAR_EXAMPLE": "DD/MM/AAAA",
+        "SALES_CUT": "Corte de ventas",
+        "SALES_EXAMPLE": "Digite el valor en millones de pesos",
+        "SALES": "Ventas último año",
+        "RELATIONSHIP_MANAGER": "Gerente de relación",
+        "CONTACT_INFO": "Datos de contacto",
+        "SOCIAL_REASON": "Razón social",
+        "NIT": "Número de documento",
+        "PHONE": "Teléfono",
+        "LADA": "Lada",
+        "ERRORS": {
+            "COMPANY_NOT_FOUND": "No se encontró una empresa con ese NIT.",
+            "CONNECTION": "Algo salió mal, compruebe su conexión."
+        },
+        "DOCUMENT_TYPE": "Tipo de documento",
+        "DOCUMENT_TYPES": {
+            "NIT": "NIT",
+            "IDENTIFICATION_CARD": "Cédula de Ciudadanía",
+            "FOREIGNER_ID":"Cédula de extranjería",
+            "AUTONOMOUS_HERITAGE": "Patrimonio autónomo",
+            "PASSPORT": "Pasaporte"
+        },
+        "DOCUMENT_NUMBER": "Número de documento",
+        "PRODUCT_TYPE": {
+            "LABEL": "Tipo de producto",
+            "OPTIONS": {
+                "UNIDIRECT": "Unidirecto",
+                "FACTORING": "Factoring en Firme",
+                "CONFIRMING": "Confirming",
+                "DOCUMENT_DISCOUNT": "Descuento de Documentos"
+            }
+        },
+        "DEPARTMENT": "Departamento",
+        "CITY": "Ciudad",
+        "CIIU": "CIIU",
+        "ECONOMIC_ACTIVITY": "Actividad económica",
+        "ECONOMIC_SECTOR": "Sector económico"
+    },
+    "PAYMENT_REQUEST_INFO": {
+        "PAYMENT_DETAILS": "Datos de pago",
+        "PAYMENT_ISSUER": "Emisor de pago",
+        "DETAILS": "Detalles"
+    },
+    "INVOICE_REQUEST_INFO": {
+        "EMISSION_DATE": "Fecha de emisión",
+        "PAYMENT_EXPIRATION": "Vencimiento de pago",
+        "INVOICE_VALUE": "Valor de factura",
+        "DISCOUNT_VALUE": "Valor de descuento",
+        "DAYS": "Días"
+    },
+    "INVOICE_REQUEST_TABLE": {
+        "PAYER": "Pagador",
+        "NIT": "Número de documento",
+        "INVOICE_NUMBER": "Número de factura",
+        "DISCOUNT_VALUE": "Valor de descuento",
+        "EXPECTED_PAYMENT_DATE": "Fecha esperada de pago",
+        "PAYMENT_EXPIRATION": "Vencimiento de pago",
+        "EFFECTIVE_PAYMENT_DATE": "Fecha efectiva de pago"
+    },
+    "LENDER_QUOTA_REQUEST_FORM": {
+        "QUOTA": "Cupo",
+        "TYPE_RATE": "Tipo de tasa",
+        "INTEREST_RATE": "Tasa de interés",
+        "OBSERVATIONS": "Observaciones"
+    },
+    "LENDER_QUOTA_REQUEST_TABLE": {
+        "PAYMENT": "Pagador",
+        "NIT": "Número de documento",
+        "REQUESTED_QUOTE": "Cupo solicitado",
+        "APPLICATION_DATE": "Fecha de solicitud",
+        "TYPE_REQUEST": "Tipo de solicitud",
+        "OBSERVATIONS": "Observaciones",
+        "STATUS": "Estatus"
+    },
+    "LENDER_REQUEST_TABLE": {
+        "FUNDING": "Fondeador",
+        "NIT": "Número de documento",
+        "REQUESTED_QUOTE": "Cupo solicitado",
+        "ASSIGNED_QUOTE": "Cupo asignado",
+        "TYPE_RATE": "Tipo de tasa",
+        "INTEREST_RATE": "Tasa de interés",
+        "APPLICATION_DATE": "Fecha de solicitud",
+        "TYPE_REQUEST": "Tipo de solicitud",
+        "OBSERVATIONS": "Observaciones",
+        "OBSERVATIONS_FUNDING": "Observaciones fondeador",
+        "STATUS": "Estatus de solicitud",
+        "PAYMENT": "Pagador",
+        "QUOTA": "Cupo",
+        "RATE": "Tasa"
+    },
+    "LENDER_TABLE": {
+        "FUNDING": "Fondeador",
+        "NIT": "Número de documento",
+        "CONTACT": "Contacto",
+        "EMAIL": "Email"
+    },
+    "PROVIDER_TABLE": {
+        "SOCIAL_REASON": "Razón social",
+        "NIT": "Número de documento",
+        "EMAIL": "Email",
+        "CONTACT": "Contacto",
+        "PHONE": "Télefono",
+        "LINKING_DATE": "Fecha de vinculación",
+        "STATUS": "Estatus",
+        "ENTERPRISE_LINK_STATUS": {
+            "ENABLED": "Activo",
+            "DISABLED": "Inactivo",
+            "PENDING_VALIDATION": "Pendiente de validación",
+            "PENDING_AUTHORIZATION": "Pendiente de autorización",
+            "PENDING_CONFIRMATION": "Pendiente de confirmación",
+            "PENDING_LINK_CREATION": "Pendiente de vinculación",
+            "REJECTED": "Rechazado"
+        }
+    },
+    "ADD_PROVIDER_DIALOG": {
+        "TITLE": "Agregar proveedor"
+    },
+    "PROVIDER_BULK_LIST_PAGE": {
+        "TITLE": "Cargas masivas"
+    },
+    "LIST_PAGE": {
+        "TITLE": "Proveedores",
+        "ACTION_ADD_PROVIDER": "Agregar proveedor",
+        "WITHOUT_PROVIDER": "Al parecer no hay proveedores."
+    },
+    "ROLE_CARD": {
+        "AUTHENTICATION_ROLE": {
+            "ENTERPRISE_PAYER_ADMIN": "Administrador de módulo pagador",
+            "ENTERPRISE_PROVIDER_ADMIN": "Administrador de módulo proveedor",
+            "ENTERPRISE_FUNDING_ADMIN": "Administrador de módulo fondeador",
+            "ENTERPRISE_CONSOLE_ADMIN": "Administrador de empresa"
+        },
+        "ACTION_ENTER": "Ingresar"
+    },
+    "ROLE_SELECTOR_PAGE": {
+        "TITLE": "Selector de módulo"
+    },
+    "USER_FORM": {
+        "MODULES": "Módulos"
+    },
+    "USER_LIST_FILTER_FORM": {
+        "ACTION_CLEAN": "Limpiar filtros",
+        "CHOOSE": {
+            "MODULE": "Elige el módulo",
+            "STATUS": "Elige el estatus"
+        },
+        "STATUS": {
+            "ENABLED": "Activado",
+            "DISABLED": "Desactivado"
+        }
+    },
+    "USER_TABLE": {
+        "NAME": "Nombre",
+        "EMAIL": "Email",
+        "LINKING_DATE": "Fecha de vinculación",
+        "MODULES": "Módulos",
+        "STATUS": "Estatus",
+        "ACTION_RESEND": "Reenviar invitación",
+        "ACTIONS":"Acciones"
+    },
+    "CREATE_USER_DIALOG": {
+        "TITLE": "Invitar usuario",
+        "ACTION_SEND": "Enviar invitación"
+    },
+    "UPDATE_USER_DIALOG": {
+        "TITLE": "Editar usuario"
+    },
+    "DELETE_USER_DIALOG": {
+        "TITLE": "Eliminar usuario",
+        "CONFIRM": "Sí, deseo continuar",
+        "BODY": "Se eliminará al usuario {{ name }} y ya no podrá iniciar sesión en el programa. ¿Desea continuar?"
+    },
+    "USER_LIST_PAGE": {
+        "TITLE": "Usuarios",
+        "ACTION_INVITE": "Invitar usuario"
+    },
+    "CORE_LAYOUT": {
+        "CHANGE_MODULE": "Cambiar de módulo",
+        "PROFILE": "Perfil",
+        "PROVIDERS": {
+            "TITLE": "Proveedores",
+            "LIST": "Listado",
+            "BULK_LOADS": "Cargas masivas"
+        },
+        "PAYERS": {
+            "TITLE": "Pagadores",
+            "LINKED": "Vinculados",
+            "PERSONALIZATION": "Personalización"
+        },
+        "FUNDING": {
+            "TITLE": "Fondeadores",
+            "REQUEST": "Solicitudes",
+            "LINKED": "Vinculados",
+            "AVAILABLE": "Disponible"
+        },
+        "REQUEST": {
+            "TITLE": "Solicitudes",
+            "FUNDING": "Fondeo",
+            "QUOTA": "Cupo"
+        },
+        "INVOICES": {
+            "TITLE": "Facturas",
+            "LIST": "Listado",
+            "BULK_LOADS": "Cargas masivas",
+            "PERSONALIZATION": "Personalización",
+            "BULK_NEGOTIATIONS": "Negociaciones masivas"
+        },
+        "USERS_MANAGEMENT": "Gestión de usuarios",
+        "MY_ENTERPRISE": {
+            "TITLE": "Mi empresa",
+            "BASIC_INFO": "Información básica",
+            "MODULES": "Módulos",
+            "DOCUMENTATION": "Documentación",
+            "FINANCIAL_CONDITIONS": "Condiciones financieras"
+        },
+        "CONFIGURATION": {
+            "TITLE": "Configuración",
+            "APAREANCE": "Apariencia"
+        }
+    },
+    "FINANCIAL_CONDITIONS": {
+        "TITLE": "Condiciones financieras"
+    },
+    "FINANCIAL_CONDITIONS_TABLE": {
+        "PROVIDER": "Proveedor",
+        "IDENTIFICATION_NUMBER": "Número de identificación",
+        "MODALITY": "Modalidad",
+        "MODALITY_OPTIONS": {
+            "EXPONENTIAL": "Exponencial",
+            "COMMISSION": "Comisión",
+            "FINANCED": "Financiado"
+        },
+        "DESCRIPTION": "Descripción",
+        "DESCRIPTION_OPTIONS": {
+            "EXPONENTIAL": "Con descuento",
+            "COMMISSION": "Sin descuento",
+            "FINANCED": "Con descuento y financiación adicional"
+        },
+        "STATUS": "Estado",
+        "STATUS_OPTIONS": {
+            "PENDING_APPROVAL": "Pendiente aprobación director",
+            "PENDING_ACCEPTANCE": "Pendiente aceptación pagador",
+            "CURRENT": "Vigente",
+            "ABOUT_TO_EXPIRE": "Próximo a vencer",
+            "EXPIRED": "Vencido",
+            "REJECTED_BY_LIBERA": "Rechazado por director",
+            "REJECTED_BY_ENTERPRISE": "Rechazado por pagador"
+        },
+        "SUMMARY": "Resumen"
+    },
+    "DETAIL_FINANCIAL_CONDITIONS_DIALOG": {
+        "TITLE": "Plan Comisión",
+        "ACTIONS": {
+            "ACCEPT": "Aceptar",
+            "CANCEL": "Rechazar"
+        },
+        "CREATOR_USER": "Usuario creador",
+        "APPROVING_USER": "Usuario aprobador",
+        "USER_ACCEPTS": "Usuario que acepta",
+        "CREATION_DATE": "Fecha creación",
+        "MODIFICATION_DATE": "Fecha modificación",
+        "ACCEPTANCE_DATE": "Fecha de aceptación"
+    },
+    "DETAIL_FINANCIAL_CONDITIONS_FORM": {
+        "DOCUMENT_TYPE": "Tipo de documento",
+        "DOCUMENT_NUMBER": "Número de documento",
+        "PAYER": "Pagador",
+        "PROVIDER": "Proveedor",
+        "PROVIDERS": "Proveedores",
+        "RELATIONSHIP_MANAGER": "Gerente de relación",
+        "ECONOMIC_GROUP": "Grupo económico",
+        "AGREEMENT": "Convenio",
+        "REQUIRED_AUTHORIZATION": "Requiere autorización del proveedor para realizar la operación",
+        "REQUEST_AUTHORIZATION": "Solicitar autorización después del día",
+        "ALWAYS": "Siempre",
+        "SALES_TABLE": "Ver tabla de ventas",
+        "LINKED_TO_PROVIDER": "Ligado a proveedor",
+        "MINIMUM_RATE": "Tasa mínima",
+        "NEGOTIATED_RATE": "Tasa negociada",
+        "SPECIAL_RATE": "Tasa especial",
+        "VALIDITY": "Vigencia",
+        "DAYS": "Días",
+        "DATE": "Fecha",
+        "TERM": "Plazo",
+        "TURNING_DAY": "Día de giro",
+        "TURNING_DAY_LABELS": {
+            "PAYDAY": "Se gira al día {{ day }} de emitida la factura",
+            "PAYDAY_ZERO": "Se gira a su presentación",
+            "PAYDAY_RANGE": "Se gira del día {{ dayInitial }} al día {{ dayFinal }} de emitida la factura",
+            "PREV": "Del día",
+            "ZERO": "A su presentación",
+            "DEFAULT": "Desde la fecha de emisión de la factura",
+            "BETWEEN": "al día",
+            "LAST": "de FEF"
+        },
+        "INTEREST_RATE": {
+            "LABEL": "Tasa de interés",
+            "COMPLEMENT": "{{ termDays }} {{ labelDay }} a cargo del cliente a una tasa de {{ baseType }} + {{ specialRate }}% {{ periodicityType }}"
+        },
+        "FINANCING_TERM": {
+            "LABEL": "Plazo de financiación",
+            "COMPLEMENT": "{{ termDays }} {{ labelDay }}"
+        },
+        "PAYMENT_METHOD": {
+            "LABEL": "Forma de pago",
+            "COMPLEMENT": "{{ paymentMethod }}"
+        },
+        "DAYS_RANGE": "Rango de días",
+        "METHOD_OF_PAYMENT": "Forma de pago",
+        "METHODS_OF_PAYMENT": {
+            "INTEREST_PER_MONTH_AND_CAPITAL_AT_MATURITY": "Intereses mensuales y capital al vencimiento",
+            "INTEREST_AND_CAPITAL_AT_MATURITY": "Intereses y capital al vencimiento",
+            "INTEREST_AND_CAPITAL_PER_MONTH": "Intereses y capital mensual"
+        },
+        "OPTIONS_YES_OR_NO": {
+            "YES": "Si",
+            "NO": "No"
+        },
+        "ENTERPRISES": "Empresas",
+        "SALES": "Ventas",
+        "SALES_CUT": "Corte de ventas",
+        "UPLOAD_PROOF": "Cargar comprobante pricing",
+        "VISUALIZE_PLAN": "El cliente podrá visualizar de este plan",
+        "CREATOR_USER": "Usuario creador",
+        "APPROVING_USER": "Usuario aprobador",
+        "USER_ACCEPTS": "Usuario que acepta",
+        "PLAN_TYPE": {
+            "LABEL": "Tipo de plan",
+            "OPTIONS": {
+                "EXPONENTIAL": "Exponencial",
+                "COMMISSION": "Comisión",
+                "FINANCED": "Financiado"
+            }
+        },
+        "DOCUMENT_TYPES": {
+            "NIT": "NIT",
+            "IDENTIFICATION_CARD": "Cédula de Ciudadanía",
+            "FOREIGNER_ID": "Cédula de extranjería",
+            "AUTONOMOUS_HERITAGE": "Patrimonio autónomo",
+            "PASSPORT": "Pasaporte"
+        },
+        "ERRORS": {
+            "INVALID_STATUS": "Error al intentar crear el plan, la empresa debe estar en estado activo",
+            "SCF.LIBERA.404": "Número de documento no encontrado, verifique la información"
+        },
+        "COMMENTS_ICON": "Tener presente que estos comentarios solo serán visualizados por funcionarios Banco."
+    },
+    "APPROVE_FINANCIAL_CONDITIONS_DIALOG": {
+        "TITLE_APPROVE": "Aceptar plan de financiación",
+        "TITLE_DECLINE": "Rechazar plan de financiación",
+        "BODY_APPROVE": "¿Está seguro que desea aceptar el plan de financiación?",
+        "BODY_DECLINE": "¿Está seguro que desea rechazar el plan de financiación?",
+        "CHECK_TEXT": "Sí, confirmar"
+    },
+    "FINANCIAL_PLAN":{
+        "ERRORS": {
+            "CREATE": {
+                "default": "Hubo un error en la conexión, inténtalo de nuevo.",
+                "ENTERPRISE_DISABLED":"Error al crear plan, la empresa debe estar en estatus activa"
+            },
+            "ERROR_APPROVE": "Hubo un error al aprobar el plan de financiación",
+            "ERROR_DECLINE": "Hubo un error al rechazar el plan de financiación",
+            "default": "Hubo un error en la plataforma"
+        },
+        "CREATE_SUCCESS": "El plan a sido creado",
+        "APPROVE": "Se ha aprobado el plan de financiación exitosamente",
+        "DECLINE": "Se ha rechazado el plan de financiación"
+    },
+    "LINKED_LENDER_TABLE": {
+        "FUNDING": "Fondeador",
+        "NIT": "Número de documento",
+        "ASSIGNED_QUOTE": "Cupo asignado",
+        "AVAILABLE_QUOTE": "Cupo disponible",
+        "INTEREST_RATE": "Tasa de interés"
+    },
+    "PAYMENT_INFO": {
+        "INVOICE_NUMBER": "Número de factura",
+        "CURRENCY": "Moneda",
+        "PROVIDER": "Proveedor"
+    },
+    "QUOTA_REQUEST_FORM": {
+        "QUOTA": "Cupo"
+    },
+    "QUOTA_REQUEST_EXPASION_FORM": {
+        "WISHED_QUOTA": "Cupo deseado"
+    },
+    "UPDATE_QUOTA_FORM": {
+        "PAYMENT_QUOTA": "Cupo pagado"
+    },
+    "APPROVE_ASSIGNED_QUOTA_REQUEST_DIALOG": {
+        "TITLE": "Aceptar cupo asignado",
+        "BODY": "¿Está seguro que desea aceptar el cupo asignado?"
+    },
+    "ASSIGN_QUOTA_REQUEST_DIALOG": {
+        "TITLE": "Enviar solicitud de cupo",
+        "BODY": "¿Está seguro que desea enviar el cupo asignado?"
+    },
+    "CONFIRM_PAYMENT_DIALOG": {
+        "TITLE": "Confirmar pago",
+        "BODY": "Datos de pago y evidencia"
+    },
+    "QUOTA_REQUEST_DIALOG": {
+        "TITLE": "Solicitar cupo"
+    },
+    "REJECT_ASSIGNED_QUOTA_REQUEST_DIALOG": {
+        "TITLE": "Rechazar asignación de cupo",
+        "BODY": "¿Está seguro que desea rechazar el cupo asignado?"
+    },
+    "REJECT_PAYMENT_DIALOG": {
+        "TITLE": "Rechazar pago",
+        "BODY": "Motivo de rechazo"
+    },
+    "REJECT_QUOTA_REQUEST_DIALOG": {
+        "TITLE": "Rechazar solicitud de cupo",
+        "BODY": "¿Está seguro que desea rechazar la solicitud?"
+    },
+    "REQUEST_QUOTA_EXPANSION_DIALOG": {
+        "TITLE": "Ampliación de cupo"
+    },
+    "UPDATE_QUOTA_DIALOG": {
+        "TITLE": "Actualizar cupo"
+    },
+    "UPDATE_QUOTA_REQUEST_DIALOG": {
+        "TITLE": "Modificar solicitud de cupo",
+        "BODY": "¿Está seguro que desea modificar el cupo solicitado?"
+    },
+    "LENDER_REQUEST_PAGE": {
+        "TITLE": "Solicitudes fondeadores"
+    },
+    "LINKED_LIST_PAGE": {
+        "TITLE": "Fondeadores vinculados"
+    },
+    "FUNDING_LIST_PAGE": {
+        "TITLE": "Fondeadores disponibles",
+        "EMPTY_MESSAGE": "Al parecer no hay fondeadores."
+    },
+    "QUOTA_LIST_PAGE": {
+        "TITLE": "Solicitudes de cupo",
+        "EMPTY_MESSAGE": "Al parecer no hay solicitudes."
+    },
+    "ENTERPRISE": {
+        "REQUEST_SENT_SUCCESSFULLY": "El envío de documentos ha sido exitoso",
+        "ERROR_REQUEST_SENT": "Hubo un error al enviar su solicitud. Vuelva a intentarlo.",
+        "ERRORS": {
+            "UPDATE_STATUS_PROGRAM": "Hubo un error al actualizar el estatus del programa.",
+            "PROGRAM_INVITED": "Hubo un error al invitar el programa.",
+            "INVITATION_FORWARD": "Hubo un error al reenviar la invitación",
+            "API": {
+                "SCF.LIBERA.502": "Hubo un error en la conexión, inténtalo de nuevo.",
+                "default": "Hubo un error."
+            },
+            "DB": {
+                "SCF.LIBERA.500": "Hubo un error en la conexión, inténtalo de nuevo."
+            },
+            "default": "Hubo un error en la plataforma"
+        },
+        "UPDATE_STATUS_PROGRAM": "Se ha actualizado el estatus del programa.",
+        "PROGRAM_INVITED": "Se ha creado la empresa.",
+        "INVITATION_FORWARDED": "Invitación reenviada",
+        "ENTERPRISE_EXIST": "Proveedor ya creado en la plataforma."
+    },
+    "PROVIDER_NOTIFICATIONS": {
+        "BULK_CREATE": {
+            "SUCESS": "Solicitud enviada. Nuestro personal validará la información de tu proveedor",
+            "ERROR": "Hubo un error con su solicitud. Vuelva a intentarlo."
+        },
+        "CREATE": {
+            "SUCCESS": "Se ha creado el proveedor.",
+            "ERROR": "Hubo un error al enviar su solicitud de vinculación.",
+            "SCF.LIBERA.95": "Este proveedor ya se encuentra vinculado a tu empresa o en proceso de vinculación."
+        }
+    },
+    "PROVIDER_INVOICE_NOTIFICATIONS": {
+        "ACCEPT_LATEST_NEGOTIATION_OFFER": {
+            "SUCCESS": "La oferta ha sido aceptada",
+            "ERROR": "Hubo un error al aceptar la oferta. Intentelo de nuevo."
+        },
+        "REJECT_LATEST_NEGOTIATION_OFFER": {
+            "SUCCESS": "La oferta ha sido rechazada",
+            "ERROR": "Hubo un error al rechazar la oferta. Intentelo de nuevo."
+        },
+        "UPDATE_LATEST_NEGOTIATION_OFFER": {
+            "SUCCESS": "Contra oferta enviada.",
+            "ERROR": "Hubo un error al enviar su contra oferta. Intentelo de nuevo."
+        }
+    },
+    "PAYER_INVOICE_NOTIFICATIONS": {
+        "CANCEL_CURRENT_NEGOTIATION": {
+            "SUCCESS": "La negociación se ha cancelado.",
+            "ERROR": "Hubo un error al cancelar la negociación."
+        },
+        "ACCEPT_LATEST_NEGOTIATION_OFFER": {
+            "SUCCESS": "La oferta ha sido aceptada",
+            "ERROR": "Hubo un error al aceptar la oferta. Intentelo de nuevo."
+        },
+        "REJECT_LATEST_NEGOTIATION_OFFER": {
+            "SUCCESS": "La oferta ha sido rechazada",
+            "ERROR": "Hubo un error al rechazar la oferta. Intentelo de nuevo."
+        },
+        "UPDATE_LATEST_NEGOTIATION_OFFER": {
+            "SUCCESS": "Contra oferta enviada.",
+            "ERROR": "Hubo un error al enviar su contra oferta. Intentelo de nuevo."
+        },
+        "NEGOTIATE": {
+            "SUCCESS": "Negociación iniciada con éxito. El proveedor será notificado.",
+            "ERROR": "Hubo un error al inciar la negociación. Intentelo de nuevo."
+        },
+        "UPDATE_PROVIDER": {
+            "SUCCESS": "Se ha actualizado el proveedor de la factura.",
+            "ERROR": "Hubo un error al actualizar el proveedor de la factura. Intentelo de nuevo."
+        },
+        "CREATE": {
+            "SUCCESS": "La factura ha sido cargada exitosamente.",
+            "ERROR": "Hubo un error al cargar la factura. Vuelva a intentarlo."
+        },
+        "DELETE": {
+            "SUCCESS": "Se ha eliminado el campo la factura exitosamente.",
+            "ERROR": "Hubo un error al eliminar la factura. Vuelva a intentarlo."
+        },
+        "UPDATE_LENDER": {
+            "SUCCESS": "Se ha actualizado el fondeador de la factura.",
+            "ERROR": "Hubo un error al actualizar el fondeador de la factura. Intentelo de nuevo."
+        }
+    },
+    "FUNDING_REQUEST_NOTIFICATIONS": {
+        "CREATE_REQUEST_PAYLOAD": {
+            "SUCCESS": "Solicitud de fondeo iniciada con éxito.",
+            "ERROR": "Hubo un error al inciar la solicitud de fondeo. Intentelo de nuevo."
+        }
+    },
+    "CUSTOM_ATTRIBUTE_NOTIFICATIONS": {
+        "CREATE": {
+            "SUCCESS": "Se creo exitosamente el campo personalizado.",
+            "ERROR": "Hubo un error al crear el campo personalizado."
+        },
+        "DELETE": {
+            "SUCCESS": "Se ha eliminado el campo personalizado exitosamente.",
+            "ERROR": "Hubo un error al eliminar el campo personalizado."
+        }
+    },
+    "BULK_NOTIFICATIONS": {
+        "BULK_LOAD": {
+            "SUCCESS": "Carga masiva de facturas exitosa.",
+            "ERROR": "Hubo un error con la carga masiva. Vuelva a intentarlo."
+        }
+    },
+    "LENDER_INVOICE_REQUEST_NOTIFICATIONS": {
+        "CONFIRM_PAYMENT": {
+            "SUCCESS": "Se ha confirmado el pago exitosamente.",
+            "ERROR": "Hubo un error al confirmar el pago. Intentelo de nuevo."
+        },
+        "REJECT_PAYMENT": {
+            "SUCCESS": "Se ha rechazado el pago exitosamente.",
+            "ERROR": "Hubo un error al rechazar el pago. Intentelo de nuevo."
+        }
+    },
+    "LENDER_QUOTA_REQUEST_NOTIFICATIONS": {
+        "REJECT": {
+            "SUCCESS": "Se ha rechazado la solicitud exitosamente.",
+            "ERROR": "Hubo un error al rechazar la solicitud. Vuelva a intentarlo."
+        },
+        "APPROVE": {
+            "SUCCESS": "Se ha aprobado la solicitud exitosamente.",
+            "ERROR": "Hubo un error al aprobar la solicitud. Vuelva a intentarlo."
+        },
+        "UPDATE": {
+            "SUCCESS": "Se ha actualizado la solicitud.",
+            "ERROR": "Hubo un error al actualizar la solicitud. Vuelva a intentarlo."
+        },
+        "CREATE_QUOTA_REQUEST": {
+            "SUCCESS": "Solicitud de cupo iniciada con éxito.",
+            "ERROR": "Hubo un error al solicitar su cupo"
+        }
+    },
+    "LENDER_REQUEST_NOTIFICATIONS": {
+        "UPDATE_QUOTA_REQUEST_STATUS": {
+            "SUCCESS": "Asignación de cupo {{status}}",
+            "ERROR": "Ha ocurrido un error actualizando el estatus. Intente de nuevo."
+        }
+    },
+    "LINKED_LENDER_NOTIFICATIONS": {
+        "REQUEST_QUOTA_ADJUSTMENT": {
+            "SUCCESS": "Solicitud enviada con éxito",
+            "ERROR": "Ha ocurrido un problema solicitando el ajuste. Intente de nuevo."
+        }
+    },
+    "BRANDING_NOTIFICATIONS": {
+        "UPDATE_THEME": {
+            "SUCCESS": "Se ha actualizado el tema.",
+            "ERROR": "Hubo un error al actualizar el tema."
+        },
+        "UPDATE_LOGO": {
+            "SUCCESS": "Se ha actualizado el logo.",
+            "ERROR": "Hubo un error al actualizar el logo."
+        },
+        "UPDATE_FAVICON": {
+            "SUCCESS": "Se ha actualizado el favicon.",
+            "ERROR": "Hubo un error al actualizar el favicon."
+        },
+        "DELETE": {
+            "SUCCESS": "Se han restaurado los valores predeterminados.",
+            "ERROR": "Hubo un error al restaurar los valores predeterminados."
+        }
+    },
+    "ENTERPRISE_MODULE_NOTIFICATIONS": {
+        "REQUEST_MODULE_ACTIVATION": {
+            "SUCCESS": "Su solicitud ha sido enviada",
+            "ERROR": "Hubo un error al solicitar el módulo. Intentelo de nuevo."
+        },
+        "UPDATE_FILE": {
+            "ERROR": "Hubo un error al subir el archivo. Intentelo de nuevo."
+        },
+        "DELETE_FILE": {
+            "ERROR": "Hubo un error al eliminar el archivo. Intentelo de nuevo."
+        }
+    },
+    "LINK_NOTIFICATIONS": {
+        "CONFIRM": {
+            "ACEPTED": {
+                "SUCCESS": "Ha sido vinculado exitosamente.",
+                "ERROR": "Hubo un error al vincularlo. Intentelo de nuevo."
+            },
+            "REJECTED": {
+                "SUCCESS": "Ha rechazado la invitación",
+                "ERROR": "Hubo un error al rechazar la invitación. Intentelo de nuevo."
+            }
+        }
+    },
+    "PAYMENT_REQUEST_FORM": {
+        "EFFECTIVE_DATE_PAYMENT": "Fecha efectiva de pago",
+        "EFFECTED_AMOUNT_PAID": "Cantidad efectiva pagada"
+    },
+    "PAYMENT_REQUEST_DIALOG": {
+        "TITLE": "Confirmar pago",
+        "BODY": "¿Confirma que ha recibido el pago con la fecha y cantidad mencionada?",
+        "CONFIRM": "Sí, confirmar pago"
+    },
+    "PAYMENT_REQUEST_PAGE": {
+        "ERRORS": {
+            "LOAD_PAYMENT": "Hubo un error al cargar la informacion de pago.",
+            "NO_PAYMENT_REGISTER": "No se ha registrado un pago sobre esta factura"
+        },
+        "CONFIRM_PAYMENT": "Confirmar pago",
+        "INFO": "Si el pago no fue recibido o es incorrecto contáctanos:"
+    },
+    "PAYMENT_REQUEST": {
+        "SUCCESS": "Confimación de pago realizada",
+        "ERROR": "Hubo un error al confirmar el pago. Intentelo de nuevo."
+    },
+    "PAYER_BASIC_INFORMATION": {
+        "TITLE": "Información básica",
+        "NIT": "Número de documento",
+        "ECONOMIC_SECTOR": "Sector económico",
+        "TYPE_ENTERPRISE": "Tipo de empresa",
+        "CONTACT": "Contacto",
+        "EMAIL": "Email"
+    },
+    "PAYER_COMPLEMENTARY_INFORMATION": {
+        "TITLE": "Información complementaria",
+        "ERROR": "Aún no has capturado información",
+        "ACTION": "Capturar campos personalizados"
+    },
+    "PAYER_CUSTOM_ATTRIBUTES_LIST": {
+        "ACTION": "Capturar dato personalizado"
+    },
+    "NO_CUSTOM_ATTRIBUTES_DIALOG": {
+        "TITLE": "Aún no cuenta con campos personalizados",
+        "BODY": "Dirijase a la sección de personalización para agregarlos.",
+        "LINK": "Ir a personalización"
+    },
+    "CREATE_CUSTOM_ATTRIBUTES": {
+        "SUCCESS": "Campo personalizado agregado",
+        "ERROR": "Ha ocurrido un error agregando el campo personalizado. Intente de nuevo."
+    },
+    "PAYER_CUSTOM_ATTRIBUTES": {
+        "SUCCESS": {
+            "SAVED_INFO": "Información guardada con éxito.",
+            "ATTRIBUTE_DELETED": "Campo personalizado eliminado"
+        },
+        "ERRORS": {
+            "UPDATE_INFO": "Hubo un error al actualizar su información. Intentelo de nuevo.",
+            "ATTRIBUTE_DELETED": "Ha ocurrido un error eliminando el campo personalizado. Intente de nuevo."
+        }
+    },
+    "CUSTOM_ATTRIBUTES": {
+        "SUCCESS": "Campo personalizado eliminado",
+        "ERROR": "Ha ocurrido un error eliminando el campo personalizado. Intente de nuevo."
+    },
+    "LENDER_REQUEST_LIST": {
+        "APPROVED": "Aprobado",
+        "REJECT": "Rechazado",
+        "NEW": "Nueva",
+        "QUOTA": "Cupo asignado"
+    },
+    "CONFIRM_PAYMENT_FORM": {
+        "EFECTIVE_PAYMENT_AMOUNT": "Cantidad efectiva pagada",
+        "EFFECTIVE_PAYMENT_DATE": "Fecha efectiva de pago",
+        "PAYMENT_COMMENTS": "Comentarios",
+        "CHOOSE_DATE": "Elige una fecha"
+    },
+    "CREATE_EFFECTS": {
+        "SUCCESS": "El usuario ha sido invitado exitosamente.",
+        "ERROR": "Hubo un error al invitar al usuario. Intentelo de nuevo."
+    },
+    "CHANGE_PASSWORD_FORM": {
+        "CURRENT_PASSWORD": "Contraseña actual",
+        "NEW_PASSWORD": "Nueva contraseña",
+        "CONFIRM_PASSWORD": {
+            "LABEL": "Confirmar contraseña",
+            "PLACEHOLDER": "Repita su contraseña"
+        },
+        "CHANGE": "Cambiar"
+    },
+    "ENTERPRISE_DOCUMENTATION_TABLE": {
+        "VALIDITY_DATE": "Fecha de vigencia",
+        "DOCUMENT": "Documento",
+        "FILE": "Archivo",
+        "UPLOAD_DATE": "Fecha de carga",
+        "UPDATE_DATE": "Fecha de actualización",
+        "STATE": "Estado",
+        "COMMENTS": "Comentarios",
+        "ACTIONS": "Acciones"
+    },
+    "PROFILE_FORM": {
+        "NAME": "Nombre",
+        "FIRST_SURNAME": "Primer apellido",
+        "SECOND_SURNAME": "Segundo apellido",
+        "EMAIL": "Email"
+    },
+    "AUTHENTICATION": {
+        "VERIFICATION_CODE": "Le hemos enviado un código de verificación a su email",
+        "ERRORS": {
+            "REGISTERED_ACCOUNT": "Ya existe una cuenta registrada con ese email",
+            "REGISTERED_NIT": "Ya existe una empresa registrada con ese NIT",
+            "CREATE_ACCOUNT": "Hubo un error al crear la cuenta",
+            "CONFIRMED_ACCOUNT": "Ya se encuentra confirmada esta cuenta",
+            "WITHOUT_EMAIL": "No existe una cuenta con ese email",
+            "INCORRECT_CODE": "El código de verificación es incorrecto",
+            "ERROR_CONFIRM_ACCOUNT": "Hubo un error al confirmar su cuenta",
+            "WITHOUT_TYPE_USER": "¡Error! Parece que tu cuenta no un tiene tipo de usuario asignado.",
+            "LOGIN": "Hubo un error al iniciar sesión, intente de nuevo.",
+            "USER_DISABLED": "Tu cuenta ha sido deshabilitada.",
+            "INCORRECT_USER_OR_PASSWORD": "El email o contraseña es equivocada.",
+            "VERIFY_ACCOUNT": "Verifica tu cuenta para poder iniciar sesión.",
+            "ERROR_LOGOUT": "Hubo un problema al cerrar sesión. Intentelo de nuevo.",
+            "ERROR_SEND_EMAIL": "Hubo un error al enviar el correo, intente de nuevo en un par de minutos",
+            "EMAIL_NOT_FOUND": "Correo no encontrado, por favor verifique la información introducida",
+            "USER_NOT_VERIFY": "El usuario no ha sido verificado.",
+            "ACCOUNT_NOT_VERIFIED": "La cuenta aún no ha sido verificada, debe verificarla antes de poder cambiar su contraseña",
+            "TRY_LATER": "Ha ocurrido un error, intente de nuevo más tarde.",
+            "CONFIRM_ACCOUNT": "Esta cuenta aún no ha sido confirmada.",
+            "EXPIRED_CODE": "El código ha expirado, por favor, solicite uno nuevo.",
+            "INVALID_CODE": "Código de verificación invalido. Intente de nuevo.",
+            "SEND_CODE": "Hubo un error al enviar el código de verificación",
+            "ALREADY_ACCOUNT_CONFIRM": "Ya se encuentra confirmada esta cuenta",
+            "TRY_AGAIN": "Ha ocurrido un error. Intente de nuevo.",
+            "NO_LOGGED_IN": "¡Error! Al parecer no haz iniciado sesión",
+            "INCORRECT_PASSWORD": "La contraseña que introduciste es incorrecta.",
+            "ERROR_PASSWORD_UPDATE": "Hubo un error al actualizar su contraseña. Intentelo de nuevo."
+        },
+        "CONFIRMED_ACCOUNT": "Se ha confirmado su cuenta, ya puede iniciar sesión",
+        "SEND_EMAIL": "Se ha enviado el correo",
+        "RESET_PASSWORD": "Su contraseña ha sido establecida, ahora puede iniciar sesión",
+        "SEND_CODE": "Se ha enviado un nuevo código de verificación a su email",
+        "UPDATED_DATA": "¡Datos actualizados! Inicie sesión con su nueva contraseña",
+        "SUCCESS_PASSWORD_UPDATE": "Se ha actualizado tu contraseña exitosamente."
+    },
+    "SEND_DOCUMENTATION_DIALOG": {
+        "TITLE": "Enviar documentos",
+        "BODY": "Sr. Cliente tiene documentos pendientes por enviar, recuerde que si en la evaluación documental se determina que estos documentos son necesarios para la operación se le solicitarán por este medio y no podrá realizar operaciones hasta que sean enviados.",
+        "CHECK_TEXT": "Sí, confirmar",
+        "QUESTION": "¿Desea continuar?"
+    },
+    "ENTERPRISE_DOCUMENTATION": {
+        "ERRORS": {
+            "FILE_LOAD": "Hubo un error al cargar el archivo.",
+            "DELETE_FILE": "Hubo un error al intentar eliminar el archivo.",
+            "UPDATED_FILE": "Hubo un error al actualizar el estatus del documento.",
+            "LIMIT_FILE": "No se puede realizar la acción, ha excedido el límite permitido para agregar documentación.",
+            "FILE_UPDATE": "Hubo un error al actualizar el archivo."
+        },
+        "SUCCESSFUL_FILE_LOAD": "Cargue de documento exitoso.",
+        "DELETED_FILE": "Documento eliminado",
+        "UPDATED_FILE": "Se ha actualizado el estatus del documento.",
+        "TITLE": "Documentación",
+        "SEND": "Enviar",
+        "ADD_DOCUMENT": "Agregar documento",
+        "NEW_DOCUMENT_SAVED": "Documento agregado",
+        "NEW_DOCUMENT_NOT_SAVED": "Nuevo documento no guardado, intente más tarde",
+        "SUCCESSFUL_FILE_UPDATE": "Actualización de documento exitoso."
+    },
+    "DOCUMENTATION_TABLE_ACTIONS": {
+        "TITLE": "Acciones",
+        "LOAD": "Cargar",
+        "DELETE": "Eliminar",
+        "APPROVE": "Aprobar",
+        "REJECT": "Rechazar",
+        "UPDATE": "Actualizar"
+    },
+    "LOAD_MODAL": {
+        "TITLE": "Subir documento",
+        "EXPEDITION_DATE": "Fecha de expedición",
+        "COMMENTS": "Comentarios",
+        "ADD_DOCUMENT": "Agregar documento",
+        "SELECT_DOCUMENT": "Selecciona el documento"
+    },
+    "DELETE_MODAL": {
+        "TITLE": "Eliminar documento",
+        "BODY": "¿Desea eliminar el documento vigente?",
+        "CHECK_TEXT": "Si, confirmar"
+    },
+    "APPROVE_MODAL": {
+        "ACCEPT_TITLE": "Aceptar documento",
+        "DECLINE_TITLE": "Declinar documento",
+        "EXPEDITION_DATE": "Fecha de expedición",
+        "COMMENTS": "Comentarios"
+    },
+    "ADD_DOCUMENT": {
+        "TITLE": "Agregar documento",
+        "DOCUMENT_TYPE": "Documento para solicitar",
+        "MINUTES_DEBTORS_SHAREHOLDERS_MEETING": "Acta de junta de socios del deudor",
+        "CODEBTORS_CHAMBER_COMMERCE": "Cámara de comercio codeudor",
+        "MINUTES_MEETING_CODEBTORS": "Acta de junta de socios codeudor",
+        "OTHER_DOCUMENTS": "Otro",
+        "COMPLEMENTARY_TEXT": "Texto complementario",
+        "SELECT_TIME_TYPE": "Selecciona la vigencia de documento",
+        "DEFINED": "Tiempo determinado",
+        "UNDEFINED": "Indefinida",
+        "PD_SELECT_DOCUMENT": "Selecciona un tipo de documento",
+        "VALIDITY": "Vigencia",
+        "COMMENTS": "Comentarios",
+        "CANCEL": "Cancelar",
+        "UPLOAD_FILE": "Guardar",
+        "MONTHS": "Meses"
+    },
+    "PROFILE": {
+        "PROFILE_UPDATED_SUCCESSFULLY": "Su perfil ha sido actualizado exitosamente.",
+        "PROFILE_UPDATED_ERROR": "Hubo un error al actualizar su perfil. Intentelo de nuevo."
+    },
+    "PAGINATOR": {
+        "FIRST_PAGE": "Primera página",
+        "LAST_PAGE": "Última página",
+        "PER_PAGE": "Por página",
+        "NEXT": "Siguiente",
+        "PREVIOUS": "Anterior",
+        "OF_PAGE": "de"
+    },
+    "ENTERPRISE_DOCUMENTATION_TABLE_ACTIONS": {
+        "APPROVE_FILE": "Approve file",
+        "DELETE_FILE": "Delete file",
+        "RE_REQUEST_FILE": "Re-request file",
+        "CHOOSE_FILE": "Choose file",
+        "ACTIONS": "Actions"
+    },
+    "REQUEST_LIST_PAGE": {
+        "TITLE": "Solicitudes fondeo"
+    },
+    "LENDER_QUOTA_REQUEST_LIST": {
+        "ACCEPT": "Aceptada",
+        "REJECT": "Rechazada",
+        "NEW": "Nueva",
+        "QUOTA": "Cupo asignado"
+    },
+    "BULK_INVOICE_NEGOTIATION_PAGE": {
+        "TITLE": "Negociaciones masivas"
+    },
+    "BULK_INVOICE_NEGOTIATION_TABLE": {
+        "FOLIO": "Folio",
+        "PROVIDER": "Proveedor",
+        "PAYER": "Pagador",
+        "COUNT": "Cantidad de facturas",
+        "AMOUNT": "Valor a negociar",
+        "CREATION_DATE": "Fecha de solicitud",
+        "STATUS": "Estatus",
+        "AMOUNT_INVOICE": "Valor factura",
+        "EXPIRATION_DATE": "Fecha de vencimiento",
+        "NIT": "Número de documento",
+        "INVOICE_NUMBER": "No. de factura"
+    },
+    "BULK_INVOICE_NEGOTIATION_DETAIL_PAGE": {
+        "HINT": "Esta es una simulación, los datos mostrados pueden varias. Los valores finales son responsabilidad de los negociantes.",
+        "PROVIDER_OFFER": "Oferta proveedor",
+        "PAYER_OFFER": "Oferta pagador",
+        "CANCEL_OFFER_BUTTON": "Cancelar oferta",
+        "REJECT_OFFER_BUTTON": "Rechazar oferta",
+        "COUNTER_OFFER_BUTTON": "Contra oferta",
+        "ACCEPT_OFFER_BUTTON": "Aceptar oferta",
+        "NO_PAYER_OFFER_HINT": "No hay oferta del pagador",
+        "NO_PROVIDER_OFFER_HINT": "No hay oferta del proveedor",
+        "OFFER": {
+            "DISCOUNT_TYPE": "Tipo de descuento",
+            "RATE": "Tasa de descuento",
+            "DUE_DATE": "Vigencia de descuento",
+            "EXPECTED_PAYMENT_DATE": "Fecha esperada de pago",
+            "PROVIDER": "Proveedor",
+            "LENDER": "Fondeador",
+            "TOTAL": "Total valor facturas",
+            "DISCOUNT": "Total descuento",
+            "NEGOTIATION_AMOUNT": "Total a negociar",
+            "AVAILABLE_QUOTA": "Cupo disponible",
+            "REMAINING_QUOTA": "Cupo restante"
+        },
+        "LENGTH": "Facturas a negociar: {{length}}",
+        "INVOICE_LIST": {
+            "INVOICE_NUMBER": "Número de factura",
+            "PROVIDER": "Proveedor",
+            "NIT": "Número de documento",
+            "EXPIRATION_DATE": "Fecha de vencimiento",
+            "AMOUNT": "Valor de factura"
+        }
+    },
+    "BULK_INVOICE_NEGOTIATION_FORM": {
+        "DISCOUNT_TYPE": "Tipo de descuento",
+        "INVESTOR": "Fondeador",
+        "PERCENTAGE": "Tasa de descuento",
+        "EXPECTED_PAYMENT_DATE": "Fecha esperada de pago",
+        "DISCOUNT_DUE_DATE": "Vigencia de descuento",
+        "SELECTED_INVOICES": "Facturas a negociar: {{ value }}",
+        "AVAILABLE_QUOTA": "Cupo disponible",
+        "SEARCH_LABEL": "Buscar por No. de factura",
+        "TOTAL": "Total valor de facturas",
+        "DISCOUNT": "Total descuento",
+        "SUBTOTAL": "Total a negociar",
+        "REMAINING_QUOTA": "Cupo restante",
+        "ERRORS": {
+            "PERCENTAGE_MIN": "No puede ser menor a {{value}}.",
+            "PERCENTAGE_MAX": "No puede ser mayor a {{value}}.",
+            "INVALID_QUOTA": "El valor a negociar es mayor al cupo disponible. Por favor modifica la selección."
+        }
+    },
+    "BULK_INVOICE_NEGOTIATION_DIALOG": {
+        "TITLE": "Negociación masiva de facturas"
+    },
+    "BULK_INVOICE_NEGOTIATION_CONFIRMATION_DIALOG": {
+        "TITLE": "Confirmación de negociación",
+        "INVESTOR": "Fondeador",
+        "DISCOUNT_TYPE": "Tipo de descuento",
+        "PERCENTAGE": "Tasa de descuento",
+        "EXPECTED_PAYMENT_DATE": "Fecha esperada de pago",
+        "DISCOUNT_DUE_DATE": "Vigencia de descuento",
+        "TOTAL": "Total valor facturas {{value}}",
+        "DISCOUNT": "Total descuento {{value}}",
+        "SUBTOTAL": "Total a negociar {{value}}"
+    },
+    "BULK_INVOICE_NEGOTIATION_COUNTER_OFFER_DIALOG": {
+        "TITLE": "Contraoferta de negociación másiva"
+    },
+    "BULK_INVOICE_NEGOTIATION_ACCEPT_OFFER_DIALOG": {
+        "TITLE": "Aceptar oferta de negociación másiva",
+        "CONTENT": "¿Está seguro que desea aceptar la oferta?"
+    },
+    "BULK_INVOICE_NEGOTIATION_REJECT_OFFER_DIALOG": {
+        "TITLE": "Rechazar oferta de negociación másiva",
+        "CONTENT": "¿Está seguro que desea rechazar la oferta?"
+    },
+    "BULK_INVOICE_NEGOTIATION_CANCEL_OFFER_DIALOG": {
+        "TITLE": "Cancelación de negociación másiva",
+        "CONTENT": "¿Está seguro que desea cancelar la oferta?"
+    },
+    "BULK_INVOICE_NEGOTIATION_COUNTER_OFFER_FORM": {
+        "ERROR": {
+            "QUOTA": "El valor {{value}} ha excedido el cupo disponible {{quota}}"
+        }
+    },
+    "BULK_INVOICE_NEGOTIATION_NOTIFICATIONS": {
+        "ACCEPT_OFFER": {
+            "SUCCESS": "Se ha aceptado la oferta.",
+            "ERROR": "Hubo un error al aceptar la oferta. Intentelo de nuevo."
+        },
+        "COUNTER_OFFER": {
+            "SUCCESS": "Se ha enviado su oferta.",
+            "ERROR": "Hubo un error al enviar su oferta. Intentelo de nuevo."
+        },
+        "REJECT_OFFER": {
+            "SUCCESS": "Se ha rechazado la oferta.",
+            "ERROR": "Hubo un error al rechazar la oferta. Intentelo de nuevo."
+        },
+        "CANCEL_NEGOTIATION": {
+            "SUCCESS": "Se ha cancelado la negociación.",
+            "ERROR": "Hubo un error al cancelar la negociación. Intentelo de nuevo."
+        }
+    },
+    "ADMIN_DETAIL": {
+        "ADMIN_NAME": "Nombre del administrador",
+        "DOCUMENT_TYPE": "Tipo de documento",
+        "DOCUMENT_NUMBER": "Número de documento",
+        "EMAIL": "Email"
+    },
+    "ENTERPRISE_DETAIL": {
+        "SOCIAL_REASON": "Razón social",
+        "NIT": "NIT",
+        "ECONOMIC_SECTOR": "Sector económico",
+        "ENTERPRISE_TYPE": "Tipo de empresa",
+        "PHONE": "Teléfono",
+        "PHONE_EXTENSION": "Extensión",
+        "EMAIL": "Email",
+        "LINKING_DATE": "Fecha de vinculación",
+        "DOCUMENT_TYPE": "Tipo de documento",
+        "PRODUCT_TYPE": "Tipo de producto",
+        "DEPARTMENT": "Departamento",
+        "CITY": "Ciudad",
+        "CIIU": "CIIU",
+        "ECONOMIC_ACTIVITY": "Actividad económica",
+        "RELATIONSHIP_MANAGER": "Gerente de relación",
+        "SALES": "Ventas último año",
+        "SALES_EXAMPLE": "Digite el valor en millones de pesos",
+        "SALES_CUT": "Corte de ventas",
+        "SALES_PER_YEAR_EXAMPLE": "DD/MM/AAAA",
+        "FORM_OF_DISBURSEMENT": "Forma de desembolso",
+        "REGION": "Regional banco"
+    },
+    "CREATE_PROGRAM_FORM": {
+        "PHONE_NUMBER_ADVICE": "Por favor colocar el número con la estructura definida:\n Teléfono fijo: Prefijo + Indicativo + número - Ejemplo: 6017462060 \n Celular: Solo número – Ejemplo:3165555555",
+        "DOC_NUM_ADVICE": "Por favor diligenciar número de documento con digito de \n verificación sin puntos, comas o espacios.",
+        "SOCIAL_REASON": "Razón social",
+        "ENTERPRISE": "Empresa",
+        "PROGRAM_ADMIN": "Usuario Administrador",
+        "NAME": "Nombre",
+        "FIRST_SURNAME": "Primer apellido",
+        "SECOND_SURNAME": "Segundo apellido",
+        "EMAIL": "Email",
+        "EMAIL_EXAMPLE": "ejemplo@ejemplo.com",
+        "SALES": "Ventas último año",
+        "SALES_EXAMPLE": "Digite el valor en millones de pesos",
+        "SALES_CUT": "Corte de ventas",
+        "SALES_PER_YEAR_EXAMPLE": "DD/MM/AAAA",
+        "MODULES": "Módulos",
+        "NIT_EXAMPLE": "Ejemplo: 9008762562",
+        "DOCUMENT_TYPE": "Tipo de documento",
+        "DOCUMENT_NUMBER": "Número de documento",
+        "DOCUMENT_TYPES": {
+            "IDENTIFICATION_CARD": "Cédula de Ciudadanía",
+            "FOREIGNER_ID": "Cédula de extranjería",
+            "AUTONOMOUS_HERITAGE": "Patrimonio autónomo",
+            "PASSPORT": "Pasaporte"
+        },
+        "PRODUCT_TYPE": {
+            "LABEL": "Tipo de producto",
+            "OPTIONS": {
+                "UNIDIRECT": "Unidirecto",
+                "FACTORING": "Factoring en Firme",
+                "CONFIRMING": "Confirming",
+                "DOCUMENT_DISCOUNT": "Descuento de Documentos"
+            }
+        },
+        "DEPARTMENT": "Departamento",
+        "CITY": "Ciudad",
+        "CIIU": "CIIU",
+        "ECONOMIC_ACTIVITY": "Actividad económica",
+        "ECONOMIC_SECTOR": "Sector económico",
+        "RELATIONSHIP_MANAGER": "Gerente de relación",
+        "BANK_REGION": "Regional banco",
+        "PHONE_EXTENSION": "Extensión",
+        "PHONE_NUMBER": "Teléfono",
+        "PHONE_EXAMPLE": "Ejemplo: 6017462060"
+    },
+    "DETAIL_PAGE": {
+        "INFO": "Datos generales",
+        "EDIT": "Editar"
+    }
+}

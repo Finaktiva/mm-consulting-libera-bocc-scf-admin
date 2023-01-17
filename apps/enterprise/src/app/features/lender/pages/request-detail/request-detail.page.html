@@ -1,0 +1,151 @@
+<div fxLayout="column">
+    <div
+        fxLayout="row"
+        fxLayoutAlign="space-between center"
+        class="page-toolbar"
+    >
+        <div fxLayout="row" fxLayoutAlign="start center">
+            <a routerLink="/core/lenders/requests" mat-icon-button>
+                <mat-icon>arrow_back</mat-icon>
+            </a>
+            <span class="mat-headline no-margin">
+                {{ 'COMMON.LABELS.BACK_TO_LIST' | translate }}
+            </span>
+        </div>
+        <button (click)="fetch()" mat-flat-button color="primary">
+            {{ 'COMMON.ACTIONS.UPDATE' | translate | uppercase }}
+        </button>
+    </div>
+
+    <div style="margin: 16px;" fxLayout="column" fxLayoutAlign="start stretch">
+        <mat-spinner
+            fxFlexAlign="center"
+            *ngIf="(isLoading$ | async)"
+        ></mat-spinner>
+        <alert *ngIf="(error$ | async)" color="warn">
+            <span>{{ 'COMMON.ERRORS.INFO_LOAD' | translate }}</span>
+            <button (click)="fetch()" mat-flat-button color="warn">
+                {{ 'COMMON.ACTIONS.RETRY' | translate | uppercase }}
+            </button>
+        </alert>
+        <div
+            *ngIf="(hasLoaded$ | async)"
+            fxLayout="row"
+            fxLayoutGap="15px"
+            fxLayout="start start"
+        >
+            <div fxLayout="column" fxLayoutGap="15px" fxFlex="40%">
+                <div
+                    class="mat-elevation-z1 progress-bar-container card"
+                    fxLayout="column"
+                    fxLayoutGap="12px"
+                >
+                    <h1 class="mat-headline">
+                        {{ 'COMMON.LABELS.PROVIDER' | translate }}
+                    </h1>
+                    <div fxLayout="column" fxLayoutGap="4px">
+                        <span class="mat-body">
+                            {{ 'COMMON.LABELS.SOCIAL_REASON' | translate }}
+                        </span>
+                        <span class="mat-body-2">
+                            {{ (provider$ | async)?.enterpriseName }}
+                        </span>
+                    </div>
+                    <div fxLayout="column" fxLayoutGap="4px">
+                        <span class="mat-body">
+                            {{ 'COMMON.LABELS.NIT' | translate }}
+                        </span>
+                        <span class="mat-body-2">
+                            {{ (provider$ | async)?.nit }}
+                        </span>
+                    </div>
+                    <div fxLayout="column" fxLayoutGap="4px">
+                        <span class="mat-body">
+                            {{ 'COMMON.LABELS.PAYMENT_INDICATIONS' | translate
+                            }}
+                        </span>
+                        <span class="mat-body-2">
+                            {{ instructions$ | async }}
+                        </span>
+                    </div>
+                    <div fxLayout="column" fxLayoutGap="4px">
+                        <a
+                            [href]="document.url"
+                            *ngFor="let document of (documentation$ | async)"
+                            class="mat-body"
+                            target="_blank"
+                        >
+                            {{ document.filename }}
+                        </a>
+                    </div>
+                </div>
+                <div
+                    class="mat-elevation-z1 progress-bar-container card"
+                    fxLayout="column"
+                    fxLayoutGap="12px"
+                >
+                    <h1 class="mat-headline">
+                        {{ 'COMMON.LABELS.PAYER' | translate }}
+                    </h1>
+                    <div fxLayout="column" fxLayoutGap="4px">
+                        <span class="mat-body">
+                            {{ 'COMMON.LABELS.SOCIAL_REASON' | translate }}
+                        </span>
+                        <span class="mat-body-2">
+                            {{ (payer$ | async)?.enterpriseName }}
+                        </span>
+                    </div>
+                    <div fxLayout="column" fxLayoutGap="4px">
+                        <span class="mat-body">
+                            {{ 'COMMON.LABELS.NIT' | translate }}
+                        </span>
+                        <span class="mat-body-2">
+                            {{ (payer$ | async)?.nit }}
+                        </span>
+                    </div>
+                </div>
+            </div>
+            <div
+                fxFlex
+                class="mat-elevation-z1 progress-bar-container card"
+                fxLayout="column"
+                fxLayoutGap="12px"
+            >
+                <div
+                    fxLayout="row"
+                    fxLayoutGap="12px"
+                    fxLayoutAlign="start center"
+                >
+                    <h1 class="mat-headline no-margin-bottom">
+                        {{ 'COMMON.LABELS.INVOICE' | translate }} {{ (entity$ |
+                        async)?.invoiceNumber }}
+                    </h1>
+                    <status-chip [status]="status$ | async">
+                        <ng-container [ngSwitch]="status$ | async">
+                            {{ 'COMMON.LENDER_STATUS.' + (status$ | async) |
+                            translate }}
+                        </ng-container>
+                    </status-chip>
+                </div>
+                <invoice-request-info
+                    [entity]="entity$ | async"
+                ></invoice-request-info>
+                <div
+                    *ngIf="(shouldRenderActions$ | async)"
+                    fxLayout="row"
+                    fxLayoutAlign="end"
+                    fxLayoutGap="12px"
+                >
+                    <button (click)="onOpenRejectPaymentDialog()" mat-button>
+                        {{ 'COMMON.ACTIONS.REJECT_PAYMENT' | translate |
+                        uppercase }}
+                    </button>
+                    <button (click)="onOpenConfirmPaymentDialog()" mat-button>
+                        {{ 'COMMON.ACTIONS.CONFIRM_PAYMENT' | translate |
+                        uppercase }}
+                    </button>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

@@ -1,0 +1,38 @@
+<form
+    (ngSubmit)="onSubmit()"
+    [formGroup]="form"
+    fxLayout="column"
+    fxLayoutAlign="start stretch"
+>
+    <mat-label class="mat-body">
+        {{ 'QUOTA_REQUEST_FORM.QUOTA' | translate }}*
+    </mat-label>
+    <mat-form-field fxFlex>
+        <input formControlName="quota" min="1" matInput (blur)="onBlur()" />
+        <span matPrefix>
+            {{ 'COP' | currencySymbol }}
+        </span>
+        <mat-error>
+            <span *ngIf="form.hasError('required', 'quota')">
+                {{ 'COMMON.VALIDATIONS.REQUIRED' | translate }}
+            </span>
+            <span *ngIf="form.hasError('min', 'quota')">
+                {{ 'COMMON.VALIDATIONS.MIN' | translate: { min: 1 } }}
+            </span>
+        </mat-error>
+    </mat-form-field>
+
+    <mat-label class="mat-body">
+        {{ 'COMMON.LABELS.COMMENTS' | translate | uppercase }}
+    </mat-label>
+    <mat-form-field>
+        <textarea
+            formControlName="comments"
+            matInput
+            name="comments"
+            rows="3"
+        ></textarea>
+    </mat-form-field>
+
+    <button hidden="hidden" type="submit" #submitButton></button>
+</form>

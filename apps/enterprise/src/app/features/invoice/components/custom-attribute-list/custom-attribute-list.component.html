@@ -1,0 +1,36 @@
+<!-- <mat-list dense>
+    <mat-list-item *ngFor="let entity of entities">
+        <h4 mat-line>{{ entity.name }}</h4>
+        <span mat-line>
+            <ng-container
+                *ngIf="
+                    entity.type == ENTERPRISE_CUSTOM_ATTRIBUTE_TYPE.DATE;
+                    else template
+                "
+            >
+                {{ entity.value | date }}
+            </ng-container>
+            <ng-template #template>
+                {{ entity.value }}
+            </ng-template>
+        </span>
+    </mat-list-item>
+</mat-list> -->
+<div fxLayout="column" fxLayoutGap="12px">
+    <div *ngFor="let entity of entities" fxLayout="column">
+        <span class="mat-body">{{ entity.name }}</span>
+        <span class="mat-body-2">
+            <ng-container
+                *ngIf="
+                    entity.type == ENTERPRISE_CUSTOM_ATTRIBUTE_TYPE.DATE;
+                    else template
+                "
+            >
+                {{ entity.value | date }}
+            </ng-container>
+            <ng-template #template>
+                {{ entity.value }}
+            </ng-template>
+        </span>
+    </div>
+</div>

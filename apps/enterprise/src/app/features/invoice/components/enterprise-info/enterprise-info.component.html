@@ -1,0 +1,26 @@
+<div fxLayout="column" fxLayoutGap="12px">
+    <div fxLayout="column">
+        <span class="mat-body">
+            {{ 'COMMON.LABELS.SOCIAL_REASON' | translate }}
+        </span>
+        <span class="mat-body-2">
+            {{ entity.enterpriseName }}
+        </span>
+    </div>
+    <div fxLayout="column">
+        <span class="mat-body">
+            {{ 'COMMON.LABELS.NIT' | translate }}
+        </span>
+        <span class="mat-body-2">
+            {{ entity.nit }}
+        </span>
+    </div>
+    <div fxLayout="column">
+        <span class="mat-body">
+            {{ 'COMMON.LABELS.EMAIL' | translate }}
+        </span>
+        <span class="mat-body-2">
+            {{ entity.owner.email }}
+        </span>
+    </div>
+</div>

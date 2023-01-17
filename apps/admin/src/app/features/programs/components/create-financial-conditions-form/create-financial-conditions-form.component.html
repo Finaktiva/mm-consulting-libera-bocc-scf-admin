@@ -1,0 +1,425 @@
+<mat-progress-bar *ngIf="(isLoadingRates$ | async)" mode="indeterminate"></mat-progress-bar>
+<form [formGroup]="form" (ngSubmit)="submitData()" fxLayout="column" fxLayoutAlign="center stretch">
+    <div fxLayoutAlign="space-between center" fxLayoutGap="10px">
+        <mat-form-field>
+            <mat-label>
+                {{ 'CREATE_FINANCIAL_CONDITIONS_FORM.DOCUMENT_TYPE' | translate }}
+            </mat-label>
+            <input matInput type="text" formControlName="documentType" [placeholder]="'CREATE_FINANCIAL_CONDITIONS_FORM.DOCUMENT_TYPE' | translate" />
+            <mat-error *ngIf="form.hasError('required', 'documentType')">
+                {{ 'COMMON.VALIDATIONS.REQUIRED' | translate }}
+            </mat-error>
+        </mat-form-field>
+        <mat-form-field>
+            <mat-label>{{ 'CREATE_FINANCIAL_CONDITIONS_FORM.DOCUMENT_NUMBER' | translate }}
+            </mat-label>
+            <input matInput type="text" formControlName="documentNumber" [placeholder]="'CREATE_FINANCIAL_CONDITIONS_FORM.DOCUMENT_NUMBER' | translate" />
+            <mat-error>
+                <span *ngIf="form.hasError('required', 'documentNumber')">
+                    {{ 'COMMON.VALIDATIONS.REQUIRED' | translate }}
+                </span>
+            </mat-error>
+        </mat-form-field>
+        <mat-form-field>
+            <mat-label>{{ 'CREATE_FINANCIAL_CONDITIONS_FORM.PAYER' | translate }}
+            </mat-label>
+            <input matInput type="text" formControlName="enterpriseName" [placeholder]="'CREATE_FINANCIAL_CONDITIONS_FORM.PAYER' | translate" />
+            <mat-error>
+                <span *ngIf="form.hasError('required', 'enterpriseName')">
+                    {{ 'COMMON.VALIDATIONS.REQUIRED' | translate }}
+                </span>
+            </mat-error>
+        </mat-form-field>
+        <mat-form-field>
+            <mat-label>{{ 'CREATE_FINANCIAL_CONDITIONS_FORM.RELATIONSHIP_MANAGER' | translate}}
+            </mat-label>
+            <input matInput type="text" formControlName="relationshipManager" [placeholder]="'CREATE_FINANCIAL_CONDITIONS_FORM.RELATIONSHIP_MANAGER' | translate" *ngIf="payer.relationshipManager ? payer.relationshipManager.split(',').length <= 1 : true" />
+            <mat-select *ngIf="payer.relationshipManager ? payer.relationshipManager.split(',').length > 1 : false" [placeholder]="'CREATE_FINANCIAL_CONDITIONS_FORM.RELATIONSHIP_MANAGERS' | translate" [(value)]="payer.relationshipManager">
+                <mat-option *ngFor="let relationshipManager of payer.relationshipManager.split(',')" [value]="payer.relationshipManager" disabled>
+                    {{ relationshipManager }}
+                </mat-option>
+            </mat-select>
+        </mat-form-field>
+    </div>
+    <div fxLayoutAlign="space-between center" fxLayoutGap="10px" [style.margin-top]="'20px'">
+        <mat-form-field fxLayout="column" fxLayoutGap="10px" [style.width.%]="16.5" formGroupName="economicGroup">
+            <mat-label>{{ 'CREATE_FINANCIAL_CONDITIONS_FORM.ECONOMIC_GROUP' | translate }}*</mat-label>
+            <mat-checkbox *ngFor="let option of economicGroup" (change)="onSelectEconomicGroup($event)" [value]="option.value" [checked]="option.checked" style='margin-right: 15px;'>
+                {{ 'CREATE_FINANCIAL_CONDITIONS_FORM.OPTIONS_YES_OR_NO.' + option.label | translate }}
+            </mat-checkbox>
+            <input matInput type="text" formControlName='economicGroup' hidden/>
+            <mat-error *ngIf="form.hasError('required', 'economicGroup.economicGroup')">
+                {{ 'COMMON.VALIDATIONS.REQUIRED' | translate }}
+            </mat-error>
+        </mat-form-field>
+        <mat-form-field formGroupName="economicGroup">
+            <mat-label>{{ 'CREATE_FINANCIAL_CONDITIONS_FORM.ENTERPRISES' | translate }}{{form.get('economicGroup.enterprises').enabled ? '*' : ''}}
+            </mat-label>
+            <mat-select (selectionChange)="sumAll()" formControlName='enterprises' multiple [placeholder]="'CREATE_FINANCIAL_CONDITIONS_FORM.ENTERPRISES' | translate">
+                <mat-form-field [style.width.%]="90" style="margin: 5px 5px;">
+                    <input #filter matInput type="text" [placeholder]="'COMMON.LABELS.FILTER' | translate" (keydown.Space)="$event.stopImmediatePropagation()"/>
+                </mat-form-field>
+                <mat-select-trigger>
+                    {{ ((form.value.economicGroup.enterprises?.length || 0) > 0 ? form.value.economicGroup.enterprises[0].enterpriseName + ' - ' + form.value.economicGroup.enterprises[0].documentNumber : '') }}
+                    <span *ngIf="(getFormValue().economicGroup.enterprises?.length || 0) > 1">
+                      (+{{(getFormValue().economicGroup.enterprises?.length || 0) - 1}} {{getFormValue().economicGroup.enterprises?.length === 2 ? ('COMMON.LABELS.OTHER' | translate) : ('COMMON.LABELS.OTHERS' | translate)}})
+                    </span>
+                  </mat-select-trigger>
+                <mat-option *ngFor="let enterprise of enterprises" [value]="enterprise"
+                [ngStyle]="{display: (filter.value !== '' &&
+                enterprise.documentNumber.toLowerCase().indexOf(filter.value.toLowerCase()) === -1 &&
+                enterprise.enterpriseName.toLowerCase().indexOf(filter.value.toLowerCase()) === -1)
+                 ?
+                'none' : ''}">
+                    {{ enterprise.enterpriseName +' - '+ enterprise.documentNumber}}
+                </mat-option>
+            </mat-select>
+            <mat-error>
+                <span *ngIf="form.hasError('required', 'economicGroup.enterprises')">
+                    {{ 'COMMON.VALIDATIONS.REQUIRED' | translate }}
+                </span>
+            </mat-error>
+        </mat-form-field>
+        <mat-form-field [style.width.%]="19">
+            <mat-label>{{ 'CREATE_FINANCIAL_CONDITIONS_FORM.SALES' | translate }}</mat-label>
+            <input matInput type="text" formControlName='totalSales' [placeholder]="'CREATE_FINANCIAL_CONDITIONS_FORM.SALES' | translate" />
+            <button type="button" mat-icon-button matSuffix (click)="showSalesTable()" style="font-size: 18px; align-items: flex-end; width: auto; height: 20%; text-align: center; margin: 5px 0px;">
+                <mat-icon *ngIf="(form.value.economicGroup?.enterprises?.length || 0) > 0"
+                    [matTooltip]="'CREATE_FINANCIAL_CONDITIONS_FORM.SALES_TABLE' | translate"
+                    style="font-size: 18px; align-items: flex-end; width: auto; height: 20%; text-align: center; margin: 5px 0px;"
+                    >info_outline</mat-icon>
+            </button>
+        </mat-form-field>
+        <mat-form-field [style.width.%]="16.5">
+            <mat-label>{{ 'CREATE_FINANCIAL_CONDITIONS_FORM.SALES_CUT' | translate }}
+            </mat-label>
+            <input matInput type="text" formControlName="salesCut" [placeholder]="'CREATE_FINANCIAL_CONDITIONS_FORM.SALES_CUT' | translate" />
+        </mat-form-field>
+        <mat-form-field>
+            <mat-label>{{ 'CREATE_FINANCIAL_CONDITIONS_FORM.PLAN_TYPE.LABEL' | translate }}*
+            </mat-label>
+            <mat-select name="enterprise-document-type" [placeholder]="'CREATE_FINANCIAL_CONDITIONS_FORM.PLAN_TYPE.LABEL' | translate" formControlName='type' (selectionChange)="changePlanType($event)" [disabled]="(isLoadingRates$ | async)">
+                <mat-option *ngFor="let plan of planTypes" [value]="plan.value">
+                    {{ 'CREATE_FINANCIAL_CONDITIONS_FORM.PLAN_TYPE.OPTIONS.' + plan.value | translate }}
+                </mat-option>
+            </mat-select>
+            <mat-error *ngIf="form.hasError('required', 'type')">
+                {{ 'COMMON.VALIDATIONS.REQUIRED' | translate }}
+            </mat-error>
+        </mat-form-field>
+    </div>
+    <div *ngIf="canShow('COMMISSION')">
+        <div fxLayoutAlign="space-between center" fxLayoutGap="10px" [style.margin-top]="'20px'" formGroupName="providerOptions">
+            <mat-form-field fxLayout="column" fxLayoutGap="10px" [style.width.%]="16.5">
+                <mat-label>{{ 'CREATE_FINANCIAL_CONDITIONS_FORM.LINKED_TO_PROVIDER' | translate }}*</mat-label>
+                <mat-checkbox *ngFor="let option of linkedToProvider" (change)="onSelectLinkedToProvider($event)" [value]="option.value" [checked]="option.checked" style='margin-right: 15px;'>
+                    {{ 'CREATE_FINANCIAL_CONDITIONS_FORM.OPTIONS_YES_OR_NO.' + option.label | translate }}
+                </mat-checkbox>
+                <input matInput type="text" formControlName="linkedToProvider" hidden/>
+                <mat-error  *ngIf="form.hasError('required', 'providerOptions.linkedToProvider')">
+                    {{ 'COMMON.VALIDATIONS.REQUIRED' | translate }}
+                </mat-error>
+            </mat-form-field>
+            <mat-form-field>
+                <mat-label>
+                    {{ 'CREATE_FINANCIAL_CONDITIONS_FORM.DOCUMENT_TYPE' | translate }}{{form.get('providerOptions.providerDocumentType').enabled ? '*' : ''}}
+                </mat-label>
+                <mat-select name="enterprise-document-type" [placeholder]="'CREATE_FINANCIAL_CONDITIONS_FORM.DOCUMENT_TYPE' | translate" formControlName='providerDocumentType' (selectionChange)="changeDocumentType($event)">
+                    <mat-option *ngFor="let document of documentTypes" [value]="document.fullname" >
+                        {{ document.abbreviation }}
+                    </mat-option>
+                </mat-select>
+                <mat-error *ngIf="form.hasError('required', 'providerOptions.providerDocumentType')">
+                    {{ 'COMMON.VALIDATIONS.REQUIRED' | translate }}
+                </mat-error>
+            </mat-form-field>
+            <mat-form-field>
+                <mat-label>{{ 'CREATE_FINANCIAL_CONDITIONS_FORM.DOCUMENT_NUMBER' | translate }}{{form.get('providerOptions.providerDocumentNumber').enabled ? '*' : ''}}
+                </mat-label>
+                <input matInput type="text" (input)="onSearchDocument($event.target.value)" formControlName='providerDocumentNumber' [placeholder]="'CREATE_FINANCIAL_CONDITIONS_FORM.DOCUMENT_NUMBER' | translate" [maxlength]="documentSelect.maxLength" [minlength]="documentSelect.minLength"/>
+                <mat-error>
+                    <span *ngIf="form.hasError('required', 'providerOptions.providerDocumentNumber')">
+                        {{ 'COMMON.VALIDATIONS.REQUIRED' | translate }}
+                    </span>
+                    <span *ngIf="form.hasError('minlength', 'providerOptions.providerDocumentNumber')">
+                        {{ 'COMMON.VALIDATIONS.MIN_LENGTH' | translate: { minLength: documentSelect.minLength} }}
+                    </span>
+                    <span *ngIf="form.hasError('maxlength', 'providerOptions.providerDocumentNumber')">
+                        {{ 'COMMON.VALIDATIONS.MAX_LENGTH' | translate: { maxLength: documentSelect.maxLength} }}
+                    </span>
+                    <span *ngIf="(form.hasError('pattern', 'providerOptions.providerDocumentNumber') && documentSelect.value != 'PASSPORT')">
+                        {{ 'COMMON.VALIDATIONS.ONLY_DIGITS' | translate }}
+                    </span>
+                    <span *ngIf="(form.hasError('pattern', 'providerOptions.providerDocumentNumber') && documentSelect.value == 'PASSPORT')">
+                        {{ 'COMMON.VALIDATIONS.ALPHANUMERIC' | translate }}
+                    </span>
+                </mat-error>
+            </mat-form-field>
+            <mat-form-field>
+                <mat-label>{{ 'CREATE_FINANCIAL_CONDITIONS_FORM.PROVIDER' | translate }}{{form.get('providerOptions.providerEnterpriseName').enabled ? '*' : ''}}
+                </mat-label>
+                <input *ngIf="providers.length <= 1" [value]="" matInput type="text" formControlName='providerEnterpriseName' [placeholder]="'CREATE_FINANCIAL_CONDITIONS_FORM.PROVIDER' | translate" />
+                <mat-select *ngIf="providers.length > 1" formControlName='providerEnterpriseName' [placeholder]="'CREATE_FINANCIAL_CONDITIONS_FORM.PROVIDERS' | translate">
+                    <mat-option *ngFor="let provider of providers" [value]="provider" (onSelectionChange)="changeProvider($event.source)">
+                        {{ provider.enterpriseName}}
+                    </mat-option>
+                </mat-select>
+                <mat-error>
+                    <span *ngIf="form.hasError('required', 'providerOptions.providerEnterpriseName')">
+                        {{ 'COMMON.VALIDATIONS.REQUIRED' | translate }}
+                    </span>
+                </mat-error>
+            </mat-form-field>
+        </div>
+        <div fxLayoutGap="10px" fxLayout="row" [style.margin-top]="'20px'" *ngIf="getFormValue().providerOptions.linkedToProvider === true" formGroupName="providerOptions">
+            <mat-form-field fxLayout="column" fxLayoutGap="10px" [style.width.%]="16.5">
+                <mat-label>{{ 'CREATE_FINANCIAL_CONDITIONS_FORM.AGREEMENT' | translate }}*</mat-label>
+                <mat-checkbox *ngFor="let option of agreement" (change)="onSelectAgreement($event)" [value]="option.value" [checked]="option.checked" style='margin-right: 15px;'>
+                    {{ 'CREATE_FINANCIAL_CONDITIONS_FORM.OPTIONS_YES_OR_NO.' + option.label | translate }}
+                </mat-checkbox>
+                <input matInput type="text" formControlName='hasAgreement' hidden/>
+                <mat-error  *ngIf="form.hasError('required', 'providerOptions.hasAgreement') && form.get('providerOptions.hasAgreement').touched">
+                    {{ 'COMMON.VALIDATIONS.REQUIRED' | translate }}
+                </mat-error>
+            </mat-form-field>
+            <div fxLayout="column" fxLayoutGap="10px" [style.width.px]="350" class="card tab">
+                <span>{{ 'CREATE_FINANCIAL_CONDITIONS_FORM.REQUIRED_AUTHORIZATION' | translate }} *</span>
+                <div fxLayout="row" fxLayoutGap="10px" >
+                    <mat-checkbox *ngFor="let option of requiredAuthorization" (change)="onSelectRequiredAuthorization($event)" [value]="option.value" [checked]="option.checked" style='margin-right: 15px;'>
+                        {{ 'CREATE_FINANCIAL_CONDITIONS_FORM.OPTIONS_YES_OR_NO.' + option.label | translate }}
+                    </mat-checkbox>
+                </div>
+                <input matInput type="text" formControlName='requireAuthToPerformOperation' hidden/>
+                <mat-error  *ngIf="form.hasError('required', 'providerOptions.requireAuthToPerformOperation') && form.get('providerOptions.requireAuthToPerformOperation').touched">
+                    {{ 'COMMON.VALIDATIONS.REQUIRED' | translate }}
+                </mat-error>
+                <div fxLayout="column" fxLayoutGap="10px" style="align-items: flex-start;" *ngIf="getFormValue().providerOptions.requireAuthToPerformOperation">
+                    <span>{{ 'CREATE_FINANCIAL_CONDITIONS_FORM.REQUEST_AUTHORIZATION' | translate }} *</span>
+                    <div fxLayoutAlign="space-between center"  fxLayout="row" style="align-items: flex-start; width: auto; height: 60%; text-align: left; margin: 5px 0px;">
+                        <div fxLayoutGap="10px">
+                            <mat-form-field fxLayoutGap="10px" [style.width.%]="40">
+                                <input matInput type="text" formControlName='authDay' maxlength="2"/>
+                            </mat-form-field>
+                            <span>FEF</span>
+                        </div>
+                        <mat-checkbox  style="align-items: flex-start; width: auto; height: 60%; text-align: left; margin: 5px 0px;" [disabled]="!getFormValue().providerOptions.requireAuthToPerformOperation" (change)="onSelectRequestAuthorization($event)">
+                            {{ 'CREATE_FINANCIAL_CONDITIONS_FORM.ALWAYS' | translate }}
+                        </mat-checkbox>
+                    </div>
+                    <mat-error>
+                        <span *ngIf="form.hasError('required', 'providerOptions.authDay') && form.get('providerOptions.authDay').touched">
+                            {{ 'COMMON.VALIDATIONS.REQUIRED' | translate }}
+                        </span>
+                        <span *ngIf="form.hasError('pattern', 'providerOptions.authDay') && form.get('providerOptions.authDay').touched">
+                            {{ 'COMMON.VALIDATIONS.ONLY_DIGITS' | translate }}
+                        </span>
+                    </mat-error>
+                </div>
+            </div>
+        </div>
+        <div fxLayout="row" fxLayoutGap="20px" [style.margin-top]="'20px'" fxLayoutAlign="space-between center">
+            <mat-form-field [style.min-width]="'210px'" formGroupName="minimumRate">
+                <mat-label>{{ 'CREATE_FINANCIAL_CONDITIONS_FORM.MINIMUM_RATE' | translate }}*
+                </mat-label>
+                <div fxLayout="row">
+                    <div fxLayout="row" style="align-items: flex-start; width: 60%; height: 60%; text-align: left; margin: 5px 0px;">
+                        <mat-select [(value)]=" indicatorMRDefault" [style.width]="'50px'" formControlName='baseType' (click)="$event.stopImmediatePropagation()" (selectionChange)="changeIndicator($event, 'minimumRate.periodicityType')">
+                            <mat-option *ngFor="let indicator of indicatorMinimumRate" [value]="indicator.value">
+                                {{ indicator.value }}
+                            </mat-option>
+                        </mat-select>
+                        <span>+</span>
+                    </div>
+                    <div style="align-items: flex-end; align-content: flex-end;">
+                        <div fxLayoutAlign="space-between center"  fxLayout="row" style="align-items: flex-start; width: auto; height: 60%; text-align: left; margin: 5px 0px;">
+                            <div fxLayoutGap="3px" fxLayout="row">
+                                <input matInput (input)="rateFormat($event, this.form.value.minimumRate.specialRate, 'minimumRate')" type="text" [style.width.%]="125" style="text-align: right; border-bottom: 1px solid #8e8e8e;" formControlName='specialRate' (click)="$event.stopImmediatePropagation()"/>
+                                <span>%&nbsp;</span>
+                                <mat-select [style.width]="'110px'" (click)="$event.stopImmediatePropagation()" formControlName='periodicityType'>
+                                    <mat-option *ngFor="let periodicity of (form.value.minimumRate.baseType === 'IBR' ? periodicityMinimumRate.slice(0, -1) : [periodicityMinimumRate[periodicityMinimumRate.length-1]])" [value]="periodicity.value">
+                                        {{ periodicity.value }}
+                                    </mat-option>
+                                </mat-select>
+                            </div>
+                        </div>
+                        <mat-error style="font-size: x-small;">
+                            <span *ngIf="form.hasError('required', 'minimumRate.specialRate') && form.get('minimumRate.specialRate').touched">
+                                {{ 'COMMON.VALIDATIONS.REQUIRED' | translate }}
+                            </span>
+                            <span *ngIf="form.hasError('validPercent', 'minimumRate.specialRate') && form.get('minimumRate.specialRate').touched">
+                                {{ 'COMMON.VALIDATIONS.INVALID' | translate }}
+                            </span>
+                        </mat-error>
+                    </div>
+                </div>
+            </mat-form-field>
+            <mat-form-field [style.min-width.px]="100" [style.max-width.px]="150" formGroupName="minimumRate">
+                <input matInput type="text" formControlName="ea" style="text-align: right;"/>
+            </mat-form-field>
+            <mat-form-field [style.min-width.px]="100" [style.max-width.px]="150" formGroupName="minimumRate">
+                <input matInput type="text" formControlName="mv" style="text-align: right;"/>
+            </mat-form-field>
+            <mat-form-field fxLayout="column" [style.min-width]="'400px'">
+                <mat-label>{{ 'CREATE_FINANCIAL_CONDITIONS_FORM.VALIDITY' | translate }}*</mat-label>
+                <div fxLayout="row" [style.width.%]="'150px'">
+                    <div fxLayoutGap="10px" style="margin: -10px 0px; margin-top: -40px;">
+                        <span>{{ 'CREATE_FINANCIAL_CONDITIONS_FORM.DAYS' | translate }}</span>
+                        <mat-form-field [style.width.%]="35" [style.height]="'90px'" appearance="standard">
+                            <input matInput type="number" oninput="this.value = this.value.slice(0,3)" min="0" max="999" formControlName="validityDays" style="text-align: center;" (keyup)="calculateDate()" (change)="calculateDate()" (click)="$event.stopImmediatePropagation()"/>
+                        </mat-form-field>
+                    </div>
+                    <div fxLayoutGap="1px" style="margin: -10px -100px; margin-top: -40px;">
+                        <span>{{ 'CREATE_FINANCIAL_CONDITIONS_FORM.DATE' | translate }}</span>
+                        <mat-form-field appearance="standard" [style.height]="'90px'" [style.width.%]="75">
+                            <input matInput type="date" formControlName="validityDate" (click)="$event.stopImmediatePropagation()" [min]="minDate" (change)="calculateValidity()" />
+                        </mat-form-field>
+                    </div>
+                </div>
+                <mat-error>
+                    <span *ngIf="form.hasError('required', 'validityDays')">
+                        {{ 'COMMON.VALIDATIONS.REQUIRED' | translate }}
+                    </span>
+                    <span *ngIf="form.hasError('pattern', 'validityDays')">
+                        {{ 'COMMON.VALIDATIONS.INVALID_PRREVIOUS_DATE' | translate }}
+                    </span>
+                    <span *ngIf="form.hasError('isValideDate', 'validityDays')">
+                        {{ 'COMMON.VALIDATIONS.INVALID_DATE' | translate }}
+                    </span>
+                </mat-error>
+            </mat-form-field>
+        </div>
+        <div fxLayoutAlign="space-between center" fxLayout="row" fxLayoutGap="20px" [style.margin-top]="'20px'">
+            <mat-form-field [style.min-width]="'210px'" formGroupName="negotiatedRate">
+                <mat-label>{{ 'CREATE_FINANCIAL_CONDITIONS_FORM.NEGOTIATED_RATE' | translate }}*
+                </mat-label>
+                <div fxLayout="row">
+                    <div fxLayout="row" style="align-items: flex-start; width: 60%; height: 60%; text-align: left; margin: 5px 0px;">
+                        <mat-select [style.width]="'50px'" [(value)]="indicatorNRDefault" formControlName="baseType" (click)="$event.stopImmediatePropagation()" (selectionChange)="changeIndicator($event, 'negotiatedRate.periodicityType')">
+                            <mat-option *ngFor="let indicator of indicatorNegotiatedRate" [value]="indicator.value">
+                                {{ indicator.value }}
+                            </mat-option>
+                        </mat-select>
+                        <span>+</span>
+                    </div>
+                    <div style="align-items: flex-end; align-content: flex-end;">
+                        <div fxLayoutAlign="space-between center"  fxLayout="row" style="align-items: flex-start; width: auto; height: 60%; text-align: left; margin: 5px 0px;">
+                            <div fxLayoutGap="3px" fxLayout="row">
+                                <input matInput (input)="rateFormat($event, this.form.value.negotiatedRate.specialRate, 'negotiatedRate')" type="text" [style.width.%]="125" style="text-align: right; border-bottom: 1px solid #8e8e8e;" formControlName="specialRate" (click)="$event.stopImmediatePropagation()"/>
+                                <span>%&nbsp;</span>
+                                <mat-select [style.width]="'110px'" formControlName="periodicityType" (click)="$event.stopImmediatePropagation()">
+                                    <mat-option *ngFor="let periodicity of form.value.negotiatedRate.baseType === 'IBR' ? periodicityNegotiatedRate.slice(0,-1) : [periodicityNegotiatedRate[periodicityNegotiatedRate.length-1]]" [value]="periodicity.value">
+                                        {{ periodicity.value }}
+                                    </mat-option>
+                                </mat-select>
+                            </div>
+                        </div>
+                        <mat-error style="font-size: x-small;">
+                            <span *ngIf="form.hasError('required', 'negotiatedRate.specialRate') && form.get('negotiatedRate.specialRate').touched">
+                                {{ 'COMMON.VALIDATIONS.REQUIRED' | translate }}
+                            </span>
+                            <span *ngIf="form.hasError('validPercent', 'negotiatedRate.specialRate') && form.get('negotiatedRate.specialRate').touched">
+                                {{ 'COMMON.VALIDATIONS.INVALID' | translate }}
+                            </span>
+                        </mat-error>
+                    </div>
+                </div>
+            </mat-form-field>
+            <mat-form-field [style.min-width.px]="100" [style.max-width.px]="150" formGroupName="negotiatedRate">
+                <input matInput type="text" formControlName="ea" style="text-align: right;"/>
+            </mat-form-field>
+            <mat-form-field [style.min-width.px]="100" [style.max-width.px]="150" formGroupName="negotiatedRate">
+                <input matInput type="text" formControlName="mv" style="text-align: right;"/>
+            </mat-form-field>
+            <mat-form-field fxLayout="column" fxLayoutGap="10px" [style.width.%]="16.5">
+                <mat-label>{{ 'CREATE_FINANCIAL_CONDITIONS_FORM.SPECIAL_RATE' | translate }}</mat-label>
+                <mat-checkbox *ngFor="let option of specialRate" (change)="onSelectSpecialRate($event)" [value]="option.value" [checked]="option.checked" style='margin-right: 15px;'>
+                    {{ 'CREATE_FINANCIAL_CONDITIONS_FORM.OPTIONS_YES_OR_NO.' + option.label | translate }}
+                </mat-checkbox>
+                <input matInput type="text" formControlName="isSpecialRate" hidden/>
+            </mat-form-field>
+        </div>
+        <div fxLayout="row" fxLayoutAlign="space-between center" fxLayoutGap="10px" [style.margin-top]="'20px'">
+            <mat-form-field [style.min-width]="'450px'" fxLayoutGap="10px">
+                <mat-label>{{ 'CREATE_FINANCIAL_CONDITIONS_FORM.TURNING_DAY' | translate}}*
+                </mat-label>
+                <div fxLayout="column">
+                    <div fxLayout="row" style="margin-bottom: 60px;">
+                        <div fxLayoutGap="10px" style="margin: -35px 0px;">
+                            <span *ngIf="daysRange.checked ? !!daysRange.checked === true : false">{{ 'CREATE_FINANCIAL_CONDITIONS_FORM.TURNING_DAY_LABELS.PREV' | translate }}</span>
+                            <mat-form-field [style.width]="'90px'" [style.height]="'90px'" appearance="standard">
+                                <input matInput type="number" oninput="this.value = this.value.slice(0,2)" formControlName="paydayInitialRange" [placeholder]="0" max="98" min="0" style="text-align: center;" (click)="$event.stopImmediatePropagation()"/>
+                                <mat-error style="font-size: x-small;">
+                                    <span *ngIf="form.hasError('required', 'paydayInitialRange')">
+                                        {{ 'COMMON.VALIDATIONS.REQUIRED' | translate }}
+                                    </span>
+                                    <span *ngIf="form.hasError('pattern', 'paydayInitialRange')">
+                                        {{ 'COMMON.VALIDATIONS.ONLY_DIGITS' | translate }}
+                                    </span>
+                                </mat-error>
+                            </mat-form-field>
+                            <span *ngIf="( +form.value.paydayInitialRange === 0 ) && !(!!daysRange.checked)">{{ 'CREATE_FINANCIAL_CONDITIONS_FORM.TURNING_DAY_LABELS.ZERO' | translate }}</span>
+                            <span *ngIf="(form.value.paydayInitialRange ? +form.value.paydayInitialRange > 0 : false) && !(!!daysRange.checked)">{{ 'CREATE_FINANCIAL_CONDITIONS_FORM.TURNING_DAY_LABELS.DEFAULT' | translate }}</span>
+                            <span *ngIf="daysRange.checked ? !!daysRange.checked === true : false">{{ 'CREATE_FINANCIAL_CONDITIONS_FORM.TURNING_DAY_LABELS.BETWEEN' | translate }}</span>
+                        </div>
+                        <div fxLayoutGap="10px" style="margin: -35px 0px;">
+                            <mat-form-field *ngIf="daysRange.checked ? !!daysRange.checked === true : false" [style.width]="'90px'" [style.height]="'90px'" appearance="standard">
+                                <input matInput type="number" oninput="this.value = this.value.slice(0,2)" formControlName="paydayFinalRange" [placeholder]="1" min="1" max="99" style="text-align: center;" (click)="$event.stopImmediatePropagation()"/>
+                                <mat-error style="font-size: x-small;">
+                                    <span *ngIf="form.hasError('required', 'paydayFinalRange')">
+                                        {{ 'COMMON.VALIDATIONS.REQUIRED' | translate }}
+                                    </span>
+                                    <span *ngIf="form.hasError('pattern', 'paydayFinalRange')">
+                                        {{ 'COMMON.VALIDATIONS.ONLY_DIGITS' | translate }}
+                                    </span>
+                                    <span *ngIf="form.hasError('greaterThanZero', 'paydayFinalRange')">
+                                        {{ 'COMMON.VALIDATIONS.NUMBER_GREATER_THAN_ZERO' | translate }}
+                                    </span>
+                                </mat-error>
+                            </mat-form-field>
+                            <span *ngIf="daysRange.checked ? !!daysRange.checked === true : false">{{ 'CREATE_FINANCIAL_CONDITIONS_FORM.TURNING_DAY_LABELS.LAST' | translate }}</span>
+                        </div>
+                    </div>
+                    <mat-error style="font-size: small; margin-bottom: 2px;">
+                        <span *ngIf="(daysRange.checked ? !!daysRange.checked === true : false) && (+(form.value.paydayFinalRange ? form.value.paydayFinalRange:+form.value.paydayInitialRange+1) <= +(form.value.paydayInitialRange ? form.value.paydayInitialRange:0))">
+                            {{ 'COMMON.VALIDATIONS.SECOND_DAY_GREATER_THAN_FIRST_DAY' | translate }}
+                        </span>
+                    </mat-error>
+                    <mat-checkbox #daysRange (change)="onSelectDaysRange($event)">
+                        {{ 'CREATE_FINANCIAL_CONDITIONS_FORM.DAYS_RANGE' | translate }}
+                    </mat-checkbox>
+                </div>
+            </mat-form-field>
+            <mat-form-field [style.width]="'120px'">
+                <mat-label>{{ 'CREATE_FINANCIAL_CONDITIONS_FORM.TERM' | translate}}*
+                </mat-label>
+                <input matInput type="number" oninput="this.value = this.value.slice(0,3)" formControlName="termDays" [placeholder]="'CREATE_FINANCIAL_CONDITIONS_FORM.TERM' | translate" min="1" max="999"/>
+                <mat-error>
+                    <span *ngIf="form.hasError('required', 'termDays')">
+                        {{ 'COMMON.VALIDATIONS.REQUIRED' | translate }}
+                    </span>
+                    <span *ngIf="(form.hasError('pattern', 'termDays'))">
+                        {{ 'COMMON.VALIDATIONS.ONLY_DIGITS' | translate }}
+                    </span>
+                    <span *ngIf="form.hasError('greaterThanZero', 'termDays')">
+                        {{ 'COMMON.VALIDATIONS.NUMBER_GREATER_THAN_ZERO' | translate }}
+                    </span>
+                </mat-error>
+            </mat-form-field>
+            <mat-form-field [style.min-width]="'380px'">
+                <mat-label>{{ 'CREATE_FINANCIAL_CONDITIONS_FORM.METHOD_OF_PAYMENT' | translate}}*
+                </mat-label>
+                <mat-select formControlName="paymentMethod" [placeholder]="'CREATE_FINANCIAL_CONDITIONS_FORM.METHOD_OF_PAYMENT' | translate">
+                    <mat-option *ngFor="let paymentMethod of methodsOfPayment" [value]="paymentMethod.value">
+                        {{ 'CREATE_FINANCIAL_CONDITIONS_FORM.METHODS_OF_PAYMENT.'+ paymentMethod.value | translate }}
+                    </mat-option>
+                </mat-select>
+                <mat-error>
+                    <span *ngIf="form.hasError('required', 'paymentMethod')">
+                        {{ 'COMMON.VALIDATIONS.REQUIRED' | translate }}
+                    </span>
+                </mat-error>
+            </mat-form-field>
+        </div>
+    </div>
+    <button #submitButton hidden></button>
+</form>

@@ -1,0 +1,1119 @@
+{
+    "COMMON": {
+        "VALIDATIONS": {
+            "REQUIRED": "Este campo es requerido",
+            "MIN_LENGTH": "Debe tener por lo menos {{ minLength }} caracteres",
+            "MAX_LENGTH": "No puede tener más de {{maxLength}} caracteres",
+            "MAX_LENGTH_DIGIT": "No puede tener más de {{maxLength}} dígitos",
+            "PASSWORD_PATTERN": "Debe tener una mayúscula, minúscula, número y caracter especial.",
+            "PASSWORD_MISMATCH": "Las contraseñas no coinciden",
+            "EXACT_LENGTH": "Consiste de exactamente {{ length }} dígitos",
+            "ONLY_DIGITS": "Sólo se permiten dígitos",
+            "ONLY_LETTERS": "Sólo se permiten letras",
+            "INVALID_EMAIL": "No es un formato válido de correo electrónico",
+            "INVALID": "No es un formato válido",
+            "DUTY_NOT_FOUND": "El número de obligación {{dutyNumber}} no existe",
+            "DUTY_INVALID_PRODUCT": "El número de obligación {{dutyNumber}} no corresponde a los productos de Factoring y Unidirecto.",
+            "NO_CONTENT": "No has introducido caracteres.",
+            "NOT_CONTAINS_CHARACTERS": "No contiene caracteres",
+            "NIT_PATTERN": "El NIT debe contener un mínimo de 8 caracteres y solo números",
+            "CIIU_PATTERN": "El código CIIU debe contener 4 números.",
+            "NUMBER_GREATER_THAN_ZERO": "El número tiene que ser mayor a cero",
+            "SECOND_DAY_GREATER_THAN_FIRST_DAY": "El día de fin no puede ser menor al día de inicio",
+            "CIIU_NOT_FOUND": "Código CIIU no encontrado, verifique la información",
+            "INVALID_NIT": "No es un NIT válido",
+            "INVALID_ROLE_NAME": "Este nombre de rol está en uso",
+            "INVALID_ROLE_ACRONYM": "Este acrónimo está en uso",
+            "AT_LEAST_ONE_MODULE": "Debe seleccionar por lo menos un módulo.",
+            "AT_LEAST_ONE_OPTION": "Debe seleccionar una opción",
+            "NEGATIVE_NUMBER": "Este campo no acepta numeros negativos.",
+            "ALPHANUMERIC": "El campo es alfanumérico",
+            "NO_REGISTERS_SAVED": "Número de documento no encontrado, verifique la información",
+            "DOCUMENT_REQUIRED": "Debe seleccionar un documento",
+            "ONLY_PDF": "Solo se permite la carga de archivos en extensión PDF",
+            "INVALID_DATE":"No es posible diligenciar una fecha posterior al día de hoy",
+            "INVALID_PRREVIOUS_DATE": "No es posible seleccionar un día antes de hoy",
+            "INVALID_DEPARTMENT": "No es un departamento válido",
+            "INVALID_CITY": "No es una ciudad válida",
+            "INVALID_REGION": "No es una región válida",
+            "EMAIL_INFORMATION": "El email deberá contener mínimo 5 y máximo 32 caracteres antes del arroba",
+            "EMAIL_REGISTERED": "Email ya registrado en la plataforma",
+            "PERMISSIONS_REQUIRED": "Se requieren permisos para la visualización"
+        },
+        "MODULES": {
+            "PAYER": "Pagador",
+            "PROVIDER": "Proveedor",
+            "FUNDING": "Fondeador",
+            "ADMIN": "Administrador"
+        },
+        "PERMISSION_SEGMENT": {
+            "USER_MANAGEMENT": "Administración de usuarios",
+            "INVOICE_ADMINISTRATION": "Administración de facturas",
+            "QUERIES": "Consultas",
+            "FINANCIAL_CONDITIONS": "Condiciones financieras",
+            "DOCUMENT_MANAGEMENT": "Gestión documental",
+            "ENTERPRISE_DATA_MANAGEMENT": "Gestión de datos generales",
+            "DISBURSEMENT_MANAGEMENT": "Gestión de desembolsos",
+            "REPORTS": "Reportes"
+        },
+        "PRODUCTS": {
+            "UNIDIRECT": "Unidirecto",
+            "FACTORING": "Factoring en Firme",
+            "CONFIRMING": "Confirming",
+            "DOCUMENT_DISCOUNT": "Descuento de Documentos"
+        },
+        "RETRY": "Reintentar",
+        "ACTIVE_MODULES": "Módulos activos",
+        "ACTIONS": {
+            "REJECT_REQUEST": "Rechazar solicitud",
+            "INVITE": "Invitar",
+            "REJECT_MODULE": "Rechazar módulo",
+            "APPROVE_MODULE": "Aprobar módulo",
+            "ACCEPT": "Aceptar",
+            "CANCEL": "Cancelar",
+            "CONTINUE": "Continuar",
+            "SEND": "Enviar",
+            "SAVE": "Guardar",
+            "SEARCH": "Buscar",
+            "CLEAN": "Limpiar",
+            "CREATE": "Crear",
+            "RETRY": "Reintentar",
+            "ACTIVATE": "Activar",
+            "EDIT": "Editar",
+            "DELETE": "Eliminar",
+            "REPLACE": "Remplazar",
+            "BACK": "Atrás",
+            "GO_BACK": "Regresar",
+            "PAYMENT": "Pago",
+            "REJECT": "Rechazar",
+            "ASSIGN": "Asignar",
+            "QUOTE_REQUEST": "Solicitar cupo",
+            "UPDATE_QUOTE": "Actualizar cupo",
+            "REQUEST_QUOTA_EXTENSION": "Solicitar ampliación de cupo",
+            "YES_ACCEPT": "Sí, aceptar",
+            "CONFIRM": "Confirmar",
+            "REQUEST": "Solicitar",
+            "YES_REJECT": " Sí, rechazar",
+            "SEND_REQUEST": "Enviar solicitud",
+            "SELECT_FILE": "Seleccione un archivo",
+            "REJECT_PAYMENT": "Rechazar Pago",
+            "CONFIRM_PAYMENT": "Confirmar Pago",
+            "APPROVE": "Aprobar",
+            "ENABLE_DISABLE": "Habilitar/Deshabilitar"
+        },
+        "LOADING": "Cargando",
+        "DELETING": "Eliminando",
+        "REJECT_DIALOG": {
+            "SAVE_TOOLTIP": "Guardar sin enviar comentario",
+            "SEND_TOOLTIP": "Enviar correo"
+        },
+        "ERRORS": {
+            "REQUEST_LOAD": "Hubo un error al cargar la solicitud.",
+            "DOCUMENTATION_LOAD": "Hubo un error al cargar la documentación.",
+            "PAGE_LOAD": "Hubo un error al cargar la página.",
+            "INFO_LOAD": "Hubo un error al cargar la información.",
+            "LADA_LOAD_ERROR": "Hubo un error al cargar las ladas.",
+            "SESSION_EXPIRED": "Después de 10 minutos de inactividad hemos cerrado tu sesión por seguridad.",
+            "CONNECTION": "Hubo un error en la conexión, inténtalo de nuevo."
+        },
+        "USER_TYPES": {
+            "LIBERA_USER": "Funcionario Banco"
+        },
+        "USER_STATUS": {
+            "ENABLED": "Activo",
+            "PENDING_ACCOUNT_CONFIRMATION": "Pendiente",
+            "DISABLED": "Inactivo"
+        },
+        "ENTERPRISE_TYPE": {
+            "PUBLIC": "Público",
+            "PRIVATE": "Privado",
+            "MIXED": "Mixto",
+            "SELF_MANAGEMENT": "Autogestión"
+        },
+        "ENTERPRISE_STATUS": {
+            "PENDING_ACCOUNT_CONFIRMATION": "Pendiente de activación",
+            "ENABLED": "Activo",
+            "REJECTED": "Rechazado",
+            "INCOMPLETE_ACCOUNT": "Documentación faltante",
+            "EVALUATION_PENDING": "Aprobación pendiente",
+            "DISABLED": "Deshabilitado",
+            "PENDING_ACCOUNT_CREATION": "Pendiente de crear cuenta",
+            "REQUESTED_MODULE": "Solicitud de módulo"
+        },
+        "FILTERS": {
+            "NIT": "Número de documento",
+            "MODULE": "Módulo",
+            "SOCIAL_REASON": "Razón social",
+            "LINKING_DATE": "Fecha de vinculación",
+            "PAYER": "Pagador",
+            "FUNDING": "Fondeador",
+            "PROVIDER": "Proveedor",
+            "STATUS": "Estatus",
+            "EFFECTIVE_PAYMENT_DATE": "Fecha efectiva de pago",
+            "EXPECTED_PAYMENT_DATE": "Fecha esperada de pago",
+            "DOCUMENT_TYPES": {
+                "NIT": "NIT",
+                "IDENTIFICATION_CARD": "Cédula de Ciudadanía",
+                "FOREIGNER_ID": "Cédula de extranjería",
+                "AUTONOMOUS_HERITAGE": "Patrimonio autónomo",
+                "PASSPORT": "Pasaporte"
+            },
+            "REGION": "Región",
+            "MODALITY": "Modalidad",
+            "OBSERVATION": "Observación",
+            "CURRENT": "Vigente",
+            "ABOUT_TO_EXPIRE": "Próximo a vencer",
+            "EXPIRED": "Vencido",
+            "PENDING_APPROVAL": "Pendiente aprobación director",
+            "PENDING_ACCEPTANCE": "Pendiente aceptación pagador",
+            "REJECTED_BY_LIBERA": "Rechazado por director",
+            "REJECTED_BY_ENTERPRISE": "Rechazado por pagador",
+            "SELECT_MODALITY": "Seleccione modalidad",
+            "SELECT_OBSERVATION": "Seleccione observación",
+            "SELECT_STATUS": "Seleccione estatus",
+            "OBSERVATIONS": {
+                "ECONOMIC_GROUP": "Grupo económico",
+                "SPECIAL_RATE": "Tasa especial",
+                "AGREEMENT": "Convenio"
+            },
+            "MODALITIES": {
+                "EXPONENTIAL": "Exponencial",
+                "COMMISSION": "Comisión",
+                "FINANCED": "Financiado"
+            }
+        },
+        "LABELS": {
+            "SEND": "Enviar",
+            "ADD_NEW_DOCUMENT": "Adicionar documento",
+            "CHECK_YES_CONFIRM": "Si, confirmar",
+            "NIT": "Número de documento",
+            "DAYS": "Días",
+            "DAY": "Día",
+            "RATE": "Tasa",
+            "PUNCTUAL_PLAN": "Plan puntual",
+            "COMMENTS": "Comentarios",
+            "SELECT": "Seleccionar",
+            "DOCUMENT_TYPE": "Tipo de documento",
+            "DOCUMENT_TYPES": {
+                "NIT": "NIT",
+                "IDENTIFICATION_CARD": "Cédula de Ciudadanía",
+                "FOREIGNER_ID": "Cédula de extranjería",
+                "AUTONOMOUS_HERITAGE": "Patrimonio autónomo",
+                "PASSPORT": "Pasaporte"
+            },
+            "DOCUMENT_NUMBER": "Número de documento",
+            "SOCIAL_REASON": "Razón social",
+            "EMAIL": "Email",
+            "SALES": "Ventas último año",
+            "SALES_CUT": "Corte de ventas",
+            "ACTIVE_MODULES": "Módulos activos",
+            "LINKING_DATE": "Fecha de vinculación",
+            "ACTIONS": "Acciones",
+            "STATUS": "Estatus",
+            "REGIONAL": "Regional",
+            "DOCUMENTATION": "Documentación",
+            "ROLES": "Roles",
+            "ROLE": "Rol",
+            "RETRY": "Volver a intentar",
+            "FILTER": "Filtrar",
+            "FILTER_BY": "Filtrar por",
+            "CLEAN_FILTERS": "Limpiar filtros",
+            "PROVIDER": "Proveedor",
+            "UPLOAD_DATE": "Fecha de carga",
+            "BACK_TO_LIST": "Regresar al listado",
+            "INVOICE": "Factura",
+            "REQUEST_DATE": "Fecha de solicitud",
+            "CONTINUE": "¿Desea continuar?",
+            "OTHER": "Otro",
+            "OTTHERS": "Otros",
+            "NEW_PLAN": "Crear plan"
+        },
+        "ENTERPRISE_REQUEST_STATUS": {
+            "ACCEPTED": "Aceptado",
+            "REJECTED": "Rechazado",
+            "EVALUATION_PENDING": "Pendiente"
+        },
+        "USER_ROLES": {
+            "LIBERA_ADMIN": "Administrador de Libera"
+        },
+        "ENTERPRISE": {
+            "ENTERPRISE_UPDATE": "Se ha actualizado la empresa.",
+            "ERROR_LOAD_ENTERPRISE": "Hubo un error al actualizar la empresa."
+        },
+        "ENTERPRISE_DOCUMENTATION_STATUS": {
+            "ACCEPTED": "Aprobado",
+            "REJECTED": "Rechazado",
+            "PENDING": "Documento no cargado",
+            "LOADED": "Cargado",
+            "EVALUATION_PENDING": "En evaluación",
+            "DISABLED": "",
+            "RELOAD_FILE": "Re-solicitado",
+            "CURRENT": "Vigente",
+            "ABOUT_TO_EXPIRE": "Próximo a vencer",
+            "EXPIRED": "Vencido"
+        }
+    },
+    "ROLE": {
+        "CREATE_SUCCESS": "Se ha creado el rol exitosamente",
+        "UPDATE_SUCCESS": "Se ha editado el rol exitosamente",
+        "ERRORS": {
+            "SCF.LIBERA.351": "El nombre del rol debe tener entre 5 y 100 caracteres",
+            "SCF.LIBERA.358": "Rol deshabilitado, si desea editar habilítelo nuevamente",
+            "default": "Hubo un error en la conexión, inténtalo de nuevo."
+        }
+    },
+    "ROLE_DIALOG": {
+        "EDIT_TITLE": "Editar rol",
+        "CREATE_TITLE": "Crear rol",
+        "EDIT_BODY": "¿Está seguro que desea editar el rol?",
+        "CREATE_BODY": "¿Está seguro que desea crear el rol?"
+    },
+    "ROLE_FORM":{
+        "DESCRIPTION": "Nombre rol",
+        "ACRONYM": "Acrónimo",
+        "APPLIES_TO": "Aplica para",
+        "PERMISSIONS": "Permisos"
+    },
+    "FINANCIAL_PLAN":{
+        "ERRORS": {
+            "CREATE": {
+                "default": "Hubo un error en la conexión, inténtalo de nuevo.",
+                "ENTERPRISE_DISABLED":"Error al crear plan, la empresa debe estar en estatus activa"
+            },
+            "ERROR_APPROVE": "Hubo un error al aprobar el plan de financiación",
+            "ERROR_DECLINE": "Hubo un error al rechazar el plan de financiación",
+            "default": "Hubo un error en la plataforma"
+        },
+        "CREATE_SUCCESS": "El plan a sido creado",
+        "APPROVE": "Se ha aprobado el plan de financiación exitosamente",
+        "DECLINE": "Se ha rechazado el plan de financiación"
+    },
+    "FINANCIAL_CONDITIONS_TABLE": {
+        "MODALITY": "Modalidad",
+        "OBSERVATION": "Observación",
+        "COMMENTS": "Comentarios",
+        "COMMENTS_INFO": "Tener presente que estos comentarios sólo serán visualizados por funcionarios Banco.",
+        "STATUS": "Estatus",
+        "STATUS_OPTIONS": {
+            "PENDING_APPROVAL": "Pendiente aprobación director",
+            "PENDING_ACCEPTANCE": "Pendiente aceptación pagador",
+            "CURRENT": "Vigente",
+            "ABOUT_TO_EXPIRE": "Próximo a vencer",
+            "EXPIRED": "Vencido",
+            "REJECTED_BY_LIBERA": "Rechazado por director",
+            "REJECTED_BY_ENTERPRISE": "Rechazado por pagador"
+        },
+        "ECONOMIC_GROUP": "Grupo económico",
+        "AGREEMENT": "Convenio",
+        "SPECIAL_RATE": "Tasa especial",
+        "SUMMARY": "Resumen",
+        "ACTIONS": {
+            "LABEL": "Acciones",
+            "EDIT": "Editar"
+        },
+        "VALIDITY": "Vigencia"
+    },
+    "DETAIL_FINANCIAL_CONDITIONS_DIALOG": {
+        "TITLE": "Plan Comisión",
+        "ACTIONS": {
+            "ACCEPT": "Aceptar",
+            "CANCEL": "Rechazar"
+        }
+    },
+    "CREATE_FINANCIAL_CONDITIONS_DIALOG": {
+        "TITLE": "Plan de financiación",
+        "CONFIRMATION_TITLE": "Confirmación plan",
+        "CREATION_DATE": "Fecha creación",
+        "MODIFICATION_DATE": "Fecha modificación"
+    },
+    "APPROVE_FINANCIAL_CONDITIONS_DIALOG": {
+        "TITLE_APPROVE": "Aprobar plan de financiación",
+        "TITLE_DECLINE": "Rechazar plan de financiación",
+        "BODY_APPROVE": "¿Está seguro que desea aprobar el plan de financiación?",
+        "BODY_DECLINE": "¿Está seguro que desea rechazar el plan de financiación?",
+        "CHECK_TEXT": "Sí, confirmar"
+    },
+    "CREATE_FINANCIAL_CONDITIONS_FORM": {
+        "DOCUMENT_TYPE": "Tipo de documento",
+        "DOCUMENT_NUMBER": "Número de documento",
+        "PAYER": "Pagador",
+        "PROVIDER": "Proveedor",
+        "PROVIDERS": "Proveedores",
+        "RELATIONSHIP_MANAGER": "Gerente de relación",
+        "ECONOMIC_GROUP": "Grupo económico",
+        "AGREEMENT": "Convenio",
+        "REQUIRED_AUTHORIZATION": "Requiere autorización del proveedor para realizar la operación",
+        "REQUEST_AUTHORIZATION": "Solicitar autorización después del día",
+        "ALWAYS": "Siempre",
+        "SALES_TABLE": "Ver tabla de ventas",
+        "LINKED_TO_PROVIDER": "Ligado a proveedor",
+        "MINIMUM_RATE": "Tasa mínima",
+        "NEGOTIATED_RATE": "Tasa negociada",
+        "SPECIAL_RATE": "Tasa especial",
+        "VALIDITY": "Vigencia",
+        "DAYS": "Días",
+        "DATE": "Fecha",
+        "TERM": "Plazo",
+        "TURNING_DAY": "Día de giro",
+        "TURNING_DAY_LABELS": {
+            "PAYDAY": "Se gira al día {{ day }} de emitida la factura",
+            "PAYDAY_ZERO": "Se gira a su presentación",
+            "PAYDAY_RANGE": "Se gira del día {{ dayInitial }} al día {{ dayFinal }} de emitida la factura",
+            "PREV": "Del día",
+            "ZERO": "A su presentación",
+            "DEFAULT": "Desde la fecha de emisión de la factura",
+            "BETWEEN": "al día",
+            "LAST": "de FEF"
+        },
+        "INTEREST_RATE": {
+            "LABEL": "Tasa de interés",
+            "COMPLEMENT": "{{ termDays }} {{ labelDay }} a cargo del cliente a una tasa de {{ baseType }} + {{ specialRate }}% {{ periodicityType }}"
+        },
+        "FINANCING_TERM": {
+            "LABEL": "Plazo de financiación",
+            "COMPLEMENT": "{{ termDays }} {{ labelDay }}"
+        },
+        "PAYMENT_METHOD": {
+            "LABEL": "Forma de pago",
+            "COMPLEMENT": "{{ paymentMethod }}"
+        },
+        "DAYS_RANGE": "Rango de días",
+        "METHOD_OF_PAYMENT": "Forma de pago",
+        "METHODS_OF_PAYMENT": {
+            "INTEREST_PER_MONTH_AND_CAPITAL_AT_MATURITY": "Intereses mensuales y capital al vencimiento",
+            "INTEREST_AND_CAPITAL_AT_MATURITY": "Intereses y capital al vencimiento",
+            "INTEREST_AND_CAPITAL_PER_MONTH": "Intereses y capital mensual"
+        },
+        "OPTIONS_YES_OR_NO": {
+            "YES": "Si",
+            "NO": "No"
+        },
+        "ENTERPRISES": "Empresas",
+        "SALES": "Ventas",
+        "SALES_CUT": "Corte de ventas",
+        "UPLOAD_PROOF": "Cargar comprobante pricing",
+        "VISUALIZE_PLAN": "El cliente podrá visualizar de este plan",
+        "CREATOR_USER": "Usuario creador",
+        "APPROVING_USER": "Usuario aprobador",
+        "USER_ACCEPTS": "Usuario que acepta",
+        "PLAN_TYPE": {
+            "LABEL": "Tipo de plan",
+            "OPTIONS": {
+                "EXPONENTIAL": "Exponencial",
+                "COMMISSION": "Comisión",
+                "FINANCED": "Financiado"
+            }
+        },
+        "DOCUMENT_TYPES": {
+            "NIT": "NIT",
+            "IDENTIFICATION_CARD": "Cédula de Ciudadanía",
+            "FOREIGNER_ID": "Cédula de extranjería",
+            "AUTONOMOUS_HERITAGE": "Patrimonio autónomo",
+            "PASSPORT": "Pasaporte"
+        },
+        "ERRORS": {
+            "INVALID_STATUS": "Error al intentar crear el plan, la empresa debe estar en estado activo",
+            "SCF.LIBERA.404": "Número de documento no encontrado, verifique la información"
+        },
+        "COMMENTS_ICON": "Tener presente que estos comentarios solo serán visualizados por funcionarios Banco."
+    },
+    "NAVBAR": {
+        "PROFILE": "Perfil",
+        "LOGOUT": "Cerrar sesión"
+    },
+    "SIDENAV": {
+        "PROGRAM": {
+            "TITLE": "Empresas",
+            "ALL": "Todos"
+        },
+        "REQUEST": {
+            "TITLE": "Solicitudes",
+            "MODULE": "Módulo",
+            "LINKING": "Vinculación"
+        },
+        "SECURITY_MANAGEMENT": {
+            "TITLE": "Gestión de seguridad",
+            "USER": "Usuarios",
+            "ROLE": "Roles"
+        },
+        "QUERIES": {
+            "TITLE": "Consultas",
+            "DUTY": "Obligación"
+        }
+    },
+    "DUTY_PAGE": {
+        "TITLE": "Consulta por obligación"
+    },
+    "DUTY_DETAIL": {
+        "DUTY_NUMBER": "Obligación No.",
+        "DISBURSEMENT_DATE": "Fecha de desembolso",
+        "PROX_PAYMENT_DATE": "Fecha prox pago",
+        "PAYER": "Pagador",
+        "DAYS_PAST_DUE": "Días de mora",
+        "PROX_QUOTA_VALUE": "Valor prox cuota",
+        "IDENTIFICATION_NUMBER": "Número de identificación",
+        "RATE_TYPE": "Tipo tasa",
+        "CAPITAL_BALANCE": "Saldo capital",
+        "OFFICE": "Oficina",
+        "RATE": "Tasa",
+        "TOTAL_BALANCE": "Saldo total",
+        "PRODUCT": "Producto",
+        "POINTS": "Puntos",
+        "DUE_DATE": "Fecha de vencimiento",
+        "DUTY_VALUE": "Valor de la obligación",
+        "EFFECTIVE_ANNUAL_RATE": "Tasa efectiva anual",
+        "STATE": "Estado"
+    },
+    "DUTY_SEARCH": {
+        "DUTY_NUMBER": "Número de obligación",
+        "CONSULTATION_DATE": "Fecha de consulta"
+    },
+    "ENTERPRISE_INFO": {
+        "SOCIAL_REASON": "Razón social",
+        "NAME": "Nombre",
+        "EMAIL": "Email",
+        "NIT": "Número de documento",
+        "LINKING_DATE": "Fecha de vinculación"
+    },
+    "LIST_PAGE": {
+        "TITLE": "Empresas",
+        "ADD_PROGRAM": "AGREGAR EMPRESA",
+        "LOAD_ERROR": "Parece que ha ocurrido un error al cargar la información."
+    },
+    "DETAIL_PAGE": {
+        "REJECT_PROGRAM": "Rechazar programa",
+        "APROVE_PROGRAM": "Aprobar programa",
+        "ENTERPRISE_INFO": "Datos de empresa",
+        "SECTOR_LOAD_ERROR": "Hubo un error al cargar los sectores",
+        "ADMIN_INFO": "Datos de contacto",
+        "HISTORICAL": "Histórico",
+        "EDIT": "Editar",
+        "INFO": "Datos generales",
+        "BASIC_INFO": "Datos básicos",
+        "FINANCIAL_CONDITIONS": "Condiciones financieras"
+    },
+    "ADMIN_DETAIL": {
+        "ADMIN_NAME": "Nombre del administrador",
+        "DOCUMENT_TYPE": "Tipo de documento",
+        "DOCUMENT_NUMBER": "Número de documento",
+        "EMAIL": "Email"
+    },
+    "CREATE_PROGRAM_FORM": {
+        "PHONE_NUMBER_ADVICE": "Por favor colocar el número con la estructura definida:\n Teléfono fijo: Prefijo + Indicativo + número - Ejemplo: 6017462060 \n Celular: Solo número – Ejemplo:3165555555",
+        "DOC_NUM_ADVICE": "Por favor diligenciar número de documento con digito de \n verificación sin puntos, comas o espacios.",
+        "SOCIAL_REASON": "Razón social",
+        "ENTERPRISE": "Empresa",
+        "PROGRAM_ADMIN": "Datos de contacto",
+        "NAME": "Nombre",
+        "FIRST_SURNAME": "Primer apellido",
+        "SECOND_SURNAME": "Segundo apellido",
+        "EMAIL": "Email",
+        "EMAIL_EXAMPLE": "ejemplo@ejemplo.com",
+        "SALES": "Ventas último año",
+        "SALES_EXAMPLE": "Digite el valor en millones de pesos",
+        "SALES_CUT": "Corte de ventas",
+        "SALES_PER_YEAR_EXAMPLE": "DD/MM/AAAA",
+        "MODULES": "Módulos",
+        "NIT_EXAMPLE": "Ejemplo: 9008762562",
+        "DOCUMENT_TYPE": "Tipo de documento",
+        "DOCUMENT_NUMBER": "Número de documento",
+        "DOCUMENT_TYPES": {
+            "IDENTIFICATION_CARD": "Cédula de Ciudadanía",
+            "FOREIGNER_ID": "Cédula de extranjería",
+            "AUTONOMOUS_HERITAGE": "Patrimonio autónomo",
+            "PASSPORT": "Pasaporte"
+        },
+        "PRODUCT_TYPE": {
+            "LABEL": "Tipo de producto",
+            "OPTIONS": {
+                "UNIDIRECT": "Unidirecto",
+                "FACTORING": "Factoring en Firme",
+                "CONFIRMING": "Confirming",
+                "DOCUMENT_DISCOUNT": "Descuento de Documentos"
+            }
+        },
+        "DEPARTMENT": "Departamento",
+        "CITY": "Ciudad",
+        "CIIU": "CIIU",
+        "ECONOMIC_ACTIVITY": "Actividad económica",
+        "ECONOMIC_SECTOR": "Sector económico",
+        "RELATIONSHIP_MANAGER": "Gerente de relación",
+        "BANK_REGION": "Regional banco",
+        "PHONE_EXTENSION": "Extensión",
+        "PHONE_NUMBER": "Teléfono",
+        "PHONE_EXAMPLE": "Ejemplo: 6017462060"
+    },
+    "ADD_DOCUMENT": {
+        "TITLE": "Adicionar documento para solicitar al cliente",
+        "DOCUMENT_TYPE": "Documento para solicitar",
+        "MINUTES_DEBTORS_SHAREHOLDERS_MEETING": "Acta de junta de socios del deudor",
+        "CODEBTORS_CHAMBER_COMMERCE": "Cámara de comercio codeudor",
+        "MINUTES_MEETING_CODEBTORS": "Acta de junta de socios codeudor",
+        "OTHER_DOCUMENTS": "Otro",
+        "COMPLEMENTARY_TEXT": "Texto complementario",
+        "SELECT_TIME_TYPE": "Selecciona la vigencia de documento",
+        "DEFINED": "Tiempo determinado",
+        "UNDEFINED": "Indefinida",
+        "PD_SELECT_DOCUMENT": "Selecciona un tipo de documento",
+        "VALIDITY": "Vigencia",
+        "COMMENTS": "Comentarios",
+        "CANCEL": "Cancelar",
+        "UPLOAD_FILE": "Guardar",
+        "MONTHS": "Meses"
+    },
+    "DOCUMENTATION_TABLE_ACTIONS": {
+        "TITLE": "Acciones",
+        "LOAD": "Cargar",
+        "DELETE": "Eliminar",
+        "APPROVE": "Aprobar",
+        "REJECT": "Rechazar",
+        "UPDATE": "Actualizar"
+    },
+    "LOAD_MODAL": {
+        "TITLE": "Subir documento",
+        "EXPEDITION_DATE": "Fecha de expedición",
+        "COMMENTS": "Comentarios",
+        "ACCEPT": "Aceptar",
+        "CANCEL": "Cancelar",
+        "ACCEPT_TITLE": "Aceptar documento",
+        "DECLINE_TITLE": "Declinar documento",
+        "DECLINE": "Declinar",
+        "ADD_DOCUMENT": "Agregar documento",
+        "SELECT_DOCUMENT": "Selecciona el documento"
+    },
+    "DELETE_MODAL": {
+        "TITLE": "Eliminar documento",
+        "BODY": "¿Desea eliminar el documento vigente?",
+        "CHECK_TEXT": "Si, confirmar"
+    },
+    "APPROVE_MODAL": {
+        "ACCEPT_TITLE": "Aceptar documento",
+        "DECLINE_TITLE": "Declinar documento",
+        "EXPEDITION_DATE": "Fecha de expedición",
+        "COMMENTS": "Comentarios"
+    },
+    "DELETE_DOCUMENT": {
+        "TITLE": "Eliminar documento",
+        "BODY": "Si eliminas este archivo, no podrá ser recuperado. ¿Deseas continuar?",
+        "CHECK_TEXT": "Sí, estoy seguro",
+        "DELETE": "Borrar",
+        "CANCEL": "Cancelar"
+    },
+    "ENTERPRISE_DETAIL": {
+        "SOCIAL_REASON": "Razón social",
+        "NIT": "Número de documento",
+        "ECONOMIC_SECTOR": "Sector económico",
+        "ENTERPRISE_TYPE": "Tipo de empresa",
+        "PHONE": "Teléfono",
+        "PHONE_EXTENSION": "Extensión",
+        "EMAIL": "Email",
+        "LINKING_DATE": "Fecha de vinculación",
+        "DOCUMENT_TYPE": "Tipo de documento",
+        "PRODUCT_TYPE": "Tipo de producto",
+        "DEPARTMENT": "Departamento",
+        "CITY": "Ciudad",
+        "CIIU": "CIIU",
+        "ECONOMIC_ACTIVITY": "Actividad económica",
+        "RELATIONSHIP_MANAGER": "Gerente de relación",
+        "SALES": "Ventas último año",
+        "SALES_EXAMPLE": "Digite el valor en millones de pesos",
+        "SALES_CUT": "Corte de ventas",
+        "SALES_PER_YEAR_EXAMPLE": "DD/MM/AAAA",
+        "FORM_OF_DISBURSEMENT": "Forma de desembolso",
+        "REGION": "Regional banco"
+    },
+    "PROGRAM_TABLE": {
+        "RESEND": "Reenviar",
+        "PROGRAM_STATUS": "Estatus del programa"
+    },
+    "ACCEPT_PROGRAM_DIALOG": {
+        "TITLE": "Aprobar módulo"
+    },
+    "CONFIRM_REJECT_DIALOG": {
+        "TITLE": "Motivo de rechazo",
+        "EXPLANATION_PLACEHOLDER": "Escriba aquí el motivo de rechazo del módulo...",
+        "SKIP": "Omitir",
+        "TOOLTIP": "Rechazar sin enviar comentario"
+    },
+    "CREATE_PROGRAM_DIALOG": {
+        "TITLE": "Agregar empresa"
+    },
+    "RESEND_INVITATION_DIALOG": {
+        "TITLE": "Reenviar invitación"
+    },
+    "SEND_INVITATION_DIALOG": {
+        "TITLE": "Solicitud documentos cliente",
+        "BODY": "¿Desea finalizar la solicitud de documentos del cliente?",
+        "CHECK_TEXT": "Sí, confirmar"
+    },
+    "ENABLED_ROLE_DIALOG": {
+        "TITLE_ENABLED": "Deshabilitar rol",
+        "TITLE_DISABLED": "Habilitar rol",
+        "BODY_ENABLED": "¿Está seguro que desea deshabilitar el rol?",
+        "BODY_DISABLED": "¿Está seguro que desea habilitar el rol?",
+        "CHECK_TEXT": "Sí, confirmar"
+    },
+    "SEND_RESOLUTION_DIALOG": {
+        "TITLE": "Solicitud documentos cliente",
+        "BODY": "¿Deseas notificar al cliente la resolución de la evaluación de la documentación?",
+        "CHECK_TEXT": "Sí, estoy seguro"
+    },
+    "CONFIRM_DOCUMENT_APPROVAL":{
+        "BODY": "Por favor confirmar finalización de proceso de aprobación de documentos",
+        "CHECK_TEXT": "Sí, confirmar"
+    },
+    "REQUEST_LINK_PETITIONER_INFO": {
+        "REQUESTER_NAME": "Nombre de solicitante",
+        "REQUEST_DATE": "Fecha de solicitud"
+    },
+    "REQUEST_LINK_PROVIDER_FORM": {
+        "NAME": "Nombre",
+        "FIRST_SURNAME": "Primer apellido",
+        "SECOND_SURNAME": "Segundo apellido",
+        "EMAIL": "Correo electrónico ",
+        "PHONE_NUMBER": "Teléfono",
+        "PHONE_EXT": "Ext",
+        "FORM_OF_DISBURSEMENT": {
+            "LABEL": "Forma de desembolso",
+            "OPTIONS": {
+                "BANK_CHECK": "Cheque bancario",
+                "ACCOUNT_DEPOSIT": "Abono a cuenta"
+            }
+        },
+        "ACCOUNT_TYPE": {
+            "LABEL": "Tipo de cuenta",
+            "OPTIONS": {
+                "SAVINGS": "Ahorros",
+                "CURRENT": "Cuenta corriente"
+            }
+        },
+        "ACCOUNT_NUMBER": "Número de cuenta",
+        "BANK_NAME": "Banco",
+        "BANK_CERTIFICATION": "Certificación Bancaria"
+    },
+    "REQUEST_LINK_TABLE": {
+        "PENDING_TO_LINK": "Por vincular",
+        "REQUESTER": "Solicitante"
+    },
+    "REQUEST_LIST_FILTER": {
+        "FILTER": {
+            "ENTERPRISE": "Empresa",
+            "NIT": "Número de documento",
+            "STATUS": "Estatus",
+            "DATE": "Fecha"
+        },
+        "SEARCH": "Búsqueda",
+        "DATE": "Fecha"
+    },
+    "APPROVE_MODULE_DIALOG": {
+        "TITLE": "Aprobar módulo"
+    },
+    "REJECT_LINK_DIALOG": {
+        "TITLE": "Rechazar vinculación",
+        "REASON_PLACEHOLDER": "Escriba aquí el motivo de la resolicitud..."
+    },
+    "REJECT_REQUEST_DIALOG": {
+        "TITLE": "Rechazar solicitud",
+        "REJECT_EXPLANATION": "Escriba aquí el motivo de la resolicitud..."
+    },
+    "REUPLOAD_FILE_DIALOG": {
+        "TITLE": "Motivo de resolicitud",
+        "REJECT_REASON": "Escriba aquí el motivo del rechazo..."
+    },
+    "LINK_DETAIL_PAGE": {
+        "REQUEST_LOAD_ERROR": "Hubo un error al cargar la solicitud.",
+        "PETITIONER_GENERAL_INFO": "Datos generales de solicitante",
+        "PROVIDER_GENERAL_INFO": "Datos generales de proveedor",
+        "STATUS_HELP_TOOLTIP": "Si desea ver el estatus de afiliación de la empresa, visite el listado de programas"
+    },
+    "LINK_LIST_PAGE": {
+        "TITLE": "Solicitudes",
+        "PAGE_LOAD_ERROR": "Hubo un error al cargar la página."
+    },
+    "MODULE_DETAIL_PAGE": {
+        "PROGRAM_GENERAL_INFO": "Datos generales del programa",
+        "ENTERPRISE_LOAD_ERROR": "Hubo un error al cargar la empresa."
+    },
+    "MODULE_LIST_PAGE": {
+        "TITLE": "Solicitudes"
+    },
+    "PROFILE_LAYOUT": {
+        "TITLE": "Mi perfil",
+        "MENU": {
+            "ACCOUNT": "Cuenta",
+            "SECURITY": "Seguridad"
+        }
+    },
+    "ACCOUNT_PAGE": {
+        "ASSIGNED_MODULES": "Módulos asignados"
+    },
+    "USER_FORM": {
+        "NAME": "Nombre",
+        "FIRST_SURNAME": "Primer apellido",
+        "SECOND_SURNAME": "Segundo apellido"
+    },
+    "USER_LIST_FILTER": {
+        "FILTER": {
+            "ROLE": "Rol",
+            "STATUS": "Estatus",
+            "FULL_NAME": "Nombre",
+            "EMAIL": "Email",
+            "VINCULATION_DATE": "Fecha de vinculación"
+        }
+    },
+    "ROLE_LIST_FILTER": {
+        "FILTER": {
+            "ACRONYM": "Acrónimo",
+            "CREATION_DATE": "Fecha de creación",
+            "DESCRIPTION": "Nombre",
+            "EDITION_DATE": "Fecha de edición"
+        }
+    },
+    "USER_TABLE": {
+        "NAME": "Nombre",
+        "USER": "Usuario",
+        "RESEND_INVITATION": "Reenviar invitación",
+        "ACTIONS":"Acciones"
+    },
+    "ROLE_TABLE": {
+        "TITLE": "Roles",
+        "CREATE_ROLE": "Crear rol +",
+        "NAME": "Nombre",
+        "APPLIES_TO": "Aplica para",
+        "CREATION_DATE": "Fecha de creación",
+        "ACRONYM": "Acrónimo",
+        "MODIFICATION_DATE": "Fecha de edición",
+        "STATUS":"Estatus",
+        "ACTIONS":{
+            "ENABLED":"Deshabilitar",
+            "DISABLED":"Habilitar"
+        },
+        "ROLE_STATUS": {
+            "ENABLED": "Activo",
+            "DISABLED": "Inactivo"
+        }
+    },
+    "CREATE_USER_DIALOG": {
+        "TITLE": "Invitar usuario"
+    },
+    "DELETE_USER_DIALOG": {
+        "TITLE": "Eliminar usuario",
+        "MESSAGE": "Si lo elimina, éste usuario no podrá volver a iniciar sesión. ¿Desea continuar?",
+        "CONFIRM": "Sí, estoy seguro"
+    },
+    "EDIT_USER_DIALOG": {
+        "TITLE": "Editar usuario"
+    },
+    "USER_LIST_PAGE": {
+        "TITLE": "Usuarios",
+        "INVITE_USER": "Invitar usuario"
+    },
+    "USER_NOTIFICATIONS": {
+        "TOGGLE_ACTION_SUCCESS": {
+            "ENABLED": "Se ha activado la cuenta del usuario.",
+            "DISABLED": "Se ha desactivado la cuenta del usuario"
+        },
+        "TOGGLE_ACTION_ERROR": {
+            "ENABLED": "Hubo un error al activar la cuenta del usuario.",
+            "DISABLED": "Hubo un error al desactivar la cuenta del usuario"
+        },
+        "CREATE": {
+            "SUCCESS": "Se ha invitado al usuario.",
+            "ERROR": "Hubo un error al invitar al usuario."
+        },
+        "UPDATE": {
+            "SUCCESS": "Se ha editado el usuario exitosamente.",
+            "ERROR": "Hubo un error al actualizar al usuario."
+        },
+        "DELETE": {
+            "SUCCESS": "Se ha eliminado al usuario.",
+            "ERROR": "Hubo un error al eliminar al usuario."
+        },
+        "INVITE": {
+            "SUCCESS": "Invitación reenviada",
+            "ERROR": "Hubo un error al reenviar la invitación"
+        },
+        "SEND_DOCUMENTATION": {
+            "SUCCESS": "Se ha enviado la solicitud de documentos a la empresa",
+            "ERROR": "Se ha producido un error al enviar la documentación"
+        }
+    },
+    "ROLE_NOTIFICATIONS": {
+        "ENABLED": "Se ha habilitado el rol.",
+        "DISABLED": "Se ha deshabilitado el rol.",
+        "ERROR": {
+            "ENABLED": "Hubo un error al habilitar el rol.",
+            "DISABLED": "Hubo un error al deshabilitar el rol."
+        }
+    },
+    "REQUEST_LINK_NOTIFICATIONS": {
+        "INVITE": {
+            "SUCCESS": "Se ha invitado a la empresa",
+            "ERROR": {
+                "SCF.LIBERA.04": "El correo electrónico ya se encuentra registrado",
+                "SCF.LIBERA.05": "El correo electrónico es requerido",
+                "SCF.LIBERA.07": "El NIT es requerido",
+                "SCF.LIBERA.10": "El NIT ya se encuentra registrado",
+                "SCF.LIBERA.11": "El NIT no tiene un formato válido",
+                "SCF.LIBERA.27": "Debe seleccionar por lo menos un módulo",
+                "SCF.LIBERA.28": "Los módulos no tienen un formato válido",
+                "SCF.LIBERA.42": "Alguno de los módulos no es válido",
+                "SCF.LIBERA.229": "El nombre no puede contener números",
+                "SCF.LIBERA.241": "El apellido paterno no puede contener números",
+                "SCF.LIBERA.242": "El apellido materno no puede contener números",
+                "default": "Hubo un error al invitar a la empresa"
+            }
+        },
+        "CHANGE_STATUS": {
+            "SUCCESS": {
+                "ACCEPTED": "La solicitud ha sido aprobada.",
+                "REJECTED": "La solicitud ha sido rechazada.",
+                "DEFAULT": "Se ha actualizado el estatus de la solicitud"
+            },
+            "ERROR": {
+                "ACCEPTED_63": "La empresa no cuenta con el módulo a vincular.",
+                "ACCEPTED": "Hubo un error al aprobar la solicitud.",
+                "REJECTED": "Hubo un error al rechazar la solicitud.",
+                "DEFAULT": "Hubo un error al actualizar el estatus de la solicitud."
+            }
+        }
+    },
+    "REQUEST_MODULE_NOTIFICATIONS": {
+        "CHANGE_STATUS": {
+            "SUCCESS": {
+                "ACCEPTED": "La solicitud ha sido aprobada.",
+                "REJECTED": "La solicitud ha sido rechazada.",
+                "DEFAULT": "Se ha actualizado el estatus de la solicitud"
+            },
+            "ERROR": {
+                "ACCEPTED": "Hubo un error al aprobar la solicitud.",
+                "REJECTED": "Hubo un error al rechazar la solicitud.",
+                "DEFAULT": "Hubo un error al actualizar el estatus de la solicitud."
+            }
+        }
+    },
+    "ACTIVITIES_HISTORY": {
+        "EVENT_TYPE": {
+            "CREATION": "Empresa creada por administrador",
+            "RESEND_INVITE": "Reenvío de invitación a empresa por administrador",
+            "DOCUMENT_APPROVED": "Documento aceptado por administrador",
+            "DOCUMENT_REJECTED": "Documento rechazado por administrador",
+            "DOCUMENT_REQUESTED": "Documento solicitado por administrador",
+            "ENTERPRISE_REJECTED": "Empresa rechazada por administrador",
+            "ENTERPRISE_APPROVED": "Empresa aprobada por administrador",
+            "MODULE_APPROVED": "Solicitud de módulo aprobada por administrador",
+            "MODULE_REJECTED": "Solicitud de módulo rechazada por administrador",
+            "PROFILE_UPDATED": "Perfil de empresa actualizado por administrador",
+            "MODULE_REQUESTED": "Solicitud de módulo por empresa"
+        },
+        "EVENT_ENTITY": {
+            "ENTERPRISE_NAME": "Nombre de empresa",
+            "OWNER_NAME": " Nombre del propietario de la empresa",
+            "ENTERPRISE_TYPE": "Tipo de empresa",
+            "ENTERPRISE_SECTOR": "Sector económico de empresa",
+            "OWNER_FIRST_SURNAME": "Primer apellido del propietario",
+            "OWNER_SECOND_SURNAME": "Segundo apellido del propietario",
+            "LADA": "Lada de la empresa",
+            "PHONE": "Teléfono de la empresa",
+            "PAYER": "Módulo de pagador",
+            "PROVIDER": "Módulo de proveedor",
+            "LENDER": "Módulo de fondeador",
+            "CHAMBER_OF_COMMERCE_CERTIFICATE": "Cámara de comercio vigente",
+            "ENROLLMENT_FORM": "Formulario de matrícula",
+            "FUNDING_AGREEMENT": "Acuerdo fondeador",
+            "LEGAL_REPRESENTATIVE_ID": "Copia cédula del representante legal",
+            "PAYER_AGREEMENT": "Acuerdo pagador",
+            "PROVIDER_AGREEMENT": "Acuerdo proveedor",
+            "RUT": "RUT",
+            "SHAREHOLDING_STRUCTURE": "Composición accionaria"
+        },
+        "DETAIL": "Detalle",
+        "COMMENT": "Comentario"
+    },
+    "CHANGE_PASSWORD_FORM": {
+        "CURRENT_PASSWORD": "Contraseña actual",
+        "NEW_PASSWORD": "Nueva contraseña",
+        "CONFIRM_PASSWORD": {
+            "LABEL": "Confirmar contraseña",
+            "PLACEHOLDER": "Repita su contraseña"
+        },
+        "CHANGE": "Cambiar"
+    },
+    "ENTERPRISE_DOCUMENTATION_TABLE": {
+        "VALIDITY_DATE": "Fecha de vigencia",
+        "DOCUMENT": "Documento",
+        "FILE": "Archivo",
+        "UPLOAD_DATE": "Fecha de carga",
+        "UPDATE_DATE": "Fecha de actualización",
+        "STATE": "Estado",
+        "COMMENTS": "Comentarios",
+        "ACTIONS": "Acciones"
+    },
+    "ENTERPRISE_FORM": {
+        "SOCIAL_REASON": "Razón social",
+        "SOCIAL_REASON_OR_NIT": "Razón social o NIT",
+        "NIT": "Número de documento",
+        "ECONOMIC_SECTOR": "Sector económico",
+        "ENTERPRISE_TYPE_LABEL": "Tipo de empresa",
+        "LADA": "Lada",
+        "EXT": "Extensión",
+        "PHONE": "Teléfono",
+        "NAME": "Nombre",
+        "FIRST_SURNAME": "Primer apellido",
+        "SECOND_SURNAME": "Segundo apellido",
+        "DOCUMENT_TYPE": {
+            "LABEL": "Tipo de documento",
+            "OPTIONS": {
+                "IDENTIFICATION_CARD": "Cédula de Ciudadanía",
+                "FOREIGNER_ID": "Cédula de extranjería",
+                "AUTONOMOUS_HERITAGE": "Patrimonio autónomo",
+                "PASSPORT": "Pasaporte"
+            }
+        },
+        "PRODUCT_TYPE": "Tipo de producto",
+        "DEPARTMENT": "Departamento",
+        "CITY": "Ciudad",
+        "CIIU": "CIIU",
+        "ECONOMIC_ACTIVITY": "Actividad económica",
+        "RELATIONSHIP_MANAGER": "Gerente de relación",
+        "REGION": "Regional banco",
+        "SALES": "Ventas último año",
+        "SALES_CUT": "Corte de ventas",
+        "ADMIN_INFO": "Datos de contacto",
+        "EMAIL": "Email",
+        "FORM_OF_DISBURSEMENT": {
+            "LABEL": "Forma de desembolso",
+            "OPTIONS": {
+                "CREDIT": "Abono a cuenta",
+                "CHECK": "Cheque"
+            }
+        },
+        "CREDIT_OPTIONS": {
+            "SAVINGS_ACCOUNT": "Cuenta de ahorros",
+            "CHECKING_ACCOUNT": "Cuenta corriente"
+        },
+        "SELECTED_BANK": "Banco seleccionado"
+    },
+    "PROFILE_FORM": {
+        "NAME": "Nombre",
+        "FIRST_SURNAME": "Primer apellido",
+        "SECOND_SURNAME": "Segundo apellido",
+        "EMAIL": "Email"
+    },
+    "NEGOTIATION_FORM": {
+        "TITLE": "Fecha efectiva de pago"
+    },
+    "AUTHENTICATION": {
+        "SESSION_EXPIRED": "La sesión ha caducado, inicie sesión nuevamente.",
+        "VERIFICATION_CODE": "Le hemos enviado un código de verificación a su email",
+        "ERRORS": {
+            "REGISTERED_ACCOUNT": "Ya existe una cuenta registrada con ese email",
+            "REGISTERED_NIT": "Ya existe una empresa registrada con ese NIT",
+            "CREATE_ACCOUNT": "Hubo un error al crear la cuenta",
+            "CONFIRMED_ACCOUNT": "Ya se encuentra confirmada esta cuenta",
+            "WITHOUT_EMAIL": "No existe una cuenta con ese email",
+            "INCORRECT_CODE": "El código de verificación es incorrecto",
+            "ERROR_CONFIRM_ACCOUNT": "Hubo un error al confirmar su cuenta",
+            "WITHOUT_TYPE_USER": "¡Error! Parece que tu cuenta no un tiene tipo de usuario asignado.",
+            "LOGIN": "Hubo un error al iniciar sesión, intente de nuevo.",
+            "USER_DISABLED": "Tu cuenta ha sido deshabilitada.",
+            "INCORRECT_USER_OR_PASSWORD": "El email o contraseña es equivocada.",
+            "VERIFY_ACCOUNT": "Verifica tu cuenta para poder iniciar sesión.",
+            "ERROR_LOGOUT": "Hubo un problema al cerrar sesión. Intentelo de nuevo.",
+            "ERROR_SEND_EMAIL": "Hubo un error al enviar el correo, intente de nuevo en un par de minutos",
+            "EMAIL_NOT_FOUND": "Correo no encontrado, por favor verifique la información introducida",
+            "USER_NOT_VERIFY": "El usuario no ha sido verificado.",
+            "ACCOUNT_NOT_VERIFIED": "La cuenta aún no ha sido verificada, debe verificarla antes de poder cambiar su contraseña",
+            "TRY_LATER": "Ha ocurrido un error, intente de nuevo más tarde.",
+            "CONFIRM_ACCOUNT": "Esta cuenta aún no ha sido confirmada.",
+            "EXPIRED_CODE": "El código ha expirado, por favor, solicite uno nuevo.",
+            "INVALID_CODE": "Código de verificación invalido. Intente de nuevo.",
+            "SEND_CODE": "Hubo un error al enviar el código de verificación",
+            "ALREADY_ACCOUNT_CONFIRM": "Ya se encuentra confirmada esta cuenta",
+            "TRY_AGAIN": "Ha ocurrido un error. Intente de nuevo.",
+            "NO_LOGGED_IN": "¡Error! Al parecer no haz iniciado sesión",
+            "INCORRECT_PASSWORD": "La contraseña que introduciste es incorrecta.",
+            "ERROR_PASSWORD_UPDATE": "Hubo un error al actualizar su contraseña. Intentelo de nuevo."
+        },
+        "CONFIRMED_ACCOUNT": "Se ha confirmado su cuenta, ya puede iniciar sesión",
+        "SEND_EMAIL": "Se ha enviado el correo",
+        "RESET_PASSWORD": "Su contraseña ha sido establecida, ahora puede iniciar sesión",
+        "SEND_CODE": "Se ha enviado un nuevo código de verificación a su email",
+        "UPDATED_DATA": "¡Datos actualizados! Inicie sesión con su nueva contraseña",
+        "SUCCESS_PASSWORD_UPDATE": "Se ha actualizado tu contraseña exitosamente."
+    },
+    "ENTERPRISE": {
+        "ERRORS": {
+            "UPDATE_STATUS_PROGRAM": "Hubo un error al actualizar el estatus del programa.",
+            "PROGRAM_INVITED": {
+                "SCF.LIBERA.04": "El correo electrónico ya se encuentra registrado",
+                "SCF.LIBERA.05": "El correo electrónico es requerido",
+                "SCF.LIBERA.07": "El NIT es requerido",
+                "SCF.LIBERA.10": "El NIT ya se encuentra registrado",
+                "SCF.LIBERA.11": "El NIT no tiene un formato válido",
+                "SCF.LIBERA.27": "Debe seleccionar por lo menos un módulo",
+                "SCF.LIBERA.28": "Los módulos no tienen un formato válido",
+                "SCF.LIBERA.42": "Alguno de los módulos no es válido",
+                "SCF.LIBERA.229": "El nombre no puede contener números",
+                "SCF.LIBERA.241": "El apellido paterno no puede contener números",
+                "SCF.LIBERA.242": "El apellido materno no puede contener números",
+                "SCF.LIBERA.300": "La empresa con tipo de documento: {{ documentType }} y número: {{ documentNumber }} ya existe",
+                "default": "Hubo un error al invitar el programa."
+            },
+            "INVITATION_FORWARD": "Hubo un error al reenviar la invitación",
+            "RESOLUTION_SENT": "Hubo un error al enviar la resolución de los documentos",
+            "API": {
+                "SCF.LIBERA.502": "Hubo un error en la conexión, inténtalo de nuevo.",
+                "default": "Hubo un error."
+            },
+            "DB": {
+                "SCF.LIBERA.500": "Hubo un error en la conexión, inténtalo de nuevo."
+            },
+            "default": "Hubo un error en la plataforma"
+        },
+        "UPDATE_STATUS_PROGRAM": "Confirmación de envío, se informará al cliente el resultado.",
+        "PROGRAM_INVITED": "Se ha creado la empresa.",
+        "INVITATION_FORWARDED": "Invitación reenviada",
+        "RESOLUTION_SENT": "Se ha enviado la resolución de documentos.",
+        "ENTERPRISE_EXIST": "Proveedor ya creado en la plataforma."
+    },
+    "ENTERPRISE_DOCUMENTATION": {
+        "ERRORS": {
+            "FILE_LOAD": "Hubo un error al cargar el archivo.",
+            "DELETE_FILE": "Hubo un error al intentar eliminar el archivo.",
+            "APPROVED_FILE": "Hubo un error al intentar aprobar el documento.",
+            "REJECTED_FILE": "Hubo un error al intentar rechazar el documento.",
+            "UPDATED_FILE": "Hubo un error al actualizar el estatus del documento.",
+            "LIMIT_FILE": "No se puede realizar la acción, ha excedido el límite permitido para agregar documentación.",
+            "FILE_UPDATE": "Hubo un error al actualizar el archivo."
+        },
+        "SUCCESSFUL_FILE_LOAD": "Cargue de documento exitoso.",
+        "DELETED_FILE": "Documento eliminado",
+        "APPROVED_FILE": "Documento aprobado.",
+        "REJECTED_FILE": "Documento rechazado.",
+        "UPDATED_FILE": "Se ha actualizado el estatus del documento.",
+        "NEW_DOCUMENT_SAVED": "Documento agregado",
+        "NEW_DOCUMENT_NOT_SAVED": "Nuevo documento no guardado, intente más tarde",
+        "SUCCESSFUL_FILE_UPDATE": "Actualización de documento exitoso."
+    },
+    "PROFILE": {
+        "PROFILE_UPDATED_SUCCESSFULLY": "Su perfil ha sido actualizado exitosamente.",
+        "PROFILE_UPDATED_ERROR": "Hubo un error al actualizar su perfil. Intentelo de nuevo."
+    },
+    "PAGINATOR": {
+        "FIRST_PAGE": "Primera página",
+        "LAST_PAGE": "Última página",
+        "PER_PAGE": "Por página",
+        "NEXT": "Siguiente",
+        "PREVIOUS": "Anterior",
+        "OF_PAGE": "de"
+    },
+    "ENTERPRISE_DOCUMENTATION_TABLE_ACTIONS": {
+        "APPROVE_FILE": "Aprobar archivo",
+        "DELETE_FILE": "Eliminar archivo",
+        "RE_REQUEST_FILE": "Re-solicitar archivo",
+        "CHOOSE_FILE": "Elegir archivo",
+        "ACTIONS": "Acciones"
+    }
+
+}

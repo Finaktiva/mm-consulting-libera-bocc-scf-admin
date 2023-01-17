@@ -1,0 +1,88 @@
+<div style="overflow: auto">
+    <table mat-table [dataSource]="entities">
+        <ng-container matColumnDef="enterpriseName">
+            <th mat-header-cell *matHeaderCellDef>
+                {{ 'COMMON.LABELS.SOCIAL_REASON' | translate }}
+            </th>
+            <td mat-cell *matCellDef="let entity">
+                <a
+                    class="mat-body"
+                    [routerLink]="['/requests/modules', entity.state.requestId]"
+                >
+                    {{ entity.state.enterpriseName }}
+                </a>
+            </td>
+        </ng-container>
+        <ng-container matColumnDef="nit">
+            <th mat-header-cell *matHeaderCellDef>
+                {{ 'COMMON.LABELS.NIT' | translate }}
+            </th>
+            <td mat-cell *matCellDef="let entity">{{ entity.state.nit }}</td>
+        </ng-container>
+        <ng-container matColumnDef="email">
+            <th mat-header-cell *matHeaderCellDef>
+                {{ 'COMMON.LABELS.EMAIL' | translate }}
+            </th>
+            <td mat-cell *matCellDef="let entity">{{ entity.state.email }}</td>
+        </ng-container>
+        <ng-container matColumnDef="activeModules">
+            <th mat-header-cell *matHeaderCellDef>
+                {{ 'COMMON.LABELS.ACTIVE_MODULES' | translate }}
+            </th>
+            <td mat-cell *matCellDef="let entity">
+                <div fxLayout="row" fxLayoutGap="8px">
+                    <circle-chip
+                        *ngFor="let module of entity.state.modules"
+                        color="primary"
+                    >
+                        <span
+                            [matTooltip]="
+                                'COMMON.MODULES.' + module | translate
+                            "
+                        >
+                            {{
+                                'COMMON.MODULES.' + module
+                                    | translate
+                                    | slice: 0:2
+                                    | uppercase
+                            }}
+                        </span>
+                    </circle-chip>
+                </div>
+            </td>
+        </ng-container>
+        <ng-container matColumnDef="documentation">
+            <th mat-header-cell *matHeaderCellDef>
+                {{ 'COMMON.LABELS.DOCUMENTATION' | translate }}
+            </th>
+            <td mat-cell *matCellDef="let entity">
+                {{ entity.state.documentationCount }}
+            </td>
+        </ng-container>
+        <ng-container matColumnDef="requestDate">
+            <th mat-header-cell *matHeaderCellDef>
+                {{ 'COMMON.LABELS.REQUEST_DATE' | translate }}
+            </th>
+            <td mat-cell *matCellDef="let entity">
+                {{ entity.state.requestDate | date }}
+            </td>
+        </ng-container>
+        <ng-container matColumnDef="status">
+            <th mat-header-cell *matHeaderCellDef>
+                {{ 'COMMON.LABELS.STATUS' | translate }}
+            </th>
+            <td mat-cell *matCellDef="let entity">
+                <status-chip [status]="entity.state.status">
+                    <span>
+                        {{
+                            'COMMON.ENTERPRISE_REQUEST_STATUS.' +
+                                entity.state.status | translate
+                        }}
+                    </span>
+                </status-chip>
+            </td>
+        </ng-container>
+        <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+        <tr mat-row *matRowDef="let row; columns: displayedColumns"></tr>
+    </table>
+</div>

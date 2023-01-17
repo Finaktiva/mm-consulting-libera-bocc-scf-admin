@@ -1,0 +1,169 @@
+{
+    "COMMON": {
+        "VALIDATIONS": {
+            "REQUIRED": "Este campo es requerido",
+            "MIN_LENGTH": "Debe tener por lo menos {{ minLength }} caracteres",
+            "MAX_LENGTH": "No puede tener más de {{maxLength}} caracteres",
+            "PASSWORD_PATTERN": "Debe tener una mayúscula, minúscula, número y caracter especial.",
+            "PASSWORD_MISMATCH": "Las contraseñas no coinciden",
+            "EXACT_LENGTH": "Consiste de exactamente {{ length }} dígitos",
+            "ONLY_DIGITS": "Sólo se permiten dígitos",
+            "ONLY_LETTERS": "Sólo se permiten letras",
+            "INVALID_EMAIL": "No es un formato válido de Correo Electrónico",
+            "NO_CONTENT": "No has introducido caracteres.",
+            "NOT_CONTAINS_CHARACTERS": "No contiene caracteres",
+            "INVALID_DATE":"No es posible diligenciar una fecha posterior al día de hoy"
+        },
+        "ACTIONS": {
+            "ACCEPT": "Aceptar",
+            "CANCEL": "Cancelar",
+            "SAVE": "Guardar"
+        },
+        "LOADING": "Cargando",
+        "DELETING": "Eliminando",
+        "ENTERPRISE_STATUS": {
+            "PENDING_ACCOUNT_CONFIRMATION": "Pendiente de activación",
+            "ENABLED": "Activo",
+            "REJECTED": "Rechazado",
+            "INCOMPLETE_ACCOUNT": "Documentación faltante",
+            "EVALUATION_PENDING": "Aprobación pendiente",
+            "DISABLED": "Deshabilitado",
+            "PENDING_ACCOUNT_CREATION": "Pendiente de crear cuenta",
+            "REQUESTED_MODULE": "Solicitud de módulo"
+        },
+        "LABELS": {
+            "FILTER_BY": "Filtrar por",
+            "CLEAN_FILTERS": "Limpiar filtros"
+        },
+        "ENTERPRISE_REQUEST_STATUS": {
+            "ACCEPTED": "Aceptado",
+            "REJECTED": "Rechazado",
+            "EVALUATION_PENDING": "Pendiente"
+        },
+        "ENTERPRISE": {
+            "ENTERPRISE_UPDATE": "Se ha actualizado la empresa.",
+            "ERROR_LOAD_ENTERPRISE": "Hubo un error al actualizar la empresa."
+        },
+        "ENTERPRISE_DOCUMENTATION_STATUS": {
+            "ACCEPTED": "Aprobado",
+            "REJECTED": "Rechazado",
+            "PENDING": "Documento no cargado",
+            "LOADED": "Cargado",
+            "EVALUATION_PENDING": "En evaluación",
+            "DISABLED": "",
+            "RELOAD_FILE": "Re-solicitado",
+            "CURRENT": "Vigente",
+            "ABOUT_TO_EXPIRE": "Próximo a vencer",
+            "EXPIRED": "Expirado"
+        }
+    },
+    "CHANGE_PASSWORD_FORM": {
+        "CURRENT_PASSWORD": "Contraseña actual",
+        "NEW_PASSWORD": "Nueva contraseña",
+        "CONFIRM_PASSWORD": {
+            "LABEL": "Confirmar contraseña",
+            "PLACEHOLDER": "Repita su contraseña"
+        },
+        "CHANGE": "Cambiar"
+    },
+    "ENTERPRISE_DOCUMENTATION_TABLE": {
+        "DOCUMENT": "Documento",
+        "FILE": "Archivo",
+        "UPLOAD_DATE": "Fecha de carga",
+        "UPDATE_DATE": "Fecha de actualización",
+        "STATE": "Estado",
+        "COMMENTS": "Comentarios",
+        "ACTIONS": "Acciones"
+    },
+    "ENTERPRISE_FORM": {
+        "SOCIAL_REASON": "Razón social",
+        "NIT": "Número de documento",
+        "ECONOMIC_SECTOR": "Sector económico",
+        "ENTERPRISE_TYPE_LABEL": "Tipo de empresa",
+        "LADA": "Lada",
+        "PHONE": "Teléfono",
+        "NAME": "Nombre",
+        "FIRST_SURNAME": "Apellido paterno",
+        "SECOND_SURNAME": "Apellido materno"
+    },
+    "PROFILE_FORM": {
+        "NAME": "Nombre",
+        "FIRST_SURNAME": "Primer apellido",
+        "SECOND_SURNAME": "Segundo apellido",
+        "EMAIL": "Email"
+    },
+    "AUTHENTICATION": {
+        "VERIFICATION_CODE": "Le hemos enviado un código de verificación a su email",
+        "ERRORS": {
+            "SESSION_EXPIRED": "Después de 10 minutos de inactividad hemos cerrado tu sesión por seguridad.",
+            "REGISTERED_ACCOUNT": "Ya existe una cuenta registrada con ese email",
+            "REGISTERED_NIT": "Ya existe una empresa registrada con ese NIT",
+            "CREATE_ACCOUNT": "Hubo un error al crear la cuenta",
+            "CONFIRMED_ACCOUNT": "Ya se encuentra confirmada esta cuenta",
+            "WITHOUT_EMAIL": "No existe una cuenta con ese email",
+            "INCORRECT_CODE": "El código de verificación es incorrecto",
+            "ERROR_CONFIRM_ACCOUNT": "Hubo un error al confirmar su cuenta",
+            "WITHOUT_TYPE_USER": "¡Error! Parece que tu cuenta no un tiene tipo de usuario asignado.",
+            "LOGIN": "Hubo un error al iniciar sesión, intente de nuevo.",
+            "USER_DISABLED": "Su usuario ha sido desactivado, contáctese con su administrador.",
+            "INCORRECT_USER_OR_PASSWORD": "El email o contraseña es equivocada. Por favor valide la información",
+            "VERIFY_ACCOUNT": "Verifica tu cuenta para poder iniciar sesión.",
+            "ERROR_LOGOUT": "Hubo un problema al cerrar sesión. Intentelo de nuevo.",
+            "ERROR_SEND_EMAIL": "Hubo un error al enviar el correo, intente de nuevo en un par de minutos",
+            "EMAIL_NOT_FOUND": "Correo no encontrado, por favor verifique la información introducida",
+            "USER_NOT_VERIFY": "El usuario no ha sido verificado.",
+            "ACCOUNT_NOT_VERIFIED": "La cuenta aún no ha sido verificada, debe verificarla antes de poder cambiar su contraseña",
+            "TRY_LATER": "Ha ocurrido un error, intente de nuevo más tarde.",
+            "CONFIRM_ACCOUNT": "Esta cuenta aún no ha sido confirmada.",
+            "EXPIRED_CODE": "El código ha expirado, por favor, solicite uno nuevo.",
+            "INVALID_CODE": "Código de verificación invalido. Intente de nuevo.",
+            "SEND_CODE": "Hubo un error al enviar el código de verificación",
+            "ALREADY_ACCOUNT_CONFIRM": "Ya se encuentra confirmada esta cuenta",
+            "TRY_AGAIN": "Ha ocurrido un error. Intente de nuevo.",
+            "NO_LOGGED_IN": "¡Error! Al parecer no haz iniciado sesión",
+            "INCORRECT_PASSWORD": "La contraseña que introduciste es incorrecta.",
+            "ERROR_PASSWORD_UPDATE": "Hubo un error al actualizar su contraseña. Intentelo de nuevo."
+        },
+        "CONFIRMED_ACCOUNT": "Se ha confirmado su cuenta, ya puede iniciar sesión",
+        "SEND_EMAIL": "Se ha enviado el correo",
+        "RESET_PASSWORD": "Su contraseña ha sido establecida, ahora puede iniciar sesión",
+        "SEND_CODE": "Se ha enviado un nuevo código de verificación a su email",
+        "UPDATED_DATA": "¡Datos actualizados! Inicie sesión con su nueva contraseña",
+        "SUCCESS_PASSWORD_UPDATE": "Se ha actualizado tu contraseña exitosamente."
+    },
+    "ENTERPRISE": {
+        "ERRORS": {
+            "UPDATE_STATUS_PROGRAM": "Hubo un error al actualizar el estatus del programa.",
+            "PROGRAM_INVITED": "Hubo un error al invitar el programa.",
+            "INVITATION_FORWARD": "Hubo un error al reenviar la invitación"
+        },
+        "UPDATE_STATUS_PROGRAM": "Se ha actualizado el estatus del programa.",
+        "PROGRAM_INVITED": "Se ha invitado el programa.",
+        "INVITATION_FORWARDED": "Invitación reenviada"
+    },
+    "ENTERPRISE_DOCUMENTATION": {
+        "ERRORS": {
+            "FILE_LOAD": "Hubo un error al cargar el archivo.",
+            "DELETE_FILE": "Hubo un error al intentar eliminar el archivo.",
+            "UPDATED_FILE": "Hubo un error al actualizar el estatus del documento.",
+            "LIMIT_FILE": "No se puede realizar la acción, ha excedido el límite permitido para agregar documentación.",
+            "FILE_UPDATE": "Hubo un error al actualizar el archivo."
+        },
+        "SUCCESSFUL_FILE_LOAD": "Cargue de documento exitoso.",
+        "DELETED_FILE": "Documento eliminado",
+        "UPDATED_FILE": "Se ha actualizado el estatus del documento.",
+        "NEW_DOCUMENT_SAVED": "Documento agregado",
+        "NEW_DOCUMENT_NOT_SAVED": "Nuevo documento no guardado, intente más tarde",
+        "SUCCESSFUL_FILE_UPDATE": "Actualización de documento exitoso."
+    },
+    "PROFILE": {
+        "PROFILE_UPDATED_SUCCESSFULLY": "Su perfil ha sido actualizado exitosamente.",
+        "PROFILE_UPDATED_ERROR": "Hubo un error al actualizar su perfil. Intentelo de nuevo."
+    },
+    "ENTERPRISE_DOCUMENTATION_TABLE_ACTIONS": {
+        "APPROVE_FILE": "Aprobar archivo",
+        "DELETE_FILE": "Eliminar archivo",
+        "RE_REQUEST_FILE": "Re-solicitar archivo",
+        "CHOOSE_FILE": "Elegir archivo"
+    }
+}

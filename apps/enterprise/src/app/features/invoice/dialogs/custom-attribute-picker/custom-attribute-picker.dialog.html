@@ -1,0 +1,26 @@
+<h2 mat-dialog-title>
+    {{ 'CUSTOM_ATTRIBUTE_PICKER_DIALOG.TITLE' | translate }}
+</h2>
+<mat-dialog-content>
+    <alert *ngIf="(shouldRenderAlert$ | async); else list" color="primary">
+        <span> {{ 'CUSTOM_ATTRIBUTE_PICKER_DIALOG.ALERT' | translate }}</span>
+    </alert>
+    <ng-template #list>
+        <mat-selection-list [(ngModel)]="selectedCustomAttributes">
+            <mat-list-option
+                *ngFor="let entity of (entities$ | async)"
+                [value]="entity"
+            >
+                {{ entity.name }}
+            </mat-list-option>
+        </mat-selection-list>
+    </ng-template>
+</mat-dialog-content>
+<mat-dialog-actions fxLayout="row" fxLayoutGap="12px" fxLayoutAlign="end">
+    <button mat-button mat-dialog-close>
+        {{ 'COMMON.ACTIONS.CANCEL' | translate | uppercase }}
+    </button>
+    <button [mat-dialog-close]="selectedCustomAttributes" mat-button>
+        {{ 'COMMON.ACTIONS.ACCEPT' | translate | uppercase }}
+    </button>
+</mat-dialog-actions>

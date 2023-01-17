@@ -1,0 +1,10 @@
+<mat-toolbar fxLayout="row" fxLayoutAlign="start end" fxLayoutAlign="center" color="primary">
+    <img width="18%" class="menu-logo" alt="Logo Banco Occidente" src="/enterprise/assets/images/LogoMenu.png">
+    <span fxFlex></span>
+    <button [disabled]="isSubmitting$ | async" (click)="onSignOut()" mat-button>
+        {{ 'COMMON.ACTIONS.LOGOUT' | translate | uppercase }}
+    </button>
+</mat-toolbar>
+<div fxLayout="column" class="page-container" fxFlex="1 1 auto">
+    <router-outlet></router-outlet>
+</div>

@@ -1,0 +1,147 @@
+<form (ngSubmit)="onSubmit()" [formGroup]="form" fxLayout="column" fxLayoutGap="12px">
+    <div fxLayout.gt-sm="row" fxLayout.lt-md="column" fxLayoutAlign.lt-md="start" fxLayoutAlign.gt-sm="stretch" fxLayoutGap.gt-sm="12px">
+        <mat-form-field fxFlex.gt-sm>
+            <mat-label>
+                {{ 'COMMON.LABELS.DOCUMENT_TYPE' | translate }}
+            </mat-label>
+            <input value="{{'ENTERPRISE_FORM.DOCUMENT_TYPE.OPTIONS.' + this.enterprise.providerDocumentType | translate}}" formControlName="documentType" type="text" name="enterprise-document-type" matInput />
+        </mat-form-field>
+        <mat-form-field fxFlex.gt-sm>
+            <mat-label>
+                {{ 'COMMON.LABELS.DOCUMENT_NUMBER' | translate }}
+            </mat-label>
+            <input formControlName="nit" type="text" name="nit" matInput />
+        </mat-form-field>
+        <mat-form-field fxFlex.gt-sm>
+            <mat-label>
+                {{ 'COMMON.LABELS.SOCIAL_REASON' | translate }}
+            </mat-label>
+            <input formControlName="enterpriseName" type="text" name="enterprise-name" matInput />
+        </mat-form-field>
+    </div>
+    <div fxLayout.gt-sm="row" fxLayout.lt-md="column" fxLayoutAlign.lt-md="start" fxLayoutAlign.gt-sm="stretch" fxLayoutGap.gt-sm="12px">
+
+        <mat-form-field fxFlex.gt-sm>
+            <mat-label>
+                {{ 'ENTERPRISE_DETAIL.PRODUCT_TYPE' | translate }}
+            </mat-label>
+            <input name="product-type" value="{{'CREATE_PROGRAM_FORM.PRODUCT_TYPE.OPTIONS.' + this.enterprise.productType | translate}}" matInput formControlName="productType" />
+        </mat-form-field>
+
+        <mat-form-field fxFlex.gt-sm>
+            <mat-label>{{ 'ENTERPRISE_DETAIL.DEPARTMENT' | translate }}</mat-label>
+            <input type="text" [placeholder]="'ENTERPRISE_DETAIL.DEPARTMENT' | translate" matInput [matAutocomplete]="auto" formControlName="department">
+            <mat-autocomplete #auto="matAutocomplete">
+                <mat-option *ngFor="let option of filteredOptions | async" [value]="option.departmentName">
+                    {{ option.departmentName }}
+                </mat-option>
+            </mat-autocomplete>
+        </mat-form-field>
+
+        <mat-form-field fxFlex.gt-sm>
+            <mat-label>{{ 'ENTERPRISE_DETAIL.CITY' | translate }}</mat-label>
+            <input type="text" [placeholder]="'ENTERPRISE_DETAIL.CITY' | translate" matInput [matAutocomplete]="ciudad" formControlName="city">
+            <mat-autocomplete #ciudad="matAutocomplete">
+                <mat-option *ngFor="let city of filteredOptions2 | async" [value]="city.cityName">
+                    {{ city.cityName }}
+                </mat-option>
+            </mat-autocomplete>
+        </mat-form-field>
+    </div>
+    <div fxLayout.gt-sm="row" fxLayout.lt-md="column" fxLayoutAlign.lt-md="start" fxLayoutAlign.gt-sm="stretch" fxLayoutGap.gt-sm="12px">
+        <mat-form-field fxFlex.gt-sm>
+            <mat-label>{{ 'ENTERPRISE_DETAIL.CIIU' | translate }} </mat-label>
+            <input matInput maxlength="4" type="text" formControlName="ciiu" [placeholder]="'ENTERPRISE_DETAIL.CIIU' | translate" />
+        </mat-form-field>
+
+        <mat-form-field fxFlex.gt-sm>
+            <mat-label>{{ 'ENTERPRISE_DETAIL.ECONOMIC_ACTIVITY' | translate }}
+            </mat-label>
+            <input matInput type="text" formControlName="economicActivity" name="economicActivity" [placeholder]="'ENTERPRISE_DETAIL.ECONOMIC_ACTIVITY' | translate" />
+        </mat-form-field>
+
+        <mat-form-field fxFlex.gt-sm>
+            <mat-label>{{ 'ENTERPRISE_DETAIL.ECONOMIC_SECTOR' | translate }}
+            </mat-label>
+            <input matInput type="text" formControlName="economicSector" name="economicSector" [placeholder]="'ENTERPRISE_DETAIL.ECONOMIC_SECTOR' | translate" />
+        </mat-form-field>
+    </div>
+    <div fxLayout.gt-sm="row" fxLayout.lt-md="column" fxLayoutAlign.lt-md="start" fxLayoutAlign.gt-sm="stretch" fxLayoutGap.gt-sm="12px">
+        <mat-form-field fxFlex.gt-sm>
+            <mat-label>
+                {{ 'REQUEST_LINK_PROVIDER_FORM.NAME' | translate }}
+            </mat-label>
+            <input formControlName="name" name="name" type="text" matInput />
+        </mat-form-field>
+        <mat-form-field fxFlex.gt-sm>
+            <mat-label>
+                {{ 'REQUEST_LINK_PROVIDER_FORM.FIRST_SURNAME' | translate }}
+            </mat-label>
+            <input formControlName="firstSurname" name="first-surname" type="text" matInput />
+        </mat-form-field>
+        <mat-form-field fxFlex.gt-sm>
+            <mat-label>
+                {{ 'REQUEST_LINK_PROVIDER_FORM.SECOND_SURNAME' | translate }}
+            </mat-label>
+            <input formControlName="secondSurname" name="second-surname" type="text" matInput />
+        </mat-form-field>
+    </div>
+    <div fxLayout.gt-sm="row" fxLayout.lt-md="column" fxLayoutAlign.lt-md="start" fxLayoutAlign.gt-sm="stretch" fxLayoutGap.gt-sm="12px">
+        <mat-form-field fxFlex.gt-sm>
+            <mat-label>
+                {{ 'COMMON.LABELS.EMAIL' | translate }}
+            </mat-label>
+            <input formControlName="email" type="text" name="email" matInput />
+        </mat-form-field>
+        <mat-form-field fxFlex.gt-sm>
+            <mat-label>
+                {{ 'REQUEST_LINK_PROVIDER_FORM.PHONE_NUMBER' | translate }}
+            </mat-label>
+            <input formControlName="phoneNumber" name="phone-number" type="text" matInput />
+        </mat-form-field>
+        <mat-form-field fxFlex.gt-sm>
+            <mat-label>
+                {{ 'REQUEST_LINK_PROVIDER_FORM.PHONE_EXT' | translate }}
+            </mat-label>
+            <input formControlName="phoneExt" name="phone-ext" type="text" matInput />
+        </mat-form-field>
+    </div>
+    <div fxLayout.gt-sm="row" fxLayout.lt-md="column" fxLayoutAlign.lt-md="start" fxLayoutAlign.gt-sm="stretch" fxLayoutGap.gt-sm="12px" *ngIf="this.enterprise.disbursementContract">
+        <mat-form-field fxFlex.gt-sm>
+            <mat-label>
+                {{ 'REQUEST_LINK_PROVIDER_FORM.FORM_OF_DISBURSEMENT.LABEL' | translate }}
+            </mat-label>
+            <input placeholder='--' value="{{ 'REQUEST_LINK_PROVIDER_FORM.FORM_OF_DISBURSEMENT.OPTIONS.' + this.enterprise.disbursementContract.type | translate }}" formControlName="formOfDisbursement" type="text" name="form-of-disbursement" matInput />
+        </mat-form-field>
+        <mat-form-field fxFlex.gt-sm *ngIf="this.enterprise.disbursementContract.type == 'ACCOUNT_DEPOSIT'">
+            <mat-label>
+                {{ 'REQUEST_LINK_PROVIDER_FORM.ACCOUNT_TYPE.LABEL' | translate }}
+            </mat-label>
+            <input placeholder='--' value="{{ 'REQUEST_LINK_PROVIDER_FORM.ACCOUNT_TYPE.OPTIONS.' + this.enterprise.disbursementContract?.account.type | translate }}" formControlName="accountType" name="account-type" matInput />
+        </mat-form-field>
+        <mat-form-field fxFlex.gt-sm *ngIf="this.enterprise.disbursementContract.type == 'ACCOUNT_DEPOSIT'">
+            <mat-label>
+                {{ 'REQUEST_LINK_PROVIDER_FORM.ACCOUNT_NUMBER' | translate }}
+            </mat-label>
+            <input placeholder='--' formControlName="accountNumber" name="account-number" matInput />
+        </mat-form-field>
+    </div>
+    <div fxLayout.gt-sm="row" fxLayout.lt-md="column" fxLayoutAlign.lt-md="start" fxLayoutAlign.gt-sm="stretch" fxLayoutGap.gt-sm="12px" *ngIf="this.enterprise.disbursementContract">
+        <mat-form-field fxFlex.gt-sm *ngIf="this.enterprise.disbursementContract.type == 'ACCOUNT_DEPOSIT'">
+            <mat-label>
+                {{ 'REQUEST_LINK_PROVIDER_FORM.BANK_NAME' | translate }}
+            </mat-label>
+            <input placeholder='--' formControlName="bank" name="bank" matInput />
+        </mat-form-field>
+        <mat-form-field fxFlex.gt-sm *ngIf="this.enterprise.disbursementContract.type == 'ACCOUNT_DEPOSIT' && enterprise.disbursementContract.bankCertificationFile != null">
+            <mat-label>
+                {{ 'REQUEST_LINK_PROVIDER_FORM.BANK_CERTIFICATION' | translate }}
+            </mat-label>
+            <input placeholder='--' formControlName="bankCertification" name="bank-certification" matInput />
+            <button matSuffix type="button" mat-icon-button (click)="onNavigate()">
+            <mat-icon>download</mat-icon>
+        </button>
+        </mat-form-field>
+    </div>
+    <button [disabled]="shouldDisable()" type="submit" hidden #submitButton></button>
+</form>

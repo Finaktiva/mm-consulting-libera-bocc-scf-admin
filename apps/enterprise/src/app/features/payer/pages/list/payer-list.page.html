@@ -1,0 +1,43 @@
+<div fxLayout="column">
+    <div
+        fxLayout="row"
+        fxLayoutAlign="space-between center"
+        class="page-toolbar"
+    >
+        <span class="mat-headline no-margin">{{
+            'PAYER_LIST_PAGE.TITLE' | translate
+        }}</span>
+        <div fxLayout="row" fxLayoutAlign="center center" fxLayoutGap="12px">
+            <payer-list-filter-form
+                [filters]="filters$ | async"
+                (onSubmit)="onChangeFilters($event)"
+                [enterpriseSectors]="enterpriseSectors$ | async"
+            >
+            </payer-list-filter-form>
+        </div>
+    </div>
+    <div class="page-content progress-bar-container mat-elevation-z1 table-container">
+        <mat-progress-bar
+            *ngIf="(isLoading$ | async)"
+            mode="indeterminate"
+        ></mat-progress-bar>
+        <alert *ngIf="(error$ | async)" color="warn">
+            <span>{{ 'COMMON.ERRORS.PAGE_LOAD' | translate }}</span>
+            <button (click)="fetchCurrentPage()" mat-flat-button color="warn">
+                {{ 'COMMON.ACTIONS.RETRY' | translate | uppercase }}
+            </button>
+        </alert>
+        <alert *ngIf="(empty$ | async)" color="primary">
+            <span>{{ 'PAYER_LIST_PAGE.WITHOUT_PAYERS' | translate }}</span>
+        </alert>
+        <payer-table [entities]="entities$ | async"></payer-table>
+        <mat-paginator
+            [showFirstLastButtons]="true"
+            [pageSize]="pageSize$ | async"
+            [length]="total$ | async"
+            [pageIndex]="pageIndex$ | async"
+            [pageSizeOptions]="PAGE_SIZE_OPTIONS"
+            (page)="onChangePage($event)"
+        ></mat-paginator>
+    </div>
+</div>

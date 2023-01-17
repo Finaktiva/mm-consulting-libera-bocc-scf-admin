@@ -1,0 +1,40 @@
+<h2 *ngIf="!canShowDetail else confirmationTitle" mat-dialog-title class="mat-title">
+    {{ 'CREATE_FINANCIAL_CONDITIONS_DIALOG.TITLE' | translate | uppercase }} – ID {{ planId || '' }}
+</h2>
+<ng-template #confirmationTitle>
+    <div  fxLayout="row" fxLayoutAlign="space-between">
+        <h2 mat-dialog-title class="mat-title" [style.width]="'400px'">
+            {{ 'CREATE_FINANCIAL_CONDITIONS_DIALOG.CONFIRMATION_TITLE' | translate | titlecase }} {{ ('CREATE_FINANCIAL_CONDITIONS_FORM.PLAN_TYPE.OPTIONS.' + plan.type || '') | translate | titlecase }} ID {{ planId || '' }}
+        </h2>
+        <div fxLayout="column" fxLayoutGap="5px" fxLayoutAlign="center" [style.margin-bottom]="'20px'">
+            <span>{{ 'CREATE_FINANCIAL_CONDITIONS_DIALOG.CREATION_DATE' | translate }}: DD/MM/AA</span>
+            <span>{{ 'CREATE_FINANCIAL_CONDITIONS_DIALOG.MODIFICATION_DATE' | translate }}: DD/MM/AA</span>
+        </div>
+    </div>
+</ng-template>
+<mat-progress-bar
+*ngIf="(isLoading$ | async)"
+mode="indeterminate"
+></mat-progress-bar>
+<mat-dialog-content>
+    <create-financial-conditions-form #component1 (next)="next($event)" [payer]="data.payer$ | async" [enterprises]="enterprises" fxShow="{{!canShowDetail}}"></create-financial-conditions-form>
+    <confirm-plan-commission-form #component2 (next)="next($event)" (cancel)="back()" [payer]="data.payer$ | async" [plan]="plan" fxShow="{{canShowDetailCommission}}"></confirm-plan-commission-form>
+</mat-dialog-content>
+
+<mat-dialog-actions [style.place-content]="'center space-between'">
+    <div [style.width.px]="450" [style.margin-bottom.px]="20">
+        <div fxShow="{{canShowDetailCommission}}" fxLayout="column" fxLayoutGap="5px" fxLayoutAlign="space-between start" [style.align-items]="'flex-start'">
+            <span>{{ 'CREATE_FINANCIAL_CONDITIONS_FORM.CREATOR_USER' | translate }}: </span>
+            <span>{{ 'CREATE_FINANCIAL_CONDITIONS_FORM.APPROVING_USER' | translate }}: </span>
+            <span>{{ 'CREATE_FINANCIAL_CONDITIONS_FORM.USER_ACCEPTS' | translate }}: </span>
+        </div>
+    </div>
+    <div fxLayoutAlign="end" fxLayoutGap="15px">
+        <button type="button" mat-button (click)="!canShowDetail ? close() : component2.back()">
+            {{ (!canShowDetail ? 'COMMON.ACTIONS.CANCEL' : 'COMMON.ACTIONS.BACK') | translate | uppercase }}
+        </button>
+        <button (click)="!canShowDetail ? component1.submit() : component2.submit()" mat-flat-button color="primary">
+            {{ (!canShowDetail ? 'COMMON.ACTIONS.CONTINUE' : 'COMMON.ACTIONS.CREATE') | translate | uppercase }}
+        </button>
+    </div>
+</mat-dialog-actions>

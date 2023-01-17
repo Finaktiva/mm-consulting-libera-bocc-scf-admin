@@ -1,0 +1,29 @@
+<div fxLayout="column" fxLayoutAlign="center stretch">
+    <div fxLayout="row" fxLayoutGap="12px">
+        <h2
+            fxFlex
+            style="color: #8798AD"
+            class="mat-subheading-2"
+            style="margin-bottom: 0"
+        >
+            {{ file?.name }}
+        </h2>
+        <div class="alternate-theme">
+            <mat-icon color="primary" matTooltip="Correcto">
+                check_circle
+            </mat-icon>
+        </div>
+    </div>
+    <div fxLayout="row" fxLayoutAlign="center center" fxLayoutGap="12px">
+        <button
+            [disabled]="isDeleting"
+            type="button"
+            mat-button
+            color="warn"
+            matTooltip="Eliminar archivo"
+            (click)="onDelete()"
+        >
+            {{ 'COMMON.ACTIONS.DELETE' | translate | uppercase }}
+        </button>
+    </div>
+</div>

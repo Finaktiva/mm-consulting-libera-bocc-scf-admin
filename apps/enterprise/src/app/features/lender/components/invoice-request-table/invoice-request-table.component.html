@@ -1,0 +1,87 @@
+<div style="overflow: auto">
+    <table mat-table [dataSource]="entities">
+        <ng-container matColumnDef="enterpriseName">
+            <th mat-header-cell *matHeaderCellDef>
+                {{ 'INVOICE_REQUEST_TABLE.PAYER' | translate }}
+            </th>
+            <td mat-cell *matCellDef="let entity">
+                <a
+                    [routerLink]="[
+                        '/core/lenders/requests',
+                        entity.state.invoiceId
+                    ]"
+                >
+                    {{ entity.state.payer?.enterpriseName }}
+                </a>
+            </td>
+        </ng-container>
+        <ng-container matColumnDef="nit">
+            <th mat-header-cell *matHeaderCellDef>
+                {{ 'INVOICE_REQUEST_TABLE.NIT' | translate }}
+            </th>
+            <td mat-cell *matCellDef="let entity">
+                {{ entity.state.payer?.nit }}
+            </td>
+        </ng-container>
+        <ng-container matColumnDef="invoiceNumber">
+            <th mat-header-cell *matHeaderCellDef>
+                {{ 'INVOICE_REQUEST_TABLE.INVOICE_NUMBER' | translate }}
+            </th>
+            <td mat-cell *matCellDef="let entity">
+                {{ entity.state.invoiceNumber }}
+            </td>
+        </ng-container>
+        <ng-container matColumnDef="discountValue">
+            <th mat-header-cell *matHeaderCellDef>
+                {{ 'INVOICE_REQUEST_TABLE.DISCOUNT_VALUE' | translate }}
+            </th>
+            <td mat-cell *matCellDef="let entity">
+                {{
+                    entity.state.discountValue
+                        | currency: entity.state.currencyCode:'code'
+                }}
+            </td>
+        </ng-container>
+        <ng-container matColumnDef="expectedPaymentDate">
+            <th mat-header-cell *matHeaderCellDef>
+                {{ 'INVOICE_REQUEST_TABLE.EXPECTED_PAYMENT_DATE' | translate }}
+            </th>
+            <td mat-cell *matCellDef="let entity">
+                {{ entity.state.expectedPaymentDate | date }}
+            </td>
+        </ng-container>
+        <ng-container matColumnDef="discountDueDate">
+            <th mat-header-cell *matHeaderCellDef>
+                {{ 'INVOICE_REQUEST_TABLE.PAYMENT_EXPIRATION' | translate }}
+            </th>
+            <td mat-cell *matCellDef="let entity">
+                {{ entity.state.discountDueDate | date }}
+            </td>
+        </ng-container>
+        <ng-container matColumnDef="effectivePaymentDate">
+            <th mat-header-cell *matHeaderCellDef>
+                {{ 'INVOICE_REQUEST_TABLE.EFFECTIVE_PAYMENT_DATE' | translate }}
+            </th>
+            <td mat-cell *matCellDef="let entity">
+                {{ entity.state.effectivePaymentDate | date }}
+            </td>
+        </ng-container>
+        <ng-container matColumnDef="status">
+            <th mat-header-cell *matHeaderCellDef>
+                {{ 'COMMON.LABELS.STATUS' | translate }}
+            </th>
+            <td mat-cell *matCellDef="let entity">
+                <status-chip [status]="entity.state.status">
+                    <ng-container [ngSwitch]="entity.state.status">
+                        {{
+                            'COMMON.LENDER_STATUS.' + entity.state.status
+                                | translate
+                        }}
+                    </ng-container>
+                </status-chip>
+            </td>
+        </ng-container>
+        <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+        <tr mat-row *matRowDef="let row; columns: displayedColumns"></tr>
+    </table>
+</div>

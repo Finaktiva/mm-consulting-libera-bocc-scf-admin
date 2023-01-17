@@ -1,0 +1,45 @@
+<mat-progress-spinner
+    *ngIf="(isLoading$ | async)"
+    mode="indeterminate"
+></mat-progress-spinner>
+<p *ngIf="(error$ | async)" class="mat-body">
+    {{ 'ACCOUNT_PAGE.ERROR_LOAD_INFO' | translate }}
+    <button (click)="fetchProfile()" mat-flat-button color="warn">
+        {{ 'COMMON.ACTIONS.RETRY' | translate | uppercase }}
+    </button>
+</p>
+
+<div *ngIf="(hasLoaded$ | async)" fxLayout="column" fxLayoutGap="12px">
+    <profile-form
+        [isSubmitting]="isSubmitting$ | async"
+        (onSubmit)="onSubmit($event)"
+        [profile]="profile$ | async"
+    ></profile-form>
+    <h2 class="mat-title">{{ 'ACCOUNT_PAGE.TITLE' | translate }}</h2>
+    <div fxLayout="row" fxLayoutGap="12px">
+        <circle-chip *ngFor="let module of (profile$ | async)?.modules">
+            <ng-container [ngSwitch]="module">
+                <span
+                    *ngSwitchCase="ENTERPRISE_MODULES.ADMIN"
+                    [matTooltip]="'COMMON.MODULES.ADMIN' | translate"
+                    >AD</span
+                >
+                <span
+                    *ngSwitchCase="ENTERPRISE_MODULES.PROVIDER"
+                    [matTooltip]="'COMMON.MODULES.PROVIDER' | translate"
+                    >PR</span
+                >
+                <span
+                    *ngSwitchCase="ENTERPRISE_MODULES.FUNDING"
+                    [matTooltip]="'COMMON.MODULES.FUNDING' | translate"
+                    >FO</span
+                >
+                <span
+                    *ngSwitchCase="ENTERPRISE_MODULES.PAYER"
+                    [matTooltip]="'COMMON.MODULES.PAYER' | translate"
+                    >PA</span
+                >
+            </ng-container>
+        </circle-chip>
+    </div>
+</div>

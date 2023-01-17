@@ -1,0 +1,51 @@
+<div  fxLayout="row" fxLayoutAlign="space-between">
+    <h2 mat-dialog-title class="mat-title">
+        {{ 'DETAIL_FINANCIAL_CONDITIONS_DIALOG.TITLE' | translate | uppercase }} – ID {{ plan?.folio }}
+    </h2>
+    <div fxLayout="row" fxLayoutGap="5px" [style.margin-bottom]="'20px'">
+        <div *ngIf="isLoad" fxLayout="column" fxLayoutGap="5px" fxLayoutAlign="center">
+            <div fxLayout="row">
+                <span>{{ 'DETAIL_FINANCIAL_CONDITIONS_DIALOG.ACCEPTANCE_DATE' | translate }}:&nbsp;</span>
+                <span>{{plan.acceptanceDate | date: 'dd/MM/yyyy':'+0000' }}</span>
+            </div>
+            <div fxLayout="row">
+                <span>{{ 'DETAIL_FINANCIAL_CONDITIONS_DIALOG.MODIFICATION_DATE' | translate }}:&nbsp;</span>
+                <span>{{plan.modificationDate | date: 'dd/MM/yyyy':'+0000' }}</span>
+            </div>
+        </div>
+        <button type="button" [mat-dialog-close]="true" mat-icon-button matSuffix >
+            <mat-icon style="align-items: flex-start;">clear</mat-icon>
+        </button>
+    </div>
+</div>
+<mat-progress-bar *ngIf="(!isLoad)" mode="indeterminate"></mat-progress-bar>
+<mat-dialog-content *ngIf="isLoad">
+    <detail-financial-conditions-form [payer]="entity$ | async" [plan]="plan" ></detail-financial-conditions-form>
+</mat-dialog-content>
+
+<mat-dialog-actions [style.place-content]="'center space-between'">
+    <div [style.width.px]="450" [style.margin-bottom.px]="20">
+        <div *ngIf="isLoad" fxLayout="column" fxLayoutGap="5px" fxLayoutAlign="space-between start" [style.align-items]="'flex-start'">
+            <div fxLayout="row">
+                <span>{{ 'DETAIL_FINANCIAL_CONDITIONS_DIALOG.CREATOR_USER' | translate }}:&nbsp;</span>
+                <span>{{(plan.creationUser)?plan.creationUser.email:''}}</span>
+            </div>
+            <div fxLayout="row">
+                <span>{{ 'DETAIL_FINANCIAL_CONDITIONS_DIALOG.APPROVING_USER' | translate }}:&nbsp;</span>
+                <span>{{(plan.approvalUser)?plan.approvalUser.email:''}}</span>
+            </div>
+            <div fxLayout="row">
+                <span>{{ 'DETAIL_FINANCIAL_CONDITIONS_DIALOG.USER_ACCEPTS' | translate }}:&nbsp;</span>
+                <span>{{(plan.acceptanceUser)?plan.acceptanceUser.email:''}}</span>
+            </div>
+        </div>
+    </div>
+    <div *ngIf="(data.status === 'PENDING_ACCEPTANCE')" fxLayoutAlign="end" fxLayoutGap="15px">
+        <button type="button" mat-button (click)="showApproveDialog('DECLINE')">
+            {{ 'DETAIL_FINANCIAL_CONDITIONS_DIALOG.ACTIONS.CANCEL' | translate | uppercase }}
+        </button>
+        <button #buttonAccept mat-flat-button color="primary" (click)="showApproveDialog('APPROVE')">
+            {{ 'DETAIL_FINANCIAL_CONDITIONS_DIALOG.ACTIONS.ACCEPT' | translate | uppercase }}
+        </button>
+    </div>
+</mat-dialog-actions>

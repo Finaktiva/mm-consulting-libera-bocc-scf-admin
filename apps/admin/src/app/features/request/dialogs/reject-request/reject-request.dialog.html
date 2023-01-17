@@ -1,0 +1,65 @@
+<mat-progress-bar
+    *ngIf="(isSubmitting$ | async)"
+    mode="indeterminate"
+></mat-progress-bar>
+<h2 mat-dialog-title>
+    {{ 'REJECT_REQUEST_DIALOG.TITLE' | translate }}
+</h2>
+<mat-dialog-content>
+    <!-- <explanation-form
+        #component
+        [isSubmitting]="isSubmitting$ | async"
+        (onSubmit)="onSubmit($event)"
+    ></explanation-form> -->
+    <form
+        [formGroup]="form"
+        #ngForm="ngForm"
+        fxLayout="column"
+        fxLayoutAlign="start stretch"
+    >
+        <mat-form-field>
+            <textarea
+                required
+                formControlName="explanation"
+                rows="8"
+                matInput
+                [placeholder]="
+                    'REJECT_REQUEST_DIALOG.REJECT_EXPLANATION' | translate
+                "
+            ></textarea>
+            <mat-error>
+                {{ 'COMMON.VALIDATIONS.REQUIRED' | translate }}
+            </mat-error>
+        </mat-form-field>
+    </form>
+</mat-dialog-content>
+<mat-dialog-actions fxLayout="row" fxLayoutAlign="end" fxLayoutGap="8px">
+    <!-- <button
+        mat-button
+        matTooltip="Rechazar sin enviar comentario"
+        [disabled]="isSubmitting$ | async"
+        (click)="onSubmit(null)"
+    >
+        OMITIR
+    </button> -->
+    <button
+        type="button"
+        (click)="onSave()"
+        [disabled]="(isSubmitting$ | async) || form.invalid"
+        [matTooltip]="'COMMON.REJECT_DIALOG.SAVE_TOOLTIP' | translate"
+        mat-stroked-button
+        color="primary"
+    >
+        {{ 'COMMON.ACTIONS.SAVE' | translate | uppercase }}
+    </button>
+    <button
+        type="button"
+        (click)="onSend()"
+        [disabled]="(isSubmitting$ | async) || form.invalid"
+        [matTooltip]="'COMMON.REJECT_DIALOG.SEND_TOOLTIP' | translate"
+        mat-flat-button
+        color="primary"
+    >
+        {{ 'COMMON.ACTIONS.SEND' | translate | uppercase }}
+    </button>
+</mat-dialog-actions>

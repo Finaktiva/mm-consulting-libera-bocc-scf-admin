@@ -1,0 +1,84 @@
+<form (ngSubmit)="onSubmit()" [formGroup]="form" fxLayoutGap="12px">
+    <button
+        type="button"
+        mat-button
+        *ngIf="!shouldRender()"
+        (click)="onClear()"
+    >
+        {{ 'COMMON.LABELS.CLEAN_FILTERS' | translate }}
+    </button>
+    <mat-form-field appearance="standard">
+        <mat-label>
+            {{ 'COMMON.LABELS.FILTER_BY' | translate }}
+        </mat-label>
+        <mat-select name="filter_by" formControlName="filter_by">
+            <mat-option [value]="USER_FILTER_BY.FULL_NAME">
+                {{ 'USER_LIST_FILTER.FILTER.FULL_NAME' | translate }}
+            </mat-option>
+            <mat-option [value]="USER_FILTER_BY.EMAIL">
+                {{ 'USER_LIST_FILTER.FILTER.EMAIL' | translate }}
+            </mat-option>
+            <mat-option [value]="USER_FILTER_BY.VINCULATION_DATE">
+                {{ 'USER_LIST_FILTER.FILTER.VINCULATION_DATE' | translate }}
+            </mat-option>
+            <mat-option [value]="USER_FILTER_BY.ROLE">
+                {{ 'USER_LIST_FILTER.FILTER.ROLE' | translate }}
+            </mat-option>
+            <mat-option [value]="USER_FILTER_BY.STATUS">
+                {{ 'USER_LIST_FILTER.FILTER.STATUS' | translate }}
+            </mat-option>
+        </mat-select>
+    </mat-form-field>
+    <mat-form-field
+        appearance="standard"
+        *ngIf="form.value.filter_by == USER_FILTER_BY.STATUS"
+    >
+        <mat-label>
+            {{ 'COMMON.LABELS.STATUS' | translate }}
+        </mat-label>
+        <mat-select #select name="query" formControlName="q">
+            <mat-option [value]="USER_STATUS.ENABLED">
+                {{ 'COMMON.USER_STATUS.ENABLED' | translate }}
+            </mat-option>
+            <mat-option value="PENDING">
+                {{
+                    'COMMON.USER_STATUS.PENDING_ACCOUNT_CONFIRMATION'
+                        | translate
+                }}
+            </mat-option>
+            <mat-option [value]="USER_STATUS.DISABLED">
+                {{ 'COMMON.USER_STATUS.DISABLED' | translate }}
+            </mat-option>
+        </mat-select>
+    </mat-form-field>
+    <mat-form-field
+        appearance="standard"
+        *ngIf="form.value.filter_by == USER_FILTER_BY.ROLE"
+    >
+        <mat-label>
+            {{ 'COMMON.LABELS.ROLE' | translate }}
+        </mat-label>
+        <mat-select #select name="query" formControlName="q">
+            <ng-container *ngFor="let item of roles">
+                <mat-option *ngIf="item.status == 'ENABLED'" [value]="item.code">
+                    {{ item.description }}
+                </mat-option>
+            </ng-container>
+        </mat-select>
+    </mat-form-field>
+    <mat-form-field appearance="standard" *ngIf="shouldRenderTextInput()">
+        <input matInput formControlName="q" type="text" name="query" />
+    </mat-form-field>
+    <mat-form-field appearance="standard" *ngIf="shouldRenderDatepicker()">
+        <input
+            formControlName="q"
+            name="date"
+            type="text"
+            matInput
+            [matDatepicker]="picker"
+        />
+        <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
+        <mat-datepicker #picker></mat-datepicker>
+    </mat-form-field>
+    <button #submitButton hidden></button>
+</form>

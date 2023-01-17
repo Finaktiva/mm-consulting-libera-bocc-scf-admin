@@ -1,0 +1,46 @@
+<div fxLayout="column">
+    <div fxLayout="row" fxLayoutAlign="start center" class="page-toolbar">
+        <a routerLink="/core/payers" mat-button>
+            <mat-icon>arrow_back</mat-icon>
+            {{ 'COMMON.LABELS.BACK_TO_LIST' | translate }}
+        </a>
+    </div>
+
+    <div class="page-content progress-bar-container mat-elevation-z1 table-container">
+        <mat-progress-bar
+            *ngIf="(shouldRenderProgressBar$ | async)"
+            mode="indeterminate"
+        ></mat-progress-bar>
+        <div fxLayoutAlign="center">
+            <mat-spinner *ngIf="(isLoading$ | async)"></mat-spinner>
+        </div>
+        <alert *ngIf="(error$ | async)" color="warn">
+            <span> {{ 'COMMON.ERRORS.PAGE_LOAD' | translate }}</span>
+            <button (click)="fetchEntity()" mat-flat-button color="warn">
+                {{ 'COMMON.ACTIONS.RETRY' | translate | uppercase }}
+            </button>
+        </alert>
+
+        <div *ngIf="(hasLoaded$ | async)" fxLayout="column">
+            <h1 class="mat-headline">
+                {{ enterpriseName$ | async }}
+            </h1>
+            <div fxLayout="row" fxLayoutGap="30px">
+                <payer-basic-information
+                    fxFlex="25%"
+                    [entity]="entity$ | async"
+                ></payer-basic-information>
+                <payer-complementary-information
+                    fxFlex
+                    [entities]="payerCustomAttributes$ | async"
+                    [isDeletingAttribute]="isDeletingAttribute$ | async"
+                    [isSubmitting]="isSubmitting$ | async"
+                    [hasAttributes]="hasLenderAttributes$ | async"
+                    (onSubmit)="onSubmit($event)"
+                    (delete)="onDelete($event)"
+                    (noCustomFields)="onNoCustomFields()"
+                ></payer-complementary-information>
+            </div>
+        </div>
+    </div>
+</div>

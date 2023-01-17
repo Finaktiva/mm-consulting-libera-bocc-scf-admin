@@ -1,0 +1,9 @@
+.ngez-file-dropzone {
+    height: 200px;
+    padding: 12px;
+    border: 1px dashed grey;
+
+    &.active {
+        border: 1px solid blue;
+    }
+}

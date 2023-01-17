@@ -1,0 +1,53 @@
+<div fxLayout="column" fxLayoutAlign="right stretch">
+    <div style='display: flex'>
+        <div style='width: 100%;'>
+            <h1 class="mat-headline" style="text-align: center; padding-right: 12px;">
+                {{ 'UPLOAD_DOCUMENTATION_PAGE.TITLE' | translate }}
+            </h1>
+            <!--<h2 class="mat-subheading-2" style="text-align: center; padding-right: 12px">
+                {{ 'UPLOAD_DOCUMENTATION_PAGE.SUBTITLE' | translate }}
+            </h2>-->
+        </div>
+    </div>
+    <mat-spinner fxFlexAlign="center" *ngIf="(isLoading$ | async); else content"></mat-spinner>
+    <ng-template #content>
+        <div *ngIf="(error$ | async); else documentation" fxLayout="column" fxLayoutAlign="center center">
+            <p class="mat-body">
+                {{ 'COMMON.ERRORS.LOAD_DOCUMENTS' | translate }}
+            </p>
+            <button (click)="onRetry()" mat-flat-button color="warn">
+                {{ 'COMMON.ACTIONS.RETRY' | translate | uppercase }}
+            </button>
+        </div>
+        <ng-template #documentation>
+            <div fxLayout="column" fxLayoutAlign="start stretch" fxLayoutGap="12px">
+                <div style="display: flex; justify-content: space-between; align-items: center; padding: 12px; padding-bottom: 0px;">
+                    <h1 class='mat-title' style='margin-bottom: 0px;'>{{ 'ENTERPRISE_DOCUMENTATION.TITLE' | translate }}</h1>
+                    <div style="display: flex;">
+                        <button mat-flat-button color="primary" (click)="loadNewDocument()">{{ 'ENTERPRISE_DOCUMENTATION.ADD_DOCUMENT' | translate }}</button>
+                    </div>
+                </div>
+                <!--<documentation-list (delete)="onDelete($event)" (upload)="onUpload($event)" [entities]="entities$ | async"></documentation-list>-->
+                <enterprise-documentation-table (upload)="onUpload($event,'','')" (delete)="onDelete($event)" [canDelete]="true" [showActions]="true" [entities]="entities$ | async" [enterpriseStatus]="enterpriseStatus$ |async"></enterprise-documentation-table>
+                <div fxLayout="row" fxLayoutGap="24px">
+                    <span fxFlex="30%"></span>
+                    <div fxFlex fxLayout="row" fxLayoutAlign="space-between center">
+                        <mat-checkbox [(ngModel)]="hasAccepted" color="primary">
+                            {{ 'UPLOAD_DOCUMENTATION_PAGE.TAC_CHECKBOX_LABEL' | translate }}
+                        </mat-checkbox>
+                        <button (click)="onRequest()" [disabled]="
+                                !hasAccepted ||
+                                (isSubmitting$ | async)
+                            " mat-flat-button color="primary">
+                            {{
+                                'COMMON.ACTIONS.SEND_REQUEST'
+                                    | translate
+                                    | uppercase
+                            }}
+                        </button>
+                    </div>
+                </div>
+            </div>
+        </ng-template>
+    </ng-template>
+</div>

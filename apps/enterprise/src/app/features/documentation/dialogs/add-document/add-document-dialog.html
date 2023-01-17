@@ -1,0 +1,89 @@
+<form fxLayout="column" fxLayoutGap="12px" [formGroup]="form" (ngSubmit)='onSubmit()'>
+
+    <h2 mat-dialog-title class="mat-title">
+        {{ 'ADD_DOCUMENT.TITLE' | translate }}
+    </h2>
+
+    <mat-form-field>
+        <mat-label>{{ 'ADD_DOCUMENT.DOCUMENT_TYPE' | translate }}</mat-label>
+        <mat-select name="document-type" [placeholder]="'ADD_DOCUMENT.PD_SELECT_DOCUMENT' | translate" formControlName="documentType" (selectionChange)="changeDocumentType($event.value)">
+            <mat-option *ngFor="let document of data.entities " [value]="document.code">
+                {{ 'ADD_DOCUMENT.' + document.code | translate}}
+            </mat-option>
+            <!--<mat-option [value]="'MINUTES_DEBTORS_SHAREHOLDERS_MEETING'">{{ 'ADD_DOCUMENT.SIGNER_PARTNERS' | translate }}</mat-option>
+            <mat-option [value]="'CODEBTORS_CHAMBER_COMMERCE'">{{ 'ADD_DOCUMENT.COSIGNER_COMMERCE' | translate }}</mat-option>
+            <mat-option [value]="'MINUTES_MEETING_CODEBTORS'">{{ 'ADD_DOCUMENT.COSIGNER_PARTNERS' | translate }}</mat-option>
+            <mat-option [value]="'OTHER_DOCUMENTS'">{{ 'ADD_DOCUMENT.OTHER' | translate }}</mat-option>
+            -->
+        </mat-select>
+        <mat-error>
+            <span *ngIf="form.hasError('required', 'documentType')">
+              {{ 'COMMON.VALIDATIONS.REQUIRED' | translate }}
+          </span>
+        </mat-error>
+    </mat-form-field>
+
+    <mat-form-field fxflex [style.width.%]="100">
+        <mat-label>{{ 'ADD_DOCUMENT.COMPLEMENTARY_TEXT' | translate }}{{(form.get('documentType').value != 'OTHER_DOCUMENTS')?'':'*'}}</mat-label>
+        <input matInput maxlength="100" type="text" autocomplete='off' formControlName="documentTypeDescription" />
+        <mat-error>
+            <span *ngIf="form.hasError('maxlength', 'documentTypeDescription')">
+                {{ 'COMMON.VALIDATIONS.MAX_LENGTH' | translate: { maxLength: 100} }}
+            </span>
+        </mat-error>
+    </mat-form-field>
+
+    <mat-form-field>
+        <mat-label>{{ 'ADD_DOCUMENT.SELECT_TIME_TYPE' | translate }}</mat-label>
+        <mat-select name="time-type" [placeholder]="'ADD_DOCUMENT.SELECT_TIME_TYPE' | translate" formControlName="timeType" (selectionChange)="changeTimeType($event)">
+            <mat-option [value]="'defined'">{{ 'ADD_DOCUMENT.DEFINED' | translate }}</mat-option>
+            <mat-option [value]="'undefined'">{{ 'ADD_DOCUMENT.UNDEFINED' | translate }}</mat-option>
+        </mat-select>
+        <mat-error>
+            <span *ngIf="form.hasError('required', 'timeType')">
+              {{ 'COMMON.VALIDATIONS.REQUIRED' | translate }}
+          </span>
+        </mat-error>
+    </mat-form-field>
+
+    <div style='display: flex; align-items: center; justify-content: space-between;' *ngIf='form.value.timeType === "defined" || isShowEffectiveness'>
+        <mat-form-field fxflex [style.width.%]="80">
+            <mat-label>{{ 'ADD_DOCUMENT.VALIDITY' | translate }}</mat-label>
+            <input matInput type="text" maxlength='3' minlength='1' autocomplete='off' formControlName="effectiveness" (input)="validateTime($event.target.value)" />
+            <mat-error>
+                <span *ngIf="form.hasError('required', 'effectiveness')">
+                    {{ 'COMMON.VALIDATIONS.REQUIRED' | translate }}
+                </span>
+                <span *ngIf="form.hasError('maxlength', 'effectiveness')">
+                    {{ 'COMMON.VALIDATIONS.MAX_LENGTH' | translate: { maxLength: 3} }}
+                </span>
+                <span *ngIf="form.hasError('minlength', 'effectiveness')">
+                    {{ 'COMMON.VALIDATIONS.MIN_LENGTH' | translate: { minLength: 1} }}
+                </span>
+            </mat-error>
+        </mat-form-field>
+        <span class='mat-body' style='margin-bottom: 20px;'>{{ 'ADD_DOCUMENT.MONTHS' | translate }}</span>
+    </div>
+
+    <mat-form-field fxflex [style.width.%]="100">
+        <mat-label>{{ 'ADD_DOCUMENT.COMMENTS' | translate }}</mat-label>
+        <textarea matInput type="text" formControlName="comment" rows='4' maxlength='500'></textarea>
+        <mat-error>
+            <span *ngIf="form.hasError('required', 'comment')">
+                {{ 'COMMON.VALIDATIONS.REQUIRED' | translate }}
+            </span>
+            <span *ngIf="form.hasError('maxlength', 'comment')">
+                {{ 'COMMON.VALIDATIONS.MAX_LENGTH' | translate: { maxLength: 500} }}
+            </span>
+        </mat-error>
+    </mat-form-field>
+
+    <mat-dialog-actions fxLayoutAlign="end" fxLayoutGap="15px">
+        <button [mat-dialog-close]="'cancel'" type="button" mat-button mat-dialog-close>
+            {{ 'ADD_DOCUMENT.CANCEL' | translate }}
+        </button>
+        <button [disabled]="!form.valid" mat-flat-button color="primary" type='submit'>
+            {{ 'ADD_DOCUMENT.UPLOAD_FILE' | translate }}
+        </button>
+    </mat-dialog-actions>
+</form>

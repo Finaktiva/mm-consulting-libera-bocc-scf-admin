@@ -1,0 +1,26 @@
+<div fxLayout="column">
+    <h2 class="mat-title">
+        Enlace enviado
+    </h2>
+    <div class="mat-body">
+        <p>
+            Comprueba tu bandeja de entrada y haz click en el enlace que te
+            hemos enviado.
+        </p>
+        <p>
+            Sino encuentras el mail, espera unos minutos o revisa tu carpeta de
+            spam.
+        </p>
+    </div>
+    <button
+        mat-flat-button
+        color="accent"
+        (click)="onSubmit()"
+        [disabled]="isSendingEmail$ | async"
+    >
+        Reenviar
+    </button>
+    <a mat-button routerLink="/sign-in" [style.margin-top.px]="10">
+        Regresar a inicio de sesión
+    </a>
+</div>

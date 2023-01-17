@@ -1,0 +1,40 @@
+<mat-progress-bar
+    *ngIf="(shouldRenderProgressBar$ | async)"
+    mode="indeterminate"
+></mat-progress-bar>
+<h1 mat-dialog-title>
+    {{ 'DOCUMENTATION_DIALOG.TITLE' | translate }}
+</h1>
+<mat-dialog-content>
+    <p class="mat-body">
+        {{ 'DOCUMENTATION_DIALOG.BODY' | translate }}
+    </p>
+    <div style="margin-bottom: 10px">
+        <documentation-card
+            [isDeleting]="isDeleting$ | async"
+            (delete)="onDeleteFile()"
+            [file]="file$ | async"
+            *ngIf="(file$ | async); else dropzone"
+        ></documentation-card>
+        <ng-template #dropzone>
+            <documentation-dropzone
+                [error]="error$ | async"
+                [isSubmitting]="isUploading$ | async"
+                (onSubmit)="onUploadFile($event)"
+            ></documentation-dropzone>
+        </ng-template>
+    </div>
+</mat-dialog-content>
+<mat-dialog-actions fxLayout="row" fxLayoutAlign="end" fxLayoutGap="12px">
+    <button mat-dialog-close mat-button>
+        {{ 'COMMON.ACTIONS.CANCEL' | translate | uppercase }}
+    </button>
+    <button
+        (click)="onSubmit()"
+        [disabled]="shouldDisableSubmitButton$ | async"
+        mat-flat-button
+        color="primary"
+    >
+        {{ 'COMMON.ACTIONS.SEND_REQUEST' | translate | uppercase }}
+    </button>
+</mat-dialog-actions>

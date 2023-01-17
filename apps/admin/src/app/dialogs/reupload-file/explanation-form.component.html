@@ -1,0 +1,20 @@
+<form
+    (ngSubmit)="onSubmit()"
+    [formGroup]="form"
+    fxLayout="column"
+    fxLayoutAlign="start stretch"
+>
+    <mat-form-field>
+        <textarea
+            required
+            formControlName="explanation"
+            rows="8"
+            matInput
+            [placeholder]="'REUPLOAD_FILE_DIALOG.REJECT_REASON' | translate"
+        ></textarea>
+        <mat-error>
+            {{ 'COMMON.VALIDATIONS.REQUIRED' | translate }}
+        </mat-error>
+    </mat-form-field>
+    <button hidden #submitButton></button>
+</form>

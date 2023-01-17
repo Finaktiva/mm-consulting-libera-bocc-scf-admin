@@ -1,0 +1,68 @@
+<form [formGroup]="form" fxLayout="column">
+    <div fxLayout="row" fxLayoutGap="15px">
+        <mat-form-field>
+            <mat-label>
+                {{ 'ENTERPRISE_INFO.SOCIAL_REASON' | translate }}
+            </mat-label>
+            <input
+                matInput
+                [readonly]="true"
+                formControlName="enterpriseName"
+            />
+        </mat-form-field>
+        <ng-container formGroupName="owner">
+            <mat-form-field>
+                <mat-label>
+                    {{ 'ENTERPRISE_INFO.NAME' | translate }}
+                </mat-label>
+                <input matInput [readonly]="true" formControlName="name" />
+            </mat-form-field>
+            <mat-form-field>
+                <mat-label>
+                    {{ 'ENTERPRISE_INFO.EMAIL' | translate }}
+                </mat-label>
+                <input matInput [readonly]="true" formControlName="email" />
+            </mat-form-field>
+        </ng-container>
+    </div>
+    <div fxLayout="row" fxLayoutGap="15px">
+        <mat-form-field>
+            <mat-label>
+                {{ 'ENTERPRISE_INFO.NIT' | translate }}
+            </mat-label>
+            <input matInput [readonly]="true" formControlName="nit" />
+        </mat-form-field>
+        <mat-form-field>
+            <mat-label>
+                {{ 'ENTERPRISE_INFO.LINKING_DATE' | translate }}
+            </mat-label>
+            <input
+                matInput
+                [readonly]="true"
+                formControlName="vinculationDate"
+                [matDatepicker]="picker"
+            />
+            <mat-datepicker #picker></mat-datepicker>
+        </mat-form-field>
+        <div fxLayout="column">
+            <span class="mat-body">
+                {{ 'COMMON.ACTIVE_MODULES' | translate }}
+            </span>
+            <div fxLayout="row" fxLayoutGap="8px">
+                <circle-chip
+                    *ngFor="let module of form.value.modules"
+                    color="primary"
+                >
+                    <span [matTooltip]="'COMMON.MODULES.' + module | translate">
+                        {{
+                            'COMMON.MODULES.' + module
+                                | translate
+                                | slice: 0:2
+                                | uppercase
+                        }}
+                    </span>
+                </circle-chip>
+            </div>
+        </div>
+    </div>
+</form>

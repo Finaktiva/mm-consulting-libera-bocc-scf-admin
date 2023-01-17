@@ -1,0 +1,2084 @@
+{
+    "COMMON": {
+        "VALIDATIONS": {
+            "INVALID_COLOR": "It's not a valid color",
+            "BEFORE_TODAY": "You can't choose a date before today.",
+            "AFTER_TODAY": "You can't choose a date after today.",
+            "NO_PROVIDER_SELECTED": "You must choose some provider from the options.",
+            "ONLY_XLSX_FILES": "Only .xlsx files",
+            "SEVERAL_FILES": "Only .pdf, .png, .jpg, .zip o .rar files",
+            "SOME_FILES": "Only .pdf files or images",
+            "REQUIRED": "Field is required",
+            "MIN_LENGTH": "Should have at least {{ minLength }} characters",
+            "MAX_LENGTH": "Can't have more than {{maxLength}} characters",
+            "PASSWORD_PATTERN": "Should have at least one uppercase, lowercase, number and special character.",
+            "PASSWORD_MISMATCH": "Passwords don't match",
+            "EXACT_LENGTH": "Should have exactly {{ length }} digits",
+            "ONLY_DIGITS": "Only digits are allowed",
+            "ONLY_LETTERS": "Only letters are allowed",
+            "INVALID_EMAIL": "It's not a valid email format",
+            "NO_CONTENT": "You have not inserted characters.",
+            "NOT_CONTAINS_CHARACTERS": "Doesn't contains characters",
+            "NIT_PATTERN": "The NIT must contain a minimum of 8 characters and only numbers",
+            "CIIU_PATTERN": "The CIIU code must contain 4 numbers.",
+            "CIIU_NOT_FOUND": "CIIU code not found, check the information",
+            "INVALID_NIT": "It's not a valid NIT",
+            "AT_LEAST_ONE_MODULE": "You must select at least one module",
+            "NEGATIVE_NUMBER": "This field doesn't accept negative numbers.",
+            "MIN": "This field must be greater or equal to {{ min }}",
+            "MAX_LENGTH_DIGIT": "Can't have more than {{maxLength}} digits",
+            "ALPHANUMERIC": "The field is alphanumeric",
+            "NO_REGISTERS_SAVED": "Document number not found, check the information",
+            "DOCUMENT_REQUIRED": "You must select a document",
+            "ONLY_PDF": "Only the upload of files in PDF extension is allowed",
+            "INVALID_DOCUMENT_TYPE": "You uploaded a file in a different format than the one accepted",
+            "INVALID_DATE":"It is not possible to fill in a date later than today",
+            "INVALID_DEPARTMENT": "It's not a valid department",
+            "INVALID_CITY": "It's not a valid city",
+            "INVALID_BANK": "It's not a valid bank",
+            "INVALID_REGION": "It's not a valid region",
+            "EMAIL_INFORMATION": "The email must contain a minimum of 5 and a maximum of 32 characters before the at sign"
+        },
+        "ACTIVE_MODULES": "Active modules",
+        "PRODUCTS": {
+            "UNIDIRECT": "Unidirect",
+            "FACTORING": "Firm Factoring",
+            "CONFIRMING": "Confirming",
+            "DOCUMENT_DISCOUNT": "Documents Discount"
+        },
+        "ERRORS": {
+            "LOAD_ENTERPRISE": "There was a error loading your enterprises's data.",
+            "LOAD_BRANDING": "There was a error loading the branding.",
+            "FILE_UPLOAD": "There was a error uploading the file.",
+            "LOAD_DOCUMENTS": "There was a error loading the documents.",
+            "LOAD_HISTORY": "There was a error loading the history.",
+            "LOAD_INVOICE": "There was a error loading the invoice.",
+            "LOAD_CUSTOMIZED_FIELDS": "There was a error loading the custom fields.",
+            "LOAD_MODULES": "There was a error loading the modules.",
+            "PAGE_LOAD": "There was an error loading the page.",
+            "INFO_LOAD": "There was an error loading the data.",
+            "LADA_LOAD_ERROR": "There was an error loading the ladas.",
+            "SESSION_EXPIRED": "After 10 minutes of inactivity we have closed your session for security.",
+            "CODE": {
+                "SCF.LIBERA.226": "At least a comment or a file must be inserted."
+            }
+        },
+        "ACTIONS": {
+            "RESET_VALUES": "Restore default values",
+            "DOWNLOAD": "Download",
+            "LOGOUT": "Logout",
+            "SEND_REQUEST": "Send request",
+            "ADD_INVOICE": "Add invoice",
+            "UPDATE": "Update",
+            "RELOAD": "Reload",
+            "ACCEPT": "Accept",
+            "CANCEL": "Cancel",
+            "SEND": "Send",
+            "SAVE": "Save",
+            "CREATE": "Create",
+            "RETRY": "Retry",
+            "ACTIVATE": "Activate",
+            "EDIT": "Edit",
+            "DELETE": "Delete",
+            "REPLACE": "Replace",
+            "GO_BACK": "Go back",
+            "PAYMENT": "Payment",
+            "REJECT": "Reject",
+            "ASSIGN": "Assign",
+            "QUOTE_REQUEST": "Request quote",
+            "UPDATE_QUOTE": "Update quote",
+            "REQUEST_QUOTA_EXTENSION": "Request quota extension",
+            "YES_ACCEPT": "Yes, I accept",
+            "CONFIRM": "Confirm",
+            "REQUEST": "Request",
+            "YES_REJECT": "Yes, I reject",
+            "REJECT_PAYMENT": "Reject payment",
+            "CONFIRM_PAYMENT": "Confirm payment",
+            "NEGOTIATE": "Negotiate",
+            "APPROVE": "Approve"
+        },
+        "LOADING": "Loading",
+        "DELETING": "Deleting",
+        "LABELS": {
+            "SEND": "Send",
+            "ADD_NEW_DOCUMENT": "Add new document",
+            "NEXT": "Next",
+            "BACK": "Back",
+            "FINISH": "Finish",
+            "UNASSIGNED": "Unassigned",
+            "PAYMENT_DATE": "Payment date",
+            "DISCOUNT_TYPE": "Discount type",
+            "DISCOUNT_RATE": "Discount rate",
+            "DISCOUNT_EXPIRATION": "Discount expiration",
+            "EXPECTED_PAYMENT_DATE": "Expected payment date",
+            "EXPIRATION_DATE": "Expiration date",
+            "DISCOUNT_VALUE": "Invoice with discount",
+            "INVOICE_NUMBER": "Invoice number",
+            "PAYER": "Payer",
+            "CONFIRM": "Yes, I am sure",
+            "PAYMENT_INDICATIONS": "Payment indications",
+            "FUNDING_REQUEST": "Request funding",
+            "BULK_LOADS": "Bulk loads",
+            "INVOICES": "Invoices",
+            "PERSONALIZATION": "Customization",
+            "CONTACT": "Contact",
+            "ENTERPRISE_TYPE": "Enterprise type",
+            "ENTERPRISE": "Enterprise",
+            "PROVIDERS": "Providers",
+            "PHONE": "Phone",
+            "BULK_LOAD": "Bulk load",
+            "COMMENTS": "Comments",
+            "ECONOMIC_SECTOR": "Economic sector",
+            "SELECT_FIELD": "Select field",
+            "NIT": "Document number",
+            "SOCIAL_REASON": "Social reason",
+            "EMAIL": "Email",
+            "ACTIVE_MODULES": "Active modules",
+            "LINKING_DATE": "Linking date",
+            "ACTIONS": "Actions",
+            "STATUS": "Status",
+            "DOCUMENTATION": "Documentation",
+            "ROLES": "Roles",
+            "ROLE": "Role",
+            "RETRY": "Retry",
+            "FILTER_BY": "Filter by",
+            "CLEAN_FILTERS": "Clean filters",
+            "PROVIDER": "Provider",
+            "UPLOAD_DATE": "Upload date",
+            "BACK_TO_LIST": "Back to list",
+            "INVOICE": "Invoice",
+            "BULK_NEGOTIATION_WARN": "If you want to negotiate in bulk, you must filter your invoices by provider",
+            "BULK_NEGOTIATION_MULTIPLE_CURRENCIES_WARNING": "It's not possible to negotiate with multiple selected currencies: {{currencies}}",
+            "BULK_NEGOTIATION_ONLY_ONE_PROVIDER": "It is not possible to negotiate invoices from more than one provider at the same time, verify your selection",
+            "DAYS": "Days",
+            "DAY": "Day",
+            "RATE": "Rate",
+            "PUNCTUAL_PLAN": "Punctual plan",
+            "DOCUMENT_TYPES": {
+                "NIT": "NIT",
+                "IDENTIFICATION_CARD": "Identification card",
+                "FOREIGNER_ID": "Foreigner Id",
+                "AUTONOMOUS_HERITAGE": "Autonomous heritage",
+                "PASSPORT": "Passport"
+            }
+        },
+        "FILTERS": {
+            "INVOICE_NUMBER": "Invoice number",
+            "MODULE": "Module",
+            "EXPIRATION_DATE": "Expiration date",
+            "NIT": "Document number",
+            "CREATION_DATE": "Creation date",
+            "FOLIO": "Folio",
+            "SOCIAL_REASON": "Social reason",
+            "LINKING_DATE": "Linking date",
+            "PAYER": "Payer",
+            "FUNDING": "Lender",
+            "PROVIDER": "Provider",
+            "STATUS": "Status",
+            "STATUS_OPTIONS": {
+                "PENDING_ACCEPTANCE": "Payer acceptance pending",
+                "CURRENT": "Current",
+                "ABOUT_TO_EXPIRE": "About to expire",
+                "EXPIRED": "Expired",
+                "REJECTED": "Rejected by payer"
+            },
+            "IDENTIFICATION_NUMBER": "Identification number",
+            "MODALITY": "Modality",
+            "MODALITIES": {
+                "EXPONENTIAL": "Exponential",
+                "COMMISSION": "Commission",
+                "FINANCED": "Financed"
+            },
+            "DESCRIPTION": "Description",
+            "DESCRIPTIONS": {
+                "EXPONENTIAL": "With discount",
+                "COMMISSION": "Without discount",
+                "FINANCED": "With discount and additional financing"
+            },
+            "EFFECTIVE_PAYMENT_DATE": "Effective payment date",
+            "EXPECTED_PAYMENT_DATE": "Expected payment date",
+            "PAYER_SOCIAL_REASON": "Payer's social reason"
+        },
+        "ENTERPRISE_TYPE": {
+            "PUBLIC": "Public",
+            "PRIVATE": "Private",
+            "MIXED": "Mixed",
+            "SELF_MANAGEMENT": "Self-management"
+        },
+        "MODULES": {
+            "PAYER": "Payer",
+            "PROVIDER": "Provider",
+            "FUNDING": "Lender",
+            "ADMIN": "Administrator"
+        },
+        "ENTERPRISE_STATUS": {
+            "PENDING_ACCOUNT_CONFIRMATION": "Pending account activation",
+            "ENABLED": "Enabled",
+            "REJECTED": "Rejected",
+            "INCOMPLETE_ACCOUNT": "Missing documentation",
+            "EVALUATION_PENDING": "Pending approval",
+            "DISABLED": "Disabled",
+            "PENDING_ACCOUNT_CREATION": "Pending account creation",
+            "REQUESTED_MODULE": "Module request"
+        },
+        "BULK_INVOICE_NEGOTIATION_STATUS": {
+            "NEGOTIATION_IN_PROGRESS": "In progress",
+            "NEGOTIATION_APPROVED": "Approved",
+            "NEGOTIATION_REJECTED": "Rejected",
+            "NEGOTIATION_CANCELED": "Canceled",
+            "NEGOTIATION_EXPIRED": "Expired"
+        },
+        "INVOICE_PAYMENT_TYPE": {
+            "CASH": "Cash",
+            "DEPOSIT": "Deposit",
+            "PAYCHECK": "Check",
+            "ELECTRONIC_TRANSFERENCE": "Electronic transfer"
+        },
+        "INVOICE_DOCUMENT_TYPE": {
+            "CREDIT_NOTE": "Credit note",
+            "INVOICE": "Invoice"
+        },
+        "CUSTOMIZE": {
+            "TITLE": "Customization",
+            "MANAGE_CUSTOM_INFO": "Manage custom information"
+        },
+        "INVOICE_FIELDS": {
+            "INVOICE_NUMBER": "Invoice number",
+            "ALTERNATE_INVOICE_ID": "Alternate invoice ID",
+            "EMISSION_DATE": "Emission date",
+            "EXPIRATION_DATE": "Expiration date",
+            "DOCUMENT_TYPE": "Document type",
+            "INVOICE_VALUE": "Invoice value",
+            "CURRENCY": "Currency",
+            "PAYMENT_TYPE": "Payment type",
+            "VAT": "VAT value",
+            "RETENTIONS": "Retentions value",
+            "CREDIT_NOTES_VALUE": "Credit notes value",
+            "PAYMENT_ADVANCE": "Advance Value",
+            "NIT": "Document number",
+            "INVOICE_STATUS": "Status",
+            "AMOUNT": "Amount",
+            "EXPECTED_PAYMENT_DATE": "Expected payment date"
+        },
+        "INVOICE_STATUS": {
+            "AVAILABLE": "Available",
+            "LOADED": "Loaded",
+            "PAID": "Paid",
+            "DELETED": "Deleted",
+            "FUNDING_IN_PROGRESS": "Funding in progress",
+            "FUNDING_FINISHED": "Funding finished",
+            "NEGOTIATION_FINISHED": "Negotiation finished",
+            "NEGOTIATION_IN_PROGRESS": "Negotiation in progress",
+            "PAYMENT_CONFIRMED": "Payment confirmed"
+        },
+        "NEGOTIATION_DISCOUNT_TYPE": {
+            "ANTICIPATED_MONTH_RATE": "Anticipated month rate",
+            "EXPIRED_MONTH_RATE": "Expired month rate",
+            "FIXED_RATE": "Fixed net"
+        },
+        "OFFER": {
+            "ACCEPT": {
+                "TITLE": "Accept offer",
+                "BODY": "Are you sure you wish to accept the offer?"
+            },
+            "REJECT": {
+                "TITLE": "Reject offer",
+                "BODY": "Are you sure you wish to reject the offer?"
+            }
+        },
+        "INVOICE_TABS": {
+            "INVOICE_INFO": "Invoice data",
+            "NEGOTIATION": "Negotiation",
+            "FUNDING": "Funding",
+            "PAYMENT": "Payment"
+        },
+        "INVOICE_PAYMENT": {
+            "EXPECTED_PAYMENT_DATE": "Expected payment date",
+            "DISCOUNT_AMOUNT": "Discount value"
+        },
+        "NEGOTIATION": {
+            "ERROR_LOAD_NEGOTIATIONS": "There was a error loading the negotiations.",
+            "WITHOUT_NEGOTIATIONS": "You didn't have made any negotiation on this invoice",
+            "PAYER_OFFER": "Payer Offer Simulation",
+            "PROVIDER_OFFER": "Provider Offer Simulation",
+            "DISCLAIMER": "This is a negotiation test, all data may change, final data is negotiator's responsability.",
+            "ACTIONS": {
+                "REJECT_OFFER": "Reject offer",
+                "COUNTER_OFFER": "Counteroffer",
+                "ACCEPT_OFFER": "Accept offer",
+                "CANCEL_OFFER": "Cancel offer"
+            },
+            "BULK_LOAD": "This invoice has been negotiated by blocked, you can find the general details in the section \"Bulk negotiations\""
+        },
+        "NEGOTIATION_STATUS": {
+            "APPROVED": "Accepted",
+            "CANCELLED": "Canceled",
+            "EXPIRED": "Expired",
+            "PAYER_PENDING_RESPONSE": "Pending payer response",
+            "PROVIDER_PENDING_RESPONSE": "Pending provider response",
+            "REJECTED": "Rejected"
+        },
+        "LENDER_STATUS": {
+            "LENDER_PAYMENT_CONFIRMATION": "Lender payment confirmation",
+            "PENDING_LENDER_PAYMENT_CONFIRMATION": "Pending lender payment",
+            "PENDING_PROVIDER_PAYMENT_CONFIRMATION": "Pending provider payment",
+            "PROVIDER_PAYMENT_CONFIRMATION": "Provider payment confirmation",
+            "REJECTED": "Rejected"
+        },
+        "LENDER_QUOTA_RATE": {
+            "ADVANCE_MONTH_RATE": "Month in advance",
+            "ANNUAL_RATE": "Annual",
+            "DUE_MONTH_RATE": "Expired month",
+            "FIXED_RATE": "Fixed",
+            "PREFERENTIAL_RATE": "Preferential",
+            "VARIABLE_RATE": "Variable"
+        },
+        "LENDER_QUOTA_REQUEST_STATUS": {
+            "APPROVED": "Approved",
+            "PENDING_LENDER_APPROVAL": "Pending lender approval",
+            "PENDING_PAYER_APPROVAL": "Pending payer approval",
+            "REJECTED": "Rejected"
+        },
+        "LENDER_QUOTA_REQUEST_TYPE": {
+            "AMOUNT_UPGRADE": "Increase amount",
+            "NEW_FUNDING": "New funding",
+            "PAYMENT": "Amount upgrade"
+        },
+        "ENTERPRISE_DOCUMENTATION_STATUS": {
+            "ACCEPTED": "Approved",
+            "REJECTED": "Rejected",
+            "PENDING": "Document not loaded",
+            "LOADED": "Loaded",
+            "EVALUATION_PENDING": "In evaluation",
+            "DISABLED": "",
+            "RELOAD_FILE": "Re-requested",
+            "CURRENT": "Current",
+            "ABOUT_TO_EXPIRE": "About to expire",
+            "EXPIRED": "Expired"
+        },
+        "USER_STATUS": {
+            "ACTIVE": "Active",
+            "PENDING": "Pending",
+            "DISABLED": "Disabled"
+        },
+        "ENTERPRISE_REQUEST_STATUS": {
+            "ACCEPTED": "Accepted",
+            "REJECTED": "Rejected",
+            "EVALUATION_PENDING": "Pending"
+        },
+        "USER_ROLES": {
+            "LIBERA_ADMIN": "Libera Administrator"
+        },
+        "ENTERPRISE": {
+            "ENTERPRISE_UPDATE": "Enterprise has been updated.",
+            "ERROR_LOAD_ENTERPRISE": "There was an error updating the enterprise."
+        }
+    },
+    "ADD_DOCUMENT": {
+        "TITLE": "Add document",
+        "DOCUMENT_TYPE": "Document to request",
+        "MINUTES_DEBTORS_SHAREHOLDERS_MEETING": "Minutes of the meeting of signers",
+        "CODEBTORS_CHAMBER_COMMERCE": "Chamber of commerce cosigner",
+        "MINUTES_MEETING_CODEBTORS": "Minutes of the meeting of cosigner",
+        "OTHER_DOCUMENTS": "Other",
+        "COMPLEMENTARY_TEXT": "Complementary text",
+        "SELECT_TIME_TYPE": "Select the document's due date",
+        "DEFINED": "Determined time",
+        "UNDEFINED": "Undefined",
+        "PD_SELECT_DOCUMENT": "Select the document type",
+        "VALIDITY": "Due date",
+        "COMMENTS": "Comments",
+        "CANCEL": "Cancel",
+        "UPLOAD_FILE": "Save",
+        "MONTHS": "Months"
+    },
+    "APPROVE_DOCUMENT": {
+        "EXPEDITION_DATE": "Expedition date",
+        "COMMENTS": "Comments",
+        "ACCEPT": "Accept",
+        "CANCEL": "Cancel",
+        "ACCEPT_TITLE": "Accept document",
+        "DECLINE_TITLE": "Decline document",
+        "DECLINE": "Decline"
+    },
+    "DELETE_DOCUMENT": {
+        "TITLE": "Delete document",
+        "BODY": "If you delete this file it could not be recoveried. Continue?",
+        "CHECK_TEXT": "Yes, I'm sure",
+        "DELETE": "Delete",
+        "CANCEL": "Cancel"
+    },
+    "FILE_DROPZONE": {
+        "MESSAGE": "Drag your file here or",
+        "MESSAGE_TEMPLATE": "Drag and drop your \"{{ type }}\" file here ",
+        "SELECT": "Choose one",
+        "SELECT_FILE": "Choose some file",
+        "CHANGE_FILE": "Change file",
+        "SEARCH_FILE": "Search file",
+        "REPLACE_FILE": "Remplace file",
+        "OR": "or",
+        "MESSAGE_TWO": "Drag your file here "
+    },
+    "IMAGE_FORM": {
+        "TOOLTIP": "Choose some image"
+    },
+    "THEME_FORM": {
+        "PRIMARY": "Primary",
+        "SECONDARY": "Secondary"
+    },
+    "APPEREANCE_PAGE": {
+        "TITLE": "Appearance",
+        "COLORS": "Colors",
+        "COLORS_EXPLANATION": "Explanation of primary and secondary colors",
+        "LOGO": "Logo",
+        "LOGO_RESTRICTIONS": "The file must have a png extension and it's recommended size is around 40px x 200px",
+        "FAVICON": "Favicon",
+        "FAVICON_RESTRICTIONS": "The file must have an ico extension and it's recommended size is 16px x 16px."
+    },
+    "DOCUMENTATION_DROPZONE": {
+        "ONLY_PDF_TOOLTIP": "Only .pdf files are allowed.",
+        "UPLOADING": "Uploading"
+    },
+    "DOCUMENTATION_STATUS_PAGE": {
+        "TITLE": "Request in progress"
+    },
+    "UPLOAD_DOCUMENTATION_PAGE": {
+        "TITLE": "Document load",
+        "SUBTITLE": "Download and complete the \"vinculation form\", they must be signed by the legal representative, once signed you can upload it.",
+        "TAC_CHECKBOX_LABEL": "I agree with the terms and conditions"
+    },
+    "BULK_INVOICE_FORM": {
+        "CHOOSE_FILE": "Choose file",
+        "UPLOAD_RECOMENDATIONS": {
+            "TITLE": "Load recommendations",
+            "VALID_VALUES": "Verify that file cells have valid values. For example, numeric fields doesn't contain letters or other special characters.",
+            "NIT": "The NIT must follow the format XXX.XXX.XXX-Y placing the mentioned punctuation.",
+            "CONFIGS": "The settings \"Document type \", \"Currency \", \"Payment type \" and \"Custom fields \", will apply to all invoices that are loaded into the file. We recommend you grouping invoices in bulk upload files according to this criteria.",
+            "DATE": "Verify that you file dates follow the format DD/MM/YYYY, for example: 10/01/2019 or 10-jan-2019",
+            "PAYMENT": "The amount, VAT value, withholding value, credit note value and advance value fields must obey the following formats 100 or 123,123,123.10 or 00.12 without signs such as $",
+            "FORMAT": "Verify that the cells in the file only specify invoices without field titles."
+        },
+        "CONFIG": {
+            "TITLE": "Settings",
+            "MESSAGE": "Please fill the following fields and remember that they apply to all invoices in the file.",
+            "CURRENCY": "Currency",
+            "PAYMENT_TYPE": "Payment type",
+            "DOCUMENT_TYPE": "Document type"
+        },
+        "SHEET": {
+            "TITLE": "Choose the sheet",
+            "MESSAGE": "Please choose the sheet from which you want to extract the invoices.",
+            "LABEL": "Sheet",
+            "SELECT_SHEET_ERROR": "You must choose some sheet to extract the information"
+        },
+        "COLUMNS": {
+            "TITLE": "Associate the columns",
+            "MESSAGE": "Categorize file columns, you cannot continue unless you have associated all the necessary fields."
+        },
+        "INVOICE_FIELD": {
+            "NONE": "None",
+            "ALTERNATIVE_INVOICE_ID": "Alternative invoice ID",
+            "EMISSION_DATE": "Emission date",
+            "EXPIRATION_DATE": "Expiration date",
+            "AMOUNT": "Invoice value",
+            "VAT": "VAT value",
+            "RETENTIONS": "Retention value",
+            "CREDIT_NOTES_VALUE": "Credit notes value",
+            "PAYMENT_ADVANCE": "Payment advance value",
+            "NIT": "Document number",
+            "PROVIDER": "Provider"
+        },
+        "EMPTY_CELL": "Empty cell"
+    },
+    "BULK_INVOICE_TABLE": {
+        "FOLIO": "Folio",
+        "ARCHIVE": "File",
+        "UPLOAD_DATE": "Upload date",
+        "STATUS": "Status",
+        "INVOICE_STATUS": {
+            "COMPLETED": "Completed",
+            "ERROR": "Error",
+            "PENDING_COMPLETION": "Pending"
+        },
+        "ACTIONS": "Actions"
+    },
+    "CUSTOM_ATTRIBUTE_FORM": {
+        "FIELD_NAME": "Field name",
+        "FIELD_TYPE": "Field type",
+        "FIELD_TYPES": {
+            "TEXT": "Text",
+            "DATE": "Date",
+            "INTEGER": "Integer",
+            "DECIMAL": "Decimal"
+        }
+    },
+    "CUSTOM_ATTRIBUTE_TABLE": {
+        "CUSTOM_FIELD": "Custom field",
+        "CREATION_DATE": "Creation date"
+    },
+    "ENTERPRISE_FORM": {
+        "SOCIAL_REASON": "Social reason",
+        "SOCIAL_REASON_OR_NIT": "Social reason or NIT",
+        "FUNDING_REQUEST": "You must choose some lender from the options",
+        "NIT": "Document number",
+        "ECONOMIC_SECTOR": "Economic sector",
+        "ENTERPRISE_TYPE_LABEL": "Enterprise type",
+        "INDICATIVE": "Indicative",
+        "LADA": "Lada",
+        "EXT": "Extension",
+        "PHONE": "Phone",
+        "NAME": "Name",
+        "FIRST_SURNAME": "First surname",
+        "SECOND_SURNAME": "Second surname",
+        "DOCUMENT_TYPE": {
+            "LABEL": "Document type",
+            "OPTIONS": {
+                "NIT": "NIT",
+                "IDENTIFICATION_CARD": "Identification card",
+                "FOREIGNER_ID": "Foreigner ID",
+                "AUTONOMOUS_HERITAGE": "Autonomous heritage",
+                "PASSPORT": "Passport"
+            }
+        },
+        "PRODUCT_TYPE": "Product type",
+        "DEPARTMENT": "Department",
+        "CITY": "City",
+        "CIIU": "CIIU",
+        "ECONOMIC_ACTIVITY": "Economic activity",
+        "RELATIONSHIP_MANAGER": "Relationship manager",
+        "REGION": "Regional bank",
+        "SALES": "Sales last year",
+        "SALES_CUT": "Sales cut",
+        "ADMIN_INFO": "Contact information",
+        "EMAIL": "Email",
+        "FORM_OF_DISBURSEMENT": {
+            "LABEL": "Form of disbursement",
+            "OPTIONS": {
+                "CREDIT": "Credit",
+                "CHECK": "Check"
+            }
+        },
+        "CREDIT_OPTIONS": {
+            "SAVINGS_ACCOUNT": "Savings account",
+            "CHECKING_ACCOUNT": "Checking account"
+        },
+        "SELECTED_BANK": "Selected Bank"
+    },
+    "INVOICE_FORM": {
+        "INVOICE_INFO": "Invoice data",
+        "PROVIDER": "Provider",
+        "ERRORS": {
+            "AFTER_EXPIRATION_DATE": "It can't be grater thant the expiration date.",
+            "BEFORE_EMISSION_DATE": "It can't be lesser than the emission date."
+        }
+    },
+    "INVOICE_LIST_FILTER_FORM": {
+        "SEARCH": "Search",
+        "DATE": "Date"
+    },
+    "INVOICE_TABLE": {
+        "REAL_EXPIRATION_DATE": "Real expiration date",
+        "DISCOUNT": {
+            "VALUE": "Discount value",
+            "RATE": "Discount rate",
+            "DAYS": "Discount days"
+        },
+        "PAYMENT_EXPIRATION": "Payment expiration"
+    },
+    "NEGOTIATION_FORM": {
+        "MIN_PERCENTAGE": "It can't be less than 0%.",
+        "MAX_PERCENTAGE": "It can't be greater than 99%.",
+        "TITLE": "Effective payment date"
+    },
+    "NEGOTIATION_OFFER_CARD": {
+        "INVOICE_VALUE": "Invoice value"
+    },
+    "NEGOTIATION_TIMELINE": {
+        "EVENT_TYPE": {
+            "APPROVED": "Offer <span style=\"font-weight: 500\"> accepted </span> by {{ name }}",
+            "CANCELLED": "Negotiation <span style=\"font-weight: 500\"> cancelled </span> by {{ name }}",
+            "EXPIRED": "Offer <span style=\"font-weight: 500\">expired.</span> Discount expiration date reached",
+            "COUNTEROFFERED": "Offer <span style=\"font-weight: 500\"> done </span> by {{ name }}",
+            "REJECTED": "Offer <span style=\"font-weight: 500\"> rejected </span> by {{ name }}",
+            "CREATED": "Negotiation created"
+        }
+    },
+    "PROVIDER_INVOICE_LIST_FILTER_FORM": {
+        "START_DATE": "Start date"
+    },
+    "PROVIDER_INVOICE_TABLE": {
+        "START_NEGOTIATION": "Negotiation start"
+    },
+    "CREATE_INVOICE_REDIRECT_DIALOG": {
+        "TITLE": "Negotiation",
+        "BODY": "Your invoice has been successfully uploaded. If you wish to negotiate your invoice payment, you can do so from it's detail.",
+        "ACTIONS": {
+            "CANCEL": "Later",
+            "ACCEPT": "Go to detail"
+        }
+    },
+    "CUSTOM_ATTRIBUTE_CONFIRM_DELETE_DIALOG": {
+        "TITLE": "Delete custom field",
+        "BODY": "Are you sure you want to delete the custom field? It will no longer be shown on the invoice load."
+    },
+    "CUSTOM_ATTRIBUTE_PICKER_DIALOG": {
+        "TITLE": "Choose the desired fields",
+        "ALERT": "It seems you haven't added custom fields yet."
+    },
+    "INVOICE_CONFIRM_DELETE_DIALOG": {
+        "TITLE": "Delete invoice",
+        "BODY": "Are you sure you want to delete this invoice? The captured information can't be recovered."
+    },
+    "NEGOTIATION_DIALOG": {
+        "TITLE": "Negotiate payment"
+    },
+    "PAYER_CANCEL_NEGOTIATION_DIALOG": {
+        "CANCEL_NEGOTIATION": "Cancel negotiation",
+        "BODY": "Are you sure you want to cancel the negotiation?",
+        "NOTIFY_PROVIDER": "Cancellation will be notified to the provider."
+    },
+    "PAYER_REJECT_OFFER_DIALOG": {
+        "REJECT": "Reject"
+    },
+    "FUNDING_REQUEST_FORM": {
+        "FUNDING_VALIDATION": "You must choose a lender from the list"
+    },
+    "FUNDING_REQUEST_TIMELINE": {
+        "EVENT_TYPE": {
+            "APPROVED": "Request <span style=\"font-weight: 500\"> with payment confirmed  </span> by {{ name }}",
+            "WAIT": "Request <span style=\"font-weight: 500\"> standby </span>",
+            "REJECTED": "Request <span style=\"font-weight: 500\"> rejected </span> by {{ name }}"
+        }
+    },
+    "INVOICE_LAYOUT": {
+        "NEGOCIATE_INVOICE_PAYMENT": "Negotiate invoice payment"
+    },
+    "BULK_LIST_PAGE": {
+        "BULK_LOAD": "Upload"
+    },
+    "BULK_LOAD_PAGE": {
+        "ERRORS": {
+            "LOAD_COINS": "There was an error loading the currencies."
+        }
+    },
+    "INVOICE_CREATE_PAGE": {
+        "ADD_INVOICE": "Add invoice",
+        "ERRORS": {
+            "LOAD_COINS": "There was a problem loading the currencies."
+        }
+    },
+    "CUSTOM_ATTRIBUTE_LIST_PAGE": {
+        "NO_CUSTOMIZED_FIELDS": "You don't have any custom attributes yet",
+        "BODY": "The custom attributes added here will be visible in the invoice load",
+        "NEW_FIELD": "New custom attribute"
+    },
+    "FUNDING_REQUEST_PAGE": {
+        "REQUEST_ERROR_LOAD": "There was an error loading funding requests.",
+        "NO_FUNDING_REQUEST": "You've not made any funding request on this invoice yet",
+        "LIST_FUNDING_REQUEST": "Funding request listing",
+        "START_DATE": "Started",
+        "FINISH_DATE": "Finished",
+        "STATUS": {
+            "LENDER_PAYMENT_CONFIRMATION": "Payment confirmed",
+            "REJECTED": "Rejected",
+            "PENDING_LENDER_PAYMENT_CONFIRMATION": "Waiting",
+            "PROVIDER_PAYMENT_CONFIRMATION": "Provider payment confirmation",
+            "PENDING_PROVIDER_PAYMENT_CONFIRMATION": "Pending provider payment confirmation"
+        }
+    },
+    "INVOICE_DETAIL_PAGE": {
+        "INVOICE_INFO": "Invoice details",
+        "PROVIDER": "Provider",
+        "FUNDING": "Funding",
+        "PERSONALIZED_FIELDS": "Custom fields",
+        "NO_PERSONALIZED_FIELDS": "It seems that the invoice doesn't have any custom field.",
+        "WITHOUT_PROVIDER": "It seems that the invoice doesn't have any provider. You can add one.",
+        "WITHOUT_FUNDING": "It seems that the invoide doesn't have any lender. You can add one."
+    },
+    "NEGOTIATION_PAGE": {
+        "WITHOUT_NEGOTIATIONS": "There're not negotiations in progress",
+        "LIST_NEGOTIATIONS": "Negotiations listing",
+        "START_DATE": "Started",
+        "FINISH_DATE": "Finished",
+        "NEGOTIATION_STATUS": {
+            "APPROVED": "Approved",
+            "CANCELLED": "Cancelled",
+            "EXPIRED": "Expired",
+            "PAYER_PENDING_RESPONSE": "Pending payer response",
+            "PROVIDER_PENDING_RESPONSE": "Pending provider response",
+            "REJECTED": "Rejected"
+        }
+    },
+    "PROVIDER": {
+        "INVOICE_DETAIL_PAGE": {
+            "TITLE": "Invoce detail",
+            "WITHOUT_PROVIDER": "It seems that the invoice doesn't have any provider. You can add one"
+        },
+        "INVOICE_LIST_PAGE": {
+            "TITLE": "Invoices"
+        }
+    },
+    "CONFIRM_LINK_PAGE": {
+        "ERROR_VALIDATE_INFO": "There was an error validating the information.",
+        "EXPIRED_INVITATION": "This invitation has expired.",
+        "ACCEPTED_OR_REJECTED_INVITATION": "This invitation has been already accepted or rejected.",
+        "LINK_BENEFITS": "Welcome, this are the benefits that you will get when you link with your payer",
+        "LIST": {
+            "INVOICE_NEGOTIATIONS": "Invoice negotiation",
+            "OBTAINING_LIQUIDITY": "Get immediate liquidity",
+            "EVALUATE_PAYMENT": "Endorse your payments through the platform"
+        }
+    },
+    "MODULE_TABLE": {
+        "MODULES": "Modules",
+        "STATUS": "Status",
+        "ENTERPRISE_MODULE_STATUS": {
+            "ENABLED": "Enabled",
+            "DISABLED": "Disabled",
+            "REJECTED": "Rejected",
+            "VALIDATING_REQUEST": "Validating"
+        },
+        "ACTIVATION_DATE": "Activation date",
+        "REQUIRED_DOCUMENTATION": "Required documentation",
+        "COMMENT": "Comment",
+        "REQUEST_ACTIVATION": "Request activation",
+        "DOWNLOAD": "Download file"
+    },
+    "DOCUMENTATION_DIALOG": {
+        "TITLE": "Document upload",
+        "BODY": "Upload here the digitalized agreement signed by the legal representative to continue."
+    },
+    "BASIC_INFORMATION_PAGE": {
+        "ERRORS": {
+            "LOAD_INFO": "There was an error loading the data",
+            "ENTERPRISE_SELECTORS": "There was an error loading the enterprise selectors"
+        }
+    },
+    "PAYER_LIST_FILTER_FORM": {
+        "FILTER_BY_TYPE": {
+            "ENTERPRISENAME": "Lender social reason",
+            "SECTOR": "Economic sector",
+            "ENTERPRISETYPE": "Enterprise type"
+        },
+        "ECONOMIC_SECTOR": "Economic sector"
+    },
+    "CUSTOM_ATTRIBUTES_FORM": {
+        "FIELD_NAME": "Attribute name",
+        "FIELD_TYPE": "Attribute type",
+        "FIELD_TYPES": {
+            "TEXT": "Text",
+            "DATE": "Date",
+            "INTEGER": "Integer",
+            "DECIMAL": "Decimal",
+            "CURRENCY": "Currency",
+            "CHECKBOX": "Checkboxes",
+            "RADIO": "Selection"
+        },
+        "ACTIONS": {
+            "ADD_OPTION": "Add option",
+            "ADD": "Add"
+        },
+        "OPTIONS": "Options",
+        "OPTION": "Option"
+    },
+    "PAYER_DETAIL_ADDITIONAL_INFORMATION_CARD": {
+        "MESSAGE": "You've not added any information yet.",
+        "ADD_FIELD": "New custom attribute"
+    },
+    "PAYER_DETAIL_BASIC_INFORMATION_CARD": {
+        "SECTOR": "Economic sector",
+        "CONTACT": "Contact"
+    },
+    "PAYER_DETAIL_FORM": {
+        "CUSTOM_FIELD": "Custom field"
+    },
+    "CONFIRM_DELETE_CUSTOM_ATTRIBUTE_DIALOG": {
+        "TITLE": "Delete custom field",
+        "BODY": "Do you need erase this field? You not be able to see or use this information in your payers"
+    },
+    "CUSTOM_ATTRIBUTES_PAGE": {
+        "TITLE": "Payer customization",
+        "MESSAGE": "You don't have any custom attribute yet",
+        "BODY": "The custom attributes that you add here, will be visible in your payers detail.",
+        "NEW_FIELD": "New custom attribute",
+        "ADD_FIELD": "Add custom attribute"
+    },
+    "PAYER_LIST_PAGE": {
+        "TITLE": "Payers listing",
+        "WITHOUT_PAYERS": "It seems that there're no payers yet."
+    },
+    "PROFILE_LAYOUT": {
+        "TITLE": "My profile",
+        "TABS": {
+            "ACCOUNT": "Account",
+            "SECURITY": "Security"
+        }
+    },
+    "ACCOUNT_PAGE": {
+        "ERROR_LOAD_INFO": "There was an error loading the information",
+        "TITLE": "Assigned modules"
+    },
+    "PROVIDER_BULK_FORM": {
+        "LABELS_STEPPER": {
+            "CHOOSE_FILE": "Choose file",
+            "CHOOSE_SHEET": "Chosee sheet",
+            "ASSOCIATE_CULUMNS": "Associate the columns"
+        },
+        "ACTION_NEXT": "Next",
+        "ACTION_FINISH": "Finish",
+        "SHEET": "Sheet",
+        "ERROR_EXTRACTION_INFO": "You must choose any sheet to extract information",
+        "NONE": "None",
+        "SELECT": {
+            "ENTERPRISE": "Enterprise",
+            "NIT": "Document number",
+            "NAME": "Name",
+            "FIRST_SURNAME": "First surname",
+            "SECOND_SURNAME": "Second surname",
+            "EMAIL": "Email",
+            "PHONE_NUMBER": "Phone number"
+        },
+        "EMPTY_FIELD": "Empty field"
+    },
+    "PROVIDER_BULK_TABLE": {
+        "INVOICE": "Folio",
+        "FILE": "File",
+        "ENTERPRISE_PROVIDER_BULK_STATUS": {
+            "PENDING_COMPLETION": "Pending to complete",
+            "COMPLETED": "Completed",
+            "ERROR": "Error"
+        }
+    },
+    "PROVIDER_FORM": {
+        "PASSPORT": "Passport",
+        "DOCUMENT_NUMBER_ADVICE": "Please fill out document number with verification digit without points, commas or spaces",
+        "PHONE_NUMBER_ADVICE": "Please enter the number with the defined structure:\n Landline: Prefix + Indicative + number - Example: 6017462060 Cell: Number only – Example: 3165555555",
+        "ACCEPTED_DOCUMENT_TYPES_ADVICE": "Remember to upload a pdf, jpg or jpeg file",
+        "FILE_REQUIRED": "File required",
+        "PHONE_EXT": "Ext",
+        "PHONE_EXTENSION": "Phone extension",
+        "NO_DOCUMENT": "No document loaded",
+        "BANK_NUMBER": "Bank number",
+        "LOAD": "Load",
+        "BANK_CERTIFICATION": "Bank certification",
+        "BANK": "Bank",
+        "ACCOUNT_TYPE": "Account type",
+        "ACTIONS": {
+            "UPLOAD_FILE": "Upload",
+            "CHANGE_FILE": "Change"
+        },
+        "CREDIT_TYPES": {
+            "SAVINGS": "Savings",
+            "CURRENT_COUNT": "Current count"
+        },
+        "CHECK": "Check",
+        "CREDIT": "Credit",
+        "DISBURSE_FORM": "Disburse form",
+        "SALES_PER_YEAR_EXAMPLE": "DD/MM/AAAA",
+        "SALES_CUT": "Sales cut",
+        "SALES_EXAMPLE": "Enter the value in millions of pesos",
+        "SALES": "Sales last year",
+        "RELATIONSHIP_MANAGER": "Relationship manager",
+        "CONTACT_INFO": "Contact information",
+        "SOCIAL_REASON": "Social reason",
+        "NIT": "Document number",
+        "PHONE": "Phone number",
+        "LADA": "Lada",
+        "ERRORS": {
+            "COMPANY_NOT_FOUND": "There's not any enterprise with the given NIT",
+            "CONNECTION": "Something went wrong, check your connection."
+        },
+        "DOCUMENT_TYPE": "Document type",
+        "DOCUMENT_TYPES": {
+            "NIT": "NIT",
+            "IDENTIFICATION_CARD": "Identification card",
+            "FOREIGNER_ID": "Foreigner Id",
+            "AUTONOMOUS_HERITAGE": "Autonomous heritage",
+            "PASSPORT": "Passport"
+        },
+        "DOCUMENT_NUMBER": "Document number",
+        "PRODUCT_TYPE": {
+            "LABEL": "Product type",
+            "OPTIONS": {
+                "UNIDIRECT": "Unidirect",
+                "FACTORING": "Firm Factoring",
+                "CONFIRMING": "Confirming",
+                "DOCUMENT_DISCOUNT": "Documents Discount"
+            }
+        },
+        "DEPARTMENT": "Department",
+        "CITY": "City",
+        "CIIU": "CIIU",
+        "ECONOMIC_ACTIVITY": "Economic activity",
+        "ECONOMIC_SECTOR": "Economic sector"
+    },
+    "PAYMENT_REQUEST_INFO": {
+        "PAYMENT_DETAILS": "Payment details",
+        "PAYMENT_ISSUER": "Payment emitter",
+        "DETAILS": "Details"
+    },
+    "INVOICE_REQUEST_INFO": {
+        "EMISSION_DATE": "Emision date",
+        "PAYMENT_EXPIRATION": "Payment expiration",
+        "INVOICE_VALUE": "Invoice value",
+        "DISCOUNT_VALUE": "Discount value",
+        "DAYS": "Days"
+    },
+    "INVOICE_REQUEST_TABLE": {
+        "PAYER": "Payer",
+        "NIT": "Document number",
+        "INVOICE_NUMBER": "Invoice number",
+        "DISCOUNT_VALUE": "Discount value",
+        "EXPECTED_PAYMENT_DATE": "Expected payment date",
+        "PAYMENT_EXPIRATION": "Payment expiration",
+        "EFFECTIVE_PAYMENT_DATE": "Effective payment date"
+    },
+    "LENDER_QUOTA_REQUEST_FORM": {
+        "QUOTA": "Quota",
+        "TYPE_RATE": "Rate type",
+        "INTEREST_RATE": "Interest rate",
+        "OBSERVATIONS": "Observations"
+    },
+    "LENDER_QUOTA_REQUEST_TABLE": {
+        "PAYMENT": "Payment",
+        "NIT": "Document number",
+        "REQUESTED_QUOTE": "Requested quote",
+        "APPLICATION_DATE": "Request date",
+        "TYPE_REQUEST": "Request type",
+        "OBSERVATIONS": "Observations",
+        "STATUS": "Status"
+    },
+    "LENDER_REQUEST_TABLE": {
+        "FUNDING": "Lender",
+        "NIT": "Document number",
+        "REQUESTED_QUOTE": "Requested quote",
+        "ASSIGNED_QUOTE": "Assigned quote",
+        "TYPE_RATE": "Rate type",
+        "INTEREST_RATE": "Interest rate",
+        "APPLICATION_DATE": "Request date",
+        "TYPE_REQUEST": "Request type",
+        "OBSERVATIONS": "Observations",
+        "OBSERVATIONS_FUNDING": "Lender observations",
+        "STATUS": "Request status",
+        "PAYMENT": "Payer",
+        "QUOTA": "Quota",
+        "RATE": "Rate"
+    },
+    "LENDER_TABLE": {
+        "FUNDING": "Lender",
+        "NIT": "Document number",
+        "CONTACT": "Contact",
+        "EMAIL": "Email"
+    },
+    "PROVIDER_TABLE": {
+        "SOCIAL_REASON": "Social reason",
+        "NIT": "Document number",
+        "EMAIL": "Email",
+        "CONTACT": "Contact",
+        "PHONE": "Phone",
+        "LINKING_DATE": "Linking date",
+        "STATUS": "Status",
+        "ENTERPRISE_LINK_STATUS": {
+            "ENABLED": "Enabled",
+            "DISABLED": "Disabled",
+            "PENDING_VALIDATION": "Pending validation",
+            "PENDING_AUTHORIZATION": "Pending authorization",
+            "PENDING_CONFIRMATION": "Pending confirmation",
+            "PENDING_LINK_CREATION": "Pending linking",
+            "REJECTED": "Rejected"
+        }
+    },
+    "ADD_PROVIDER_DIALOG": {
+        "TITLE": "Add provider"
+    },
+    "PROVIDER_BULK_LIST_PAGE": {
+        "TITLE": "Bulk loads"
+    },
+    "LIST_PAGE": {
+        "TITLE": "Providers",
+        "ACTION_ADD_PROVIDER": "Add provider",
+        "WITHOUT_PROVIDER": "It seems that there's not providers."
+    },
+    "ROLE_CARD": {
+        "AUTHENTICATION_ROLE": {
+            "ENTERPRISE_PAYER_ADMIN": "Payer module administrator",
+            "ENTERPRISE_PROVIDER_ADMIN": "Provider module administrator",
+            "ENTERPRISE_FUNDING_ADMIN": "Funding module administrator",
+            "ENTERPRISE_CONSOLE_ADMIN": "Enterprise administrator"
+        },
+        "ACTION_ENTER": "Enter"
+    },
+    "ROLE_SELECTOR_PAGE": {
+        "TITLE": "Module selector"
+    },
+    "USER_FORM": {
+        "MODULES": "Modules"
+    },
+    "USER_LIST_FILTER_FORM": {
+        "ACTION_CLEAN": "Clean filters",
+        "CHOOSE": {
+            "MODULE": "Choose a module",
+            "STATUS": "Choose a status"
+        },
+        "STATUS": {
+            "ENABLED": "Enabled",
+            "DISABLED": "Disabled"
+        }
+    },
+    "USER_TABLE": {
+        "NAME": "Name",
+        "EMAIL": "Email",
+        "LINKING_DATE": "Linking date",
+        "MODULES": "Modules",
+        "STATUS": "Status",
+        "ACTION_RESEND": "Re-send invitation",
+        "ACTIONS":"Actions"
+    },
+    "CREATE_USER_DIALOG": {
+        "TITLE": "Invite user",
+        "ACTION_SEND": "Send invitation"
+    },
+    "UPDATE_USER_DIALOG": {
+        "TITLE": "Edit user"
+    },
+    "DELETE_USER_DIALOG": {
+        "TITLE": "Delete user",
+        "CONFIRM": "Yes, I want to continue",
+        "BODY": "The user {{name}} will be deleted and it won't be able to login into the program. Do you wish to continue?"
+    },
+    "USER_LIST_PAGE": {
+        "TITLE": "Users",
+        "ACTION_INVITE": "Invite user"
+    },
+    "CORE_LAYOUT": {
+        "CHANGE_MODULE": "Change module",
+        "PROFILE": "Profile",
+        "PROVIDERS": {
+            "TITLE": "Providers",
+            "LIST": "List",
+            "BULK_LOADS": "Bulk loads"
+        },
+        "PAYERS": {
+            "TITLE": "Payers",
+            "LINKED": "Linked",
+            "PERSONALIZATION": "Customization"
+        },
+        "FUNDING": {
+            "TITLE": "Lenders",
+            "REQUEST": "Requests",
+            "LINKED": "Linked",
+            "AVAILABLE": "Available"
+        },
+        "REQUEST": {
+            "TITLE": "Requests",
+            "FUNDING": "Funding",
+            "QUOTA": "Quota"
+        },
+        "INVOICES": {
+            "TITLE": "Invoices",
+            "LIST": "List",
+            "BULK_LOADS": "Bulk loads",
+            "BULK_NEGOTIATIONS": "Bulk negotiations",
+            "PERSONALIZATION": "Customization"
+        },
+        "USERS_MANAGEMENT": "Users Management",
+        "MY_ENTERPRISE": {
+            "TITLE": "My enterprise",
+            "BASIC_INFO": "Basic information",
+            "MODULES": "Modules",
+            "DOCUMENTATION": "Documentation",
+            "FINANCIAL_CONDITIONS": "Financial conditions"
+        },
+        "CONFIGURATION": {
+            "TITLE": "Setting",
+            "APAREANCE": "Appearance"
+        }
+    },
+    "FINANCIAL_CONDITIONS": {
+        "TITLE": "Financial conditions"
+    },
+    "FINANCIAL_CONDITIONS_TABLE": {
+        "PROVIDER": "Provider",
+        "IDENTIFICATION_NUMBER": "Identification number",
+        "MODALITY": "Modality",
+        "MODALITY_OPTIONS": {
+            "EXPONENTIAL": "Exponential",
+            "COMMISSION": "Commission",
+            "FINANCED": "Financed"
+        },
+        "DESCRIPTION": "Description",
+        "DESCRIPTION_OPTIONS": {
+            "EXPONENTIAL": "With discount",
+            "COMMISSION": "Without discount",
+            "FINANCED": "With discount and additional financing"
+        },
+        "STATUS": "Status",
+        "STATUS_OPTIONS": {
+            "PENDING_APPROVAL": "Pending director's approval",
+            "PENDING_ACCEPTANCE": "Payer acceptance pending",
+            "CURRENT": "Current",
+            "ABOUT_TO_EXPIRE": "About to expire",
+            "EXPIRED": "Expired",
+            "REJECTED_BY_LIBERA": "Rejected by director",
+            "REJECTED_BY_ENTERPRISE": "Rejected by payer"
+        },
+        "SUMMARY": "Summary"
+    },
+    "DETAIL_FINANCIAL_CONDITIONS_DIALOG": {
+        "TITLE": "Commission Plan",
+        "ACTIONS": {
+            "ACCEPT": "Accept",
+            "CANCEL": "Cancel"
+        },
+        "CREATOR_USER": "Creator user",
+        "APPROVING_USER": "Approving user",
+        "USER_ACCEPTS": "User who accepts",
+        "CREATION_DATE": "Creation date",
+        "MODIFICATION_DATE": "Modification date",
+        "ACCEPTANCE_DATE": "Acceptance date"
+    },
+    "DETAIL_FINANCIAL_CONDITIONS_FORM": {
+        "DOCUMENT_TYPE": "Document type",
+        "DOCUMENT_NUMBER": "Document number",
+        "PAYER": "Payer",
+        "PROVIDER": "Provider",
+        "PROVIDERS": "Providers",
+        "RELATIONSHIP_MANAGER": "Relationship manager",
+        "ECONOMIC_GROUP": "Economic group",
+        "AGREEMENT": "Agreement",
+        "REQUIRED_AUTHORIZATION": "Requires provider authorization to perform the operation",
+        "REQUEST_AUTHORIZATION": "Request authorization after the day",
+        "ALWAYS": "Always",
+        "SALES_TABLE": "View sales table",
+        "LINKED_TO_PROVIDER": "Linked to provider",
+        "MINIMUM_RATE": "Minimum rate",
+        "NEGOTIATED_RATE": "Negociated rate",
+        "SPECIAL_RATE": "Special rate",
+        "VALIDITY": "Due date",
+        "DAYS": "Days",
+        "DATE": "Date",
+        "TERM": "Term",
+        "TURNING_DAY": "Turning day",
+        "TURNING_DAY_LABELS": {
+            "PAYDAY": "It's turns on the {{ day }} day of the invoice being issued",
+            "PAYDAY_ZERO": "It's turns to his presentation",
+            "PAYDAY_RANGE": "It's turns from day {{ dayInitial }} to day {{ dayFinal }} of issuing the invoice",
+            "PREV": "Of the day",
+            "ZERO": "To your presentation",
+            "DEFAULT": "From the date of issue of the invoice",
+            "BETWEEN": "up to date",
+            "LAST": "of FEF"
+        },
+        "INTEREST_RATE": {
+            "LABEL": "Interest Rate",
+            "COMPLEMENT": "{{ termDays }} {{ labelDay }} at the customer's expense at a rate of {{ baseType }} + {{ specialRate }}% {{ periodicityType }}"
+        },
+        "FINANCING_TERM": {
+            "LABEL": "Financing term",
+            "COMPLEMENT": "{{ termDays }} {{ labelDay }}"
+        },
+        "PAYMENT_METHOD": {
+            "LABEL": "Payment method",
+            "COMPLEMENT": "{{ paymentMethod }}"
+        },
+        "DAYS_RANGE": "Days range",
+        "METHOD_OF_PAYMENT": "Method of payment",
+        "METHODS_OF_PAYMENT": {
+            "INTEREST_PER_MONTH_AND_CAPITAL_AT_MATURITY": "Interest per month and capital at maturity",
+            "INTEREST_AND_CAPITAL_AT_MATURITY": "Interest and capital at maturity",
+            "INTEREST_AND_CAPITAL_PER_MONTH": "Interest and capital per month"
+        },
+        "OPTIONS_YES_OR_NO": {
+            "YES": "Yes",
+            "NO": "No"
+        },
+        "ENTERPRISES": "Enterprises",
+        "SALES": "Sales",
+        "SALES_CUT": "Sales cut",
+        "UPLOAD_PROOF": "Upload proof of pricing",
+        "VISUALIZE_PLAN": "The client will be able to visualize this plan",
+        "CREATOR_USER": "Creator user",
+        "APPROVING_USER": "Approving user",
+        "USER_ACCEPTS": "User who accepts",
+        "PLAN_TYPE": {
+            "LABEL": "Plan type",
+            "OPTIONS": {
+                "EXPONENTIAL": "Exponential",
+                "COMMISSION": "Commission",
+                "FINANCED": "Financed"
+            }
+        },
+        "DOCUMENT_TYPES": {
+            "NIT": "NIT",
+            "IDENTIFICATION_CARD": "Identification card",
+            "FOREIGNER_ID": "Foreigner id",
+            "AUTONOMOUS_HERITAGE": "Autonomous heritage",
+            "PASSPORT": "Passport"
+        },
+        "ERRORS": {
+            "INVALID_STATUS": "Error creating plan, the company must be in active status",
+            "SCF.LIBERA.404": "Document number not found, check the information"
+        },
+        "COMMENTS_ICON": "Keep in mind that these comments will only be viewed by Bank officials."
+    },
+    "APPROVE_FINANCIAL_CONDITIONS_DIALOG": {
+        "TITLE_APPROVE": "Accept financing plan",
+        "TITLE_DECLINE": "Reject financing plan",
+        "BODY_APPROVE": "Are you sure you want to accept the financing plan?",
+        "BODY_DECLINE": "Are you sure you want to decline the financing plan?",
+        "CHECK_TEXT": "Yes, confirm"
+    },
+    "FINANCIAL_PLAN":{
+        "ERRORS": {
+            "CREATE": {
+                "default": "There was an error in the connection, try again.",
+                "ENTERPRISE_DISABLED":"Error creating plan, the company must be in active status"
+            },
+            "ERROR_APPROVE": "There was an error approving the financing plan",
+            "ERROR_DECLINE": "There was an error rejecting the financing plan",
+            "default": "There was an error on the platform"
+        },
+        "CREATE_SUCCESS": "The plan has been created",
+        "APPROVE": "The financing plan has been successfully approved",
+        "DECLINE": "The financing plan has been rejected"
+    },
+    "LINKED_LENDER_TABLE": {
+        "FUNDING": "Funding",
+        "NIT": "Document number",
+        "ASSIGNED_QUOTE": "Assigned quote",
+        "AVAILABLE_QUOTE": "Available quote",
+        "INTEREST_RATE": "Interest rate"
+    },
+    "PAYMENT_INFO": {
+        "INVOICE_NUMBER": "Invoice number",
+        "CURRENCY": "Currency",
+        "PROVIDER": "Provider"
+    },
+    "QUOTA_REQUEST_FORM": {
+        "QUOTA": "Quota"
+    },
+    "QUOTA_REQUEST_EXPASION_FORM": {
+        "WISHED_QUOTA": "Wished quota"
+    },
+    "UPDATE_QUOTA_FORM": {
+        "PAYMENT_QUOTA": "Payment quota"
+    },
+    "APPROVE_ASSIGNED_QUOTA_REQUEST_DIALOG": {
+        "TITLE": "Accept assigned quota",
+        "BODY": "Are you sure you want to send the assigned quota?"
+    },
+    "ASSIGN_QUOTA_REQUEST_DIALOG": {
+        "TITLE": "Send quota request",
+        "BODY": "Are you sure you want to send the assigned quota?"
+    },
+    "CONFIRM_PAYMENT_DIALOG": {
+        "TITLE": "Confirm payment",
+        "BODY": "Payment data and evidence"
+    },
+    "QUOTA_REQUEST_DIALOG": {
+        "TITLE": "Request quota"
+    },
+    "REJECT_ASSIGNED_QUOTA_REQUEST_DIALOG": {
+        "TITLE": "Reject quota assignment",
+        "BODY": "Are you sure you want to reject the assigned quota?"
+    },
+    "REJECT_PAYMENT_DIALOG": {
+        "TITLE": "Reject payment",
+        "BODY": "Rejection reason"
+    },
+    "REJECT_QUOTA_REQUEST_DIALOG": {
+        "TITLE": "Reject quota request",
+        "BODY": "Are you sure you want to reject the request?"
+    },
+    "REQUEST_QUOTA_EXPANSION_DIALOG": {
+        "TITLE": "Reject quota request"
+    },
+    "UPDATE_QUOTA_DIALOG": {
+        "TITLE": "Update quota"
+    },
+    "UPDATE_QUOTA_REQUEST_DIALOG": {
+        "TITLE": "Update quota request",
+        "BODY": "Are you sure you want to update the requested quota"
+    },
+    "LENDER_REQUEST_PAGE": {
+        "TITLE": "Funding requests"
+    },
+    "LINKED_LIST_PAGE": {
+        "TITLE": "Linked funding"
+    },
+    "FUNDING_LIST_PAGE": {
+        "TITLE": "Available funding",
+        "EMPTY_MESSAGE": "It seems that there's not funding yet."
+    },
+    "QUOTA_LIST_PAGE": {
+        "TITLE": "Quota requests",
+        "EMPTY_MESSAGE": "It seems that there's not requests yet."
+    },
+    "PROVIDER_NOTIFICATIONS": {
+        "BULK_CREATE": {
+            "SUCESS": "Request sent. Our personal will validate your provider information",
+            "ERROR": "There was an error with your request. Try again."
+        },
+        "CREATE": {
+            "SUCCESS": "Provider has been created.",
+            "ERROR": "There was an error sending your linking request.",
+            "SCF.LIBERA.95": "This supplier is already linked to your company or in the process of being linked."
+        }
+    },
+    "PROVIDER_INVOICE_NOTIFICATIONS": {
+        "ACCEPT_LATEST_NEGOTIATION_OFFER": {
+            "SUCCESS": "The offer has been accepted",
+            "ERROR": "There was an error accepting the offer. Try again."
+        },
+        "REJECT_LATEST_NEGOTIATION_OFFER": {
+            "SUCCESS": "The offer has been rejected",
+            "ERROR": "There was an error rejecting the offer. Try again."
+        },
+        "UPDATE_LATEST_NEGOTIATION_OFFER": {
+            "SUCCESS": "Counteroffer sent.",
+            "ERROR": "There was an error sending your counteroffer. Try again."
+        }
+    },
+    "PAYER_INVOICE_NOTIFICATIONS": {
+        "CANCEL_CURRENT_NEGOTIATION": {
+            "SUCCESS": "Negotiation has been canceled.",
+            "ERROR": "There was an error canceling the negotiation."
+        },
+        "ACCEPT_LATEST_NEGOTIATION_OFFER": {
+            "SUCCESS": "Offer has been accepted",
+            "ERROR": "There was an error accepting the offer. Try again."
+        },
+        "REJECT_LATEST_NEGOTIATION_OFFER": {
+            "SUCCESS": "Offer has been rejected",
+            "ERROR": " There was an error rejecting the offer. Try again."
+        },
+        "UPDATE_LATEST_NEGOTIATION_OFFER": {
+            "SUCCESS": "Counteroffer sent.",
+            "ERROR": "There was an error sending your counteroffer. Try again."
+        },
+        "NEGOTIATE": {
+            "SUCCESS": "Negotiation successfully started. The provider will be notificated.",
+            "ERROR": "There was an error starting the negotiation. Try again."
+        },
+        "UPDATE_PROVIDER": {
+            "SUCCESS": "The invoice's provider has been updated.",
+            "ERROR": "There was an error updating the invoice's provider. Try again"
+        },
+        "CREATE": {
+            "SUCCESS": "The invoice has been loaded correctly.",
+            "ERROR": "There was an error loading the invoice. Try again."
+        },
+        "DELETE": {
+            "SUCCESS": "The invoices's field has been successfully deleted.",
+            "ERROR": "There was an error deleting the invoice.Try again."
+        },
+        "UPDATE_LENDER": {
+            "SUCCESS": "The invoice's funding has been updated.",
+            "ERROR": "There was an error updating the invoice's funding."
+        }
+    },
+    "FUNDING_REQUEST_NOTIFICATIONS": {
+        "CREATE_REQUEST_PAYLOAD": {
+            "SUCCESS": "Funding request successfully started.",
+            "ERROR": "There was an error starting the funding request. Try again."
+        }
+    },
+    "CUSTOM_ATTRIBUTE_NOTIFICATIONS": {
+        "CREATE": {
+            "SUCCESS": "The custom attribute has been successfully created.",
+            "ERROR": "There was an error creating the custom attribute."
+        },
+        "DELETE": {
+            "SUCCESS": "The custom attribute has been successfully deleted.",
+            "ERROR": "There was an error deleting the custom attribute."
+        }
+    },
+    "BULK_NOTIFICATIONS": {
+        "BULK_LOAD": {
+            "SUCCESS": "Invoice bulk load success.",
+            "ERROR": "There was an error with the bulk load. Try again."
+        }
+    },
+    "LENDER_INVOICE_REQUEST_NOTIFICATIONS": {
+        "CONFIRM_PAYMENT": {
+            "SUCCESS": "The payment has been successfully confirmed.",
+            "ERROR": "There was an error confirming the payment. Try again."
+        },
+        "REJECT_PAYMENT": {
+            "SUCCESS": "The payment has been successfully rejected.",
+            "ERROR": "There was an error rejecting the payment. Try again."
+        }
+    },
+    "LENDER_QUOTA_REQUEST_NOTIFICATIONS": {
+        "REJECT": {
+            "SUCCESS": "The request has been successfully rejected.",
+            "ERROR": "There was an error rejecting the request. Try again."
+        },
+        "APPROVE": {
+            "SUCCESS": "The request has been successfully approved.",
+            "ERROR": "There was an error approving the request. Try again."
+        },
+        "UPDATE": {
+            "SUCCESS": "The request has been updated.",
+            "ERROR": "There was an error updating the request. Try again."
+        },
+        "CREATE_QUOTA_REQUEST": {
+            "SUCCESS": "Quota request successfully started.",
+            "ERROR": "There was an error requesting your quota."
+        }
+    },
+    "LENDER_REQUEST_NOTIFICATIONS": {
+        "UPDATE_QUOTA_REQUEST_STATUS": {
+            "SUCCESS": "Quota assignment {{status}}",
+            "ERROR": "There was an error updating the status. Try again."
+        }
+    },
+    "LINKED_LENDER_NOTIFICATIONS": {
+        "REQUEST_QUOTA_ADJUSTMENT": {
+            "SUCCESS": "Request successfully sent",
+            "ERROR": "There was a problem requesting the adjustment. Try again."
+        }
+    },
+    "BRANDING_NOTIFICATIONS": {
+        "UPDATE_THEME": {
+            "SUCCESS": "Theme has been updated.",
+            "ERROR": "There was an error updating the theme."
+        },
+        "UPDATE_LOGO": {
+            "SUCCESS": "Logo has been updated.",
+            "ERROR": "There was an error updating the logo."
+        },
+        "UPDATE_FAVICON": {
+            "SUCCESS": "Favicon has been updated.",
+            "ERROR": "There was an error updating the favicon."
+        },
+        "DELETE": {
+            "SUCCESS": "The default values has been restored.",
+            "ERROR": "There was an error restoring the default values."
+        }
+    },
+    "ENTERPRISE_MODULE_NOTIFICATIONS": {
+        "REQUEST_MODULE_ACTIVATION": {
+            "SUCCESS": "Your request has been sent.",
+            "ERROR": "There was an error requesting the module. Try again."
+        },
+        "UPDATE_FILE": {
+            "ERROR": "There was an error uploading the file. Try again."
+        },
+        "DELETE_FILE": {
+            "ERROR": "There was an error deleting the file. Try again."
+        }
+    },
+    "LINK_NOTIFICATIONS": {
+        "CONFIRM": {
+            "ACEPTED": {
+                "SUCCESS": "You have been successfully linked.",
+                "ERROR": "There was an error linking you. Try again."
+            },
+            "REJECTED": {
+                "SUCCESS": "You have rejected the invitation.",
+                "ERROR": "There was an error rejecting the invitation. Try again."
+            }
+        }
+    },
+    "PAYMENT_REQUEST_FORM": {
+        "EFFECTIVE_DATE_PAYMENT": "Effective ayment date",
+        "EFFECTED_AMOUNT_PAID": "Effective paid amount"
+    },
+    "PAYMENT_REQUEST_DIALOG": {
+        "TITLE": "Confirm payment",
+        "BODY": "Do you confirm that you have received the payment with the date and amount mentioned?",
+        "CONFIRM": "Yes, confirm payment"
+    },
+    "PAYMENT_REQUEST_PAGE": {
+        "ERRORS": {
+            "LOAD_PAYMENT": "There was an error loading the payment information.",
+            "NO_PAYMENT_REGISTER": "No payment has been registered on this invoice"
+        },
+        "CONFIRM_PAYMENT": "Confirm payment",
+        "INFO": "If the payment was not received or is incorrect contact us:"
+    },
+    "PAYMENT_REQUEST": {
+        "SUCCESS": "Payment confirmation made",
+        "ERROR": "There was an error confirming the payment. Try again."
+    },
+    "PAYER_BASIC_INFORMATION": {
+        "TITLE": "Basic information",
+        "NIT": "Document number",
+        "ECONOMIC_SECTOR": "Economic sector",
+        "TYPE_ENTERPRISE": "TEnterprise type",
+        "CONTACT": "Contact",
+        "EMAIL": "Email"
+    },
+    "PAYER_COMPLEMENTARY_INFORMATION": {
+        "TITLE": "Additional information",
+        "ERROR": "You've not added any information yet.",
+        "ACTION": "Capture custom attributes"
+    },
+    "PAYER_CUSTOM_ATTRIBUTES_LIST": {
+        "ACTION": "Capture custom data"
+    },
+    "NO_CUSTOM_ATTRIBUTES_DIALOG": {
+        "TITLE": "You don't have any custom attributes yet",
+        "BODY": " Go to the Customization section to add them.",
+        "LINK": "Go to customization"
+    },
+    "CREATE_CUSTOM_ATTRIBUTES": {
+        "SUCCESS": "Custom attribute added",
+        "ERROR": "An error occurred adding the custom attribute. Try again."
+    },
+    "PAYER_CUSTOM_ATTRIBUTES": {
+        "SUCCESS": {
+            "SAVED_INFO": "Information successfully saved.",
+            "ATTRIBUTE_DELETED": "Custom attribute deleted"
+        },
+        "ERRORS": {
+            "UPDATE_INFO": "There was an error updating your information. Try again.",
+            "ATTRIBUTE_DELETED": "There was an error deleting the custom attribute. Try again."
+        }
+    },
+    "CUSTOM_ATTRIBUTES": {
+        "SUCCESS": "Custom Field Deleted",
+        "ERROR": "An error occurred deleting the custom field. Try again."
+    },
+    "LENDER_REQUEST_LIST": {
+        "APPROVED": "Approved",
+        "REJECT": "Reject",
+        "NEW": "New",
+        "QUOTA": "Assigned quota"
+    },
+    "CONFIRM_PAYMENT_FORM": {
+        "EFECTIVE_PAYMENT_AMOUNT": "Effective payment amount",
+        "EFFECTIVE_PAYMENT_DATE": "Effective payment date",
+        "PAYMENT_COMMENTS": "Comments",
+        "CHOOSE_DATE": "Choose a date"
+    },
+    "CREATE_EFFECTS": {
+        "SUCCESS": "The user has been successfully invited.",
+        "ERROR": "There was an error inviting the user. Try again."
+    },
+    "CHANGE_PASSWORD_FORM": {
+        "CURRENT_PASSWORD": "Current password",
+        "NEW_PASSWORD": "New password",
+        "CONFIRM_PASSWORD": {
+            "LABEL": "Confirm password",
+            "PLACEHOLDER": "Repeat your password"
+        },
+        "CHANGE": "Change"
+    },
+    "ENTERPRISE_DOCUMENTATION_TABLE": {
+        "VALIDITY_DATE": "Due date",
+        "DOCUMENT": "Document",
+        "FILE": "File",
+        "UPLOAD_DATE": "Upload date",
+        "UPDATE_DATE": "Update date",
+        "STATE": "State",
+        "COMMENTS": "Comments",
+        "ACTIONS": "Actions"
+    },
+    "PROFILE_FORM": {
+        "NAME": "Name",
+        "FIRST_SURNAME": "First surname",
+        "SECOND_SURNAME": "Second surname",
+        "EMAIL": "E-mail"
+    },
+    "AUTHENTICATION": {
+        "VERIFICATION_CODE": "We have sent you a verification code to your email.",
+        "ERRORS": {
+            "REGISTERED_ACCOUNT": "There is already an account registered with this email.",
+            "REGISTERED_NIT": "There is already an enterprise registered with this NIT.",
+            "CREATE_ACCOUNT": "There was an error creating the account.",
+            "CONFIRMED_ACCOUNT": "This account is already confirmed.",
+            "WITHOUT_EMAIL": "There is no account with this email.",
+            "INCORRECT_CODE": "Verification code is wrong.",
+            "ERROR_CONFIRM_ACCOUNT": "There was an error confirming your account.",
+            "WITHOUT_TYPE_USER": "Error! It seems that your account hasn't a type of user assigned.",
+            "LOGIN": "There was an error logging in, try again.",
+            "USER_DISABLED": "Your account has been disabled.",
+            "INCORRECT_USER_OR_PASSWORD": "The email or password is wrong.",
+            "VERIFY_ACCOUNT": "Verify your account to be able to log in.",
+            "ERROR_LOGOUT": "There was a problem logging out. Try again.",
+            "ERROR_SEND_EMAIL": "There was an error sending the email, try again in a few minutes.",
+            "EMAIL_NOT_FOUND": "E-mail was not found, please verify your information.",
+            "USER_NOT_VERIFY": "User has not been verified.",
+            "ACCOUNT_NOT_VERIFIED": "Account is not yet verified, you must verify it before you can change your password.",
+            "TRY_LATER": "An error has occurred, try again later.",
+            "CONFIRM_ACCOUNT": "This account has not been confirmed.",
+            "EXPIRED_CODE": "The code has expired, please request a new one.",
+            "INVALID_CODE": "Invalid verification code. Try again.",
+            "SEND_CODE": "There was an error sending the verification code.",
+            "ALREADY_ACCOUNT_CONFIRM": "This account is already confirmed.",
+            "TRY_AGAIN": "An error has occurred. Try again.",
+            "NO_LOGGED_IN": "Error! It seems that you are not logged in.",
+            "INCORRECT_PASSWORD": "The password is wrong.",
+            "ERROR_PASSWORD_UPDATE": "There was an error updating your password. Try again."
+        },
+        "CONFIRMED_ACCOUNT": "Your account has been confirmed, you can now log in. ",
+        "SEND_EMAIL": "the email has been sent.",
+        "RESET_PASSWORD": "Your password has been set, you can now log in. ",
+        "SEND_CODE": "A new verification code has been sent to your email.",
+        "UPDATED_DATA": "Updated data! Login with your new password.",
+        "SUCCESS_PASSWORD_UPDATE": "Your password has been updated successfully."
+    },
+    "ENTERPRISE": {
+        "REQUEST_SENT_SUCCESSFULLY": "Documents submission has been successful",
+        "ERROR_REQUEST_SENT": "There was an error sending your request. Try again",
+        "ERRORS": {
+            "UPDATE_STATUS_PROGRAM": "There was an error updating the program status.",
+            "PROGRAM_INVITED": "There was an error inviting the program.",
+            "INVITATION_FORWARD": "There was an error resending the invitation. ",
+            "API": {
+                "SCF.LIBERA.502": "There was an error in the connection, try again.",
+                "default": "There was an error."
+            },
+            "DB": {
+                "SCF.LIBERA.500": "There was an error in the connection, try again."
+            },
+            "default": "There was an error on the platform"
+        },
+        "UPDATE_STATUS_PROGRAM": "The program status has been updated.",
+        "PROGRAM_INVITED": "The program has been invited.",
+        "INVITATION_FORWARDED": "Invitation re-send.",
+        "ENTERPRISE_EXIST": "Provider already created on the platform.",
+        "SEND_DOCUMENTATION_DIALOG": {
+            "TITLE": "Send documents",
+            "BODY": "Mr. Client, you have pending documents to send, remember that if in the documentary evaluation it is determined that these documents are necessary for the operation, they will be requested by this means and you will not be able to carry out operations until they are sent.",
+            "CHECK_TEXT": "Yes, confirm",
+            "QUESTION": "Do you want to continue?"
+        },
+        "ENTERPRISE_DOCUMENTATION": {
+            "ERRORS": {
+                "FILE_LOAD": "There was an error loading the file.",
+                "DELETE_FILE": "There was an error trying to delete the file.",
+                "UPDATED_FILE": "There was an error updating the document status.",
+                "LIMIT_FILE": "The action cannot be performed, you have exceeded the allowed limit for adding documentation.",
+                "FILE_UPDATE": "There was an error updating the file."
+            },
+            "SUCCESSFUL_FILE_LOAD": "Successful document upload.",
+            "DELETED_FILE": "Document deleted.",
+            "UPDATED_FILE": "Document status has been updated.",
+            "NEW_DOCUMENT_SAVED": "Added document",
+            "NEW_DOCUMENT_NOT_SAVED": "New document is not saved, try later",
+            "SUCCESSFUL_FILE_UPDATE": "Successful document update."
+        },
+        "SUCCESSFUL_FILE_LOAD": "Successful document upload.",
+        "DELETED_FILE": "Document deleted.",
+        "UPDATED_FILE": "Document status has been updated."
+    },
+    "PROFILE": {
+        "PROFILE_UPDATED_SUCCESSFULLY": "Your profile has been updated successfully.",
+        "PROFILE_UPDATED_ERROR": "There was an error updating your profile. Try again."
+    },
+    "PAGINATOR": {
+        "FIRST_PAGE": "First page",
+        "LAST_PAGE": "Last page",
+        "PER_PAGE": "Per page",
+        "NEXT": "Next",
+        "PREVIOUS": "Previous",
+        "OF_PAGE": "of"
+    },
+    "ENTERPRISE_DOCUMENTATION_TABLE_ACTIONS": {
+        "APPROVE_FILE": "Approve file",
+        "DELETE_FILE": "Delete file",
+        "RE_REQUEST_FILE": "Re-request file",
+        "CHOOSE_FILE": "Choose file",
+        "ACTIONS": "Actions"
+    },
+    "REQUEST_LIST_PAGE": {
+        "TITLE": "Funding requests"
+    },
+    "LENDER_QUOTA_REQUEST_LIST": {
+        "ACCEPT": "Accept",
+        "REJECT": "Reject",
+        "NEW": "New",
+        "QUOTA": "Assigned quote"
+    },
+    "BULK_INVOICE_NEGOTIATION_PAGE": {
+        "TITLE": "Bulk invoices"
+    },
+    "BULK_INVOICE_NEGOTIATION_TABLE": {
+        "FOLIO": "Folio",
+        "PROVIDER": "Provider",
+        "PAYER": "Payer",
+        "COUNT": "Invoices",
+        "AMOUNT": "Amount",
+        "CREATION_DATE": "Creation date",
+        "STATUS": "Status",
+        "AMOUNT_INVOICE": "Invoice amount",
+        "EXPIRATION_DATE": "Expiration date",
+        "NIT": "Document number",
+        "INVOICE_NUMBER": "Invoice number"
+    },
+    "BULK_INVOICE_NEGOTIATION_FORM": {
+        "DISCOUNT_TYPE": "Discount type",
+        "INVESTOR": "Lender",
+        "PERCENTAGE": "Discount rate",
+        "EXPECTED_PAYMENT_DATE": "Expected payment date",
+        "DISCOUNT_DUE_DATE": "Valid until",
+        "SELECTED_INVOICES": "Selected invoices: {{ value }}",
+        "AVAILABLE_QUOTA": "Available Quota",
+        "SEARCH_LABEL": "Search by invoice number",
+        "TOTAL": "Total",
+        "DISCOUNT": "Discount",
+        "SUBTOTAL": "Subtotal",
+        "REMAINING_QUOTA": "Remaining quota",
+        "ERRORS": {
+            "PERCENTAGE_MIN": "It can't be less than {{value}}.",
+            "PERCENTAGE_MAX": "It can't be greater than {{value}}.",
+            "INVALID_QUOTA": "The subtotal is greater than the available quota. Please modify the selection."
+        }
+    },
+    "BULK_INVOICE_NEGOTIATION_DIALOG": {
+        "TITLE": "Bulk invoice negotiation"
+    },
+    "BULK_INVOICE_NEGOTIATION_CONFIRMATION_DIALOG": {
+        "TITLE": "Confirm negotiation",
+        "INVESTOR": "Lender",
+        "DISCOUNT_TYPE": "Discount type",
+        "PERCENTAGE": "Discount rate",
+        "EXPECTED_PAYMENT_DATE": "Expected payment date",
+        "DISCOUNT_DUE_DATE": "Valid until",
+        "TOTAL": "Total {{value}}",
+        "DISCOUNT": "Discount {{value}}",
+        "SUBTOTAL": "Subtotal {{value}}"
+    },
+    "BULK_INVOICE_NEGOTIATION_DETAIL_PAGE": {
+        "HINT": "This is just a simulation, the information may vary. The involved parties are responsible for the final values.",
+        "PROVIDER_OFFER": "Provider offer",
+        "PAYER_OFFER": "Payer offer",
+        "CANCEL_OFFER_BUTTON": "Cancel offer",
+        "REJECT_OFFER_BUTTON": "Reject offer",
+        "COUNTER_OFFER_BUTTON": "Counter offer",
+        "ACCEPT_OFFER_BUTTON": "Accept offer",
+        "NO_PAYER_OFFER_HINT": "The payer hasn't made an offer",
+        "NO_PROVIDER_OFFER_HINT": "The provider hasn't made an offer",
+        "OFFER": {
+            "DISCOUNT_TYPE": "Discount type",
+            "RATE": "Discount rate",
+            "DUE_DATE": "Due date",
+            "EXPECTED_PAYMENT_DATE": "Expected payment date",
+            "DOCUMENTATION_TABLE_ACTIONS": {
+                "TITLE": "Actions",
+                "LOAD": "Load",
+                "DELETE": "Delete",
+                "APPROVE": "Approve",
+                "REJECT": "Reject",
+                "UPDATE": "Update"
+            },
+            "LOAD_MODAL": {
+                "TITLE": "Upload document",
+                "EXPEDITION_DATE": "Expedition date",
+                "COMMENTS": "Comments",
+                "ADD_DOCUMENT": "Add document",
+                "SELECT_DOCUMENT": "Select document"
+            },
+            "DELETE_MODAL": {
+                "TITLE": "Delete document",
+                "BODY": "If you delete this file it could not be recoveried. Continue?",
+                "CHECK_TEXT": "Yes, I'm sure"
+            },
+            "APPROVE_MODAL": {
+                "ACCEPT_TITLE": "Accept document",
+                "DECLINE_TITLE": "Decline document",
+                "EXPEDITION_DATE": "Expedition date",
+                "COMMENTS": "Comments"
+            },
+            "ADD_DOCUMENT": {
+                "TITLE": "Add document",
+                "DOCUMENT_TYPE": "Document to request",
+                "MINUTES_DEBTORS_SHAREHOLDERS_MEETING": "Minutes of the meeting of signers",
+                "CODEBTORS_CHAMBER_COMMERCE": "Chamber of commerce cosigner",
+                "MINUTES_MEETING_CODEBTORS": "Minutes of the meeting of cosigner",
+                "OTHER_DOCUMENTS": "Other",
+                "COMPLEMENTARY_TEXT": "Complementary text",
+                "SELECT_TIME_TYPE": "Select the document's due date",
+                "DEFINED": "Determined time",
+                "UNDEFINED": "Undefined",
+                "PD_SELECT_DOCUMENT": "Select the document type",
+                "VALIDITY": "Due date",
+                "COMMENTS": "Comments",
+                "CANCEL": "Cancel",
+                "UPLOAD_FILE": "Save",
+                "MONTHS": "Months"
+            },
+            "PROFILE": {
+                "PROFILE_UPDATED_SUCCESSFULLY": "Your profile has been updated successfully.",
+                "PROFILE_UPDATED_ERROR": "There was an error updating your profile. Try again."
+            },
+            "PAGINATOR": {
+                "FIRST_PAGE": "First page",
+                "LAST_PAGE": "Last page",
+                "PER_PAGE": "Per page",
+                "NEXT": "Next",
+                "PREVIOUS": "Previous",
+                "OF_PAGE": "of"
+            },
+            "ENTERPRISE_DOCUMENTATION_TABLE_ACTIONS": {
+                "APPROVE_FILE": "Approve file",
+                "DELETE_FILE": "Delete file",
+                "RE_REQUEST_FILE": "Re-request file",
+                "CHOOSE_FILE": "Choose file"
+            },
+            "REQUEST_LIST_PAGE": {
+                "TITLE": "Funding requests"
+            },
+            "LENDER_QUOTA_REQUEST_LIST": {
+                "ACCEPT": "Accept",
+                "REJECT": "Reject",
+                "NEW": "New",
+                "QUOTA": "Assigned quote"
+            },
+            "BULK_INVOICE_NEGOTIATION_PAGE": {
+                "TITLE": "Bulk invoices"
+            },
+            "BULK_INVOICE_NEGOTIATION_TABLE": {
+                "FOLIO": "Folio",
+                "PROVIDER": "Provider",
+                "PAYER": "Payer",
+                "COUNT": "Invoices",
+                "AMOUNT": "Amount",
+                "CREATION_DATE": "Creation date",
+                "STATUS": "Status"
+            },
+            "BULK_INVOICE_NEGOTIATION_DETAIL_PAGE": {
+                "HINT": "This is just a simulation, the information may vary. The involved parties are responsible for the final values.",
+                "PROVIDER_OFFER": "Provider offer",
+                "PAYER_OFFER": "Payer offer",
+                "CANCEL_OFFER_BUTTON": "Cancel offer",
+                "REJECT_OFFER_BUTTON": "Reject offer",
+                "COUNTER_OFFER_BUTTON": "Counter offer",
+                "ACCEPT_OFFER_BUTTON": "Accept offer",
+                "NO_PAYER_OFFER_HINT": "The payer hasn't made an offer",
+                "NO_PROVIDER_OFFER_HINT": "The provider hasn't made an offer",
+                "OFFER": {
+                    "DISCOUNT_TYPE": "Discount type",
+                    "RATE": "Discount rate",
+                    "DUE_DATE": "Due date",
+                    "EXPECTED_PAYMENT_DATE": "Expected payment date",
+                    "PROVIDER": "Provider",
+                    "PAYER": "Payer",
+                    "COUNT": "Invoices",
+                    "AMOUNT": "Amount",
+                    "CREATION_DATE": "Creation date",
+                    "STATUS": "Status"
+                },
+                "BULK_INVOICE_NEGOTIATION_DETAIL_PAGE": {
+                    "HINT": "This is just a simulation, the information may vary. The involved parties are responsible for the final values.",
+                    "PROVIDER_OFFER": "Provider offer",
+                    "PAYER_OFFER": "Payer offer",
+                    "CANCEL_OFFER_BUTTON": "Cancel offer",
+                    "REJECT_OFFER_BUTTON": "Reject offer",
+                    "COUNTER_OFFER_BUTTON": "Counter offer",
+                    "ACCEPT_OFFER_BUTTON": "Accept offer",
+                    "NO_PAYER_OFFER_HINT": "The payer hasn't made an offer",
+                    "NO_PROVIDER_OFFER_HINT": "The provider hasn't made an offer",
+                    "OFFER": {
+                        "DISCOUNT_TYPE": "Discount type",
+                        "RATE": "Discount rate",
+                        "DUE_DATE": "Due date",
+                        "EXPECTED_PAYMENT_DATE": "Expected payment date",
+                        "PROVIDER": "Provider",
+                        "LENDER": "Lender",
+                        "TOTAL": "Total",
+                        "DISCOUNT": "Discount",
+                        "NEGOTIATION_AMOUNT": "Subtotal",
+                        "AVAILABLE_QUOTA": "Available quota",
+                        "REMAINING_QUOTA": "Remaining quota"
+                    },
+                    "LENGTH": "Invoices to negotiate: {{length}}",
+                    "INVOICE_LIST": {
+                        "INVOICE_NUMBER": "Invoice number",
+                        "PROVIDER": "Provider",
+                        "NIT": "Document number",
+                        "EXPIRATION_DATE": "Expiration date",
+                        "AMOUNT": "Amount"
+                    }
+                },
+                "BULK_INVOICE_NEGOTIATION_FORM": {
+                    "DISCOUNT_TYPE": "Discount type",
+                    "INVESTOR": "Lender",
+                    "PERCENTAGE": "Discount rate",
+                    "EXPECTED_PAYMENT_DATE": "Expected payment date",
+                    "DISCOUNT_DUE_DATE": "Valid until",
+                    "SELECTED_INVOICES": "Selected invoices: {{ value }}",
+                    "AVAILABLE_QUOTA": "Available Quota",
+                    "SEARCH_LABEL": "Search by invoice number",
+                    "TOTAL": "Total",
+                    "DISCOUNT": "Discount",
+                    "SUBTOTAL": "Subtotal",
+                    "REMAINING_QUOTA": "Remaining quota",
+                    "ERRORS": {
+                        "PERCENTAGE_MIN": "It can't be less than {{value}}.",
+                        "PERCENTAGE_MAX": "It can't be greater than {{value}}.",
+                        "INVALID_QUOTA": "The subtotal is greater than the available quota. Please modify the selection."
+                    }
+                },
+                "BULK_INVOICE_NEGOTIATION_DIALOG": {
+                    "TITLE": "Bulk invoice negotiation"
+                },
+                "BULK_INVOICE_NEGOTIATION_CONFIRMATION_DIALOG": {
+                    "TITLE": "Confirm negotiation",
+                    "INVESTOR": "Lender",
+                    "DISCOUNT_TYPE": "Discount type",
+                    "PERCENTAGE": "Discount rate",
+                    "EXPECTED_PAYMENT_DATE": "Expected payment date",
+                    "DISCOUNT_DUE_DATE": "Valid until",
+                    "TOTAL": "Total {{value}}",
+                    "DISCOUNT": "Discount {{value}}",
+                    "SUBTOTAL": "Subtotal {{value}}"
+                },
+                "BULK_INVOICE_NEGOTIATION_COUNTER_OFFER_DIALOG": {
+                    "TITLE": "Bulk invoice negotiation counteroffer"
+                },
+                "BULK_INVOICE_NEGOTIATION_ACCEPT_OFFER_DIALOG": {
+                    "TITLE": "Accept offer",
+                    "CONTENT": "Are you sure you want to accept the offer?"
+                },
+                "BULK_INVOICE_NEGOTIATION_REJECT_OFFER_DIALOG": {
+                    "TITLE": "Reject offer",
+                    "CONTENT": "Are you sure you want to reject the offer?"
+                },
+                "BULK_INVOICE_NEGOTIATION_CANCEL_OFFER_DIALOG": {
+                    "TITLE": "Cancel negotiation",
+                    "CONTENT": "Are you sure you want to cancel the negotiation?"
+                },
+                "BULK_INVOICE_NEGOTIATION_COUNTER_OFFER_FORM": {
+                    "ERROR": {
+                        "QUOTA": "The subtotal {{value}} exceeds the available quota {{quota}}"
+                    }
+                },
+                "BULK_INVOICE_NEGOTIATION_NOTIFICATIONS": {
+                    "ACCEPT_OFFER": {
+                        "SUCCESS": "The offer has been accepted.",
+                        "ERROR": "Something went wrong. Try again."
+                    },
+                    "COUNTER_OFFER": {
+                        "SUCCESS": "Your offer has been sent.",
+                        "ERROR": "Something went wrong. Try again."
+                    },
+                    "REJECT_OFFER": {
+                        "SUCCESS": "The offer has been rejected.",
+                        "ERROR": "Something went wrong. Try again."
+                    },
+                    "CANCEL_NEGOTIATION": {
+                        "SUCCESS": "The negotiation has been canceled.",
+                        "ERROR": "Something went wrong. Try again."
+                    }
+                }
+            }
+        }
+    },
+    "DOCUMENTATION_TABLE_ACTIONS": {
+        "TITLE": "Actions",
+        "LOAD": "Load",
+        "DELETE": "Delete",
+        "UPDATE": "Update"
+    },
+    "ENTERPRISE_DOCUMENTATION": {
+        "ERRORS": {
+            "FILE_LOAD": "There was an error loading the file.",
+            "DELETE_FILE": "There was an error trying to delete the file.",
+            "UPDATED_FILE": "There was an error updating the document status.",
+            "LIMIT_FILE": "The action cannot be performed, you have exceeded the allowed limit for adding documentation.",
+            "FILE_UPDATE": "There was an error updating the file."
+        },
+        "SUCCESSFUL_FILE_LOAD": "Successful document upload.",
+        "DELETED_FILE": "Document deleted.",
+        "UPDATED_FILE": "Document status has been updated.",
+        "TITLE": "Documentation",
+        "SEND": "Send",
+        "ADD_DOCUMENT": "Add new document",
+        "NEW_DOCUMENT_SAVED": "Added document",
+        "NEW_DOCUMENT_NOT_SAVED": "New document is not saved, try later",
+        "SUCCESSFUL_FILE_UPDATE": "Successful document update."
+    },
+    "LOAD_MODAL": {
+        "TITLE": "Upload document",
+        "EXPEDITION_DATE": "Expedition date",
+        "COMMENTS": "Comments",
+        "ADD_DOCUMENT": "Add document",
+        "SELECT_DOCUMENT": "Select document"
+    },
+    "DELETE_MODAL": {
+        "TITLE": "Delete document",
+        "BODY": "Do you want to delete the current document?",
+        "CHECK_TEXT": "Yes, confirm"
+    },
+    "ADMIN_DETAIL": {
+        "ADMIN_NAME": "Administrator name",
+        "DOCUMENT_TYPE": "Document type",
+        "DOCUMENT_NUMBER": "Document number",
+        "EMAIL": "Email"
+    },
+    "ENTERPRISE_DETAIL": {
+        "SOCIAL_REASON": "Social reason",
+        "NIT": "NIT",
+        "ECONOMIC_SECTOR": "Economic sector",
+        "ENTERPRISE_TYPE": "Enterprise type",
+        "PHONE": "Phone",
+        "PHONE_EXTENSION": "Extension",
+        "EMAIL": "Email",
+        "SALES": "Sales last year",
+        "SALES_CUT": "Sales cut",
+        "LINKING_DATE": "Linking date",
+        "DOCUMENT_TYPE": "Document type",
+        "PRODUCT_TYPE": "Product type",
+        "DEPARTMENT": "Department",
+        "CITY": "City",
+        "CIIU": "CIIU",
+        "ECONOMIC_ACTIVITY": "Economic activity",
+        "RELATIONSHIP_MANAGER": "Relationship manager",
+        "FORM_OF_DISBURSEMENT": "Form of disbursement",
+        "REGION": "Regional bank"
+    },
+    "CREATE_PROGRAM_FORM": {
+        "PHONE_NUMBER_ADVICE": "Please enter the number with the defined structure:\n Landline: Prefix + Callsign + number - Example: 6017462060 \n Cell: Number only – Example: 3165555555",
+        "DOC_NUM_ADVICE": "Please fill in the document number with the \n verification digit without points, commas or spaces.",
+        "SOCIAL_REASON": "Social reason",
+        "ENTERPRISE": "Enterprise",
+        "PROGRAM_ADMIN": "User Administrator",
+        "NAME": "Name",
+        "FIRST_SURNAME": "First surname",
+        "SECOND_SURNAME": "Second surname",
+        "EMAIL": "Email",
+        "EMAIL_EXAMPLE": "example@example.com",
+        "MODULES": "Modules",
+        "NIT_EXAMPLE": "Example: 9008762562",
+        "DOCUMENT_TYPE": "Document type",
+        "DOCUMENT_NUMBER": "Document number",
+        "DOCUMENT_TYPES": {
+            "NIT": "NIT",
+            "IDENTIFICATION_CARD": "Identification card",
+            "FOREIGNER_ID": "Foreigner Id",
+            "AUTONOMOUS_HERITAGE": "Autonomous heritage",
+            "PASSPORT": "Passport"
+        },
+        "PRODUCT_TYPE": {
+            "LABEL": "Product type",
+            "OPTIONS": {
+                "UNIDIRECT": "Unidirect",
+                "FACTORING": "Firm Factoring",
+                "CONFIRMING": "Confirming",
+                "DOCUMENT_DISCOUNT": "Documents Discount"
+            }
+        },
+        "DEPARTMENT": "Department",
+        "CITY": "City",
+        "CIIU": "CIIU",
+        "ECONOMIC_ACTIVITY": "Economic activity",
+        "ECONOMIC_SECTOR": "Economic sector",
+        "RELATIONSHIP_MANAGER": "Relationship manager",
+        "BANK_REGION": "Regional bank",
+        "SALES": "Sales last year",
+        "SALES_EXAMPLE": "Enter the value in millions of pesos",
+        "SALES_CUT": "Sales cut",
+        "SALES_PER_YEAR_EXAMPLE": "DD/MM/AAAA",
+        "PHONE_EXTENSION": "Extension",
+        "PHONE_NUMBER": "Phone number",
+        "PHONE_EXAMPLE": "Example: 6017462060"
+    },
+    "DETAIL_PAGE": {
+        "INFO": "General info",
+        "EDIT": "Edit"
+    }
+}

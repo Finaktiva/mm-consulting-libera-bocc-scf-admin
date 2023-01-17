@@ -1,0 +1,18 @@
+<div fxLayout="column">
+    <div
+        fxLayout="row"
+        fxLayoutAlign="space-between center"
+        class="page-toolbar"
+    >
+        <span class="mat-headline no-margin"
+            >{{ 'COMMON.LABELS.PROVIDERS' | translate }} -
+            {{ 'COMMON.LABELS.BULK_LOAD' | translate }}</span
+        >
+    </div>
+    <div class="page-content progress-bar-container mat-elevation-z1 table-container">
+        <provider-bulk-form
+            [isSubmitting]="isSubmitting$ | async"
+            (onSubmit)="onSubmit($event)"
+        ></provider-bulk-form>
+    </div>
+</div>

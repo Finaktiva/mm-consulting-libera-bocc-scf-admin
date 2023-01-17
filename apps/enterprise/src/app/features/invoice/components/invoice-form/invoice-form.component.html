@@ -1,0 +1,511 @@
+<form
+    (ngSubmit)="onSubmit()"
+    [formGroup]="form"
+    fxLayout="column"
+    fxLayoutAlign="start stretch"
+>
+    <h3 class="mat-title">
+        {{ 'INVOICE_FORM.INVOICE_INFO' | translate }}
+    </h3>
+    <div fxLayout="row wrap" fxLayoutGap="12px">
+        <mat-form-field appearance="standard" [fxFlex]="flex$ | async">
+            <mat-label>
+                {{ 'COMMON.INVOICE_FIELDS.INVOICE_NUMBER' | translate }}
+            </mat-label>
+            <input
+                matInput
+                formControlName="invoiceNumber"
+                type="text"
+                name="invoice-number"
+                [maxlength]="INVOICE_NUMBER_LENGTH"
+            />
+            <mat-hint align="end">
+                {{ form.value.invoiceNumber?.length || 0 }}/{{
+                    INVOICE_NUMBER_LENGTH
+                }}
+            </mat-hint>
+            <mat-error>
+                <span *ngIf="form.hasError('required', 'invoiceNumber')">
+                    {{ 'COMMON.VALIDATIONS.REQUIRED' | translate }}
+                </span>
+                <span *ngIf="form.hasError('maxlength', 'invoiceNumber')">
+                    {{
+                        'COMMON.VALIDATIONS.MAX_LENGTH'
+                            | translate: { maxLength: INVOICE_NUMBER_LENGTH }
+                    }}
+                </span>
+                <span *ngIf="form.hasError('whitespace', 'invoiceNumber')">
+                    {{
+                        'COMMON.VALIDATIONS.NOT_CONTAINS_CHARACTERS' | translate
+                    }}
+                </span>
+            </mat-error>
+        </mat-form-field>
+        <mat-form-field appearance="standard" [fxFlex]="flex$ | async">
+            <mat-label>
+                {{ 'COMMON.INVOICE_FIELDS.ALTERNATE_INVOICE_ID' | translate }}
+            </mat-label>
+            <input
+                matInput
+                formControlName="alternativeInvoiceId"
+                type="text"
+                name="alternative-invoice-id"
+                [maxlength]="INVOICE_NUMBER_LENGTH"
+            />
+            <mat-hint align="end">
+                {{ form.value.alternativeInvoiceId?.length || 0 }}/{{
+                    INVOICE_NUMBER_LENGTH
+                }}
+            </mat-hint>
+            <mat-error>
+                <span *ngIf="form.hasError('required', 'alternativeInvoiceId')">
+                    {{ 'COMMON.VALIDATIONS.REQUIRED' | translate }}
+                </span>
+                <span
+                    *ngIf="form.hasError('maxlength', 'alternativeInvoiceId')"
+                >
+                    {{
+                        'COMMON.VALIDATIONS.MAX_LENGTH'
+                            | translate: { maxLength: INVOICE_NUMBER_LENGTH }
+                    }}
+                </span>
+                <span
+                    *ngIf="form.hasError('whitespace', 'alternativeInvoiceId')"
+                >
+                    {{
+                        'COMMON.VALIDATIONS.NOT_CONTAINS_CHARACTERS' | translate
+                    }}
+                </span>
+            </mat-error>
+        </mat-form-field>
+        <mat-form-field appearance="standard" [fxFlex]="flex$ | async">
+            <mat-label>
+                {{ 'COMMON.INVOICE_FIELDS.EMISSION_DATE' | translate }}
+            </mat-label>
+            <input
+                matInput
+                formControlName="emissionDate"
+                type="text"
+                name="emission-date"
+                [matDatepicker]="emissionDate"
+                [max]="maxDate"
+            />
+            <mat-datepicker-toggle
+                matSuffix
+                [for]="emissionDate"
+            ></mat-datepicker-toggle>
+            <mat-datepicker #emissionDate></mat-datepicker>
+            <mat-error>
+                <span *ngIf="form.hasError('required', 'emissionDate')">
+                    {{ 'COMMON.VALIDATIONS.REQUIRED' | translate }}
+                </span>
+                <span *ngIf="form.hasError('matDatepickerMax', 'emissionDate')">
+                    {{ 'COMMON.VALIDATIONS.AFTER_TODAY' | translate }}
+                </span>
+            </mat-error>
+        </mat-form-field>
+        <mat-form-field appearance="standard" [fxFlex]="flex$ | async">
+            <mat-label>
+                {{ 'COMMON.INVOICE_FIELDS.EXPIRATION_DATE' | translate }}
+            </mat-label>
+            <input
+                matInput
+                formControlName="expirationDate"
+                type="text"
+                name="expiration-date"
+                [matDatepicker]="expirationDate"
+                [min]="form.value.emissionDate"
+            />
+            <mat-datepicker-toggle
+                matSuffix
+                [for]="expirationDate"
+            ></mat-datepicker-toggle>
+            <mat-datepicker #expirationDate></mat-datepicker>
+            <mat-error>
+                <span *ngIf="form.hasError('required', 'expirationDate')">
+                    {{ 'COMMON.VALIDATIONS.REQUIRED' | translate }}
+                </span>
+                <span
+                    *ngIf="form.hasError('matDatepickerMin', 'expirationDate')"
+                >
+                    {{ 'INVOICE_FORM.ERRORS.BEFORE_EMISSION_DATE' | translate }}
+                </span>
+            </mat-error>
+        </mat-form-field>
+        <mat-form-field appearance="standard" [fxFlex]="flex$ | async">
+            <mat-label>
+                {{ 'COMMON.INVOICE_FIELDS.DOCUMENT_TYPE' | translate }}
+            </mat-label>
+            <mat-select name="document-type" formControlName="documentType">
+                <mat-option [value]="INVOICE_DOCUMENT_TYPE.CREDIT_NOTE">
+                    {{ 'COMMON.INVOICE_DOCUMENT_TYPE.CREDIT_NOTE' | translate }}
+                </mat-option>
+                <mat-option [value]="INVOICE_DOCUMENT_TYPE.INVOICE">
+                    {{ 'COMMON.INVOICE_DOCUMENT_TYPE.INVOICE' | translate }}
+                </mat-option>
+            </mat-select>
+            <mat-error>
+                {{ 'COMMON.VALIDATIONS.REQUIRED' | translate }}
+            </mat-error>
+        </mat-form-field>
+        <mat-form-field
+            appearance="standard"
+            [fxFlex]="flex$ | async"
+            formGroupName="payment"
+        >
+            <mat-label>
+                {{ 'COMMON.INVOICE_FIELDS.INVOICE_VALUE' | translate }}
+            </mat-label>
+            <input
+                matInput
+                formControlName="amount"
+                type="text"
+                name="amount"
+                [maxlength]="INVOICE_VALUE_LENGTH"
+                (blur)="onBlur('amount')"
+            />
+            <span matPrefix>
+                {{ form.value.currencyCode | currencySymbol }}
+            </span>
+            <mat-error>
+                <span *ngIf="form.hasError('required', 'payment.amount')">
+                    {{ 'COMMON.VALIDATIONS.REQUIRED' | translate }}
+                </span>
+                <span *ngIf="form.hasError('min', 'payment.amount')">
+                    {{ 'COMMON.VALIDATIONS.MIN' | translate: { min: 1 } }}
+                </span>
+                <span *ngIf="form.hasError('pattern', 'payment.amount')">
+                    {{ 'COMMON.VALIDATIONS.ONLY_DIGITS' | translate }}
+                </span>
+                <span *ngIf="form.hasError('maxlength', 'payment.amount')">
+                    {{
+                        'COMMON.VALIDATIONS.MAX_LENGTH_DIGIT'
+                            | translate: { maxLength: 16 }
+                    }}
+                </span>
+            </mat-error>
+        </mat-form-field>
+        <mat-form-field appearance="standard" [fxFlex]="flex$ | async">
+            <mat-label>
+                {{ 'COMMON.INVOICE_FIELDS.CURRENCY' | translate }}
+            </mat-label>
+            <mat-select name="currency" formControlName="currencyCode">
+                <mat-option
+                    [value]="currency.code"
+                    *ngFor="let currency of currencies"
+                >
+                    {{ currency.description }}
+                </mat-option>
+            </mat-select>
+            <mat-error>
+                {{ 'COMMON.VALIDATIONS.REQUIRED' | translate }}
+            </mat-error>
+        </mat-form-field>
+        <mat-form-field appearance="standard" [fxFlex]="flex$ | async">
+            <mat-label>
+                {{ 'COMMON.INVOICE_FIELDS.PAYMENT_TYPE' | translate }}
+            </mat-label>
+            <mat-select name="payment-type" formControlName="paymentType">
+                <mat-option [value]="INVOICE_PAYMENT_TYPE.CASH">
+                    {{ 'COMMON.INVOICE_PAYMENT_TYPE.CASH' | translate }}
+                </mat-option>
+                <mat-option [value]="INVOICE_PAYMENT_TYPE.DEPOSIT">
+                    {{ 'COMMON.INVOICE_PAYMENT_TYPE.DEPOSIT' | translate }}
+                </mat-option>
+                <mat-option [value]="INVOICE_PAYMENT_TYPE.PAYCHECK">
+                    {{ 'COMMON.INVOICE_PAYMENT_TYPE.PAYCHECK' | translate }}
+                </mat-option>
+                <mat-option
+                    [value]="INVOICE_PAYMENT_TYPE.ELECTRONIC_TRANSFERENCE"
+                >
+                    {{
+                        'COMMON.INVOICE_PAYMENT_TYPE.ELECTRONIC_TRANSFERENCE'
+                            | translate
+                    }}
+                </mat-option>
+            </mat-select>
+            <mat-error>
+                {{ 'COMMON.VALIDATIONS.REQUIRED' | translate }}
+            </mat-error>
+        </mat-form-field>
+        <mat-form-field
+            appearance="standard"
+            [fxFlex]="flex$ | async"
+            formGroupName="payment"
+        >
+            <mat-label>
+                {{ 'COMMON.INVOICE_FIELDS.VAT' | translate }}
+            </mat-label>
+            <input
+                matInput
+                formControlName="vat"
+                name="vat"
+                type="text"
+                [maxlength]="INVOICE_VALUE_LENGTH"
+                (blur)="onBlur('vat')"
+            />
+            <span matPrefix>
+                {{ form.value.currencyCode | currencySymbol }}
+            </span>
+            <mat-error>
+                <span *ngIf="form.hasError('required', 'payment.vat')">
+                    {{ 'COMMON.VALIDATIONS.REQUIRED' | translate }}
+                </span>
+                <span *ngIf="form.hasError('maxlength', 'payment.vat')">
+                    {{
+                        'COMMON.VALIDATIONS.MAX_LENGTH_DIGIT'
+                            | translate: { maxLength: 16 }
+                    }}
+                </span>
+            </mat-error>
+        </mat-form-field>
+        <mat-form-field
+            appearance="standard"
+            [fxFlex]="flex$ | async"
+            formGroupName="payment"
+        >
+            <mat-label>
+                {{ 'COMMON.INVOICE_FIELDS.RETENTIONS' | translate }}
+            </mat-label>
+            <input
+                matInput
+                formControlName="retentions"
+                type="text"
+                name="retentions"
+                [maxlength]="INVOICE_VALUE_LENGTH"
+                (blur)="onBlur('retentions')"
+            />
+            <span matPrefix>
+                {{ form.value.currencyCode | currencySymbol }}
+            </span>
+            <mat-error>
+                <span *ngIf="form.hasError('required', 'payment.retentions')">
+                    {{ 'COMMON.VALIDATIONS.REQUIRED' | translate }}
+                </span>
+                <span *ngIf="form.hasError('min', 'payment.retentions')">
+                    {{ 'COMMON.VALIDATIONS.MIN' | translate: { min: 0 } }}
+                </span>
+                <span *ngIf="form.hasError('maxlength', 'payment.retentions')">
+                    {{
+                        'COMMON.VALIDATIONS.MAX_LENGTH_DIGIT'
+                            | translate: { maxLength: 16 }
+                    }}
+                </span>
+            </mat-error>
+        </mat-form-field>
+        <mat-form-field
+            appearance="standard"
+            [fxFlex]="flex$ | async"
+            formGroupName="payment"
+        >
+            <mat-label>
+                {{ 'COMMON.INVOICE_FIELDS.CREDIT_NOTES_VALUE' | translate }}
+            </mat-label>
+            <input
+                matInput
+                formControlName="creditNotesValue"
+                type="text"
+                name="credit-notes-value"
+                [maxlength]="INVOICE_VALUE_LENGTH"
+                (blur)="onBlur('creditNotesValue')"
+            />
+            <span matPrefix>
+                {{ form.value.currencyCode | currencySymbol }}
+            </span>
+            <mat-error>
+                <span
+                    *ngIf="
+                        form.hasError('required', 'payment.creditNotesValue')
+                    "
+                >
+                    {{ 'COMMON.VALIDATIONS.REQUIRED' | translate }}
+                </span>
+                <span *ngIf="form.hasError('min', 'payment.creditNotesValue')">
+                    {{ 'COMMON.VALIDATIONS.MIN' | translate: { min: 0 } }}
+                </span>
+                <span
+                    *ngIf="
+                        form.hasError('maxlength', 'payment.creditNotesValue')
+                    "
+                >
+                    {{
+                        'COMMON.VALIDATIONS.MAX_LENGTH_DIGIT'
+                            | translate: { maxLength: 16 }
+                    }}
+                </span>
+            </mat-error>
+        </mat-form-field>
+        <mat-form-field
+            appearance="standard"
+            [fxFlex]="flex$ | async"
+            formGroupName="payment"
+        >
+            <mat-label>
+                {{ 'COMMON.INVOICE_FIELDS.PAYMENT_ADVANCE' | translate }}
+            </mat-label>
+            <input
+                matInput
+                formControlName="inAdvance"
+                type="text"
+                name="in-advance"
+                [maxlength]="INVOICE_VALUE_LENGTH"
+                (blur)="onBlur('inAdvance')"
+            />
+            <span matPrefix>
+                {{ form.value.currencyCode | currencySymbol }}
+            </span>
+            <mat-error>
+                <span *ngIf="form.hasError('required', 'payment.inAdvance')">
+                    {{ 'COMMON.VALIDATIONS.REQUIRED' | translate }}
+                </span>
+                <span *ngIf="form.hasError('min', 'payment.inAdvance')">
+                    {{ 'COMMON.VALIDATIONS.MIN' | translate: { min: 0 } }}
+                </span>
+                <span *ngIf="form.hasError('maxlength', 'payment.inAdvance')">
+                    {{
+                        'COMMON.VALIDATIONS.MAX_LENGTH_DIGIT'
+                            | translate: { maxLength: 16 }
+                    }}
+                </span>
+            </mat-error>
+        </mat-form-field>
+        <mat-form-field [fxFlex]="flex$ | async" appearance="standard">
+            <mat-label>
+                {{ 'INVOICE_FORM.PROVIDER' | translate }}
+            </mat-label>
+            <input
+                type="text"
+                matInput
+                name="provider"
+                formControlName="provider"
+                [matAutocomplete]="auto"
+            />
+            <mat-error>
+                {{ 'COMMON.VALIDATIONS.NO_PROVIDER_SELECTED' | translate }}
+            </mat-error>
+            <mat-icon
+                *ngIf="(error$ | async)"
+                matSuffix
+                matTooltip="Error al hacer la busqueda. Compruebe su conexión."
+                color="warn"
+            >
+                error_outline
+            </mat-icon>
+            <mat-spinner
+                *ngIf="(isLoading$ | async)"
+                [diameter]="25"
+                mode="indeterminate"
+                matSuffix
+            ></mat-spinner>
+            <span matSuffix>{{ form.value.provider?.nit }}</span>
+        </mat-form-field>
+        <mat-autocomplete [displayWith]="displayWith" #auto="matAutocomplete">
+            <mat-option
+                *ngFor="let provider of (providers$ | async)"
+                [value]="provider"
+            >
+                {{ provider.enterpriseName }} ({{ provider.nit }})
+            </mat-option>
+        </mat-autocomplete>
+    </div>
+    <mat-divider style="margin-bottom: 12px"></mat-divider>
+    <div fxLayout="row" fxLayoutAlign="space-between center">
+        <h3 class="mat-title">
+            {{ 'COMMON.CUSTOMIZE.TITLE' | translate }}
+        </h3>
+        <button
+            (click)="onManageCustomAttributes()"
+            type="button"
+            mat-stroked-button
+            color="primary"
+        >
+            {{ 'COMMON.CUSTOMIZE.MANAGE_CUSTOM_INFO' | translate | uppercase }}
+        </button>
+    </div>
+    <div
+        formArrayName="customAttributes"
+        fxLayout="row wrap"
+        fxLayoutGap="12px"
+    >
+        <ng-container
+            *ngFor="
+                let customAttribute of customAttributeFormArray.controls;
+                let index = index
+            "
+        >
+            <mat-form-field
+                appearance="standard"
+                *ngIf="
+                    customAttribute.value.type ==
+                        ENTERPRISE_CUSTOM_ATTRIBUTE_TYPE.DATE;
+                    else input
+                "
+                [formGroupName]="index"
+                [fxFlex]="flex$ | async"
+            >
+                <mat-label>{{ customAttribute.value.name }}</mat-label>
+                <input
+                    matInput
+                    formControlName="value"
+                    type="text"
+                    name="custom-attribute"
+                    [matDatepicker]="date"
+                />
+                <mat-datepicker-toggle
+                    matSuffix
+                    [for]="date"
+                ></mat-datepicker-toggle>
+                <mat-datepicker #date></mat-datepicker>
+                <mat-error>
+                    {{ 'COMMON.VALIDATIONS.REQUIRED' | translate }}
+                </mat-error>
+            </mat-form-field>
+            <ng-template #input>
+                <mat-form-field
+                    appearance="standard"
+                    [formGroupName]="index"
+                    [fxFlex]="flex$ | async"
+                >
+                    <mat-label>{{ customAttribute.value.name }}</mat-label>
+                    <input
+                        *ngIf="
+                            customAttribute.value.type ==
+                            ENTERPRISE_CUSTOM_ATTRIBUTE_TYPE.TEXT
+                        "
+                        matInput
+                        formControlName="value"
+                        name="custom-attribute"
+                        type="text"
+                    />
+                    <input
+                        *ngIf="
+                            customAttribute.value.type ==
+                                ENTERPRISE_CUSTOM_ATTRIBUTE_TYPE.DECIMAL ||
+                            customAttribute.value.type ==
+                                ENTERPRISE_CUSTOM_ATTRIBUTE_TYPE.INTEGER
+                        "
+                        [step]="
+                            customAttribute.value.type ==
+                            ENTERPRISE_CUSTOM_ATTRIBUTE_TYPE.DECIMAL
+                                ? 0.1
+                                : 1
+                        "
+                        matInput
+                        formControlName="value"
+                        name="custom-attribute"
+                        type="number"
+                    />
+                    <mat-error>
+                        {{ 'COMMON.VALIDATIONS.REQUIRED' | translate }}
+                    </mat-error>
+                </mat-form-field>
+            </ng-template>
+        </ng-container>
+    </div>
+    <mat-divider style="margin: 12px 0"></mat-divider>
+    <div fxLayout="row" fxLayoutAlign="end">
+        <button [disabled]="shouldDisable()" type="submit" mat-button>
+            {{ 'COMMON.ACTIONS.SAVE' | translate | uppercase }}
+        </button>
+    </div>
+</form>

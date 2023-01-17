@@ -1,0 +1,109 @@
+<div fxLayout="column">
+    <div
+        fxLayout="row"
+        fxLayoutAlign="space-between center"
+        class="page-toolbar"
+    >
+        <div fxLayout="row" fxLayoutAlign="start center">
+            <a routerLink="/core/payer-invoices" mat-icon-button>
+                <mat-icon>arrow_back</mat-icon>
+            </a>
+            <span class="mat-headline no-margin">
+                {{ 'COMMON.LABELS.BACK_TO_LIST' | translate }}</span
+            >
+        </div>
+        <div>
+            <button mat-flat-button color="accent" [matMenuTriggerFor]="menu">
+                {{ 'COMMON.ACTIONS.PAYMENT' | translate }} &#x25BE;
+            </button>
+            <mat-menu #menu="matMenu">
+                <button
+                    [disabled]="shouldDisableNegotiateButton$ | async"
+                    (click)="onOpenNegotiationDialog()"
+                    mat-menu-item
+                >
+                    {{ 'INVOICE_LAYOUT.NEGOCIATE_INVOICE_PAYMENT' | translate }}
+                </button>
+                <button
+                    [disabled]="shouldDisableRequestPaymentButton$ | async"
+                    (click)="onOpenRequestPaymentDialog()"
+                    mat-menu-item
+                >
+                    {{ 'COMMON.LABELS.FUNDING_REQUEST' | translate }}
+                </button>
+            </mat-menu>
+        </div>
+    </div>
+    <div
+        style="padding: 0;"
+        class="page-content progress-bar-container mat-elevation-z1 table-container"
+        fxLayout="column"
+        fxLayoutAlign="start stretch"
+    >
+        <mat-spinner
+            fxFlexAlign="center"
+            *ngIf="(isLoading$ | async)"
+        ></mat-spinner>
+        <alert *ngIf="(error$ | async)" color="warn">
+            <span> {{ 'COMMON.ERRORS.LOAD_INVOICE' | translate }}</span>
+            <button (click)="fetchInvoice()" mat-flat-button color="warn">
+                {{ 'COMMON.ACTIONS.RETRY' | translate | uppercase }}
+            </button>
+        </alert>
+
+        <ng-container *ngIf="(hasLoaded$ | async)">
+            <div
+                style="padding: 12px"
+                fxLayout="row"
+                fxLayoutAlign="start center"
+                fxLayoutGap="20px"
+            >
+                <div>
+                    <h1 class="mat-headline no-margin">
+                        {{ 'COMMON.INVOICE_DOCUMENT_TYPE.INVOICE' | translate }}
+                        {{ invoiceNumber$ | async }}
+                    </h1>
+                </div>
+                <status-chip [status]="status$ | async">
+                    {{
+                        'COMMON.INVOICE_STATUS.' + (status$ | async) | translate
+                    }}
+                </status-chip>
+            </div>
+            <nav mat-tab-nav-bar>
+                <a
+                    mat-tab-link
+                    routerLink="./"
+                    routerLinkActive
+                    #detail="routerLinkActive"
+                    [routerLinkActiveOptions]="{ exact: true }"
+                    [active]="detail.isActive"
+                >
+                    {{ 'COMMON.INVOICE_TABS.INVOICE_INFO' | translate }}
+                </a>
+                <a
+                    mat-tab-link
+                    routerLink="negotiations"
+                    routerLinkActive
+                    #negotiation="routerLinkActive"
+                    [active]="negotiation.isActive"
+                >
+                    {{ 'COMMON.INVOICE_TABS.NEGOTIATION' | translate }}
+                </a>
+                <a
+                    *ngIf="(shouldRenderPaymentTab$ | async)"
+                    mat-tab-link
+                    routerLink="funding-requests"
+                    routerLinkActive
+                    #funding="routerLinkActive"
+                    [active]="funding.isActive"
+                >
+                    {{ 'COMMON.INVOICE_TABS.FUNDING' | translate }}
+                </a>
+            </nav>
+            <div style="padding: 12px">
+                <router-outlet></router-outlet>
+            </div>
+        </ng-container>
+    </div>
+</div>

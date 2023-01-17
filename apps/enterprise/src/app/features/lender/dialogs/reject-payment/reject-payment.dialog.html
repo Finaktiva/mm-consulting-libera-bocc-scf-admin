@@ -1,0 +1,38 @@
+<mat-progress-bar
+    mode="indeterminate"
+    *ngIf="(isSubmitting$ | async)"
+></mat-progress-bar>
+<form (ngSubmit)="onSubmit()">
+    <h2 class="text-warn" mat-dialog-title>
+        {{ 'REJECT_PAYMENT_DIALOG.TITLE' | translate }}
+    </h2>
+    <mat-dialog-content>
+        <div fxLayout="column" fxLayoutGap="12px" fxLayoutAlign="start stretch">
+            <payment-info [entity]="entity$ | async"></payment-info>
+            <mat-form-field>
+                <mat-label>{{
+                    'REJECT_PAYMENT_DIALOG.BODY' | translate
+                }}</mat-label>
+                <textarea
+                    [(ngModel)]="reason"
+                    matInput
+                    name="reason"
+                    rows="5"
+                ></textarea>
+            </mat-form-field>
+        </div>
+    </mat-dialog-content>
+    <mat-dialog-actions fxLayout="row" fxLayoutGap="12px" fxLayoutAlign="end">
+        <button type="button" mat-button mat-dialog-close>
+            {{ 'COMMON.ACTIONS.CANCEL' | translate | uppercase }}
+        </button>
+        <button
+            type="submit"
+            [disabled]="isSubmitting$ | async"
+            mat-flat-button
+            color="warn"
+        >
+            {{ 'COMMON.ACTIONS.REJECT' | translate | uppercase }}
+        </button>
+    </mat-dialog-actions>
+</form>

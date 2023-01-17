@@ -1,0 +1,44 @@
+<form [formGroup]="form" fxLayoutGap="12px">
+    <button
+        type="button"
+        mat-button
+        *ngIf="!shouldRender()"
+        (click)="onClear()"
+    >
+        {{ 'COMMON.LABELS.CLEAN_FILTERS' | translate }}
+    </button>
+    <mat-form-field appearance="standard">
+        <mat-label>
+            {{ 'COMMON.LABELS.FILTER_BY' | translate }}
+        </mat-label>
+        <mat-select name="filter_by" formControlName="filter_by">
+            <mat-option [value]="ROLE_FILTER_BY.ACRONYM">
+                {{ 'ROLE_LIST_FILTER.FILTER.ACRONYM' | translate }}
+            </mat-option>
+            <mat-option [value]="ROLE_FILTER_BY.CREATION_DATE">
+                {{ 'ROLE_LIST_FILTER.FILTER.CREATION_DATE' | translate }}
+            </mat-option>
+            <mat-option [value]="ROLE_FILTER_BY.DESCRIPTION">
+                {{ 'ROLE_LIST_FILTER.FILTER.DESCRIPTION' | translate }}
+            </mat-option>
+            <mat-option [value]="ROLE_FILTER_BY.EDITION_DATE">
+                {{ 'ROLE_LIST_FILTER.FILTER.EDITION_DATE' | translate }}
+            </mat-option>
+        </mat-select>
+    </mat-form-field>
+    <mat-form-field appearance="standard" *ngIf="shouldRenderTextInput()">
+        <input matInput formControlName="q" type="text" name="query" />
+    </mat-form-field>
+    <mat-form-field appearance="standard" *ngIf="shouldRenderDatepicker()">
+        <input
+            formControlName="q"
+            name="date"
+            type="text"
+            matInput
+            [matDatepicker]="picker"
+        />
+        <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
+        <mat-datepicker #picker></mat-datepicker>
+    </mat-form-field>
+    <button #submitButton hidden></button>
+</form>

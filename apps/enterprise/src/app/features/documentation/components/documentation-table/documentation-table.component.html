@@ -1,0 +1,22 @@
+<div fxLayout="column">
+    <div style="margin: 16px;" fxLayout="column" fxLayoutGap="15px">
+        <div class="page-content progress-bar-container mat-elevation-z1 table-container" fxLayout="column" fxLayoutGap="12px">
+            <div style="display: flex; justify-content: space-between; align-items: center; padding: 12px; padding-bottom: 0px;">
+                <h1 class='mat-title' style='margin-bottom: 0px;'>{{ 'ENTERPRISE_DOCUMENTATION.TITLE' | translate }}</h1>
+                <div style="display: flex;">
+                    <button mat-flat-button color="primary" (click)="loadNewDocument()">{{ 'ENTERPRISE_DOCUMENTATION.ADD_DOCUMENT' | translate }}</button>
+                </div>
+            </div>
+            <mat-progress-bar fxFlexAlign="center" *ngIf="(isLoading$ | async)" mode="indeterminate"></mat-progress-bar>
+            <p *ngIf="(error$ | async)" class="mat-body">
+                {{ 'COMMON.ERRORS.LOAD_DOCUMENTS' | translate }}
+                <button (click)="fetchDocumentation()" mat-flat-button color="warn">
+                    {{ 'COMMON.ACTIONS.RETRY' | translate | uppercase }}
+                </button>
+            </p>
+            <div style="display: flex; justify-content: space-between; align-items: center; padding: 12px; padding-bottom: 0px;">
+                <enterprise-documentation-table (upload)="onUpload($event,'','')" (delete)="onDelete($event)" [canDelete]="true" [showActions]="true" [entities]="entities$ | async"></enterprise-documentation-table>
+            </div>
+        </div>
+    </div>
+</div>

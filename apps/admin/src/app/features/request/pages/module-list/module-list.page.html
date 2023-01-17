@@ -1,0 +1,40 @@
+<div fxLayout="column">
+    <div
+        fxLayout="row"
+        fxLayoutAlign="start center"
+        fxLayoutGap="15px"
+        class="page-toolbar"
+    >
+        <span class="mat-headline no-margin">{{
+            'MODULE_LIST_PAGE.TITLE' | translate
+        }}</span>
+        <span fxFlex="1 1 auto"></span>
+        <request-list-filter-form
+            [filters]="filters$ | async"
+            (onSubmit)="onUpdateFilters($event)"
+        ></request-list-filter-form>
+    </div>
+    <div class="page-content progress-bar-container mat-elevation-z1 table-container">
+        <mat-progress-bar
+            *ngIf="(isLoading$ | async)"
+            mode="indeterminate"
+        ></mat-progress-bar>
+        <p *ngIf="(error$ | async)" class="mat-body">
+            {{ 'COMMON.ERRORS.PAGE_LOAD' | translate }}
+            <button (click)="fetchCurrentPage()" mat-flat-button color="warn">
+                {{ 'COMMON.ACTIONS.RETRY' | translate | uppercase }}
+            </button>
+        </p>
+        <request-module-table
+            [entities]="entities$ | async"
+        ></request-module-table>
+        <mat-paginator
+            [showFirstLastButtons]="true"
+            [pageSize]="pageSize$ | async"
+            [length]="total$ | async"
+            [pageIndex]="pageIndex$ | async"
+            [pageSizeOptions]="PAGE_SIZE_OPTIONS"
+            (page)="onChangePage($event)"
+        ></mat-paginator>
+    </div>
+</div>

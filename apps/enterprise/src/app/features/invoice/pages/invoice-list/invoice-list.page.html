@@ -1,0 +1,109 @@
+<div fxLayout="column">
+    <div class="page-toolbar">
+        <div fxLayout="row" fxLayoutAlign="space-between center">
+            <span class="mat-headline no-margin">
+                {{ 'COMMON.LABELS.INVOICES' | translate }}
+            </span>
+            <div
+                fxLayout="row"
+                fxLayoutAlign="center center"
+                fxLayoutGap="12px"
+            >
+                <invoice-list-filter-form
+                    [filters]="filters$ | async"
+                    (onSubmit)="onChangeFilters($event)"
+                ></invoice-list-filter-form>
+                <a
+                    routerLink="/core/payer-invoices/create"
+                    mat-flat-button
+                    color="primary"
+                >
+                    {{ 'COMMON.ACTIONS.ADD_INVOICE' | translate | uppercase }}
+                </a>
+            </div>
+        </div>
+        <div fxLayout="row" fxLayoutAlign="start center" fxLayoutGap="10px">
+            <button
+                mat-flat-button
+                color="accent"
+                [disabled]="shouldDisableNegotiationButton$ | async"
+                (click)="onOpenBulkNegotiationDialog()"
+            >
+                {{ 'COMMON.ACTIONS.NEGOTIATE' | translate | uppercase }}
+            </button>
+            <!-- <button
+                mat-flat-button
+                color="primary"
+                (click)="onOpenBulkNegotiationDialog()"
+                [disabled]="shouldDisableNegotiationButton$ | async"
+            >
+                {{ 'COMMON.ACTIONS.NEGOTIATE' | translate | uppercase }}
+            </button> -->
+            <p
+                class="mat-body text-warn no-margin"
+                fxLayoutAlign="start center"
+                fxLayoutGap="5px"
+                *ngIf="(shouldRenderFilterByProviderWarning$ | async)"
+            >
+                <mat-icon>error_outline</mat-icon>
+                <span>
+                    {{ 'COMMON.LABELS.BULK_NEGOTIATION_WARN' | translate }}
+                </span>
+            </p>
+            <p
+                class="mat-body text-warn no-margin"
+                fxLayoutAlign="start center"
+                fxLayoutGap="5px"
+                *ngIf="(shouldRenderMultipleCurrenciesWarning$ | async)"
+            >
+                <mat-icon>error_outline</mat-icon>
+                <span>
+                    {{
+                    'COMMON.LABELS.BULK_NEGOTIATION_MULTIPLE_CURRENCIES_WARNING'
+                    | translate : { currencies: currencies$ | async } }}
+                </span>
+            </p>
+            <p
+                class="mat-body text-warn"
+                fxLayoutAlign="start center"
+                fxLayoutGap="5px"
+                [fxShow]="hasDifferentSelection$ | async"
+            >
+                <mat-icon>error_outline</mat-icon>
+                <span>
+                    {{ 'COMMON.LABELS.BULK_NEGOTIATION_ONLY_ONE_PROVIDER' |
+                    translate }}
+                </span>
+            </p>
+        </div>
+    </div>
+    <div class="page-content progress-bar-container mat-elevation-z1 table-container">
+        <mat-progress-bar
+            *ngIf="(isLoading$ | async)"
+            mode="indeterminate"
+        ></mat-progress-bar>
+        <alert color="warn" *ngIf="(error$ | async)">
+            <span> {{ 'COMMON.ERRORS.PAGE_LOAD' | translate }}</span>
+            <button (click)="fetchCurrentPage()" mat-flat-button color="warn">
+                {{ 'COMMON.ACTIONS.RETRY' | translate | uppercase }}
+            </button>
+        </alert>
+        <invoice-table
+            (delete)="onDelete($event)"
+            (select)="onSelection($event)"
+            (selectAll)="onSelectAll($event)"
+            [hasSelection]="hasSelection$ | async"
+            [allSelected]="allSelected$ | async"
+            [showCheckbox]="isFilteringByProvider$ | async"
+            [entities]="entities$ | async"
+        ></invoice-table>
+        <mat-paginator
+            [showFirstLastButtons]="true"
+            [pageSize]="pageSize$ | async"
+            [length]="total$ | async"
+            [pageIndex]="pageIndex$ | async"
+            [pageSizeOptions]="PAGE_SIZE_OPTIONS"
+            (page)="onChangePage($event)"
+        ></mat-paginator>
+    </div>
+</div>

@@ -1,0 +1,95 @@
+<div style="overflow: auto">
+    <div class="container mat-body-2">
+        <div fxFlexAlign="row" class="item">
+            <div fxFlex="33">
+                <span>{{ 'DUTY_DETAIL.DUTY_NUMBER' | translate | titlecase }}:  </span>
+                <span class="mat-body">{{ duty.dutyNumber }}</span>
+            </div>
+            <div fxFlex="33">
+                <span>{{ 'DUTY_DETAIL.DISBURSEMENT_DATE' | translate | titlecase }}: </span>
+                <span class="mat-body">{{ duty.disbursementDate | date }}</span>
+            </div>
+            <div fxFlex="33">
+                <span>{{ 'DUTY_DETAIL.PROX_PAYMENT_DATE' | translate | titlecase }}: </span>
+                <span class="mat-body">{{ duty.nextPaymentDate | date }}</span>
+            </div>
+        </div>
+        <mat-divider></mat-divider>
+        <div fxFlexAlign="row" class="item">
+            <div fxFlex="33">
+                <span>{{ 'DUTY_DETAIL.PAYER' | translate | titlecase }}: </span>
+                <span class="mat-body">{{ duty.payer }}</span>
+            </div>
+            <div fxFlex="33">
+                <span>{{ 'DUTY_DETAIL.DAYS_PAST_DUE' | translate | titlecase }}: </span>
+                <span class="mat-body">{{ duty.defaulterDays }}</span>
+            </div>
+            <div fxFlex="33">
+                <span>{{ 'DUTY_DETAIL.PROX_QUOTA_VALUE' | translate | titlecase }}: </span>
+                <span class="mat-body">{{ duty.nextFeeValue }}</span>
+            </div>
+        </div>
+        <mat-divider></mat-divider>
+        <div fxFlexAlign="row" class="item">
+            <div fxFlex="33">
+                <span>{{ 'DUTY_DETAIL.IDENTIFICATION_NUMBER' | translate | titlecase }}: </span>
+                <span class="mat-body">{{ duty.identificationNumber }}</span>
+            </div>
+            <div fxFlex="33">
+                <span>{{ 'DUTY_DETAIL.RATE_TYPE' | translate | titlecase }}: </span>
+                <span class="mat-body">{{ duty.rateType }}</span>
+            </div>
+            <div fxFlex="33">
+                <span>{{ 'DUTY_DETAIL.CAPITAL_BALANCE' | translate | titlecase }}: </span>
+                <span class="mat-body">{{ duty.capitalBalance }}</span>
+            </div>
+        </div>
+        <mat-divider></mat-divider>
+        <div fxFlexAlign="row" class="item">
+            <div fxFlex="33">
+                <span>{{ 'DUTY_DETAIL.OFFICE' | translate | titlecase }}: </span>
+                <span class="mat-body">{{ duty.officeCode }}</span>
+            </div>
+            <div fxFlex="33">
+                <span>{{ 'DUTY_DETAIL.RATE' | translate | titlecase }}: </span>
+                <span class="mat-body">{{ duty.rate }}</span>
+            </div>
+            <div fxFlex="33">
+                <span>{{ 'DUTY_DETAIL.TOTAL_BALANCE' | translate | titlecase }}: </span>
+                <span class="mat-body">{{ duty.totalBalance }}</span>
+            </div>
+        </div>
+        <mat-divider></mat-divider>
+        <div fxFlexAlign="row" class="item">
+            <div fxFlex="33">
+                <span>{{ 'DUTY_DETAIL.PRODUCT' | translate | titlecase }}: </span>
+                <span class="mat-body">{{ duty.product }}</span>
+            </div>
+            <div fxFlex="33">
+                <span>{{ 'DUTY_DETAIL.POINTS' | translate | titlecase }}: </span>
+                <span class="mat-body">{{ duty.score }}</span>
+            </div>
+            <div fxFlex="33">
+                <span>{{ 'DUTY_DETAIL.DUE_DATE' | translate | titlecase }}: </span>
+                <span class="mat-body">{{ duty.expirationDate | date }}</span>
+            </div>
+        </div>
+        <mat-divider></mat-divider>
+        <div fxFlexAlign="row" class="item">
+            <div fxFlex="33">
+                <span>{{ 'DUTY_DETAIL.DUTY_VALUE' | translate | titlecase }}: </span>
+                <span class="mat-body">{{ duty.dutyValue }}</span>
+            </div>
+            <div fxFlex="33">
+                <span>{{ 'DUTY_DETAIL.EFFECTIVE_ANNUAL_RATE' | translate | titlecase }}: </span>
+                <span class="mat-body">{{ duty.effectiveAnnualRate }}</span>
+            </div>
+            <div fxFlex="33">
+                <span>{{ 'DUTY_DETAIL.STATE' | translate | titlecase }}: </span>
+                <span class="mat-body">{{ duty.status }}</span>
+            </div>
+        </div>
+        <mat-divider></mat-divider>
+        
+    </div>
+</div>

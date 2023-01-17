@@ -1,0 +1,161 @@
+<div style="overflow: auto">
+    <table mat-table [dataSource]="entities">
+        <ng-container matColumnDef="selection">
+            <th mat-header-cell *matHeaderCellDef>
+                <mat-checkbox
+                    #mainCheckbox
+                    [disabled]="!entities?.length"
+                    [checked]="allSelected"
+                    [indeterminate]="hasSelection && !allSelected"
+                    (change)="onSelectAll()"
+                ></mat-checkbox>
+            </th>
+            <td mat-cell *matCellDef="let entity">
+                <mat-checkbox
+                    *ngIf="shouldRenderCheckbox(entity.state.status)"
+                    [checked]="entity.ui.selected"
+                    (click)="onSelect(entity.state.id)"
+                ></mat-checkbox>
+            </td>
+        </ng-container>
+        <ng-container matColumnDef="invoiceNumber">
+            <th mat-header-cell *matHeaderCellDef>
+                {{ 'COMMON.INVOICE_FIELDS.INVOICE_NUMBER' | translate }}
+            </th>
+            <td mat-cell *matCellDef="let entity">
+                <a
+                    class="mat-body"
+                    [routerLink]="['/core/payer-invoices', entity.state.id]"
+                >
+                    {{ entity.state.invoiceNumber }}
+                </a>
+            </td>
+        </ng-container>
+        <ng-container matColumnDef="provider">
+            <th mat-header-cell *matHeaderCellDef>
+                {{ 'COMMON.LABELS.PROVIDER' | translate }}
+            </th>
+            <td mat-cell *matCellDef="let entity">
+                <span
+                    *ngIf="
+                        entity.state.provider?.enterpriseName;
+                        else notAssigned
+                    "
+                >
+                    {{ entity.state.provider.enterpriseName }}
+                </span>
+                <ng-template #notAssigned>
+                    {{ 'COMMON.LABELS.UNASSIGNED' | translate }}
+                </ng-template>
+            </td>
+        </ng-container>
+        <ng-container matColumnDef="creationDate">
+            <th mat-header-cell *matHeaderCellDef>
+                {{ 'COMMON.LABELS.UPLOAD_DATE' | translate }}
+            </th>
+            <td mat-cell *matCellDef="let entity">
+                {{ entity.state.creationDate | date }}
+            </td>
+        </ng-container>
+        <ng-container matColumnDef="expirationDate">
+            <th mat-header-cell *matHeaderCellDef>
+                {{ 'INVOICE_TABLE.REAL_EXPIRATION_DATE' | translate }}
+            </th>
+            <td mat-cell *matCellDef="let entity">
+                {{ entity.state.expirationDate | date }}
+            </td>
+        </ng-container>
+        <ng-container matColumnDef="paymentDate">
+            <th mat-header-cell *matHeaderCellDef>
+                {{ 'COMMON.LABELS.PAYMENT_DATE' | translate }}
+            </th>
+            <td mat-cell *matCellDef="let entity">
+                {{ entity.state.effectivePaymentDate | date }}
+            </td>
+        </ng-container>
+        <ng-container matColumnDef="paymentAmount">
+            <th mat-header-cell *matHeaderCellDef>
+                {{ 'COMMON.INVOICE_FIELDS.INVOICE_VALUE' | translate }}
+            </th>
+            <td mat-cell *matCellDef="let entity">
+                {{
+                    entity.state.payment?.amount
+                        | currency: entity.state.currencyCode:'code'
+                }}
+            </td>
+        </ng-container>
+        <ng-container matColumnDef="status">
+            <th mat-header-cell *matHeaderCellDef>
+                {{ 'COMMON.LABELS.STATUS' | translate }}
+            </th>
+            <td mat-cell *matCellDef="let entity">
+                <status-chip [status]="entity.state.status">
+                    {{
+                        'COMMON.INVOICE_STATUS.' + entity.state.status
+                            | translate
+                    }}
+                </status-chip>
+            </td>
+        </ng-container>
+        <ng-container matColumnDef="negotiationDiscount">
+            <th mat-header-cell *matHeaderCellDef>
+                {{ 'INVOICE_TABLE.DISCOUNT.VALUE' | translate }}
+            </th>
+            <td mat-cell *matCellDef="let entity">
+                {{
+                    entity.state.negotiation?.discountValue
+                        | currency: entity.state.currencyCode:'code'
+                }}
+            </td>
+        </ng-container>
+        <ng-container matColumnDef="percentage">
+            <th mat-header-cell *matHeaderCellDef>
+                {{ 'INVOICE_TABLE.DISCOUNT.RATE' | translate }}
+            </th>
+            <td mat-cell *matCellDef="let entity">
+                {{ entity.state.negotiation?.percentage | percent }}
+            </td>
+        </ng-container>
+        <ng-container matColumnDef="negotiationDiscountDays">
+            <th mat-header-cell *matHeaderCellDef>
+                {{ 'INVOICE_TABLE.DISCOUNT.DAYS' | translate }}
+            </th>
+            <td mat-cell *matCellDef="let entity">
+                {{ entity.state.negotiation?.discountDays }}
+            </td>
+        </ng-container>
+        <ng-container matColumnDef="paymentDue">
+            <th mat-header-cell *matHeaderCellDef>
+                {{ 'INVOICE_TABLE.PAYMENT_EXPIRATION' | translate }}
+            </th>
+            <td mat-cell *matCellDef="let entity">
+                {{ entity.state.negotiation?.paymentDueDays }}
+            </td>
+        </ng-container>
+        <ng-container matColumnDef="menu">
+            <th class="auto" mat-header-cell *matHeaderCellDef></th>
+            <td class="auto" mat-cell *matCellDef="let entity">
+                <ng-container
+                    *ngIf="entity.state.status == INVOICE_STATUS.LOADED"
+                >
+                    <button mat-button [matMenuTriggerFor]="appMenu">
+                        <mat-icon>arrow_drop_down</mat-icon>
+                    </button>
+                    <mat-menu #appMenu="matMenu">
+                        <button
+                            (click)="onDelete(entity.state.id)"
+                            mat-menu-item
+                        >
+                            {{ 'COMMON.ACTIONS.DELETE' | translate }}
+                        </button>
+                    </mat-menu>
+                </ng-container>
+            </td>
+        </ng-container>
+        <tr mat-header-row *matHeaderRowDef="(displayedColumns$ | async)"></tr>
+        <tr
+            mat-row
+            *matRowDef="let row; columns: (displayedColumns$ | async)"
+        ></tr>
+    </table>
+</div>

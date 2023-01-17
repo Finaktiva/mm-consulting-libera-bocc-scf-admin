@@ -1,0 +1,112 @@
+<form (ngSubmit)="onSubmit()" [formGroup]="form">
+    <div
+        formControlName="file"
+        fxLayout="row"
+        fxLayoutAlign="stretch center"
+        ngezFileDropzone
+        accept=".pdf"
+    >
+        <mat-progress-bar
+            *ngIf="isSubmitting; else template"
+            mode="indeterminate"
+        ></mat-progress-bar>
+        <ng-template #template>
+            <div
+                *ngIf="form.hasError('required', 'file'); else content"
+                fxLayout="row"
+                fxFlex
+                fxLayoutAlign="center center"
+            >
+                <span style="color: #8798AD" class="mat-subheading-2 no-margin">
+                    {{ 'FILE_DROPZONE.MESSAGE' | translate }}
+                </span>
+                <button
+                    [matTooltip]="'FILE_DROPZONE.SELECT_FILE' | translate"
+                    type="button"
+                    (click)="onBrowse()"
+                    mat-button
+                    color="primary"
+                >
+                    {{ 'FILE_DROPZONE.SELECT' | translate }}
+                </button>
+            </div>
+            <ng-template #content>
+                <div fxLayout="row" fxFlex fxLayoutAlign="stretch center">
+                    <span
+                        class="mat-subheading-2 no-margin"
+                        style="color: #8798AD"
+                        fxFlex
+                    >
+                        {{ form.value.file.name }}
+                    </span>
+                    <div
+                        *ngIf="error && !form.hasError('fileType', 'file')"
+                        fxLayout="row"
+                        fxLayoutAlign="center center"
+                        fxLayoutGap="4px"
+                    >
+                        <button
+                            [matTooltip]="'COMMON.LABELS.RETRY' | translate"
+                            type="submit"
+                            mat-button
+                            color="warn"
+                        >
+                            {{ 'COMMON.ACTIONS.RETRY' | translate | uppercase }}
+                        </button>
+                        <button
+                            type="button"
+                            [matTooltip]="
+                                'FILE_DROPZONE.CHANGE_FILE' | translate
+                            "
+                            (click)="onBrowse()"
+                            mat-button
+                            color="warn"
+                        >
+                            {{
+                                'COMMON.ACTIONS.REPLACE' | translate | uppercase
+                            }}
+                        </button>
+                        <mat-icon
+                            [matTooltip]="
+                                'COMMON.ERRORS.FILE_UPLOAD' | translate
+                            "
+                            color="warn"
+                        >
+                            error
+                        </mat-icon>
+                    </div>
+                    <div
+                        *ngIf="form.hasError('fileType', 'file')"
+                        fxLayout="row"
+                        fxLayoutAlign="center center"
+                        fxLayoutGap="4px"
+                    >
+                        <button
+                            type="button"
+                            [matTooltip]="
+                                'FILE_DROPZONE.CHANGE_FILE' | translate
+                            "
+                            (click)="onBrowse()"
+                            mat-button
+                            color="warn"
+                        >
+                            {{
+                                'COMMON.ACTIONS.REPLACE' | translate | uppercase
+                            }}
+                        </button>
+                        <mat-icon
+                            [matTooltip]="
+                                'DOCUMENTATION_DROPZONE.ONLY_PDF_TOOLTIP'
+                                    | translate
+                            "
+                            color="warn"
+                        >
+                            error
+                        </mat-icon>
+                    </div>
+                </div>
+            </ng-template>
+        </ng-template>
+    </div>
+    <button hidden #submitButton></button>
+</form>

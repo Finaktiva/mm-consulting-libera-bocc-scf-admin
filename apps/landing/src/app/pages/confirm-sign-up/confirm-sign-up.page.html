@@ -1,0 +1,8 @@
+<h2 class="mat-title">Verificar cuenta</h2>
+<confirm-sign-up-form
+    (send)="onSendConfirmationCode($event)"
+    [isSendingConfirmationCode]="isSendingConfirmationCode$ | async"
+    (onSubmit)="onSubmit($event)"
+    [isSubmitting]="isSubmitting$ | async"
+    [email]="email$ | async"
+></confirm-sign-up-form>

@@ -1,0 +1,101 @@
+<div fxLayout="column">
+    <mat-spinner
+        fxFlexAlign="center"
+        *ngIf="(isLoading$ | async)"
+    ></mat-spinner>
+    <alert *ngIf="(error$ | async)">
+        <span
+            >{{ 'COMMON.NEGOTIATION.ERROR_LOAD_NEGOTIATIONS' | translate
+            }}</span
+        >
+        <button (click)="fetchNegotiations()" mat-flat-button>
+            {{ 'COMMON.ACTIONS.RETRY' | translate | uppercase }}
+        </button>
+    </alert>
+    <h1
+        *ngIf="(shouldRenderMessage$ | async)"
+        class="mat-headline text-muted"
+        style="text-align: center; margin: 48px 0;"
+    >
+        {{ 'COMMON.NEGOTIATION.WITHOUT_NEGOTIATIONS' | translate }}
+    </h1>
+    <div
+        *ngIf="(shouldRenderNegotiationOffers$ | async)"
+        fxLayout="column"
+        fxLayoutGap="12px"
+    >
+        <div fxLayout="row" fxLayoutGap="12px">
+            <ng-container *ngIf="(payerOffer$ | async) as payerOffer">
+                <div fxFlex="50%" fxLayout="column">
+                    <p class="mat-body-2 text-primary">
+                        {{ 'COMMON.NEGOTIATION.PAYER_OFFER' | translate }}
+                    </p>
+                    <negotiation-offer-card
+                        class="card-outline"
+                        [offer]="payerOffer"
+                        [currencyCode]="currencyCode$ | async"
+                        [invoiceAmount]="invoiceAmount$ | async"
+                    ></negotiation-offer-card>
+                </div>
+            </ng-container>
+            <ng-container *ngIf="(shouldRenderProviderOffer$ | async)">
+                <div fxFlex="50%" fxLayout="column">
+                    <p class="mat-body-2 text-primary">
+                        {{ 'COMMON.NEGOTIATION.PROVIDER_OFFER' | translate }}
+                    </p>
+                    <div
+                        class="card-outline"
+                        [class.active]="shouldRenderForm$ | async"
+                        [class.no-padding]="shouldRenderInfo$ | async"
+                    >
+                        <negotiation-form
+                            (onSubmit)="onSubmitOffer($event)"
+                            (cancel)="onCancelOffer()"
+                            [isSubmitting]="isSubmitting$ | async"
+                            [showActions]="true"
+                            *ngIf="(shouldRenderForm$ | async)"
+                        ></negotiation-form>
+                        <negotiation-offer-card
+                            *ngIf="(shouldRenderInfo$ | async)"
+                            [offer]="providerOffer$ | async"
+                            [currencyCode]="currencyCode$ | async"
+                            [invoiceAmount]="invoiceAmount$ | async"
+                        ></negotiation-offer-card>
+                    </div>
+                </div>
+            </ng-container>
+        </div>
+
+        <div fxLayout="row" [fxShow]="hideNegotiationActions$ | async">
+            <p class="mat-body text-warn" fxLayoutAlign="start center" fxLayoutGap="5px">
+                <mat-icon>error_outline</mat-icon>
+                <span>
+                    {{ 'COMMON.NEGOTIATION.BULK_LOAD' | translate }}
+                </span>
+            </p>
+
+        </div>
+
+        <div [fxHide]="(hideNegotiationActions$ | async)">
+            <div
+                *ngIf="(shouldRenderNegotiationActions$ | async)"
+                fxLayout="row"
+                fxLayoutAlign="end"
+                fxLayoutGap="12px"
+            >
+                <button (click)="onOpenRejectOfferDialog()" mat-button>
+                    {{ 'COMMON.NEGOTIATION.ACTIONS.REJECT_OFFER' | translate |
+                    uppercase }}
+                </button>
+                <button (click)="onCounterOffer()" mat-button>
+                    {{ 'COMMON.NEGOTIATION.ACTIONS.COUNTER_OFFER' | translate |
+                    uppercase }}
+                </button>
+                <button (click)="onOpenAcceptOfferDialog()" mat-button>
+                    {{ 'COMMON.NEGOTIATION.ACTIONS.ACCEPT_OFFER' | translate |
+                    uppercase }}
+                </button>
+            </div>
+        </div>
+    </div>
+</div>

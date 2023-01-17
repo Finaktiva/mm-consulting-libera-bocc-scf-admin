@@ -1,0 +1,13 @@
+<form fxLayout="column" fxLayoutGap="12px" [formGroup]="form">
+    <h2 mat-dialog-title class="mat-title">{{ data.description }}</h2>
+    <p class='mat-body'>{{ 'DELETE_MODAL.BODY' | translate }}</p>
+    <mat-checkbox (change)="onChangeConfirm()">{{ 'DELETE_MODAL.CHECK_TEXT' | translate }}</mat-checkbox>
+    <mat-dialog-actions fxLayoutAlign="end" fxLayoutGap="15px">
+        <button type="button" mat-button mat-dialog-close [disabled]='isLoadingDocument'>
+      {{ 'COMMON.ACTIONS.CANCEL' | translate }}
+    </button>
+        <button mat-flat-button color="primary" type='submit' [disabled]="shouldDisable()" (click)="deleteFile()">
+      {{ 'COMMON.ACTIONS.ACCEPT' | translate }}
+    </button>
+    </mat-dialog-actions>
+</form>

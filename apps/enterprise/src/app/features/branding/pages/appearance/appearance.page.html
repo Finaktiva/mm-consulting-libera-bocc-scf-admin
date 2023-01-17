@@ -1,0 +1,131 @@
+<div fxLayout="column">
+    <div
+        fxLayout="row"
+        fxLayoutAlign="space-between center"
+        class="page-toolbar"
+    >
+        <span class="mat-headline no-margin">
+            {{ 'APPEREANCE_PAGE.TITLE' | translate }}
+        </span>
+        <button
+            (click)="onDelete()"
+            [disabled]="isDeletingBranding$ | async"
+            mat-button
+        >
+            {{ 'COMMON.ACTIONS.RESET_VALUES' | translate | uppercase }}
+        </button>
+    </div>
+
+    <div
+        style="margin: 16px"
+        class="progress-bar-container"
+        fxLayout="column"
+        fxLayoutGap="12px"
+        fxLayoutAlign="start stretch"
+    >
+        <mat-spinner
+            fxFlexAlign="center"
+            *ngIf="(isLoading$ | async)"
+        ></mat-spinner>
+        <div
+            *ngIf="(error$ | async)"
+            style="padding: 12px"
+            fxLayout="row"
+            fxLayoutGap="12px"
+            fxLayoutAlign="start center"
+        >
+            <span class="mat-body">
+                {{ 'COMMON.ERRORS.LOAD_BRANDING' | translate | uppercase }}
+            </span>
+            <button (click)="fetchBranding()" mat-flat-button color="warn">
+                {{ 'COMMON.ACTIONS.RETRY' | translate | uppercase }}
+            </button>
+        </div>
+        <ng-container *ngIf="(hasLoaded$ | async)">
+            <mat-progress-bar
+                *ngIf="(isDeletingBranding$ | async)"
+                mode="indeterminate"
+            ></mat-progress-bar>
+            <div class="mat-elevation-z1 progress-bar-container card">
+                <mat-progress-bar
+                    *ngIf="(isUpdatingTheme$ | async)"
+                    mode="indeterminate"
+                ></mat-progress-bar>
+                <h2 class="mat-title">
+                    {{ 'APPEREANCE_PAGE.COLORS' | translate }}
+                </h2>
+                <div fxLayout="row" fxLayoutGap="12px">
+                    <theme-form
+                        fxFlex
+                        [theme]="theme$ | async"
+                        (onSubmit)="onSubmitTheme($event)"
+                        [isSubmitting]="isUpdatingTheme$ | async"
+                    ></theme-form>
+                    <div *ngIf="(isLarge$ | async)" fxFlex>
+                        <img
+                            width="100%"
+                            [src]="
+                                'assets/images/branding.png'
+                                    | baseUrl: 'enterprise'
+                            "
+                            [alt]="
+                                'APPEREANCE_PAGE.COLORS_EXPLANATION' | translate
+                            "
+                        />
+                    </div>
+                </div>
+            </div>
+            <div fxLayout="row" fxLayout.lt-md="column" fxLayoutGap="12px">
+                <div
+                    fxFlex.gt-sm
+                    class="mat-elevation-z1 progress-bar-container card"
+                >
+                    <mat-progress-bar
+                        *ngIf="(isUpdatingLogo$ | async)"
+                        mode="indeterminate"
+                    ></mat-progress-bar>
+                    <h2 class="mat-title">
+                        {{ 'APPEREANCE_PAGE.LOGO' | translate }}
+                    </h2>
+                    <image-form
+                        #logo
+                        (onSubmit)="onSubmitLogo($event)"
+                        [isSubmitting]="isUpdatingLogo$ | async"
+                        accept=".png"
+                    >
+                        <p class="mat-body">
+                            {{
+                                'APPEREANCE_PAGE.LOGO_RESTRICTIONS' | translate
+                            }}
+                        </p>
+                    </image-form>
+                </div>
+                <div
+                    fxFlex.gt-sm
+                    class="mat-elevation-z1 progress-bar-container card"
+                >
+                    <mat-progress-bar
+                        *ngIf="(isUpdatingFavicon$ | async)"
+                        mode="indeterminate"
+                    ></mat-progress-bar>
+                    <h2 class="mat-title">
+                        {{ 'APPEREANCE_PAGE.FAVICON' | translate }}
+                    </h2>
+                    <image-form
+                        #favicon
+                        (onSubmit)="onSubmitFavicon($event)"
+                        [isSubmitting]="isUpdatingFavicon$ | async"
+                        accept=".ico"
+                    >
+                        <p class="mat-body">
+                            {{
+                                'APPEREANCE_PAGE.FAVICON_RESTRICTIONS'
+                                    | translate
+                            }}
+                        </p>
+                    </image-form>
+                </div>
+            </div>
+        </ng-container>
+    </div>
+</div>

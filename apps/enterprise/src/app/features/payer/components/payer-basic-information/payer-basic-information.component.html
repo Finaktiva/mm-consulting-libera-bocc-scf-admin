@@ -1,0 +1,51 @@
+<div class="card-outline" fxLayout="column">
+    <h2 class="mat-title">
+        {{ 'PAYER_BASIC_INFORMATION.TITLE' | translate }}
+    </h2>
+
+    <div class="mat-body">
+        <p class="mat-subheading-1 no-margin text-muted">
+            {{ 'PAYER_BASIC_INFORMATION.NIT' | translate | uppercase }}
+        </p>
+        <p>
+            {{ entity.nit }}
+        </p>
+
+        <p class="mat-subheading-1 no-margin text-muted">
+            {{
+                'PAYER_BASIC_INFORMATION.ECONOMIC_SECTOR'
+                    | translate
+                    | uppercase
+            }}
+        </p>
+        <p>
+            {{ entity.sector.name }}
+        </p>
+
+        <p class="mat-subheading-1 no-margin text-muted">
+            {{
+                'PAYER_BASIC_INFORMATION.TYPE_ENTERPRISE'
+                    | translate
+                    | uppercase
+            }}
+        </p>
+        <p>
+            {{ entity.enterpriseType }}
+        </p>
+
+        <p class="mat-subheading-1 no-margin text-muted">
+            {{ 'PAYER_BASIC_INFORMATION.CONTACT' | translate | uppercase }}
+        </p>
+        <p>
+            {{ entity.owner.name }} {{ entity.owner.firstSurname }}
+            {{ entity.owner.secondSurname }}
+        </p>
+
+        <p class="mat-subheading-1 no-margin text-muted">
+            {{ 'PAYER_BASIC_INFORMATION.EMAIL' | translate | uppercase }}
+        </p>
+        <p>
+            {{ entity.owner.email }}
+        </p>
+    </div>
+</div>

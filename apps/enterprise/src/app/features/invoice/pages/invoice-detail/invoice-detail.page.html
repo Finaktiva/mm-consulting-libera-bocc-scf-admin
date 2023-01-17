@@ -1,0 +1,96 @@
+<div fxLayout="row" fxLayoutGap="12px">
+    <div fxFlex class="card">
+        <h1 class="mat-title">
+            {{ 'INVOICE_DETAIL_PAGE.INVOICE_INFO' | translate }}
+        </h1>
+        <invoice-info [entity]="entity$ | async"></invoice-info>
+    </div>
+    <div fxFlex>
+        <div class="card">
+            <h1 class="mat-title">
+                {{ 'INVOICE_DETAIL_PAGE.PERSONALIZED_FIELDS' | translate }}
+            </h1>
+            <custom-attribute-list
+                *ngIf="
+                    (hasCustomAttributes$ | async);
+                    else customAttributesAlert
+                "
+                [entities]="customAttributes$ | async"
+            ></custom-attribute-list>
+            <ng-template #customAttributesAlert>
+                <alert color="primary">
+                    {{
+                        'INVOICE_DETAIL_PAGE.NO_PERSONALIZED_FIELDS' | translate
+                    }}
+                </alert>
+            </ng-template>
+        </div>
+    </div>
+    <div fxLayout="column" fxLayoutGap="12px" fxFlex>
+        <div class="card">
+            <div
+                style="margin-bottom: 12px"
+                fxLayout="row"
+                fxLayoutAlign="space-between center"
+            >
+                <h1 class="mat-title no-margin">
+                    {{ 'INVOICE_DETAIL_PAGE.PROVIDER' | translate }}
+                </h1>
+                <button
+                    *ngIf="(shouldRenderChangeProviderButton$ | async)"
+                    (click)="onEditProvider()"
+                    mat-icon-button
+                >
+                    <mat-icon>edit</mat-icon>
+                </button>
+            </div>
+            <enterprise-form
+                (cancel)="onCancelProvider()"
+                (onSubmit)="onSubmitProvider($event)"
+                [isSubmitting]="isSubmittingProvider$ | async"
+                *ngIf="(isEditingProvider$ | async)"
+                type="PROVIDER"
+            ></enterprise-form>
+            <enterprise-info
+                *ngIf="(shouldRenderProviderInfo$ | async)"
+                [entity]="provider$ | async"
+            ></enterprise-info>
+            <alert *ngIf="(shouldRenderProviderAlert$ | async)" color="primary">
+                {{ 'INVOICE_DETAIL_PAGE.WITHOUT_PROVIDER' | translate }}
+            </alert>
+        </div>
+
+        <div class="card">
+            <div
+                style="margin-bottom: 12px"
+                fxLayout="row"
+                fxLayoutAlign="space-between center"
+            >
+                <h1 class="mat-title no-margin">
+                    {{ 'INVOICE_DETAIL_PAGE.FUNDING' | translate }}
+                </h1>
+                <button
+                    *ngIf="(shouldRenderChangeLenderButton$ | async)"
+                    (click)="onEditLender()"
+                    mat-icon-button
+                >
+                    <mat-icon>edit</mat-icon>
+                </button>
+            </div>
+            <enterprise-form
+                (cancel)="onCancelLender()"
+                (onSubmit)="onSubmitLender($event)"
+                [isSubmitting]="isSubmittingLender$ | async"
+                *ngIf="(isEditingLender$ | async)"
+                type="FUNDING"
+            ></enterprise-form>
+            <enterprise-info
+                *ngIf="(shouldRenderLenderInfo$ | async)"
+                [entity]="lender$ | async"
+            ></enterprise-info>
+            <alert *ngIf="(shouldRenderLenderAlert$ | async)" color="primary">
+                {{ 'INVOICE_DETAIL_PAGE.WITHOUT_FUNDING' | translate }}
+            </alert>
+        </div>
+    </div>
+</div>

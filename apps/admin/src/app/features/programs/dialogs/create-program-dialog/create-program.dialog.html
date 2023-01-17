@@ -1,0 +1,15 @@
+<mat-progress-bar *ngIf="(isSubmitting$ | async)" mode="indeterminate"></mat-progress-bar>
+<h2 mat-dialog-title class="mat-title">
+    {{ 'CREATE_PROGRAM_DIALOG.TITLE' | translate | uppercase }}
+</h2>
+<mat-dialog-content>
+    <create-program-form #component [isSubmitting]="isSubmitting$ | async" (setActionName)="setActionName($event)" [bankRegions]="this.data.bankRegions"></create-program-form>
+</mat-dialog-content>
+<mat-dialog-actions fxLayoutAlign="end" fxLayoutGap="15px">
+    <button type="button" mat-button mat-dialog-close [mat-dialog-close]="'cancel'">
+        {{ 'COMMON.ACTIONS.CANCEL' | translate | uppercase }}
+    </button>
+    <button (click)="component.submit()" mat-flat-button color="primary" [disabled]="component.shouldDisable() || (isSubmitting$ | async)">
+        {{ actionName | translate | uppercase }}
+    </button>
+</mat-dialog-actions>

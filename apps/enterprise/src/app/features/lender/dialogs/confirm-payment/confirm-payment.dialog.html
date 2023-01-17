@@ -1,0 +1,36 @@
+<mat-progress-bar
+    mode="indeterminate"
+    *ngIf="(isSubmitting$ | async)"
+></mat-progress-bar>
+<h2 mat-dialog-title>
+    {{ 'CONFIRM_PAYMENT_DIALOG.TITLE' | translate }}
+</h2>
+<mat-dialog-content>
+    <div fxLayout="column" fxLayoutGap="12px" fxLayoutAlign="start stretch">
+        <payment-info [entity]="entity$ | async"></payment-info>
+        <div>
+            <h3 class="mat-subheading-2">
+                {{ 'CONFIRM_PAYMENT_DIALOG.BODY' | translate }}
+            </h3>
+            <confirm-payment-form
+                #form
+                (onSubmit)="onSubmit($event)"
+                [isSubmitting]="isSubmitting$ | async"
+            ></confirm-payment-form>
+        </div>
+    </div>
+</mat-dialog-content>
+<mat-dialog-actions fxLayout="row" fxLayoutGap="12px" fxLayoutAlign="end">
+    <button type="button" mat-button mat-dialog-close>
+        {{ 'COMMON.ACTIONS.CANCEL' | translate | uppercase }}
+    </button>
+    <button
+        (click)="form.submit()"
+        [disabled]="form.shouldDisable()"
+        type="button"
+        mat-flat-button
+        color="primary"
+    >
+        {{ 'COMMON.ACTIONS.CONFIRM' | translate | uppercase }}
+    </button>
+</mat-dialog-actions>

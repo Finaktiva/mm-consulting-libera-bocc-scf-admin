@@ -1,0 +1,38 @@
+<mat-dialog-content>
+    <div style="overflow: auto">
+        <table
+            mat-table
+            [dataSource]="data.entities"
+            class="wide"
+        >
+            <ng-container matColumnDef="enterpriseName">
+                <th mat-header-cell *matHeaderCellDef>
+                    {{ 'COMMON.LABELS.SOCIAL_REASON' | translate }}
+                </th>
+                <td mat-cell *matCellDef="let entity">
+                        {{ entity.enterpriseName }}
+                </td>
+            </ng-container>
+    
+            <ng-container matColumnDef="sale">
+                <th mat-header-cell *matHeaderCellDef>
+                    {{ 'COMMON.LABELS.SALES' | translate }}
+                </th>
+                <td mat-cell *matCellDef="let entity">
+                    {{ entity.sales ? (entity.sales | sales) : '' }}
+                </td>
+            </ng-container>
+    
+            <ng-container matColumnDef="salesCut">
+                <th mat-header-cell *matHeaderCellDef>
+                    {{ 'COMMON.LABELS.SALES_CUT' | translate }}
+                </th>
+                <td mat-cell *matCellDef="let entity">
+                    {{ entity.salesCut ? formatSaleCut(entity.salesCut) : '' }}
+                </td>
+            </ng-container>
+            <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+            <tr mat-row *matRowDef="let row; columns: displayedColumns"></tr>
+        </table>
+    </div>
+</mat-dialog-content>

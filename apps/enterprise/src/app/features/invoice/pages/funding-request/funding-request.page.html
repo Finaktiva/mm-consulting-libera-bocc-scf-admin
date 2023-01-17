@@ -1,0 +1,103 @@
+<div fxLayout="column">
+    <mat-spinner
+        fxFlexAlign="center"
+        *ngIf="(isLoading$ | async)"
+    ></mat-spinner>
+    <alert *ngIf="(error$ | async)">
+        <span>{{ 'FUNDING_REQUEST_PAGE.REQUEST_ERROR_LOAD' | translate }}</span>
+        <button (click)="fetchFunding()" mat-flat-button>
+            {{ 'COMMON.LABELS.RETRY' | translate | uppercase }}
+        </button>
+    </alert>
+    <h1
+        *ngIf="(shouldRenderMessage$ | async)"
+        class="mat-headline text-muted"
+        style="text-align: center; margin: 48px 0;"
+    >
+        {{ 'FUNDING_REQUEST_PAGE.NO_FUNDING_REQUEST' | translate }}
+    </h1>
+    <div
+        fxLayout="column"
+        fxLayoutGap="12px"
+        *ngIf="(shouldRenderFunding$ | async)"
+    >
+        <div fxLayout="row" fxLayoutGap="12px">
+            <div fxFlex="50%" fxLayout="column">
+                <div
+                    class="card-outline"
+                    fxLayoutAlign="start center"
+                    fxLayoutGap="12px"
+                    fxLayout="column"
+                >
+                    <h1 class="mat-title no-margin text-primary">
+                        {{
+                            amount$
+                                | async
+                                | currency: (currencyCode$ | async):'code'
+                        }}
+                    </h1>
+                    <span class="mat-body">
+                        {{
+                            'COMMON.INVOICE_PAYMENT.DISCOUNT_AMOUNT' | translate
+                        }}
+                    </span>
+                </div>
+            </div>
+            <div fxFlex="50%" fxLayout="column">
+                <div
+                    class="card-outline"
+                    fxLayoutAlign="start center"
+                    fxLayoutGap="12px"
+                    fxLayout="column"
+                >
+                    <h1 class="mat-title no-margin text-primary">
+                        {{ date$ | async | date: 'dd/MM/yy' }}
+                    </h1>
+                    <span class="mat-body">
+                        {{ 'COMMON.INVOICE_PAYMENT.EXPECTED_PAYMENT_DATE' | translate }}
+                    </span>
+                </div>
+            </div>
+        </div>
+        <mat-divider></mat-divider>
+        <h1 class="mat-headline" style="margin-top: 20px">
+            {{ 'FUNDING_REQUEST_PAGE.LIST_FUNDING_REQUEST' | translate }}
+        </h1>
+        <mat-accordion>
+            <mat-expansion-panel *ngFor="let entity of (entities$ | async)">
+                <mat-expansion-panel-header>
+                    <mat-panel-title fxLayoutGap="12px">
+                        <span *ngIf="entity.creationDate">
+                            ({{
+                                'FUNDING_REQUEST_PAGE.START_DATE' | translate
+                            }})
+                            {{ entity.creationDate | date }}
+                        </span>
+                        <span *ngIf="entity.finishDate">
+                            ({{
+                                'FUNDING_REQUEST_PAGE.FINISH_DATE' | translate
+                            }})
+                            {{ entity.finishDate | date }}
+                        </span>
+                        <span *ngIf="entity.lender">
+                            {{ entity.lender }}
+                        </span>
+                    </mat-panel-title>
+                    <mat-panel-description>
+                        {{
+                            'FUNDING_REQUEST_PAGE.STATUS.' + entity.status
+                                | translate
+                        }}
+                    </mat-panel-description>
+                </mat-expansion-panel-header>
+                <ng-template matExpansionPanelContent>
+                    <funding-request-log-panel
+                        [invoiceId]="id$ | async"
+                        [requestId]="entity.id"
+                    >
+                    </funding-request-log-panel>
+                </ng-template>
+            </mat-expansion-panel>
+        </mat-accordion>
+    </div>
+</div>

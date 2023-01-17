@@ -1,0 +1,54 @@
+<div fxLayout="column">
+    <div
+        fxLayout="row"
+        fxLayoutAlign="space-between center"
+        class="page-toolbar"
+    >
+        <span class="mat-headline no-margin">
+            {{ 'USER_LIST_PAGE.TITLE' | translate }}
+        </span>
+        <div fxLayout="row" fxLayoutAlign="center center" fxLayoutGap="12px">
+            <user-list-filter-form
+                *ngIf="canManageUsers$ | async"
+                [filters]="filters$ | async"
+                (onSubmit)="onChangeFilters($event)"
+            ></user-list-filter-form>
+            <button
+                *ngIf="canManageUsers$ | async"
+                (click)="onOpenCreateUserDialog()"
+                mat-flat-button
+                color="primary"
+            >
+                {{ 'USER_LIST_PAGE.INVITE_USER' | translate }}
+            </button>
+        </div>
+    </div>
+    <alert *ngIf="!(canManageUsers$ | async) && !(isLoadingPermission$ | async)" color="primary">{{ 'COMMON.VALIDATIONS.PERMISSIONS_REQUIRED' | translate }}</alert>
+    <div class="page-content progress-bar-container mat-elevation-z1 table-container" *ngIf="canManageUsers$ | async">
+        <mat-progress-bar
+            *ngIf="(isLoading$ | async)"
+            mode="indeterminate"
+        ></mat-progress-bar>
+        <p *ngIf="(error$ | async)" class="mat-body">
+            {{ 'COMMON.ERRORS.PAGE_LOAD' | translate }}
+            <button (click)="fetchCurrentPage()" mat-flat-button color="warn">
+                {{ 'COMMON.ACTIONS.RETRY' | translate | uppercase }}
+            </button>
+        </p>
+        <user-table
+            (toggleStatus)="onToggleStatus($event)"
+            (invite)="onInvite($event)"
+            (delete)="onOpenDeleteUserDialog($event)"
+            (update)="onOpenUpdateUserDialog($event)"
+            [entities]="entities$ | async"
+        ></user-table>
+        <mat-paginator
+            [showFirstLastButtons]="true"
+            [pageSize]="pageSize$ | async"
+            [length]="total$ | async"
+            [pageIndex]="pageIndex$ | async"
+            [pageSizeOptions]="PAGE_SIZE_OPTIONS"
+            (page)="onChangePage($event)"
+        ></mat-paginator>
+    </div>
+</div>

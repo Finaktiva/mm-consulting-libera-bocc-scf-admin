@@ -1,0 +1,30 @@
+<div fxLayout="row" fxLayoutGap="12px">
+    <div fxFlex class="card">
+        <h1 class="mat-title">
+            {{ 'PROVIDER.INVOICE_DETAIL_PAGE.TITLE' | translate }}
+        </h1>
+        <invoice-info [entity]="entity$ | async"></invoice-info>
+    </div>
+    <div fxLayout="column" fxLayoutGap="12px" fxFlex>
+        <div class="card">
+            <div
+                style="margin-bottom: 12px"
+                fxLayout="row"
+                fxLayoutAlign="space-between center"
+            >
+                <h1 class="mat-title no-margin">
+                    {{ 'COMMON.LABELS.PAYER' | translate }}
+                </h1>
+            </div>
+            <enterprise-info
+                *ngIf="(shouldRenderPayerInfo$ | async)"
+                [entity]="payer$ | async"
+            ></enterprise-info>
+            <alert *ngIf="(shouldRenderPayerAlert$ | async)" color="primary">
+                {{
+                    'PROVIDER.INVOICE_DETAIL_PAGE.WITHOUT_PROVIDER' | translate
+                }}
+            </alert>
+        </div>
+    </div>
+</div>

@@ -1,0 +1,10 @@
+@import '../../../../../styles';
+
+:host {
+    padding: 16px;
+    display: flex;
+    flex-direction: column;
+    place-content: center;
+    align-items: stretch;
+    // border: 1.5px solid $app-primary-color;
+}

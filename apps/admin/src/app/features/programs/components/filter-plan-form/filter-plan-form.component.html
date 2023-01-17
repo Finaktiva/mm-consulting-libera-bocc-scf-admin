@@ -1,0 +1,105 @@
+<form [formGroup]="form" fxLayoutGap="10px">
+    <button
+        type="button"
+        mat-button
+        *ngIf="!shouldRender()"
+        (click)="onClear()"
+    >
+        {{ 'COMMON.LABELS.CLEAN_FILTERS' | translate }}
+    </button>
+    <mat-form-field appearance="standard">
+        <mat-select
+            name="filter-by"
+            [placeholder]="'COMMON.LABELS.FILTER_BY' | translate"
+            formControlName="filter_by"
+        >
+            <mat-option value="TYPE">
+                {{ 'COMMON.FILTERS.MODALITY' | translate }}
+            </mat-option>
+            <mat-option value="STATUS">
+                {{ 'COMMON.FILTERS.STATUS' | translate }}
+            </mat-option>
+            <mat-option value="OBSERVATION">
+                {{ 'COMMON.FILTERS.OBSERVATION' | translate }}
+            </mat-option>
+        </mat-select>
+    </mat-form-field>
+    <ng-container
+        *ngIf="shouldRenderQueryInput()"
+        [ngSwitch]="form.value.filter_by"
+    >
+        
+        <mat-form-field appearance="standard" *ngSwitchCase="'TYPE'">
+            <mat-select
+                name="filter-by"
+                [placeholder]="'COMMON.FILTERS.SELECT_MODALITY' | translate"
+                formControlName="q"
+            >
+                <mat-option ngDefaultControl value="EXPONENTIAL">
+                    {{ 'COMMON.FILTERS.MODALITIES.EXPONENTIAL' | translate }}
+                </mat-option>
+                <mat-option value="COMMISSION">
+                    {{ 'COMMON.FILTERS.MODALITIES.COMMISSION' | translate }}
+                </mat-option>
+                <mat-option value="FINANCED">
+                    {{ 'COMMON.FILTERS.MODALITIES.FINANCED' | translate }}
+                </mat-option>
+            </mat-select>
+        </mat-form-field>
+
+        <mat-form-field appearance="standard" *ngSwitchCase="'STATUS'">
+                <mat-select
+                    name="filter-by"
+                    [placeholder]="'COMMON.FILTERS.SELECT_STATUS' | translate"
+                    formControlName="q"
+                >
+                    <mat-option value="CURRENT">
+                        {{ 'COMMON.FILTERS.CURRENT' | translate }}
+                    </mat-option>
+                    <mat-option value="ABOUT_TO_EXPIRE">
+                        {{ 'COMMON.FILTERS.ABOUT_TO_EXPIRE' | translate }}
+                    </mat-option>
+                    <mat-option value="EXPIRED">
+                        {{ 'COMMON.FILTERS.EXPIRED' | translate }}
+                    </mat-option>
+                    <mat-option value="PENDING_APPROVAL">
+                        {{ 'COMMON.FILTERS.PENDING_APPROVAL' | translate }}
+                    </mat-option>
+                    <mat-option value="PENDING_ACCEPTANCE">
+                        {{ 'COMMON.FILTERS.PENDING_ACCEPTANCE' | translate }}
+                    </mat-option>
+                    <mat-option value="REJECTED_BY_LIBERA">
+                        {{ 'COMMON.FILTERS.REJECTED_BY_LIBERA' | translate }}
+                    </mat-option>
+                    <mat-option value="REJECTED_BY_ENTERPRISE">
+                        {{ 'COMMON.FILTERS.REJECTED_BY_ENTERPRISE' | translate }}
+                    </mat-option>
+                </mat-select>
+        </mat-form-field>
+
+        <mat-form-field appearance="standard" *ngSwitchCase="'OBSERVATION'">
+            <mat-select
+                name="filter-by"
+                [placeholder]="'COMMON.FILTERS.SELECT_OBSERVATION' | translate"
+                formControlName="q"
+            >
+                <mat-option ngDefaultControl value="ECONOMIC_GROUP">
+                    {{ 'COMMON.FILTERS.OBSERVATIONS.ECONOMIC_GROUP' | translate }}
+                </mat-option>
+                <mat-option value="SPECIAL_RATE">
+                    {{ 'COMMON.FILTERS.OBSERVATIONS.SPECIAL_RATE' | translate }}
+                </mat-option>
+                <mat-option value="AGREEMENT">
+                    {{ 'COMMON.FILTERS.OBSERVATIONS.AGREEMENT' | translate }}
+                </mat-option>
+            </mat-select>
+        </mat-form-field>
+
+
+        <mat-form-field appearance="standard" *ngSwitchDefault>
+            <input name="search" matInput formControlName="q" />
+            <mat-icon matSuffix>search</mat-icon>
+        </mat-form-field>
+    </ng-container>
+    <button #submitButton type="submit" hidden></button>
+</form>
