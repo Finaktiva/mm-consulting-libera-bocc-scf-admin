@@ -11,6 +11,7 @@ import { map, tap } from 'rxjs/operators';
     selector: 'sign-in',
     templateUrl: './sign-in.page.html',
     changeDetection: ChangeDetectionStrategy.OnPush,
+    styleUrls: ['./sign-in.page.scss'],
 })
 export class SignInPage implements OnInit {
     isSubmitting$ = this.query.selectSigningIn();

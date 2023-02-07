@@ -6,6 +6,7 @@ import { PasswordFormBase } from '@libera/base';
     selector: 'sign-in-form',
     templateUrl: './sign-in-form.component.html',
     changeDetection: ChangeDetectionStrategy.OnPush,
+    styleUrls: ['./sign-in-form.component.scss'],
 })
 export class SignInFormComponent extends PasswordFormBase {
     @Output() onFederatedSignIn = new EventEmitter();

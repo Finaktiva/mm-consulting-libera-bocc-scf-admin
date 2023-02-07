@@ -4,13 +4,14 @@
     fxLayoutAlign="center stretch"
     (ngSubmit)="onSubmit()"
 >
+    <h3 class="mat-title">Ingresa los datos para inciar sesión</h3>
+    <label for="email">Correo electrónico</label>
     <mat-form-field>
-        <mat-label>Email</mat-label>
         <input
             name="email"
             formControlName="email"
             matInput
-            placeholder="ejemplo@ejemplo.com"
+            placeholder="Ingresa tu correo electrónico"
             type="text"
             autocapitalize="none"
         />
@@ -23,14 +24,15 @@
             </span>
         </mat-error>
     </mat-form-field>
+    <label for="password">Contraseña</label>
     <mat-form-field>
-        <mat-label>Contraseña</mat-label>
+        
         <input
             name="password"
             [type]="shouldHidePassword ? 'password' : 'text'"
             formControlName="password"
             matInput
-            placeholder="Contraseña"
+            placeholder="Ingresa tu contraseña"
             autocapitalize="none"
         />
         <mat-icon matSuffix (click)="togglePassword()">
@@ -40,15 +42,15 @@
             Este campo es requerido
         </mat-error>
     </mat-form-field>
-    <div fxLayoutAlign="end" [style.margin-bottom.px]="10">
+    <div fxLayoutAlign="center" [style.margin-bottom.px]="10">
         <a mat-button routerLink="/forgot-password" color="primary">
-            Olvidé contraseña
+            ¿Olvidates la contraseña?
         </a>
     </div>
-    <button mat-flat-button type="submit" color="primary" [disabled]="shouldDisable()">
+    <button mat-flat-button type="submit"  [disabled]="shouldDisable()">
         Iniciar sesión
     </button>
-    <button mat-flat-button type="button" color="accent" (click)="federatedSignIn()" style="margin-top: 25px;">
+    <button mat-flat-button type="button"  (click)="federatedSignIn()" >
         Iniciar sesión HOSTED UI
     </button>
     <div fxLayoutAlign="center">

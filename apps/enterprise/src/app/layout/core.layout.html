@@ -2,19 +2,37 @@
     <button (click)="sidenav.toggle()" mat-icon-button>
         <mat-icon>menu</mat-icon>
     </button>
-    <img width="18%" class="menu-logo" alt="Logo Banco Bogotá" src="/enterprise/assets/images/LogoMenu.png">
-    <div *ngIf="(loadedLogo$ | async)" [style.background-image]="logo$ | async" alt="Logo" class="logo-container"></div>
+    <img
+        width="18%"
+        class="menu-logo"
+        alt="Logo Banco Bogotá"
+        src="/enterprise/assets/images/LogoMenu.png"
+    />
+    <div
+        *ngIf="(loadedLogo$ | async)"
+        [style.background-image]="logo$ | async"
+        alt="Logo"
+        class="logo-container"
+    ></div>
     <span fxFlex></span>
     <!-- <button mat-icon-button>
         <mat-icon>notifications_none</mat-icon>
     </button> -->
-    <mat-spinner *ngIf="(isChangingLanguage$ | async)" [diameter]="20" color="accent"></mat-spinner>
+    <mat-spinner
+        *ngIf="(isChangingLanguage$ | async)"
+        [diameter]="20"
+        color="accent"
+    ></mat-spinner>
     <button mat-button [matMenuTriggerFor]="lang">
         {{ currentLanguage$ | async | uppercase }}
         <mat-icon>keyboard_arrow_down</mat-icon>
     </button>
     <mat-menu #lang="matMenu" xPosition="before">
-        <button mat-menu-item *ngFor="let language of (languages$ | async)" (click)="onChangeLanguage(language)">
+        <button
+            mat-menu-item
+            *ngFor="let language of (languages$ | async)"
+            (click)="onChangeLanguage(language)"
+        >
             {{ language.description }} ({{ language.code | uppercase }})
         </button>
     </mat-menu>
@@ -23,7 +41,8 @@
         <!-- <mat-icon>arrow_drop_down</mat-icon> -->
     </button>
     <mat-menu #appMenu="matMenu" xPosition="before">
-        <a routerLink="/roles" mat-menu-item>{{ 'CORE_LAYOUT.CHANGE_MODULE' | translate }}</a
+        <a routerLink="/roles" mat-menu-item
+            >{{ 'CORE_LAYOUT.CHANGE_MODULE' | translate }}</a
         >
         <a routerLink="/core/profile" mat-menu-item
             >{{ 'CORE_LAYOUT.PROFILE' | translate }}</a
@@ -46,99 +65,328 @@
                     routerLink="/core/providers"
                     routerLinkActive="active"
                     [routerLinkActiveOptions]="{ exact: true }"
+                    class="item-option"
                 >
+                    <span class="material-symbols-outlined icon-menu-option"
+                        >list_alt</span
+                    >
                     {{ 'CORE_LAYOUT.PROVIDERS.LIST' | translate }}
+                    <span class="material-symbols-outlined next-option">
+                        navigate_next</span
+                    >
                 </a>
-        <a mat-list-item routerLink="/core/providers/bulk" routerLinkActive="active" [routerLinkActiveOptions]="{ exact: true }">
+                <a
+                    mat-list-item
+                    routerLink="/core/providers/bulk"
+                    routerLinkActive="active"
+                    [routerLinkActiveOptions]="{ exact: true }"
+                    class="item-option"
+                >
+                    <span class="material-symbols-outlined icon-menu-option">
+                        description
+                    </span>
                     {{ 'CORE_LAYOUT.PROVIDERS.BULK_LOADS' | translate }}
+                    <span class="material-symbols-outlined next-option">
+                        navigate_next</span
+                    >
                 </a>
-        <mat-divider></mat-divider>
-        </ng-container>
-        <ng-container *ngIf="(isFunding$ | async)">
-            <h3 mat-subheader>
-                {{ 'CORE_LAYOUT.PAYERS.TITLE' | translate }}
-            </h3>
-            <a mat-list-item routerLink="/core/payers" routerLinkActive="active" [routerLinkActiveOptions]="{ exact: true }">
+                <mat-divider></mat-divider>
+            </ng-container>
+            <ng-container *ngIf="(isFunding$ | async)">
+                <h3 mat-subheader>
+                    {{ 'CORE_LAYOUT.PAYERS.TITLE' | translate }}
+                </h3>
+                <a
+                    mat-list-item
+                    routerLink="/core/payers"
+                    routerLinkActive="active"
+                    [routerLinkActiveOptions]="{ exact: true }"
+                    class="item-option"
+                >
+                    <span class="material-symbols-outlined icon-menu-option"
+                        >link</span
+                    >
                     {{ 'CORE_LAYOUT.PAYERS.LINKED' | translate }}
+                    <span class="material-symbols-outlined next-option">
+                        navigate_next</span
+                    >
                 </a>
-            <a mat-list-item routerLink="/core/payers/custom-attributes" routerLinkActive="active">
+                <a
+                    mat-list-item
+                    routerLink="/core/payers/custom-attributes"
+                    routerLinkActive="active"
+                    class="item-option"
+                >
+                    <span class="material-symbols-outlined icon-menu-option">
+                        settings
+                    </span>
                     {{ 'CORE_LAYOUT.PAYERS.PERSONALIZATION' | translate }}
+                    <span class="material-symbols-outlined next-option">
+                        navigate_next</span
+                    >
                 </a>
-            <mat-divider></mat-divider>
-        </ng-container>
-        <ng-container *ngIf="(isPayer$ | async)">
-            <h3 mat-subheader>
-                {{ 'CORE_LAYOUT.FUNDING.TITLE' | translate }}
-            </h3>
-            <a mat-list-item routerLink="/core/lenders" routerLinkActive="active" [routerLinkActiveOptions]="{ exact: true }">
+                <mat-divider></mat-divider>
+            </ng-container>
+            <ng-container *ngIf="(isPayer$ | async)">
+                <h3 mat-subheader>
+                    {{ 'CORE_LAYOUT.FUNDING.TITLE' | translate }}
+                </h3>
+                <a
+                    mat-list-item
+                    routerLink="/core/lenders"
+                    routerLinkActive="active"
+                    [routerLinkActiveOptions]="{ exact: true }"
+                    class="item-option"
+                >
+                    <span class="material-symbols-outlined icon-menu-option">
+                        request_quote
+                    </span>
                     {{ 'CORE_LAYOUT.FUNDING.REQUEST' | translate }}
+                    <span class="material-symbols-outlined next-option">
+                        navigate_next</span
+                    >
                 </a>
-            <a mat-list-item routerLink="/core/lenders/linked" routerLinkActive="active">
+                <a
+                    mat-list-item
+                    routerLink="/core/lenders/linked"
+                    routerLinkActive="active"
+                    class="item-option"
+                >
+                    <span class="material-symbols-outlined icon-menu-option">
+                        link
+                    </span>
                     {{ 'CORE_LAYOUT.FUNDING.LINKED' | translate }}
+                    <span class="material-symbols-outlined next-option">
+                        navigate_next</span
+                    >
                 </a>
-            <a mat-list-item routerLink="/core/lenders/available" routerLinkActive="active">
+                <a
+                    mat-list-item
+                    routerLink="/core/lenders/available"
+                    routerLinkActive="active"
+                    class="item-option"
+                >
+                    <span class="material-symbols-outlined icon-menu-option">
+                        event_available
+                    </span>
                     {{ 'CORE_LAYOUT.FUNDING.AVAILABLE' | translate }}
+                    <span class="material-symbols-outlined next-option">
+                        navigate_next</span
+                    >
                 </a>
-            <mat-divider></mat-divider>
-        </ng-container>
-        <ng-container *ngIf="(shouldRenderInvoiceMenu$ | async)">
-            <h3 mat-subheader>
-                {{ 'CORE_LAYOUT.INVOICES.TITLE' | translate }}
-            </h3>
-            <a *ngIf="(isPayer$ | async)" mat-list-item routerLink="/core/payer-invoices" routerLinkActive="active" [routerLinkActiveOptions]="{ exact: true }">
+                <mat-divider></mat-divider>
+            </ng-container>
+            <ng-container *ngIf="(shouldRenderInvoiceMenu$ | async)">
+                <h3 mat-subheader>
+                    {{ 'CORE_LAYOUT.INVOICES.TITLE' | translate }}
+                </h3>
+                <a
+                    *ngIf="(isPayer$ | async)"
+                    mat-list-item
+                    routerLink="/core/payer-invoices"
+                    routerLinkActive="active"
+                    [routerLinkActiveOptions]="{ exact: true }"
+                    class="item-option"
+                >
+                    <span class="material-symbols-outlined icon-menu-option">
+                        list_alt
+                    </span>
                     {{ 'CORE_LAYOUT.INVOICES.LIST' | translate }}
+                    <span class="material-symbols-outlined next-option">
+                        navigate_next</span
+                    >
                 </a>
-            <a *ngIf="(isProvider$ | async)" mat-list-item routerLink="/core/provider-invoices" routerLinkActive="active" [routerLinkActiveOptions]="{ exact: true }">
+                <a
+                    *ngIf="(isProvider$ | async)"
+                    mat-list-item
+                    routerLink="/core/provider-invoices"
+                    routerLinkActive="active"
+                    [routerLinkActiveOptions]="{ exact: true }"
+                    class="item-option"
+                >
+                    <span class="material-symbols-outlined icon-menu-option">
+                        list_alt
+                    </span>
                     {{ 'CORE_LAYOUT.INVOICES.LIST' | translate }}
+                    <span class="material-symbols-outlined next-option">
+                        navigate_next</span
+                    >
                 </a>
-            <a *ngIf="(isPayer$ | async)" mat-list-item routerLink="/core/invoices/bulk" routerLinkActive="active" [routerLinkActiveOptions]="{ exact: true }">
+                <a
+                    *ngIf="(isPayer$ | async)"
+                    mat-list-item
+                    routerLink="/core/invoices/bulk"
+                    routerLinkActive="active"
+                    [routerLinkActiveOptions]="{ exact: true }"
+                    class="item-option"
+                >
+                    <span class="material-symbols-outlined icon-menu-option">
+                        description
+                    </span>
                     {{ 'CORE_LAYOUT.INVOICES.BULK_LOADS' | translate }}
+                    <span class="material-symbols-outlined next-option">
+                        navigate_next</span
+                    >
                 </a>
-            <a *ngIf="(isPayer$ | async)" mat-list-item routerLink="/core/payer-invoices/bulk-negotiations" routerLinkActive="active" [routerLinkActiveOptions]="{ exact: true }">
+                <a
+                    *ngIf="(isPayer$ | async)"
+                    mat-list-item
+                    routerLink="/core/payer-invoices/bulk-negotiations icon-menu-option"
+                    routerLinkActive="active"
+                    [routerLinkActiveOptions]="{ exact: true }"
+                    class="item-option"
+                >
+                    <span class="material-symbols-outlined icon-menu-option">
+                        local_atm
+                    </span>
                     {{ 'CORE_LAYOUT.INVOICES.BULK_NEGOTIATIONS' | translate }}
+                    <span class="material-symbols-outlined next-option">
+                        navigate_next</span
+                    >
                 </a>
-            <a *ngIf="(isProvider$ | async)" mat-list-item routerLink="/core/provider-invoices/bulk-negotiations" routerLinkActive="active" [routerLinkActiveOptions]="{ exact: true }">
+                <a
+                    *ngIf="(isProvider$ | async)"
+                    mat-list-item
+                    routerLink="/core/provider-invoices/bulk-negotiations"
+                    routerLinkActive="active"
+                    [routerLinkActiveOptions]="{ exact: true }"
+                    class="item-option"
+                >
+                    <span class="material-symbols-outlined icon-menu-option">
+                        local_atm
+                    </span>
                     {{ 'CORE_LAYOUT.INVOICES.BULK_NEGOTIATIONS' | translate }}
+                    <span class="material-symbols-outlined next-option">
+                        navigate_next</span
+                    >
                 </a>
-            <a *ngIf="(isPayer$ | async)" mat-list-item routerLink="/core/invoices/custom-attributes" routerLinkActive="active" [routerLinkActiveOptions]="{ exact: true }">
+                <a
+                    *ngIf="(isPayer$ | async)"
+                    mat-list-item
+                    routerLink="/core/invoices/custom-attributes"
+                    routerLinkActive="active"
+                    [routerLinkActiveOptions]="{ exact: true }"
+                    class="item-option"
+                >
+                    <span class="material-symbols-outlined icon-menu-option">
+                        settings
+                    </span>
                     {{ 'CORE_LAYOUT.INVOICES.PERSONALIZATION' | translate }}
+                    <span class="material-symbols-outlined next-option">
+                        navigate_next</span
+                    >
                 </a>
-            <mat-divider></mat-divider>
-        </ng-container>
-        <ng-container *ngIf="(isFunding$ | async)">
-            <h3 mat-subheader>
-                {{ 'CORE_LAYOUT.REQUEST.TITLE' | translate }}
-            </h3>
-            <a mat-list-item routerLink="/core/lenders/requests" routerLinkActive="active" [routerLinkActiveOptions]="{ exact: true }">
+                <mat-divider></mat-divider>
+            </ng-container>
+            <ng-container *ngIf="(isFunding$ | async)">
+                <h3 mat-subheader>
+                    {{ 'CORE_LAYOUT.REQUEST.TITLE' | translate }}
+                </h3>
+                <a
+                    mat-list-item
+                    routerLink="/core/lenders/requests"
+                    routerLinkActive="active"
+                    [routerLinkActiveOptions]="{ exact: true }"
+                    class="item-option"
+                >
+                    <span class="material-symbols-outlined icon-menu-option">
+                        local_atm
+                    </span>
                     {{ 'CORE_LAYOUT.REQUEST.FUNDING' | translate }}
+                    <span class="material-symbols-outlined next-option">
+                        navigate_next</span
+                    >
                 </a>
-            <a mat-list-item routerLink="/core/lenders/quota-requests" routerLinkActive="active" [routerLinkActiveOptions]="{ exact: true }">
+                <a
+                    mat-list-item
+                    routerLink="/core/lenders/quota-requests"
+                    routerLinkActive="active"
+                    [routerLinkActiveOptions]="{ exact: true }"
+                    class="item-option"
+                >
+                    <span class="material-symbols-outlined icon-menu-option">
+                        savings
+                    </span>
                     {{ 'CORE_LAYOUT.REQUEST.QUOTA' | translate }}
+                    <span class="material-symbols-outlined next-option">
+                        navigate_next</span
+                    >
                 </a>
-            <mat-divider></mat-divider>
-        </ng-container>
-        <ng-container *ngIf="(isAdmin$ | async)">
-            <a mat-list-item routerLink="/core/users" routerLinkActive="active">
+                <mat-divider></mat-divider>
+            </ng-container>
+            <ng-container *ngIf="(isAdmin$ | async)">
+                <a
+                    mat-list-item
+                    routerLink="/core/users"
+                    routerLinkActive="active"
+                    class="item-option"
+                >
+                    <span class="material-symbols-outlined icon-menu-option">
+                        manage_accounts
+                    </span>
                     {{ 'CORE_LAYOUT.USERS_MANAGEMENT' | translate }}
+                    <span class="material-symbols-outlined next-option">
+                        navigate_next</span
+                    >
                 </a>
-            <mat-divider></mat-divider>
-            <h3 mat-subheader>
-                {{ 'CORE_LAYOUT.MY_ENTERPRISE.TITLE' | translate }}
-            </h3>
-            <a mat-list-item routerLink="/core/my-enterprise" [routerLinkActiveOptions]="{ exact: true }" routerLinkActive="active">
+                <mat-divider></mat-divider>
+                <h3 mat-subheader>
+                    {{ 'CORE_LAYOUT.MY_ENTERPRISE.TITLE' | translate }}
+                </h3>
+                <a
+                    mat-list-item
+                    routerLink="/core/my-enterprise"
+                    [routerLinkActiveOptions]="{ exact: true }"
+                    routerLinkActive="active"
+                    class="item-option"
+                >
+                    <span class="material-symbols-outlined icon-menu-option">
+                        info
+                    </span>
                     {{ 'CORE_LAYOUT.MY_ENTERPRISE.BASIC_INFO' | translate }}
+                    <span class="material-symbols-outlined next-option">
+                        navigate_next</span
+                    >
                 </a>
-            <a mat-list-item routerLink="/core/my-enterprise/documentation" routerLinkActive="active">
+                <a
+                    mat-list-item
+                    routerLink="/core/my-enterprise/documentation"
+                    routerLinkActive="active"
+                    class="item-option"
+                >
+                    <span class="material-symbols-outlined icon-menu-option">
+                        content_copy
+                    </span>
                     {{ 'CORE_LAYOUT.MY_ENTERPRISE.DOCUMENTATION' | translate }}
+                    <span class="material-symbols-outlined next-option">
+                        navigate_next</span
+                    >
                 </a>
-            <a *ngIf="isPayerAdmin$ | async" mat-list-item routerLink="/core/my-enterprise/financial-conditions" routerLinkActive="active">
-                    {{ 'CORE_LAYOUT.MY_ENTERPRISE.FINANCIAL_CONDITIONS' | translate }}
+                <a
+                    *ngIf="isPayerAdmin$ | async"
+                    mat-list-item
+                    routerLink="/core/my-enterprise/financial-conditions"
+                    routerLinkActive="active"
+                    class="item-option"
+                >
+                    <span class="material-symbols-outlined icon-menu-option">
+                        quick_reference
+                    </span>
+                    {{ 'CORE_LAYOUT.MY_ENTERPRISE.FINANCIAL_CONDITIONS' |
+                    translate }}
+                    <span class="material-symbols-outlined next-option">
+                        navigate_next</span
+                    >
                 </a>
-            <mat-divider></mat-divider>
-        </ng-container>
+                <mat-divider></mat-divider>
+            </ng-container>
         </mat-nav-list>
-        </mat-sidenav>
-        <mat-sidenav-content class="page-container" fxLayout="column" fxFlex="1 1 auto">
-            <router-outlet></router-outlet>
-        </mat-sidenav-content>
-        </mat-sidenav-container>
+    </mat-sidenav>
+    <mat-sidenav-content
+        class="page-container"
+        fxLayout="column"
+        fxFlex="1 1 auto"
+    >
+        <router-outlet></router-outlet>
+    </mat-sidenav-content>
+</mat-sidenav-container>
