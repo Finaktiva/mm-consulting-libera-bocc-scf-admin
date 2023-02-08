@@ -48,8 +48,12 @@
                     <h3 mat-subheader translate>
                         {{ 'SIDENAV.PROGRAM.TITLE' | translate }}
                     </h3>
-                    <a mat-list-item routerLink="/programs" routerLinkActive="active">
-                        {{ 'SIDENAV.PROGRAM.ALL' | translate }}
+                    <a mat-list-item routerLink="/programs" routerLinkActive="active" class="item-option">
+                        <span class="material-symbols-outlined icon-menu-option">
+                            factory
+                            </span> {{ 'SIDENAV.PROGRAM.ALL' | translate }} <span class="material-symbols-outlined next-option">
+                                navigate_next</span
+                            >
                     </a>
                     <mat-divider></mat-divider>
                     <h1 mat-subheader translate>
@@ -59,24 +63,40 @@
                         {{ 'SIDENAV.REQUEST.MODULE' | translate }}
                     </a>-->
                     <a mat-list-item routerLink="/requests/links" routerLinkActive="active">
-                        {{ 'SIDENAV.REQUEST.LINKING' | translate }}
+                        <span class="material-symbols-outlined">
+                            link
+                            </span> {{ 'SIDENAV.REQUEST.LINKING' | translate }} <span class="material-symbols-outlined next-option">
+                                navigate_next</span
+                            >
                     </a>
                     <mat-divider></mat-divider>
                     <h1 mat-subheader translate>
                         {{ 'SIDENAV.SECURITY_MANAGEMENT.TITLE' | translate }}
                     </h1>
-                    <a mat-list-item routerLink="/users" routerLinkActive="active">
-                        {{ 'SIDENAV.SECURITY_MANAGEMENT.USER' | translate }}
+                    <a mat-list-item routerLink="/users" routerLinkActive="active" class="item-option">
+                        <span class="material-symbols-outlined icon-menu-option">
+                            manage_accounts
+                            </span> {{ 'SIDENAV.SECURITY_MANAGEMENT.USER' | translate }} <span class="material-symbols-outlined next-option">
+                                navigate_next</span
+                            >
                     </a>
-                    <a mat-list-item routerLink="/role" routerLinkActive="active">
-                        {{ 'SIDENAV.SECURITY_MANAGEMENT.ROLE' | translate }}
+                    <a mat-list-item routerLink="/role" routerLinkActive="active" class="item-option">
+                        <span class="material-symbols-outlined icon-menu-option">
+                            badge
+                            </span> {{ 'SIDENAV.SECURITY_MANAGEMENT.ROLE' | translate }} <span class="material-symbols-outlined next-option">
+                                navigate_next</span
+                            >
                     </a>
                     <mat-divider></mat-divider>
                     <h1 mat-subheader translate>
                         {{ 'SIDENAV.QUERIES.TITLE' | translate }}
                     </h1>
-                    <a mat-list-item routerLink="/duty" routerLinkActive="active">
-                        {{ 'SIDENAV.QUERIES.DUTY' | translate }}
+                    <a mat-list-item routerLink="/duty" routerLinkActive="active" class="item-option">
+                        <span class="material-symbols-outlined icon-menu-option">
+                            request_page
+                            </span> {{ 'SIDENAV.QUERIES.DUTY' | translate }} <span class="material-symbols-outlined next-option">
+                                navigate_next</span
+                            >
                     </a>
                 </mat-nav-list>
             </mat-sidenav>

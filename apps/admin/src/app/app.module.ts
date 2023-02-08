@@ -28,6 +28,7 @@ import { AppProvidersModule } from './providers/app-providers.module';
 import { environment } from '../environments/environment';
 import { BnNgIdleService } from 'bn-ng-idle';
 
+
 registerLocaleData(localeEs, 'es');
 
 export function HttpLoaderFactory(http: HttpClient) {
@@ -47,6 +48,7 @@ const COMMON_IMPORTS = [
     MatSnackBarModule,
     MatProgressSpinnerModule,
     MatMomentDateModule,
+    MatIconModule,
 ];
 
 @NgModule({

@@ -27,7 +27,6 @@ const COMMON_IMPORTS = [
     CommonModule,
     TranslateModule,
     MatProgressSpinnerModule,
-    MatIconModule
 ];
 
 const COMMON_DECLARATIONS = [CoreLayout];
