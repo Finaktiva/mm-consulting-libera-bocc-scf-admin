@@ -26,7 +26,7 @@
     </mat-form-field>
     <label for="password">Contraseña</label>
     <mat-form-field>
-        
+
         <input
             name="password"
             [type]="shouldHidePassword ? 'password' : 'text'"
@@ -44,7 +44,7 @@
     </mat-form-field>
     <div fxLayoutAlign="center" [style.margin-bottom.px]="10">
         <a mat-button routerLink="/forgot-password" color="primary">
-            ¿Olvidates la contraseña?
+            ¿Olvidaste la contraseña?
         </a>
     </div>
     <button mat-flat-button type="submit"  [disabled]="shouldDisable()">

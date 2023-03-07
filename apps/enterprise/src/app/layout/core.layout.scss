@@ -1,6 +1,10 @@
 :host {
     flex-direction: column;
 }
+.mat-toolbar{
+    background: #fff;
+    border-bottom: 1px solid #e0e0e0;
+}
 
 .page-container {
     // padding: 24px;
@@ -24,16 +28,17 @@
     color: #0745AA;
     margin-left: auto;
     font-size: 30px;
-
+    position: absolute;
+    right: -7px;
 }
-:host ::ng-deep .mat-list-item-content { 
+:host ::ng-deep .mat-list-item-content {
     margin: 10px 10px;
     border: 1px solid #E5E5E5;
     border-radius: 10px;
     padding: 20px 0;
   }
 
-  :host ::ng-deep .mat-list-item-content:hover{ 
+  :host ::ng-deep .mat-list-item-content:hover{
     background: #e6eff8;
   }
   :host a.item-option.mat-list-item.ng-star-inserted {
